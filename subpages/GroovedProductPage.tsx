@@ -17,7 +17,6 @@ const GroovedProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.GROOVED,
         ...ASSETS.PRODUCT_PAGES.GROOVED.SLIDES
     ];
 

@@ -15,7 +15,6 @@ const TelhasTrapezoidaisProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.TELHAS,
         ...ASSETS.PRODUCT_PAGES.TELHAS.SLIDES
     ];
 

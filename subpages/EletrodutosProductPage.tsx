@@ -15,7 +15,6 @@ const EletrodutosProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.ELETRODUTOS,
         ...ASSETS.PRODUCT_PAGES.ELETRODUTOS.SLIDES
     ];
 

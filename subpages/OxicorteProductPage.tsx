@@ -15,7 +15,6 @@ const OxicorteProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.OXICORTE,
         ...ASSETS.PRODUCT_PAGES.OXICORTE.SLIDES
     ];
 

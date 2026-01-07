@@ -15,7 +15,6 @@ const ChapasProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.CHAPAS,
         ...ASSETS.PRODUCT_PAGES.CHAPAS.SLIDES
     ];
 

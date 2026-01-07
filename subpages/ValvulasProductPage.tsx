@@ -13,7 +13,6 @@ const ValvulasProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.VALVULAS,
         ...ASSETS.PRODUCT_PAGES.VALVULAS.SLIDES
     ];
 

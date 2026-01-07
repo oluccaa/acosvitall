@@ -15,7 +15,6 @@ const PerfisLaminadosProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.PERFIS,
         ...ASSETS.PRODUCT_PAGES.PERFIS.SLIDES
     ];
 

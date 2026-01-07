@@ -15,7 +15,6 @@ const CaldeirariaProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.CALDEIRARIA,
         ...ASSETS.PRODUCT_PAGES.CALDEIRARIA.SLIDES
     ];
 

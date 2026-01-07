@@ -15,7 +15,6 @@ const GradesPisoProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.GRADES,
         ...ASSETS.PRODUCT_PAGES.GRADES.SLIDES
     ];
 

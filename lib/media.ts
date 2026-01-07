@@ -281,8 +281,7 @@ export const ASSETS = {
     ELETRODUTOS: {
         SLIDES: [
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/hero/1.webp",
-            "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/hero/2.webp",
-            "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/hero/3.webp"
+            "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/hero/2.webp"
         ],
         MODELS: {
             LEVE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/1.webp",

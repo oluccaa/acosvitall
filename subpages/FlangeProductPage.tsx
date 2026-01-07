@@ -6,7 +6,6 @@ import { FileText, Settings, Ruler, Layers } from 'lucide-react';
 
 const FlangeProductPage: React.FC = () => {
     const slides = [
-        ASSETS.PRODUCTS.FLANGES,
         ...ASSETS.PRODUCT_PAGES.FLANGES.SLIDES
     ];
 

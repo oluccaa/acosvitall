@@ -15,7 +15,6 @@ const TubosProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.TUBOS,
         ...ASSETS.PRODUCT_PAGES.TUBOS.SLIDES
     ];
 

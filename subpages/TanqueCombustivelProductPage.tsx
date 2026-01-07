@@ -22,7 +22,6 @@ const TanqueCombustivelProductPage: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     
     const slides = [
-        ASSETS.PRODUCTS.TANQUES,
         ...ASSETS.PRODUCT_PAGES.TANQUES.SLIDES
     ];
 
