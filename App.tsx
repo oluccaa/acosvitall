@@ -37,7 +37,7 @@ const GroovedProductPage = React.lazy(() => import('./subpages/GroovedProductPag
 const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueCombustivelProductPage'));
 
 // --- 2. CONFIGURAÇÃO DA PÁGINA INICIAL ---
-const PaginaPrincipal = GroovedProductPage; 
+const PaginaPrincipal = HomePage; 
 
 // --- 3. MAPEAMENTO DE ROTAS ---
 
