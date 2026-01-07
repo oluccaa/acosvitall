@@ -1,0 +1,170 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================
+   BASE SETTINGS
+   ========================================= */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #081437; /* Updated to Main Brand Blue */
+}
+
+body {
+  @apply font-sans text-brand-text bg-brand-blue-dark antialiased;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* =========================================
+   GLOBAL ANIMATIONS
+   ========================================= */
+
+/* Shimmer / Skeleton Loading */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #EBEBEB 8%, #F5F5F5 18%, #EBEBEB 33%);
+  background-size: 1000px 104px;
+}
+
+/* Slide In Up */
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(2rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+  opacity: 0;
+  animation: slide-in-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Menu Animations */
+@keyframes menu-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes menu-item-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-menu-item {
+  animation: menu-item-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0; /* Start hidden */
+}
+
+/* Fade In Scale (Modal) */
+@keyframes fade-in-scale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.2s ease-out forwards;
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF751A; /* Brand Orange */
+}
+
+/* =========================================
+   UTILITIES & COMPONENTS
+   ========================================= */
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/90 backdrop-blur-md border-b border-white/20;
+}
+
+.glass-dark {
+  @apply bg-brand-blue-dark/95 backdrop-blur-md border-b border-white/10;
+}
+
+/* Hide Scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin Scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+/* Form Inputs (Global Standardization) */
+@layer components {
+  .input-label-lg {
+    @apply block text-xs text-slate-300 uppercase font-extrabold mb-3 tracking-wide;
+  }
+  
+  .input-field-lg {
+    @apply w-full bg-slate-800 border border-white/10 rounded-xl p-4 text-white outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all placeholder-gray-500;
+  }
+  
+  .input-label {
+    @apply block text-[10px] text-gray-400 uppercase font-bold mb-1.5 tracking-wider;
+  }
+  
+  .input-field {
+    @apply w-full bg-[#1e293b] border border-white/10 rounded-lg py-3 px-3 text-white text-sm outline-none focus:border-brand-orange transition-colors placeholder-gray-600;
+  }
+
+  .btn-primary {
+    @apply bg-brand-orange text-white font-bold py-3 px-8 rounded-lg hover:bg-brand-orange-dark transition-all duration-300 shadow-lg hover:shadow-brand-orange/20 active:scale-95 uppercase tracking-wider text-sm;
+  }
+}
+
+/* Print Styles */
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+}
