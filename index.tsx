@@ -1,3 +1,4 @@
+
 /**
  * ============================================================================
  * Application Entry Point (index.tsx)
@@ -12,12 +13,22 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './lib/i18n'; // Initialize i18next configuration
 
+// Service Worker Registration for efficient caching
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}
+
 // Find the root DOM node
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {
   console.error("Critical Error: Root element 'root' not found in the document.");
-  // Fallback UI or throw error
   throw new Error("Could not find root element to mount to");
 }
 

@@ -1,17 +1,35 @@
 
-// Shared media assets to be used across all locales and components
+/**
+ * ============================================================================
+ * Media Assets Library (media.ts)
+ * ============================================================================
+ * 
+ * Centralized registry for all media. 
+ * OPTIMIZATION: We wrap Supabase heavy assets in a resizing proxy to avoid 
+ * huge payload warnings in Lighthouse.
+ */
 
-// Centralized Asset Registry
+const optimize = (url: string, width: number = 800) => {
+    // Se a imagem já é do builder, apenas passa. 
+    // Se for Supabase, encapsulamos para redimensionar e converter para WebP leve.
+    if (url.includes('supabase.co')) {
+        return `https://images.builderservices.io/s/cdn/v1.0/i/m?url=${encodeURIComponent(url)}&methods=resize%2C${width}%2C5000`;
+    }
+    return url;
+};
+
 export const ASSETS = {
-
-  // Imagens usadas no Sobre nós (Featured Products) e Outdoors
-
   LOGO: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2Ffa2ee8c3569d413fb2ae26686f42b928&methods=resize%2C1000%2C5000",
   
   HERO: {
     COMMON_VIDEO: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa&methods=resize%2C2000%2C5000",
     COMMON_BG: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa&methods=resize%2C2000%2C5000",
     FEATURES_BG: "https://images.unsplash.com/photo-1581243981884-a1dc2c687e37?q=80&w=2070&auto=format&fit=crop"
+  },
+
+  // Added missing property used in CertificationsHero.tsx
+  CERTIFICATIONS: {
+    HERO_BG: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa&methods=resize%2C2000%2C5000"
   },
 
   HERO_SLIDES_IMGS: {
@@ -29,96 +47,70 @@ export const ASSETS = {
   },
 
   ABOUT: {
-    CONTENT_IMAGE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/sobre/vertical-sobre-empresa.gif",
-    UNITS_MAP: "https://yrhedrhkfgvaeoavcazg.supabase.co/storage/v1/object/sign/public-assets/acosvital/images/MapaOndeAtuamos.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MWI0YjViZi00ZjI3LTQyZGUtYTQ5OC03MjdlNjMwMjUzYzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwdWJsaWMtYXNzZXRzL2Fjb3N2aXRhbC9pbWFnZXMvTWFwYU9uZGVBdHVhbW9zLnBuZyIsImlhdCI6MTc2NDg3MTE5OCwiZXhwIjoxNzk2NDA3MTk4fQ.a6e5a6a6a6a6"
-  },
-
-  CERTIFICATIONS: {
-    HERO_BG: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa&methods=resize%2C2000%2C5000",
-    CONTENT_IMAGE: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2Fafc82e27a4894ee8ba16231adb5e8f09&methods=resize%2C2000%2C5000"
+    // CRÍTICO: Reduzindo o GIF de 7.1MB para uma versão otimizada via proxy
+    CONTENT_IMAGE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/sobre/vertical-sobre-empresa.gif", 500),
+    UNITS_MAP: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/onde_atuamos/mapa_v2.webp"
   },
 
   CERTIFICATIONS_LOGOS: {
-    ISO9001: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/ISO.webp",
-    CRC: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/CRC.webp",
-    YPFB: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/YPFB.webp"
-    },
+    ISO9001: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/ISO.webp", 300),
+    CRC: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/CRC.webp", 300),
+    YPFB: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/YPFB.webp", 300)
+  },
   
   CTA: {
-    BG_GIF: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/cta/cta.webp"
+    BG_GIF: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/cta/cta.webp", 1200)
   },
 
-  // Imagens usadas na Home (Featured Products) e Outdoors
   HOME_FEATURED: {
-    FLANGE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/1.webp",
-    TUBOS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/2.webp",
-    CALDEIRARIA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/10.webp",
-    CHAPAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/6.webp",
-    CONEXOES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/4.webp",
-    VALVULAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/5.webp",
-    PERFIS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/14.webp",
-    GRADE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/8.webp",
-    TELHAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/13.webp",
-    CIVIL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/9.webp",
-    OXICORTE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/12.webp",
-    ELETRODUTOS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/3.webp",
-    GROOVED: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/11.webp",
-    TANQUES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/7.webp"
+    FLANGE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/1.webp", 600),
+    TUBOS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/2.webp", 600),
+    CALDEIRARIA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/10.webp", 600),
+    CHAPAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/6.webp", 600),
+    CONEXOES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/4.webp", 600),
+    VALVULAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/5.webp", 600),
+    PERFIS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/14.webp", 600),
+    GRADE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/8.webp", 600),
+    TELHAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/13.webp", 600),
+    CIVIL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/9.webp", 600),
+    OXICORTE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/12.webp", 600),
+    ELETRODUTOS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/3.webp", 600),
+    GROOVED: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/11.webp", 600),
+    TANQUES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/7.webp", 600)
   },
 
-  // Setores de Atuação
   SECTORS: {
-    AGRICULTURE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/1.webp",
-    ARCHITECTURE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/2.webp",
-    AUTOMOTIVE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/3.webp",
-    CIVIL_CONST: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/4.webp",
-    ENERGY: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/5.webp",
-    NAVAL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/6.webp",
-    MINING: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/7.webp",
-    OIL_GAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/8.webp",
-    PULP_PAPER: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/9.webp",
-    PETROCHEMICAL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/10.webp",
-    SANITATION: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/11.webp",
-    STEEL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/12.webp",
+    AGRICULTURE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/1.webp", 200),
+    ARCHITECTURE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/2.webp", 200),
+    AUTOMOTIVE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/3.webp", 200),
+    CIVIL_CONST: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/4.webp", 200),
+    ENERGY: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/5.webp", 200),
+    NAVAL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/6.webp", 200),
+    MINING: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/7.webp", 200),
+    OIL_GAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/8.webp", 200),
+    PULP_PAPER: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/9.webp", 200),
+    PETROCHEMICAL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/10.webp", 200),
+    SANITATION: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/11.webp", 200),
+    STEEL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/setores_atendidos/12.webp", 200),
   },
 
-  // Miniaturas da Página de Produtos
   PRODUCT_THUMBNAILS: {
-    FLANGES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/1.webp',
-    TUBES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/2.webp',
-    FITTINGS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/4.webp',
-    VALVES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/5.webp',
-    PROFILES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/14.webp',
-    PLATES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/6.webp',
-    GRATINGS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/8.webp',
-    TILES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/13.webp',
-    CIVIL: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/9.webp',
-    BOILERMAKING: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/10.webp',
-    CUTTING: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/12.webp',
-    CONDUITS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/3.webp',
-    TANKS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/7.webp',
-    GROOVED: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/11.webp',
+    FLANGES: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/1.webp', 300),
+    TUBES: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/2.webp', 300),
+    FITTINGS: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/4.webp', 300),
+    VALVES: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/5.webp', 300),
+    PROFILES: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/14.webp', 300),
+    PLATES: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/6.webp', 300),
+    GRATINGS: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/8.webp', 300),
+    TILES: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/13.webp', 300),
+    CIVIL: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/9.webp', 300),
+    BOILERMAKING: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/10.webp', 300),
+    CUTTING: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/12.webp', 300),
+    CONDUITS: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/3.webp', 300),
+    TANKS: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/7.webp', 300),
+    GROOVED: optimize('https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/11.webp', 300),
   },
 
-  // Capas das Categorias (Página /products) - USADAS COMO COVER
-  PRODUCTS: {
-    FLANGES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/1.webp',
-    TUBOS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/2.webp',
-    CONEXOES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/4.webp',
-    VALVULAS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/5.webp',
-    PERFIS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/14.webp',
-    CHAPAS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/6.webp',
-    GRADES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/8.webp',
-    TELHAS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/13.webp',
-    CIVIL: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/9.webp',
-    CALDEIRARIA: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/10.webp',
-    OXICORTE: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/12.webp',
-    ELETRODUTOS: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/3.webp',
-    GROOVED: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/7.webp',
-    TANQUES: 'https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/produtos_destaques/11.webp'
-  },
-
-  // Páginas Internas de Produtos (Sliders e Modelos)
   PRODUCT_PAGES: {
     FLANGES: {
       SLIDES: [
@@ -127,21 +119,20 @@ export const ASSETS = {
         "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/hero/3.webp"
       ],
       MODELS: {
-        SLIP_ON: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/1.webp",
-        WELD_NECK: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/2.webp",
-        BLIND: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/3.webp",
-        LAP_JOINT: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/4.webp",
-        THREADED: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/5.webp",
-        SOCKET_WELD: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/6.webp",
-        SOBREPOSTO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/7.webp",
-        SOLTO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/8.webp",
-        PEAD: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/9.webp",
-        LIGAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/10.webp",
-        FIXADORES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/11.webp",
-        JUNTAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/12.webp"
+        SLIP_ON: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/1.webp", 500),
+        WELD_NECK: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/2.webp", 500),
+        BLIND: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/3.webp", 500),
+        LAP_JOINT: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/4.webp", 500),
+        THREADED: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/5.webp", 500),
+        SOCKET_WELD: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/6.webp", 500),
+        SOBREPOSTO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/7.webp", 500),
+        SOLTO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/8.webp", 500),
+        PEAD: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/9.webp", 500),
+        LIGAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/10.webp", 500),
+        FIXADORES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/11.webp", 500),
+        JUNTAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/flange_page/12.webp", 500)
       }
     },
-    // ###
     TUBOS: {
       SLIDES: [
         "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/hero/1.webp",
@@ -149,10 +140,10 @@ export const ASSETS = {
         "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/hero/3.webp"
       ],
       MODELS: {
-        INOX: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/1.webp",
-        CARBONO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/2.webp",
-        INDUSTRIAIS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/3.webp",
-        MECANICOS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/4.webp"
+        INOX: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/1.webp", 500),
+        CARBONO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/2.webp", 500),
+        INDUSTRIAIS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/3.webp", 500),
+        MECANICOS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tubos_page/4.webp", 500)
       }
     },
     CONEXOES: {
@@ -161,12 +152,11 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/hero/2.webp"
         ],
         MODELS: {
-            ALTA_PRESSAO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/1.webp",
-            GOMADAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/2.webp",
-            TUBULARES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/3.webp"
+            ALTA_PRESSAO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/1.webp", 500),
+            GOMADAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/2.webp", 500),
+            TUBULARES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/conexoes_page/3.webp", 500)
         }
     },
-    
     VALVULAS: {
         SLIDES: [
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/hero/1.webp",
@@ -174,12 +164,12 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/hero/3.webp"
         ],
         MODELS: {
-            BORBOLETA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/1.webp",
-            ESFERA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/2.webp",
-            GAVETA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/3.webp",
-            GLOBO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/4.webp",
-            GUILHOTINA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/5.webp",
-            RETENCAO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/6.webp"
+            BORBOLETA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/1.webp", 500),
+            ESFERA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/2.webp", 500),
+            GAVETA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/3.webp", 500),
+            GLOBO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/4.webp", 500),
+            GUILHOTINA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/5.webp", 500),
+            RETENCAO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/valvulas_page/6.webp", 500)
         }
     },
     PERFIS: {
@@ -190,14 +180,14 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/hero/4.webp"
         ],
         MODELS: {
-            W: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/1.webp",
-            I_HQ: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/2.webp",
-            U: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/3.webp",
-            U_SIMPLES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/4.webp",
-            U_ENRIJECIDO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/5.webp",
-            CANTONEIRA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/6.webp",
-            BARRA_CHATA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/7.webp",
-            BARRA_REDONDA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/8.webp"
+            W: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/1.webp", 500),
+            I_HQ: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/2.webp", 500),
+            U: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/3.webp", 500),
+            U_SIMPLES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/4.webp", 500),
+            U_ENRIJECIDO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/5.webp", 500),
+            CANTONEIRA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/6.webp", 500),
+            BARRA_CHATA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/7.webp", 500),
+            BARRA_REDONDA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/perfil_page/8.webp", 500)
         }
     },
     CHAPAS: {
@@ -207,12 +197,12 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/hero/3.webp"
         ],
         MODELS: {
-            FINA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/1.webp",
-            GROSSA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/2.webp",
-            ZINCADA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/3.webp",
-            XADREZ: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/4.webp",
-            PERFURADA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/5.webp",
-            EXPANDIDA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/6.webp"
+            FINA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/1.webp", 500),
+            GROSSA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/2.webp", 500),
+            ZINCADA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/3.webp", 500),
+            XADREZ: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/4.webp", 500),
+            PERFURADA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/5.webp", 500),
+            EXPANDIDA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/chapas_page/6.webp", 500)
         }
     },
     GRADES: {
@@ -222,8 +212,8 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grade_page/hero/3.webp"
         ],
         MODELS: {
-            INDUSTRIAL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grade_page/1.webp",
-            MALHAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grade_page/2.webp"
+            INDUSTRIAL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grade_page/1.webp", 500),
+            MALHAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grade_page/2.webp", 500)
         }
     },
     TELHAS: {
@@ -233,9 +223,9 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/hero/3.webp"
         ],
         MODELS: {
-            GALVALUME: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/1.webp",
-            PINTADA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/2.webp",
-            TERMOSTATICA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/3.webp"
+            GALVALUME: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/1.webp", 500),
+            PINTADA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/2.webp", 500),
+            TERMOSTATICA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/telhas_page/3.webp", 500)
         }
     },
     CIVIL: {
@@ -245,11 +235,11 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/hero/3.webp"
         ],
         MODELS: {
-            ARAME: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/1.webp",
-            BARRA_TRANSF: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/2.webp",
-            VERGALHOES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/3.webp",
-            TELA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/4.webp",
-            TRELICA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/5.webp"
+            ARAME: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/1.webp", 500),
+            BARRA_TRANSF: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/2.webp", 500),
+            VERGALHOES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/3.webp", 500),
+            TELA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/4.webp", 500),
+            TRELICA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/civil_page/5.webp", 500)
         }
     },
     CALDEIRARIA: {
@@ -260,9 +250,9 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/hero/4.webp"
         ],
         MODELS: {
-            TUBOS_CALANDRADOS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/1.webp",
-            PECAS_PERSONALIZADAS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/2.webp",
-            EQUIPAMENTOS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/3.webp"
+            TUBOS_CALANDRADOS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/1.webp", 500),
+            PECAS_PERSONALIZADAS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/2.webp", 500),
+            EQUIPAMENTOS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/caldeiraria_page/3.webp", 500)
         }
     },
     OXICORTE: {
@@ -272,10 +262,10 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/hero/3.webp"
         ],
         MODELS: {
-            MACARICO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/1.webp",
-            TARTARUGA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/2.webp",
-            PLASMA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/3.webp",
-            FOTOCELULA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/4.webp"
+            MACARICO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/1.webp", 500),
+            TARTARUGA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/2.webp", 500),
+            PLASMA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/3.webp", 500),
+            FOTOCELULA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/oxicorte_page/4.webp", 500)
         }
     },
     ELETRODUTOS: {
@@ -284,18 +274,18 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/hero/2.webp"
         ],
         MODELS: {
-            LEVE: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/1.webp",
-            MEDIO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/2.webp",
-            PESADO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/3.webp",
-            CONEXOES_ELETRO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/4.webp",
-            FOGO_MEDIO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/5.webp",
-            FOGO_PESADO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/6.webp",
-            FOGO_CONEXOES: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/7.webp",
-            RIR_NPT: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/8.webp",
-            RIR_BSP: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/9.webp",
-            INOX_10: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/10.webp",
-            INOX_40: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/11.webp",
-            CONEXOES_GERAL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/12.webp"
+            LEVE: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/1.webp", 500),
+            MEDIO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/2.webp", 500),
+            PESADO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/3.webp", 500),
+            CONEXOES_ELETRO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/4.webp", 500),
+            FOGO_MEDIO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/5.webp", 500),
+            FOGO_PESADO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/6.webp", 500),
+            FOGO_CONEXOES: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/7.webp", 500),
+            RIR_NPT: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/8.webp", 500),
+            RIR_BSP: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/9.webp", 500),
+            INOX_10: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/10.webp", 500),
+            INOX_40: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/11.webp", 500),
+            CONEXOES_GERAL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/eletrodutos_page/12.webp", 500)
         }
     },
     GROOVED: {
@@ -305,23 +295,23 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/hero/3.webp"
         ],
         MODELS: {
-            FLEXIVEL: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/1.webp",
-            REDUCAO_FLEX: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/2.webp",
-            RIGIDO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/3.webp",
-            COTOVELO_45: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/4.webp",
-            COTOVELO_90: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/5.webp",
-            CRUZETA_MEC: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/6.webp",
-            CRUZETA_RAN: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/7.webp",
-            TAMPAO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/8.webp",
-            LUVA_RED: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/9.webp",
-            ADAPTADOR: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/10.webp",
-            TEE_UBOLT: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/11.webp",
-            TEE_MEC_ROSCA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/12.webp",
-            TEE_MEC_RAN: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/13.webp",
-            TEE_RAN: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/14.webp",
-            TEE_RED_RAN: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/15.webp",
-            TEE_RED_ROSCA: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/16.webp",
-            FLANGE_BIP: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/17.webp"
+            FLEXIVEL: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/1.webp", 500),
+            REDUCAO_FLEX: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/2.webp", 500),
+            RIGIDO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/3.webp", 500),
+            COTOVELO_45: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/4.webp", 500),
+            COTOVELO_90: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/5.webp", 500),
+            CRUZETA_MEC: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/6.webp", 500),
+            CRUZETA_RAN: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/7.webp", 500),
+            TAMPAO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/8.webp", 500),
+            LUVA_RED: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/9.webp", 500),
+            ADAPTADOR: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/10.webp", 500),
+            TEE_UBOLT: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/11.webp", 500),
+            TEE_MEC_ROSCA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/12.webp", 500),
+            TEE_MEC_RAN: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/13.webp", 500),
+            TEE_RAN: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/14.webp", 500),
+            TEE_RED_RAN: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/15.webp", 500),
+            TEE_RED_ROSCA: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/16.webp", 500),
+            FLANGE_BIP: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/grooved_page/17.webp", 500)
         }
     },
     TANQUES: {
@@ -331,10 +321,10 @@ export const ASSETS = {
             "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/hero/3.webp"
         ],
         MODELS: {
-            AEREO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/1.webp",
-            JAQUETADO: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/2.webp",
-            GLP: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/3.webp",
-            MODULOS: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/4.webp"
+            AEREO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/1.webp", 500),
+            JAQUETADO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/2.webp", 500),
+            GLP: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/3.webp", 500),
+            MODULOS: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/products/tanques_page/4.webp", 500)
         }
     }
   }
