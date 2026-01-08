@@ -135,7 +135,7 @@ export const es = {
         },
         toolDescriptions: {
             calculator: "Calcule el peso teórico de chapas, tubos, barras e perfiles complejos. Esencial para planificación de materiales, presupuestos y logística.",
-            nesting: "Optimice el corte lineal de barras y perfiles. Reduzca el desperdicio de material (chatarra) calculando el mejor aprovechamiento de las barras de stock.",
+            nesting: "Optimice el corte lineal de barras e perfiles. Reduzca el desperdicio de material (chatarra) calculando el mejor aprovechamiento de las barras de stock.",
             sheetMetal: "Calcule el desarrollo (blank) de chapas para la fabricación de conos. Herramienta esencial para calderería.",
             bending: "Calcule el tamaño exacto de corte (blank) considerando la deducción de pliegue, factor K y tolerancias para chapas dobladas.",
             welding: "Estime la cantidad de consumible de soldadura necesaria para diferentes tipos de juntas. Ideal para planificación de costos de soldadura.",
@@ -244,16 +244,16 @@ export const es = {
         },
         products: {
             plate: "Chapa",
-            tubeRound: "Tubo Industrial",
-            barRound: "Barra Redonda",
-            barSquare: "Barra Cuadrada",
-            flangeSquare: "Anillo (Corte de Chapa)",
+            tube_round: "Tubo Industrial",
+            bar_round: "Barra Redonda",
+            bar_square: "Barra Cuadrada",
+            flange_square: "Anillo (Corte de Chapa)",
             grating: "Rejilla de Piso",
-            tubeCalendered: "Tubo Calandrado",
-            expandedMetal: "Chapa Expandida",
-            fittingElbow: "Codo/Gajo",
-            fittingReducer: "Reducción",
-            fittingTee: "Te"
+            tube_calendered: "Tubo Calandrado",
+            expanded_metal: "Chapa Expandida",
+            fitting_elbow: "Codo/Gajo",
+            fitting_reducer: "Reducción",
+            fitting_tee: "Te"
         },
         materials: {
             carbon: "Acero Carbono (7.85)",
@@ -336,7 +336,7 @@ export const es = {
                 waste: "Sobra (Retal)"
             },
             explanation: {
-                title: "Entienda el Cálculo de Optimización",
+                title: "Entenda el Cálculo de Optimización",
                 concept: "El cálculo utiliza un algoritmo heurístico (Best Fit Decreasing) para resolver el 'Problema de Corte de Stock' unidimensional. El objetivo es minimizar el número de barras utilizadas y el desperdício de material.",
                 glossary: {
                     stock: { title: "Tamaño de la Barra", desc: "Longitud total de la barra virgen disponible en stock (ej: 6000mm o 12000mm)." },
@@ -369,7 +369,7 @@ export const es = {
                 volume: "Volumen de Soldadura"
             },
             explanation: {
-                title: "Guía Técnica de Soldadura",
+                title: "Guia Técnica de Soldadura",
                 concept: "El peso del metal de soldadura se calcula determinando el volumen del área transversal del cordón multiplicado por su longitud y por la densidad del acero (aprox. 7,85 g/cm³).",
                 glossary: {
                     z: { title: "Pierna (z)", desc: "Longitud del lado del triángulo en una soldadura de filete. Determina la resistencia de la junta." },
@@ -469,7 +469,7 @@ export const es = {
         list: {
             mission: { title: "MISIÓN", description: "La empresa entrega productos de acero de alta calidad, fortalecendo alianzas, promoviendo el crecimiento sostenible." },
             vision: { title: "VISIÓN", description: "Ser referencia nacional en productos de acero, destacándose por la calidad, innovación y sostenibilidad." },
-            values: { title: "VALORES", description: "Calidad, innovación, sostenibilidad, alianza y seguridad." }
+            values: { title: "VALORES", description: "Qualidade, inovação, sustentabilidade, parceria e segurança." }
         }
     },
     units: {
@@ -691,7 +691,7 @@ export const es = {
                 description: "Cumplimos con las normas nacionales e internacionales más rigurosas para garantizar la máxima calidad y seguridad."
             },
             recognition: {
-                title: "Reconocimiento",
+                title: "Reconhecimento",
                 description: "Hemos construido una sólida reputación de confianza, trabajando en asociación con las principales siderúrgicas del país."
             }
         }

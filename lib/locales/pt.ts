@@ -239,16 +239,16 @@ export const pt = {
         },
         products: {
             plate: "Chapa",
-            tubeRound: "Tubo Industrial",
-            barRound: "Barra Redonda",
-            barSquare: "Barra Quadrada",
-            flangeSquare: "Anel (Corte de Chapa)",
+            tube_round: "Tubo Industrial",
+            bar_round: "Barra Redonda",
+            bar_square: "Barra Quadrada",
+            flange_square: "Anel (Corte de Chapa)",
             grating: "Grade de Piso",
-            tubeCalendered: "Tubo Calandrado",
-            expandedMetal: "Chapa Expandida",
-            fittingElbow: "Curva",
-            fittingReducer: "Redução",
-            fittingTee: "Tê"
+            tube_calendered: "Tubo Calandrado",
+            expanded_metal: "Chapa Expandida",
+            fitting_elbow: "Curva",
+            fitting_reducer: "Redução",
+            fitting_tee: "Tê"
         },
         materials: {
             carbon: "Aço Carbono (7.85)",
@@ -850,7 +850,7 @@ export const pt = {
             p3: "Todos os nossos produtos são produzidos nas principais siderúrgicas do país: <b>Arcelor Mittal</b>, <b>Gerdau</b>, <b>Usiminas</b> e <b>CSN</b>.",
         },
         grid: {
-            title: "Nossas Certificações",
+            title: "Nuestras Certificaciones",
             subtitle: "Certificados de capacidade técnica e sistema de gestão.",
             items: {
                 iso9001: {

@@ -176,7 +176,7 @@ export const en = {
         },
         bending: {
             title: "Bending Calculator",
-            subtitle: "Bend deduction and K-Factor",
+            subtitle: "Bend deduction and K-factor",
             params: "Bending Parameters",
             blankSize: "Blank Size (Cut)",
             theory: "Theory",
@@ -246,16 +246,16 @@ export const en = {
         },
         products: {
             plate: "Plate",
-            tubeRound: "Industrial Tube",
-            barRound: "Round Bar",
-            barSquare: "Square Bar",
-            flangeSquare: "Ring (Plate Cut)",
+            tube_round: "Industrial Tube",
+            bar_round: "Round Bar",
+            bar_square: "Square Bar",
+            flange_square: "Ring (Plate Cut)",
             grating: "Floor Grating",
-            tubeCalendered: "Calendered Tube",
-            expandedMetal: "Expanded Metal",
-            fittingElbow: "Elbow/Miter",
-            fittingReducer: "Reducer",
-            fittingTee: "Tee"
+            tube_calendered: "Calendered Tube",
+            expanded_metal: "Expanded Metal",
+            fitting_elbow: "Elbow/Miter",
+            fitting_reducer: "Reducer",
+            fitting_tee: "Tee"
         },
         materials: {
             carbon: "Carbon Steel (7.85)",

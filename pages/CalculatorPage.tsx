@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import SteelCalculator from '../components/features/calculator/SteelCalculator';
 import UnitConverter from '../components/features/calculator/UnitConverter';
@@ -24,7 +25,7 @@ const AdSidebar: React.FC<{ side: 'left' | 'right' }> = ({ side }) => {
     ];
 
     return (
-        <div className={`hidden 2xl:flex flex-col items-center pt-8 w-[200px] h-full bg-[#081437] border-${side === 'left' ? 'r' : 'l'} border-white/5`}>
+        <div className={`hidden xl:flex flex-col items-center pt-8 w-[200px] h-full bg-[#081437] border-${side === 'left' ? 'r' : 'l'} border-white/5`}>
             {ads.map((ad, idx) => (
                 <a 
                     key={idx} 
@@ -124,7 +125,7 @@ const CalculatorPageContent: React.FC = () => {
             {/* Ambient Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-blue-light/10 rounded-full blur-[120px] pointer-events-none"></div>
             
-            {/* LEFT AD BANNER (Visible on Ultra Wide Screens) */}
+            {/* LEFT AD BANNER (Visible on Notebooks and Monitors) */}
             <AdSidebar side="left" />
 
             {/* CENTER CONTENT */}
@@ -200,8 +201,8 @@ const CalculatorPageContent: React.FC = () => {
                             {renderContent()}
                         </main>
 
-                        {/* BOTTOM AD BANNER (LEADERBOARD STYLE 1446x120) */}
-                        <div className="w-full mt-auto pt-6 pb-6 flex justify-center">
+                        {/* BOTTOM AD BANNER (LEADERBOARD STYLE 1446x120 - Visible on Notebooks and Monitors) */}
+                        <div className="hidden lg:flex w-full mt-auto pt-6 pb-6 justify-center">
                              <a 
                                 href={getWhatsappLink("Entrega Otimizada")} 
                                 target="_blank"
@@ -227,7 +228,7 @@ const CalculatorPageContent: React.FC = () => {
                 </div>
             </div>
 
-            {/* RIGHT AD BANNER (Visible on Ultra Wide Screens) */}
+            {/* RIGHT AD BANNER (Visible on Notebooks and Monitors) */}
             <AdSidebar side="right" />
 
         </div>

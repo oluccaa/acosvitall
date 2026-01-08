@@ -65,31 +65,21 @@ const SteelCalculator: React.FC = () => {
     const CATEGORIES = {
         raw: { id: 'raw', label: t('calculatorPage.categories.raw'), items: [
             { id: 'plate', icon: <Layers size={14} />, label: t('calculatorPage.products.plate') },
-            { id: 'bar_round', icon: <Disc size={14} />, label: t('calculatorPage.products.barRound') },
-            { id: 'bar_square', icon: <Box size={14} />, label: t('calculatorPage.products.barSquare') },
+            { id: 'bar_round', icon: <Disc size={14} />, label: t('calculatorPage.products.bar_round') },
+            { id: 'bar_square', icon: <Box size={14} />, label: t('calculatorPage.products.bar_square') },
         ]},
         piping: { id: 'piping', label: t('calculatorPage.categories.piping'), items: [
-            { id: 'tube_round', icon: <Circle size={14} />, label: t('calculatorPage.products.tubeRound') },
-            { id: 'fitting_elbow', icon: <CornerDownRight size={14} />, label: t('calculatorPage.products.fittingElbow') },
-            { id: 'fitting_reducer', icon: <Filter size={14} />, label: t('calculatorPage.products.fittingReducer') },
-            { id: 'fitting_tee', icon: <Split size={14} />, label: t('calculatorPage.products.fittingTee') },
-            { id: 'flange_square', icon: <Square size={14} className="fill-current" />, label: t('calculatorPage.products.flangeSquare') },
-            { id: 'tube_calendered', icon: <Cylinder size={14} />, label: t('calculatorPage.products.tubeCalendered') },
+            { id: 'tube_round', icon: <Circle size={14} />, label: t('calculatorPage.products.tube_round') },
+            { id: 'fitting_elbow', icon: <CornerDownRight size={14} />, label: t('calculatorPage.products.fitting_elbow') },
+            { id: 'fitting_reducer', icon: <Filter size={14} />, label: t('calculatorPage.products.fitting_reducer') },
+            { id: 'fitting_tee', icon: <Split size={14} />, label: t('calculatorPage.products.fitting_tee') },
+            { id: 'flange_square', icon: <Square size={14} className="fill-current" />, label: t('calculatorPage.products.flange_square') },
+            { id: 'tube_calendered', icon: <Cylinder size={14} />, label: t('calculatorPage.products.tube_calendered') },
         ]},
         structural: { id: 'structural', label: t('calculatorPage.categories.structural'), items: [
             { id: 'grating', icon: <Grid size={14} />, label: t('calculatorPage.products.grating') },
-            { id: 'expanded_metal', icon: <LayoutGrid size={14} />, label: t('calculatorPage.products.expandedMetal') },
+            { id: 'expanded_metal', icon: <LayoutGrid size={14} />, label: t('calculatorPage.products.expanded_metal') },
         ]}
-    };
-
-    // Descriptions using translation keys
-    // We map keys directly to t() call when rendering or constructing strings
-    const getDescription = (key: string) => t(`calculatorPage.toolDescriptions.${key}`); // Note: Using toolDescriptions prefix for generic descriptions if applicable or specific keys
-
-    // Specific field help text
-    const getFieldHelp = (key: string) => {
-        // Fallback or specific translation logic if needed
-        return ""; // Simplified for now as tooltips were hardcoded in previous version
     };
 
     const selectedType = (calculatorState.selectedType as ProductType) || 'plate';
@@ -330,7 +320,6 @@ const SteelCalculator: React.FC = () => {
                 
                 {/* 1. SELECTION (Left) */}
                 <div className="lg:col-span-3 h-full">
-                    {/* Alteração: Removido max-h e overflow para mostrar tudo */}
                     <div className="bg-[#0f172a] border border-white/5 rounded-xl p-3 shadow-xl flex flex-col">
                         <div className="flex justify-between items-center mb-4 px-1 pb-2 border-b border-white/5">
                             <h3 className="text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
@@ -341,7 +330,6 @@ const SteelCalculator: React.FC = () => {
                             </button>
                         </div>
                         
-                        {/* Alteração: Removido overflow-y-auto e flex-1 para crescimento natural */}
                         <div className="space-y-4">
                             {(Object.values(CATEGORIES) as any[]).map((cat) => (
                                 <div key={cat.id}>
@@ -662,12 +650,6 @@ const SteelCalculator: React.FC = () => {
                                 </h3>
                             </div>
                             <div className="flex gap-1.5">
-                                 <button className="text-gray-400 hover:text-white p-1.5 rounded hover:bg-white/10 transition-colors" title={t('calculatorPage.common.print')}>
-                                    <Printer size={14} />
-                                 </button>
-                                 <button className="text-gray-400 hover:text-white p-1.5 rounded hover:bg-white/10 transition-colors" title={t('calculatorPage.common.share')}>
-                                    <Share2 size={14} />
-                                 </button>
                                  <div className="w-px h-5 bg-white/10 mx-1 self-center"></div>
                                  <button onClick={clearProject} className="text-red-400 hover:text-red-300 flex items-center gap-1 px-2 py-1 rounded hover:bg-red-500/10 transition-colors text-[10px] font-bold uppercase">
                                     <Trash2 size={12} /> {t('calculatorPage.common.clear')}

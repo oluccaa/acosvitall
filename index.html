@@ -21,11 +21,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Preload LCP Image with high priority -->
-    <link rel="preload" fetchpriority="high" as="image" href="https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/hero/1.webp" type="image/webp">
+    <!-- Preload LCP Image with extreme priority -->
+    <link rel="preload" fetchpriority="high" as="image" href="https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fmxbsygruslepfcyhtmqr.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fpublic_assets%2Fhome%2Fhero%2F1.webp&methods=resize%2C1200%2C5000" type="image/webp">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS with fetchpriority -->
+    <script src="https://cdn.tailwindcss.com" fetchpriority="high"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -81,6 +81,6 @@
 </head>
   <body class="bg-[#081437] overflow-x-hidden text-slate-200">
     <div id="root" class="min-h-screen flex flex-col"></div>
-    <script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx" fetchpriority="high"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 
-const CACHE_NAME = 'acos-vital-v2';
-const IMAGE_CACHE_NAME = 'acos-vital-images-v2';
+const CACHE_NAME = 'acos-vital-v3';
+const IMAGE_CACHE_NAME = 'acos-vital-images-v3';
 
 const PRECACHE_ASSETS = [
   '/',
@@ -16,6 +16,9 @@ const IMAGE_DOMAINS = [
   'images.unsplash.com',
   'yrhedrhkfgvaeoavcazg.supabase.co'
 ];
+
+// Tempo de vida para o cache de imagens (7 dias em milissegundos)
+const IMAGE_CACHE_EXPIRATION = 7 * 24 * 60 * 60 * 1000;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -42,23 +45,21 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Strategy: Cache-First with Aggressive Overriding for Images
+  // Estratégia Especial para Imagens de Domínios Conhecidos
   if (event.request.destination === 'image' || IMAGE_DOMAINS.some(domain => url.hostname.includes(domain))) {
     event.respondWith(
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
         return cache.match(event.request).then((cachedResponse) => {
           if (cachedResponse) {
-            // Revalidate in background to keep it fresh
-            fetch(event.request).then((networkResponse) => {
-                if (networkResponse.ok) cache.put(event.request, networkResponse);
-            }).catch(() => {});
+            // Se existir no cache, retorna imediatamente.
+            // O PageSpeed reclama de TTLs curtos se houver revalidação constante.
             return cachedResponse;
           }
 
           return fetch(event.request).then((networkResponse) => {
-            // Clone the response before putting it in cache
             if (networkResponse.ok) {
-                cache.put(event.request, networkResponse.clone());
+              // Armazena no cache e clona para resposta
+              cache.put(event.request, networkResponse.clone());
             }
             return networkResponse;
           });
@@ -68,10 +69,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Default: Stale-While-Revalidate
+  // Estratégia Stale-While-Revalidate para o restante (Scripts, CSS, HTML)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
+        // Atualiza o cache em background para a próxima visita
         fetch(event.request).then((networkResponse) => {
           if (networkResponse.ok) {
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
