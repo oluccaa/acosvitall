@@ -447,9 +447,9 @@ export const en = {
     },
     about: {
         title: 'Trust is what connects us!',
-        p1: 'Aços Vital stands out as a manufacturer of Flanges, Mitered Fittings, Calendered Pipes, Expanded Metal, and Floor Gratings with the highest quality to meet the demands of the industrial and construction sectors.',
-        p2: 'We are recognized for the excellence and precision of our products, as well as our unwavering commitment to quality and continuous process improvement, offering custom solutions that meet the specific needs of each client, ensuring high performance.',
-        p3: 'Our strategic process is optimized and executed with excellence, covering everything from personalized customer service to product delivery. We have trained and qualified professionals to serve diverse segments. Such decisive factors put us ahead of the competition, as we offer durability, performance, and reliability with a differentiated delivery time.',
+        p1: 'Aços Vital is a reference in the manufacture of flanges, tubes, curves, and gratings for the industrial and construction sectors.',
+        p2: 'The company stands out for the high quality and precision of its products, offering tailor-made solutions and personalized service.',
+        p3: 'With optimized processes and qualified professionals, Aços Vital guarantees durability, performance, and differentiated delivery times.',
         p4: 'We are the reliable partner that unites a high-performance technical team, extremely high-quality products, and incomparable finishing. Aços Vital is the best decision for your business.',
         callToAction: {
              buttonText: "TALK TO A CONSULTANT"

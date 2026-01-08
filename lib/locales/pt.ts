@@ -69,7 +69,7 @@ export const pt = {
             },
             usage: {
                 title: "2. Uso das Informações",
-                text: "Utilizamos seus dados para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, se autorizado, enviar comunicações de marketing relevantes."
+                text: "Utilizamos seus dados para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, si autorizado, enviar comunicações de marketing relevantes."
             },
             cookies: {
                 title: "3. Cookies e Tecnologias",
@@ -84,7 +84,7 @@ export const pt = {
                 text: "Você tem o direito de confirmar a existência de tratamento de dados, acessar seus dados, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
             },
             contact: {
-                title: "6. Contato",
+                title: "6. Contacto",
                 text: "Para exercer seus direitos ou tirar dúvidas sobre esta política, entre em contato conosco através do e-mail: lgpd@acosvital.com.br"
             }
         },
@@ -355,7 +355,7 @@ export const pt = {
                 length: "Comprimento da Solda",
                 gap: "Abertura de Raiz (g)",
                 angle: "Ângulo do Bisel (α)",
-                reinforcement: "Reforço / Sobre-metal"
+                reinforcement: "Refuerzo / Sobre-metal"
             },
             results: {
                 weight: "Peso Estimado",
@@ -368,7 +368,7 @@ export const pt = {
                     z: { title: "Perna (z)", desc: "Comprimento do lado do triângulo em uma solda de filete. Determina a resistência da junta." },
                     g: { title: "Abertura de Raiz (g)", desc: "Distância mínima entre as peças a serem soldadas. Permite a penetração total da solda." },
                     alpha: { title: "Ângulo do Bisel (α)", desc: "Ângulo de abertura entre as chapas preparadas. Geralmente 60° para juntas em V." },
-                    r: { title: "Reforço", desc: "Sobremetal ou convexidade do cordão de solda acima da superfície da chapa, expresso em porcentagem (geralmente 10-20%)." }
+                    r: { title: "Refuerzo", desc: "Sobremetal ou convexidade do cordão de solda acima da superfície da chapa, expresso em porcentagem (geralmente 10-20%)." }
                 }
             }
         },
@@ -440,9 +440,9 @@ export const pt = {
     },
     about: {
         title: 'A confiança é o que nos conecta!',
-        p1: 'Aços Vital destaca-se como fabricante de Flanges, Curvas de Gomos, Tubos Calandrados, Chapas Expandidas e Grades de Piso com a mais alta qualidade para atender às demandas dos segmentos da indústria e da construção.',
-        p2: 'Somos reconhecidos pela excelência e precisão de nossos produtos, além do compromisso inabalável com a qualidade e a melhoria contínua dos processos, oferecendo soluções sob medida que atendam às necessidades específicas de cada cliente, garantindo o seu alto desempenho.',
-        p3: 'Nosso processo estratégico é otimizado e executado com excelência, abrangendo desde o atendimento personalizado ao cliente até a entrega dos produtos. Contamos com profissionais capacitados e qualificados para atender aos mais diversos segmentos. Tais fatores decisivos nos colocam à frente da concorrência, pois oferecemos durabilidade, performance e confiabilidade com um prazo de entrega diferenciado.',
+        p1: 'A Aços Vital é referência na fabricação de flanges, tubos, curvas e grades para os setores industrial e da construção civil.',
+        p2: 'A empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.',
+        p3: 'Com processos otimizados e profissionais qualificados, a Aços Vital garante durabilidade, performance e prazos de entrega diferenciados.',
         p4: 'Somos o parceiro confiável que une um time técnico de alta performance, produtos de extrema qualidade e acabamento incomparável. Aços Vital é a melhor decisão para o seu negócio.',
         callToAction: {
              buttonText: "FALE COM UM CONSULTOR"

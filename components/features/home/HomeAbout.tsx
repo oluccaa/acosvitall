@@ -41,7 +41,7 @@ const HomeAbout: React.FC<HomeAboutProps> = ({ showButton = true }) => {
                                 <div className="space-y-4 text-gray-600 text-sm lg:text-[15px] leading-relaxed max-w-xl mx-auto lg:mx-0">
                                     <p>{t('about.p1')}</p>
                                     <p>{t('about.p2')}</p>
-                                    <p className="hidden xl:block">{t('about.p3')}</p>
+                                    <p>{t('about.p3')}</p>
                                 </div>
 
                                 {showButton && (

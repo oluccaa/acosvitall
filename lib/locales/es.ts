@@ -207,7 +207,7 @@ export const es = {
             title: "Fabricación (Desarrollo)",
             devLength: "Longitud de la Chapa (Desarrollo)",
             sheetWidth: "Ancho de la Chapa",
-            explanation: "El desarrollo de la chapa se calcula con base en la línea neutra del material (Diámetro Medio).",
+            explanation: "El desarrollo de la chapa se calcula con base en la línea neutra del material (Diâmetro Medio).",
             formula: "L = (DE - E) × π",
             neutralAxis: "Línea Neutra",
             logistics: "Datos Logísticos"
@@ -311,7 +311,7 @@ export const es = {
             add: "Añadir",
             addPieces: "Añadir Piezas",
             calculateBtn: "Calcular Optimización",
-            params: "Parámetros de Stock",
+            params: "Parâmetros de Stock",
             waiting: "Esperando Cálculo",
             waitingDesc: "Añada las piezas que deseja cortar en la lista al lado y defina el tamaño de la barra de su stock.",
             helpTitle: "Cómo usar el Optimizador",
@@ -335,7 +335,7 @@ export const es = {
             },
             explanation: {
                 title: "Entienda el Cálculo de Optimización",
-                concept: "El cálculo utiliza un algoritmo heurístico (Best Fit Decreasing) para resolver el 'Problema de Corte de Stock' unidimensional. El objetivo es minimizar el número de barras utilizadas y el desperdicio de material.",
+                concept: "El cálculo utiliza un algoritmo heurístico (Best Fit Decreasing) para resolver el 'Problema de Corte de Stock' unidimensional. El objetivo es minimizar el número de barras utilizadas y el desperdício de material.",
                 glossary: {
                     stock: { title: "Tamaño de la Barra", desc: "Longitud total de la barra virgen disponible en stock (ej: 6000mm o 12000mm)." },
                     blade: { title: "Ancho de Corte", desc: "Material perdido en cada corte debido al grosor del disco o sierra (kerf). Generalmente entre 3mm y 5mm." },
@@ -445,12 +445,12 @@ export const es = {
     },
     about: {
         title: '¡La confianza es lo que nos conecta!',
-        p1: 'Aços Vital se destaca como fabricante de Bridas, Curvas de Gajos, Tubos Calandrados, Chapas Expandidas y Rejillas de Piso con la más alta calidad para atender las demandas de los segmentos de la industria y la construcción.',
-        p2: 'Somos reconocidos por la excelencia y precisión de nuestros productos, además del compromiso inquebrantable con la calidad y la mejora continua de los procesos, ofreciendo soluciones a medida que satisfacen las necesidades específicas de cada cliente, garantizando su alto rendimiento.',
-        p3: 'Nuestro proceso estratégico está optimizado e ejecutado con excelencia, abarcando desde la atención personalizada al cliente hasta la entrega de los productos. Contamos com profesionales capacitados y cualificados para atender a los más diversos segmentos. Tales factores decisivos nos colocam por delante de la competencia, ya que ofrecemos durabilidad, rendimiento y confiabilidad con un plazo de entrega diferenciado.',
+        p1: 'Aços Vital es referencia en la fabricación de bridas, tubos, curvas y rejillas para los sectores industrial y de la construcción civil.',
+        p2: 'La empresa se destaca por la alta calidad y precisión de sus productos, ofreciendo soluciones a medida y atención personalizada.',
+        p3: 'Con procesos optimizados y profesionales calificados, Aços Vital garantiza durabilidad, rendimiento y plazos de entrega diferenciados.',
         p4: 'Somos el socio confiable que une un equipo técnico de alto rendimiento, productos de extrema calidad y acabado incomparable. Aços Vital es la mejor decisión para su negocio.',
         callToAction: {
-             buttonText: "HABLE CON UN CONSULTOR"
+             buttonText: "HABLAR CON UN CONSULTOR"
         }
     },
     features: {
@@ -512,7 +512,7 @@ export const es = {
     },
     productsPage: {
       title: 'Catálogo de Produtos',
-      description: 'Conozca nuestro catálogo completo de productos, desarrollado para atender con excelencia las demandas de los segmentos de la industria y la construcción, con calidad garantizada. Listos para fortalecer sus proyectos con seguridad, resistencia y precisión. Seguimos los más rigurosos estándares de fabricación.',
+      description: 'Conozca nuestro catálogo completo de productos, desarrollado para atender con excelencia las demandas de los sectores de la industria y la construcción, con calidad garantizada. Listos para fortalecer sus proyectos con seguridad, resistencia y precisión. Seguimos los más rigurosos estándares de fabricación.',
       buttonText: 'Ver Producto',
       categories: {
         flanges: 'BRIDAS',
@@ -526,7 +526,7 @@ export const es = {
         civil: 'CONSTRUCCIÓN CIVIL',
         boilermaking: 'CALDERERÍA INDUSTRIAL',
         cutting: 'OXICORTE',
-        conduits: 'ELECTRODUCTOS',
+        conduits: 'ELECTRODUTOS',
         grooved: 'LÍNEA GROOVED',
         tanks: 'TANQUE DE COMBUSTIBLE Y GLP',
       },
@@ -621,7 +621,7 @@ export const es = {
         },
         policy: {
             title: "Objetivos de Calidad",
-            description: "Nuestros objetivos buscan la satisfacción del cliente e el crecimiento sostenible.",
+            description: "Nuestros objetivos buscan la satisfacción del cliente e el crescimento sostenible.",
             points: [
                 "Aumentar la satisfacción de los clientes",
                 "Garantir la calidad de los productos",
