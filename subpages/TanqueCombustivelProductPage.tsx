@@ -15,7 +15,8 @@ import {
     Flame,
     Wrench,
     Factory,
-    Scan
+    Scan,
+    Info
 } from 'lucide-react';
 
 const TanqueCombustivelProductPage: React.FC = () => {
@@ -60,69 +61,78 @@ const TanqueCombustivelProductPage: React.FC = () => {
         },
     ];
 
-    // --- SERVIÇOS ---
+    // --- SERVIÇOS ESPECIALIZADOS (ATUALIZADOS CONFORME IMAGENS) ---
     const services = [
         {
             title: "Inspeção de Pintura",
             icon: <Paintbrush size={32} />,
-            description: "A Inspeção de Pintura Industrial assegura a qualidade e durabilidade dos revestimentos aplicados em estruturas e equipamentos. Nossa equipe técnica realiza verificações minuciosas em todas as etapas, desde a preparação da superfície até a aplicação final.",
-            benefits: ["Evita falhas como bolhas/descascamento", "Protege contra corrosão", "Reduz custos de manutenção", "Assegura conformidade técnica"],
+            description: "A Inspeção de Pintura Industrial assegura a qualidade e durabilidade dos revestimentos aplicados em estruturas e equipamentos. Nossa equipe técnica realiza verificações minuciosas em todas as etapas, desde a preparação da superfície até a aplicação final, garantindo proteção contra corrosão e desgaste.",
+            benefits: ["Garante a qualidade do revestimento", "Evita falhas como bolhas ou descascamento", "Protege contra corrosão, prolongando a vida útil", "Reduz custos de manutenção e retrabalho"],
+            apps: "Estruturas metálicas, tanques e tubulações. Equipamentos sujeitos a ambientes corrosivos, plataformas offshore, infraestruturas industriais e civis.",
             docs: "Procedimentos, normas e relatórios técnicos."
         },
         {
             title: "Inspeção de Equipamentos",
             icon: <Settings size={32} />,
-            description: "Garante segurança, eficiência e conformidade das suas máquinas e sistemas. Realizamos análises detalhadas, prevenindo falhas, otimizando o desempenho e assegurando que suas operações estejam de acordo com as normas regulamentadoras.",
-            benefits: ["Aumenta produtividade", "Prolonga vida útil", "Conformidade com normas", "Manutenção preventiva"],
+            description: "Garante segurança, eficiência e conformidade das suas máquinas e sistemas. Com nossa equipe especializada, realizamos análises detalhadas, prevenindo falhas, otimizando o desempenho e assegurando que suas operações estejam de acordo com as normas regulamentadoras.",
+            benefits: ["Garante segurança e eficiência operacional", "Previne falhas e paradas não planejadas", "Prolonga a vida útil dos equipamentos", "Identifica problemas antes que causem danos maiores"],
+            apps: "Indústrias petroquímicas, de óleo e gás, e de energia. Máquinas em linhas de produção, caldeiras e vasos de pressão.",
             docs: "Procedimentos, normas e relatórios técnicos."
         },
         {
             title: "Inspeção de Fabricação",
             icon: <Factory size={32} />,
-            description: "Voltada para garantir a qualidade, segurança e conformidade dos processos produtivos de caldeiraria e tubulação. Atuamos em todas as etapas, desde a análise de materiais até a inspeção final, utilizando ensaios não destrutivos.",
-            benefits: ["Segurança operacional", "Qualidade assegurada", "Confiabilidade", "Conformidade internacional (ASME/API)"],
-            docs: "Especificações, Desenhos, ITP, Certificados de Material, Relatórios de CQ."
+            description: "Nossos serviços de inspeção industrial para caldeiraria e tubulação são voltados para garantir a qualidade, segurança e conformidade dos processos produtivos. Atuamos desde a análise de materiais até a inspeção final, utilizando técnicas não destrutivas (END).",
+            benefits: ["Segurança, qualidade e confiabilidade", "Conformidade com normas (ASME/API)", "Rastreabilidade completa do processo", "Contribui para longevidade e eficiência dos ativos"],
+            apps: "Indústrias de petróleo, gás e petroquímica: Verificação de caldeiras, vasos de pressão e construção de plataformas offshore.",
+            docs: "Especificações Técnicas, Desenhos, Modelos CAD, ITP, Certificados de Material e Relatórios de CQ."
         },
         {
             title: "Inspeção por Drone",
             icon: <Camera size={32} />,
-            description: "Método que utiliza drones equipados com câmeras de alta resolução, térmicas e sensores para avaliar a integridade de estruturas e instalações de tanques. Coleta e análise de dados com alta precisão e segurança.",
-            benefits: ["Acesso a áreas difíceis", "Redução de riscos (altura/confinado)", "Detecção de falhas invisíveis a olho nu", "Agilidade e economia"],
+            description: "Método que utiliza drones equipados com câmeras e sensores para avaliar a integridade de estruturas e instalações. A coleta e análise de dados são realizadas com alta precisão por meio de software especializado, garantindo uma avaliação detalhada das condições estruturais.",
+            benefits: ["Aumenta a eficiência e eficácia das inspeções", "Reduz riscos associados ao trabalho em altura", "Permite identificar falhas em áreas de difícil acesso", "Monitoramento de progresso de grandes obras"],
+            apps: "Tanques de combustível e GLP, colunas, torres ou tubulações de grande porte. Câmeras de alta resolução e sensores térmicos Full Frame.",
             docs: "Relatórios de imagem, análise térmica e estrutural."
         },
         {
             title: "Inspeção de Soldagem",
             icon: <Flame size={32} />,
-            description: "Essencial para garantir a integridade e segurança das estruturas metálicas. Realizamos testes rigorosos em cada etapa do processo de soldagem, identificando defeitos e garantindo conformidade.",
-            benefits: ["Integridade estrutural", "Prevenção de falhas críticas", "Redução de riscos de acidentes", "Prolongamento da vida útil"],
+            description: "Essencial para garantir a integridade e segurança das suas estruturas metálicas. Nossos especialistas realizam testes rigorosos em cada etapa do processo, identificando possíveis defeitos e garantindo conformidade com normas técnicas nacionais e internacionais.",
+            benefits: ["Garante integridade estrutural prevenindo falhas", "Reduz riscos de acidentes e paradas inesperadas", "Prolonga a vida útil dos equipamentos", "Evita custos com retrabalhos e reparos"],
+            apps: "Indústrias petroquímica e naval. Construção civil e infraestrutura. Equipamentos de alta pressão como caldeiras e tubulações.",
             docs: "Procedimentos, normas e relatórios técnicos."
         },
         {
             title: "Auditoria de Soldagem",
             icon: <ClipboardCheck size={32} />,
-            description: "Análise completa dos procedimentos de soldagem, materiais, qualificações de soldadores e desempenho de equipamentos. Identificamos falhas e propomos soluções para otimizar processos.",
-            benefits: ["Melhoria na qualidade", "Redução de retrabalhos", "Conformidade internacional", "Otimização de custos"],
-            docs: "WPS, Qualificações, Registros de Inspeção/END, Certificados."
+            description: "Serviço especializado que garante a qualidade e conformidade dos processos de soldagem com normas internacionais. Oferecemos análise completa dos procedimentos, materiais, qualificações de soldadores e desempenho de equipamentos.",
+            benefits: ["Melhoria na qualidade e segurança dos processos", "Redução de retrabalhos e falhas críticas", "Otimização de custos e aumento de eficiência", "Conformidade com normas internacionais"],
+            apps: "Indústrias de manufatura, construção civil, naval, e petroquímica. Inspeção de soldagens em estruturas metálicas e gasodutos.",
+            docs: "WPS, Qualificações de Soldadores, Registros de Inspeção Visual e END, Certificados de Materiais."
         },
         {
             title: "Controle Dimensional",
             icon: <Ruler size={32} />,
-            description: "Assegura a precisão e a conformidade das peças e estruturas industriais. Utilizamos equipamentos de alta precisão para evitar problemas de montagem e garantir a qualidade final.",
-            benefits: ["Precisão milimétrica", "Redução de falhas de montagem", "Garantia de tolerâncias", "Qualidade do produto final"],
+            description: "Assegura a precisão e a conformidade das peças e estruturas industriais, garantindo que atendam às especificações de projeto. Utilizamos equipamentos de alta precisão para evitar problemas de montagem, reduzir retrabalhos e garantir a qualidade final.",
+            benefits: ["Precisão detalhada das dimensões das peças", "Redução de falhas e retrabalhos", "Prevenção de problemas de encaixe ou funcionamento", "Garantia de integridade do equipamento"],
+            apps: "Metalurgia, construção civil, indústria automotiva e fabricação de máquinas. Crucial para garantir tolerâncias exigidas para o bom funcionamento.",
             docs: "Procedimentos, normas e relatórios técnicos."
         },
         {
             title: "Manutenção Industrial",
             icon: <Wrench size={32} />,
-            description: "Conjunto especializado de atividades para garantir o funcionamento eficiente de instalações. Inclui desde diagnóstico e reparos até montagens novas de estruturas, vasos de pressão e tubulações.",
-            benefits: ["Segurança operacional", "Otimização de processos", "Redução de custos", "Melhoria da produtividade"],
-            docs: "Procedimentos de fabricação/montagem, certificados."
+            description: "Conjunto especializado de atividades voltadas para garantir o funcionamento eficiente e seguro de instalações industriais. Inclui desde inspeção e diagnóstico até execução de reparos, ajustes e montagens novas, contribuindo para a otimização dos processos.",
+            benefits: ["Segurança operacional", "Garantia de que as instalações atendam aos padrões", "Melhoria contínua da produtividade", "Redução de custos operacionais"],
+            apps: "Fabricação e montagem de estruturas, vasos de pressão e tubulações. Manutenção preventiva e preditiva em fábricas.",
+            docs: "Procedimentos de fabricação e montagem, certificados de materiais, relatórios técnicos."
         },
         {
             title: "Manutenção Tanques API 650",
             icon: <Scan size={32} />,
-            description: "Serviços especializados para garantir a integridade e eficiência de tanques de armazenamento, seguindo rigorosamente as normas API 650. Equipe qualificada e equipamentos de última geração.",
-            benefits: ["Alta durabilidade", "Conformidade normativa", "Rapidez na execução", "Garantia da qualidade"],
+            description: "Garanta a integridade e a eficiência dos seus tanques de armazenamento seguindo rigorosamente as normas API 650. Nossa equipe é formada por engenheiros e técnicos experientes, treinados para realizar inspeções, reparos e manutenções de alta tecnologia.",
+            benefits: ["Alta durabilidade e rapidez na construção", "Equipamentos com garantia da qualidade", "Utilização de equipamentos avançados para detecção de falhas", "Segurança operacional elevada"],
+            apps: "Tanques de armazenamento de grande porte. Projetos que exigem conformidade normativa absoluta para estanqueidade.",
             docs: "Procedimentos, instruções, EPS, RQPS."
         }
     ];
@@ -185,7 +195,7 @@ const TanqueCombustivelProductPage: React.FC = () => {
                     <h1 className="text-4xl md:text-6xl font-bold text-white uppercase tracking-widest drop-shadow-2xl">
                         Tanques e Serviços
                     </h1>
-                    <p className="text-white/90 text-lg mt-4 font-medium tracking-wide">Fabricação, Manutenção e Reforma</p>
+                    <p className="text-white/90 text-lg mt-4 font-medium tracking-wide">Fabricação, Manutenção e Inspeção Técnica</p>
                 </div>
             </section>
 
@@ -194,18 +204,18 @@ const TanqueCombustivelProductPage: React.FC = () => {
                 <div className="container mx-auto px-6 sm:px-12 lg:px-24">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue-dark mb-6">Excelência em Armazenamento e Serviços</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue-dark mb-6">Excelência em Armazenamento e Serviços Industriais</h2>
                             <div className="w-24 h-1 bg-brand-orange mx-auto rounded-full"></div>
                         </div>
                         <div className="text-gray-600 text-lg leading-relaxed space-y-6 text-justify">
                             <p>
-                                A fabricação, manutenção e reforma de <strong>Tanques de Combustível e Tanques GLP</strong> feito pela Aços Vital é fundamental para garantir segurança, durabilidade e eficiência operacional. Com uma restauração completa, interna e externa, seu tanque retorna ao mercado com desempenho equivalente a um novo, mas com um investimento muito mais vantajoso.
+                                A fabricação, manutenção e reforma de <strong>Tanques de Combustível e Tanques GLP</strong> realizada pela Aços Vital é fundamental para garantir segurança, durabilidade e eficiência operacional. Com uma restauração completa, interna e externa, seu tanque retorna ao mercado com desempenho equivalente a um novo, mas com um investimento muito mais vantajoso.
                             </p>
                             <p>
                                 Nossa equipe altamente qualificada utiliza técnicas avançadas para recuperar a estrutura e funcionalidade do equipamento, garantindo um acabamento impecável e resistência superior. Além disso, trabalhamos com prazos reduzidos para que você receba seu tanque rapidamente e sem impacto nas operações.
                             </p>
                             <p>
-                                Optar pela reforma não apenas reduz custos em comparação à fabricação de um novo tanque, mas também melhora a eficiência no transporte, proporcionando maior segurança e economia no longo prazo. Invista em uma solução confiável, econômica e de alto padrão.
+                                Além da fabricação, oferecemos um portfólio completo de serviços de inspeção técnica e manutenção industrial, garantindo a conformidade dos ativos com as mais rigorosas normas nacionais e internacionais.
                             </p>
                             <div className="bg-brand-blue-light/10 p-6 rounded-xl border border-brand-blue-light/20 mt-8">
                                 <p className="text-brand-blue-dark font-bold text-center text-xl">
@@ -252,22 +262,21 @@ const TanqueCombustivelProductPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* SERVIÇOS ESPECIALIZADOS */}
+            {/* SERVIÇOS ESPECIALIZADOS (LAYOUT CARDS) */}
             <section className="py-24 bg-brand-blue-dark text-white relative">
-                {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
 
                 <div className="container mx-auto px-6 sm:px-12 lg:px-24 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-20">
-                            <span className="text-brand-orange font-bold tracking-widest text-sm uppercase">Soluções Completas</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mt-3">Nossos Serviços</h2>
-                            <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Inspeção, manutenção e auditoria com tecnologia de ponta e equipe certificada.</p>
+                            <span className="text-brand-orange font-bold tracking-widest text-sm uppercase">Soluções em Inspeção e Manutenção</span>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white mt-3">Nossos Serviços Especializados</h2>
+                            <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Tecnologia de ponta, equipe certificada e conformidade absoluta com as normas técnicas do mercado.</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {services.map((service, idx) => (
-                                <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 group">
+                                <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 group flex flex-col h-full">
                                     <div className="flex items-center mb-6">
                                         <div className="p-3 bg-brand-orange/20 rounded-lg text-brand-orange mr-4 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
                                             {service.icon}
@@ -275,27 +284,43 @@ const TanqueCombustivelProductPage: React.FC = () => {
                                         <h3 className="text-xl font-bold text-white">{service.title}</h3>
                                     </div>
                                     
-                                    <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                                    <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">
                                         {service.description}
                                     </p>
 
                                     <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-xs font-bold text-brand-orange uppercase tracking-wider mb-2">Benefícios</h4>
-                                            <ul className="grid grid-cols-1 gap-1">
-                                                {service.benefits.slice(0, 4).map((benefit, i) => (
-                                                    <li key={i} className="flex items-start text-xs text-gray-400">
-                                                        <span className="w-1.5 h-1.5 bg-brand-orange rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                                        {benefit}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                        {service.benefits && (
+                                            <div>
+                                                <h4 className="text-[10px] font-bold text-brand-orange uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                                    <CheckCircle size={10} /> Benefícios e Aplicações
+                                                </h4>
+                                                <ul className="space-y-1.5">
+                                                    {service.benefits.map((benefit, i) => (
+                                                        <li key={i} className="flex items-start text-xs text-gray-400 leading-tight">
+                                                            <span className="w-1.5 h-1.5 bg-brand-orange/50 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                                                            {benefit}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+
+                                        {service.apps && (
+                                            <div className="bg-black/20 p-3 rounded-lg border border-white/5">
+                                                <h4 className="text-[10px] font-bold text-gray-300 uppercase tracking-widest mb-1.5">Principais Aplicações</h4>
+                                                <p className="text-[11px] text-gray-400 leading-relaxed italic">
+                                                    {service.apps}
+                                                </p>
+                                            </div>
+                                        )}
                                         
-                                        <div className="pt-4 border-t border-white/10">
-                                            <p className="text-xs text-gray-500">
-                                                <span className="font-bold text-gray-400">Doc. Requerida:</span> {service.docs}
-                                            </p>
+                                        <div className="pt-4 border-t border-white/10 mt-auto">
+                                            <div className="flex items-start gap-2">
+                                                <Info size={14} className="text-brand-orange/70 flex-shrink-0 mt-0.5" />
+                                                <p className="text-[10px] text-gray-500 uppercase font-bold tracking-tight">
+                                                    <span className="text-gray-400">Doc. Requerida:</span> {service.docs}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

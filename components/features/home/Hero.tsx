@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useI18n } from '../../../context/I18nContext';
 import { ChevronDown } from 'lucide-react';
@@ -210,14 +211,15 @@ const Hero: React.FC = () => {
           <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px]">
             <div className="max-w-xl md:max-w-2xl lg:max-w-3xl text-center md:text-left mx-auto md:mx-0">
               <div key={currentIndex} role="group" aria-roledescription="slide">
-                {/* Responsive Typography */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold leading-tight mb-4 sm:mb-6 animate-slide-in text-shadow-lg drop-shadow-md text-white" style={{ animationDelay: '0.2s' }}>
+                {/* Reduced responsive typography scale */}
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold leading-tight mb-4 sm:mb-6 animate-slide-in text-shadow-lg drop-shadow-md text-white" style={{ animationDelay: '0.2s' }}>
                     {currentSlide.title}
                 </h1>
-                <p className="text-base sm:text-lg lg:text-xl 2xl:text-2xl mb-8 sm:mb-10 text-gray-200 animate-slide-in font-medium max-w-lg md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
+                <p className="text-sm sm:text-base lg:text-lg 2xl:text-xl mb-8 sm:mb-10 text-gray-200 animate-slide-in font-medium max-w-lg md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
                     {currentSlide.subtitle}
                 </p>
-                <button onClick={(e) => e.stopPropagation()} className="bg-brand-orange text-white font-bold py-4 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-sm sm:text-base uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" style={{ animationDelay: '0.6s' }}>
+                {/* Reduced button padding and font-size */}
+                <button onClick={(e) => e.stopPropagation()} className="bg-brand-orange text-white font-bold py-3 px-8 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" style={{ animationDelay: '0.6s' }}>
                   {currentSlide.buttonText}
                 </button>
               </div>
