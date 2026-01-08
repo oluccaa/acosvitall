@@ -21,6 +21,9 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- Font Inter via CDN (Fixes 404 error) -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <!-- Preload LCP Image with optimized parameters: width 1000, format webp, quality 70 -->
     <link rel="preload" fetchpriority="high" as="image" href="https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fmxbsygruslepfcyhtmqr.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fpublic_assets%2Fhome%2Fhero%2F1.webp&methods=resize%2C1000%2C5000&format=webp&quality=70" type="image/webp">
     
@@ -51,12 +54,9 @@
     </script>
 
     <style>
-      @font-face {
-        font-family: 'Inter';
-        font-style:  normal;
-        font-weight: 100 900;
-        font-display: swap;
-        src: url("https://rsms.me/inter/font-files/Inter-var.woff2?v=3.19") format("woff2");
+      :root { font-family: 'Inter', sans-serif; }
+      @supports (font-variation-settings: normal) {
+        :root { font-family: 'Inter var', sans-serif; }
       }
       html, body { height: 100%; margin: 0; padding: 0; background-color: #081437; scroll-behavior: smooth; }
     </style>
@@ -77,10 +77,10 @@
       }
     }
     </script>
-  <link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="./index.css">
 </head>
   <body class="bg-[#081437] overflow-x-hidden text-slate-200">
     <div id="root" class="min-h-screen flex flex-col"></div>
-    <script type="module" src="/index.tsx" fetchpriority="high"></script>
+    <script type="module" src="./index.tsx" fetchpriority="high"></script>
   </body>
 </html>

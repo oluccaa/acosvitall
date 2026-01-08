@@ -13,16 +13,18 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './lib/i18n'; // Initialize i18next configuration
 
-// Service Worker Registration for efficient caching
+// Service Worker disabled to prevent 404 errors in preview environments
+/*
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then(registration => {
+    navigator.serviceWorker.register('./sw.js').then(registration => {
       console.log('SW registered: ', registration);
     }).catch(registrationError => {
       console.log('SW registration failed: ', registrationError);
     });
   });
 }
+*/
 
 // Find the root DOM node
 const rootElement = document.getElementById('root');
