@@ -86,7 +86,6 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
         <nav 
             className={`flex flex-row items-center space-x-1 ${className}`}
             onMouseLeave={handleMouseLeave}
-            role="menubar"
         >
              {links.map((link) => {
                  const active = isActive(link.href);
@@ -97,15 +96,11 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                     <div 
                         key={link.href} 
                         className="relative"
-                        role="none"
                         onMouseEnter={() => handleMouseEnter(link.key || '')}
                     >
                         <a 
                             href={link.href} 
                             onClick={onLinkClick}
-                            role="menuitem"
-                            aria-haspopup={isProducts ? "true" : undefined}
-                            aria-expanded={isProducts ? isMegaMenuOpen : undefined}
                             className={`
                                 relative flex items-center justify-start gap-1 transition-colors duration-200 whitespace-nowrap
                                 px-4 py-4 text-xs font-bold tracking-widest text-gray-300 hover:text-white uppercase
@@ -116,18 +111,14 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                             {isProducts && (
                                 <ChevronDown 
                                     size={12} 
-                                    aria-hidden="true"
                                     className={`transition-transform duration-300 ease-out ${isMegaMenuOpen ? 'rotate-180 text-brand-orange' : ''}`} 
                                 />
                             )}
-                            <span className={`absolute bottom-3 left-4 right-4 h-[2px] bg-brand-orange transform origin-left transition-transform duration-300 ease-out ${active || hoveredLink === link.key ? 'scale-x-100' : 'scale-x-0'}`} aria-hidden="true"></span>
+                            <span className={`absolute bottom-3 left-4 right-4 h-[2px] bg-brand-orange transform origin-left transition-transform duration-300 ease-out ${active || hoveredLink === link.key ? 'scale-x-100' : 'scale-x-0'}`}></span>
                         </a>
 
                         {isProducts && (
                             <div 
-                                id="mega-menu-products"
-                                role="region"
-                                aria-label="Menu de Produtos"
                                 className={`
                                     absolute left-1/2 -translate-x-1/2 w-[92vw] max-w-6xl z-[60] pt-4
                                     transition-all duration-300 cubic-bezier(0.16, 1, 0.3, 1) origin-top
@@ -141,17 +132,13 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                     <div className="flex h-[440px]">
                                         
                                         {/* COL 1: SIDEBAR DE CATEGORIAS */}
-                                        <div className="w-1/4 bg-gray-50/90 border-r border-gray-100 p-4 flex flex-col gap-2" role="tablist" aria-orientation="vertical">
-                                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] px-3 py-3 mb-1 border-b border-gray-200/50" aria-hidden="true">
+                                        <div className="w-1/4 bg-gray-50/90 border-r border-gray-100 p-4 flex flex-col gap-2">
+                                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] px-3 py-3 mb-1 border-b border-gray-200/50">
                                                 {t('layout.departments')}
                                             </div>
                                             {PRODUCT_GROUPS.map((group) => (
                                                 <button
                                                     key={group.id}
-                                                    role="tab"
-                                                    aria-selected={activeGroup === group.id}
-                                                    aria-controls={`panel-${group.id}`}
-                                                    id={`tab-${group.id}`}
                                                     onMouseEnter={() => setActiveGroup(group.id)}
                                                     className={`
                                                         text-left px-4 py-3 rounded-xl transition-colors duration-150 group/btn flex items-start gap-3 relative
@@ -162,7 +149,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                                     `}
                                                 >
                                                     {activeGroup === group.id && (
-                                                        <span className="absolute left-1.5 top-3 bottom-3 w-1 bg-brand-orange rounded-full" aria-hidden="true"></span>
+                                                        <span className="absolute left-1.5 top-3 bottom-3 w-1 bg-brand-orange rounded-full animate-in fade-in duration-300"></span>
                                                     )}
                                                     <div className={`mt-0.5 transition-colors duration-150 ${activeGroup === group.id ? 'text-brand-orange' : 'text-gray-400 group-hover/btn:text-brand-blue-dark'}`}>
                                                         {React.cloneElement(group.icon as React.ReactElement<{ size: number }>, { size: 20 })}
@@ -176,12 +163,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                         </div>
 
                                         {/* COL 2: GRID DE PRODUTOS */}
-                                        <div 
-                                            className="w-2/4 p-8 bg-white flex flex-col"
-                                            role="tabpanel"
-                                            id={`panel-${activeGroup}`}
-                                            aria-labelledby={`tab-${activeGroup}`}
-                                        >
+                                        <div className="w-2/4 p-8 bg-white flex flex-col">
                                             <div className="flex justify-between items-end mb-6 border-b border-gray-100 pb-4">
                                                 <div key={activeGroup} className="animate-in fade-in slide-in-from-left-2 duration-300">
                                                     <h3 className="text-xl font-extrabold text-brand-blue-dark tracking-tight">
@@ -195,16 +177,20 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                                 </a>
                                             </div>
                                             
-                                            <div className="grid grid-cols-2 gap-4 overflow-y-auto custom-scrollbar flex-1 pr-2">
+                                            <div 
+                                                key={`grid-${activeGroup}`}
+                                                className="grid grid-cols-2 gap-4 overflow-y-auto custom-scrollbar flex-1 pr-2 transform translate-z-0"
+                                            >
                                                 {currentGroupProducts.map((cat, idx) => (
                                                     <a 
                                                         key={cat.id} 
                                                         href={cat.href} 
                                                         onClick={() => setHoveredLink(null)} 
                                                         className="group/card flex items-center gap-4 p-3 rounded-xl hover:bg-brand-blue-dark/5 transition-all duration-200 border border-transparent hover:border-gray-100 animate-in fade-in slide-in-from-bottom-1"
+                                                        style={{ animationDelay: `${idx * 15}ms`, animationDuration: '300ms' }}
                                                     >
                                                         <div className="w-14 h-14 flex-shrink-0 rounded-xl bg-gray-50 p-0.5 overflow-hidden border border-gray-200 group-hover/card:border-brand-orange/50 group-hover/card:scale-[1.03] transition-transform duration-200">
-                                                            <img src={cat.imageUrl} alt="" className="w-full h-full object-cover rounded-lg" loading="eager" />
+                                                            <img src={cat.imageUrl} alt={cat.id} className="w-full h-full object-cover rounded-lg" loading="eager" />
                                                         </div>
                                                         <div className="flex-1">
                                                             <span className="block text-[11px] font-extrabold text-gray-800 group-hover/card:text-brand-orange transition-colors uppercase tracking-wider mb-0.5">
@@ -212,7 +198,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                                             </span>
                                                             <span className="flex items-center text-[9px] text-gray-400 font-bold uppercase tracking-tight group-hover/card:text-brand-blue-dark">
                                                                 {t('layout.viewSpecs')}
-                                                                <ChevronRightIcon size={10} className="ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                                                                <ChevronRightIcon size={10} className="ml-1 opacity-0 group-hover/card:opacity-100 group-hover/card:translate-x-1 transition-all" />
                                                             </span>
                                                         </div>
                                                     </a>
@@ -222,9 +208,9 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
 
                                         {/* COL 3: CATÁLOGO */}
                                         <div className="w-1/4 bg-brand-blue-dark p-8 flex flex-col justify-between relative overflow-hidden">
-                                            <div className="absolute top-0 right-0 w-48 h-48 bg-brand-orange rounded-full blur-[100px] opacity-10 pointer-events-none translate-x-1/2 -translate-y-1/2" aria-hidden="true"></div>
+                                            <div className="absolute top-0 right-0 w-48 h-48 bg-brand-orange rounded-full blur-[100px] opacity-10 pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
                                             <div className="relative z-10">
-                                                <div className="inline-flex p-3 rounded-2xl bg-white/10 text-brand-orange mb-6 shadow-inner border border-white/5 backdrop-blur-sm" aria-hidden="true">
+                                                <div className="inline-flex p-3 rounded-2xl bg-white/10 text-brand-orange mb-6 shadow-inner border border-white/5 backdrop-blur-sm">
                                                     <FileText size={24} />
                                                 </div>
                                                 <h4 className="text-xl font-bold text-white mb-3 tracking-tight">{t('layout.catalogCall')}</h4>
@@ -234,7 +220,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                             </div>
                                             <div className="relative z-10 space-y-4">
                                                 <div className="flex items-center gap-2.5 text-xs text-gray-400 font-bold tracking-widest uppercase">
-                                                    <ShieldCheck size={14} className="text-green-400" aria-hidden="true" />
+                                                    <ShieldCheck size={14} className="text-green-400" />
                                                     <span>{t('layout.updated')}</span>
                                                 </div>
                                                 <a 
@@ -243,7 +229,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                                     className="flex items-center justify-between w-full bg-brand-orange text-white text-xs font-extrabold py-4 px-6 rounded-xl hover:bg-white hover:text-brand-orange transition-all duration-300 shadow-xl group/cta transform hover:-translate-y-0.5 active:scale-95 uppercase tracking-widest"
                                                 >
                                                     <span>{t('layout.downloadNow')}</span>
-                                                    <ArrowRight size={16} className="group-hover/cta:translate-x-1 transition-transform" aria-hidden="true" />
+                                                    <ArrowRight size={16} className="group-hover/cta:translate-x-1 transition-transform" />
                                                 </a>
                                             </div>
                                         </div>

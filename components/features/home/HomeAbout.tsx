@@ -21,16 +21,16 @@ const HomeAbout: React.FC<HomeAboutProps> = ({ showButton = true }) => {
                     <div className="md:col-span-7 order-2 md:order-1 flex flex-col justify-center text-center md:text-left">
                         <div className="flex flex-col h-full justify-center">
                             <div>
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange text-[10px] font-extrabold uppercase tracking-widest mb-5 border border-brand-orange/20">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue-dark/5 text-brand-blue-dark text-[10px] font-bold uppercase tracking-widest mb-5 border border-brand-blue-dark/10">
                                     <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
                                     Sobre a Aços Vital
                                 </div>
                                 
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-brand-blue-dark mb-6 leading-tight max-w-lg mx-auto md:mx-0">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-blue-dark mb-6 leading-tight max-w-lg mx-auto md:mx-0">
                                     {title}
                                 </h2>
                                 
-                                <div className="space-y-4 text-gray-800 text-sm lg:text-base leading-relaxed max-w-xl mx-auto md:mx-0 font-medium">
+                                <div className="space-y-4 text-gray-600 text-sm lg:text-base leading-relaxed max-w-xl mx-auto md:mx-0">
                                     <p>{t('about.p1')}</p>
                                     <p>{t('about.p2')}</p>
                                     <p>{t('about.p3')}</p>
@@ -40,7 +40,7 @@ const HomeAbout: React.FC<HomeAboutProps> = ({ showButton = true }) => {
                                     <div className="mt-8">
                                         <a 
                                             href="#/about" 
-                                            className="inline-flex items-center gap-2 bg-brand-orange text-white font-bold py-3.5 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-brand-orange/20 text-xs uppercase tracking-widest group"
+                                            className="inline-flex items-center gap-2 bg-brand-orange text-white font-bold py-3 px-8 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-brand-orange/30 text-xs uppercase tracking-wider group"
                                         >
                                             {t('about.callToAction.buttonText')}
                                             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

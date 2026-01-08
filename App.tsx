@@ -7,6 +7,8 @@ import CookieBanner from './components/common/CookieBanner';
 import FloatingWhatsapp from './components/common/FloatingWhatsapp';
 
 // --- 1. DEFINIÇÃO DAS PÁGINAS (VARIAVEIS) ---
+
+// Core Pages
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ProductsPage = React.lazy(() => import('./pages/ProductsPage'));
@@ -34,8 +36,13 @@ const EletrodutosProductPage = React.lazy(() => import('./subpages/EletrodutosPr
 const GroovedProductPage = React.lazy(() => import('./subpages/GroovedProductPage'));
 const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueCombustivelProductPage'));
 
+// --- 2. CONFIGURAÇÃO DA PÁGINA INICIAL ---
+const PaginaPrincipal = HomePage; 
+
+// --- 3. MAPEAMENTO DE ROTAS ---
+
 const routes: { [key: string]: React.ComponentType } = {
-    '#/': HomePage,
+    '#/': PaginaPrincipal,
     '#/home': HomePage,
     '#/about': AboutPage,
     '#/products': ProductsPage,
@@ -45,6 +52,8 @@ const routes: { [key: string]: React.ComponentType } = {
     '#/certifications': CertificationsPage,
     '#/contact': ContactPage,
     '#/privacy': PrivacyPolicyPage,
+    
+    // Rotas de Produtos
     '#/products/flanges': FlangeProductPage, 
     '#/products/tubos': TubosProductPage,
     '#/products/conexoes': ConexoesProductPage, 
@@ -67,22 +76,12 @@ const App: React.FC = () => {
     
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">
-            {/* Skip Link for Keyboard Users */}
-            <a 
-                href="#main-content" 
-                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-orange focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:font-bold focus:shadow-2xl"
-            >
-                Pular para o conteúdo principal
-            </a>
-
             <Header />
-            
-            <main id="main-content" role="main" className="flex-grow w-full flex flex-col outline-none" tabIndex={-1}>
+            <main className="flex-grow w-full flex flex-col">
                 <React.Suspense fallback={<LoadingSpinner />}>
                     <Page />
                 </React.Suspense>
             </main>
-
             <Footer />
             <FloatingWhatsapp />
             <CookieBanner />
