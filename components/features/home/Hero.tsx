@@ -88,8 +88,8 @@ interface ProgressDotProps {
   slideIndex: number;
 }
 const ProgressDot: React.FC<ProgressDotProps> = ({ isActive, isPaused, onClick, slideIndex }) => {
-  const size = 28;
-  const strokeWidth = 3;
+  const size = 22; // Diminuído de 28 para 22
+  const strokeWidth = 2; // Diminuído de 3 para 2
   const center = size / 2;
   const radius = center - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
@@ -97,13 +97,13 @@ const ProgressDot: React.FC<ProgressDotProps> = ({ isActive, isPaused, onClick, 
   return (
     <button
       onClick={onClick}
-      className="relative w-7 h-7 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#081437]/50 focus:ring-white transition-transform hover:scale-110"
+      className="relative w-5.5 h-5.5 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#081437]/50 focus:ring-white transition-transform hover:scale-110"
       style={{ '--circumference': circumference } as React.CSSProperties}
       aria-selected={isActive}
       role="tab"
       aria-label={`Ir para o slide ${slideIndex + 1}`}
     >
-      <svg className="w-full h-full" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+      <svg className="w-5.5 h-5.5" width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
         <circle cx={center} cy={center} r={radius} className="stroke-white/30" strokeWidth={strokeWidth} fill="transparent" />
         {isActive && (
           <circle
@@ -182,7 +182,7 @@ const Hero: React.FC = () => {
       <style>{animationStyles}</style>
       <section 
         onClick={handleClickOnSlider}
-        className="relative h-[85vh] min-h-[500px] md:h-[80vh] 2xl:max-h-[1080px] text-white overflow-hidden cursor-pointer w-full bg-[#081437]"
+        className="relative h-[80vh] min-h-[450px] md:h-[75vh] 2xl:max-h-[900px] text-white overflow-hidden cursor-pointer w-full bg-[#081437]"
         style={{ '--slide-duration': `${SLIDE_DURATION_MS}ms` } as React.CSSProperties}
         aria-roledescription="carousel"
         aria-live={isPaused ? "polite" : "off"}
@@ -209,17 +209,17 @@ const Hero: React.FC = () => {
 
         <div className="relative z-10 flex h-full items-center">
           <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px]">
-            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl text-center md:text-left mx-auto md:mx-0">
+            <div className="max-w-xl md:max-w-xl lg:max-w-2xl text-center md:text-left mx-auto md:mx-0">
               <div key={currentIndex} role="group" aria-roledescription="slide">
-                {/* Reduced responsive typography scale */}
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold leading-tight mb-4 sm:mb-6 animate-slide-in text-shadow-lg drop-shadow-md text-white" style={{ animationDelay: '0.2s' }}>
+                {/* Reduced responsive typography scale for notebook/desktop refinement */}
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 animate-slide-in text-shadow-lg drop-shadow-md text-white" style={{ animationDelay: '0.2s' }}>
                     {currentSlide.title}
                 </h1>
-                <p className="text-sm sm:text-base lg:text-lg 2xl:text-xl mb-8 sm:mb-10 text-gray-200 animate-slide-in font-medium max-w-lg md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
+                <p className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg mb-6 sm:mb-8 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
                     {currentSlide.subtitle}
                 </p>
-                {/* Reduced button padding and font-size */}
-                <button onClick={(e) => e.stopPropagation()} className="bg-brand-orange text-white font-bold py-3 px-8 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" style={{ animationDelay: '0.6s' }}>
+                {/* Reduced button padding and font-size for better notebook proportion */}
+                <button onClick={(e) => e.stopPropagation()} className="bg-brand-orange text-white font-bold py-2.5 px-6 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-[10px] sm:text-xs uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" style={{ animationDelay: '0.6s' }}>
                   {currentSlide.buttonText}
                 </button>
               </div>
@@ -227,8 +227,8 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Dots - Bottom Center */}
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 flex space-x-4" role="tablist" aria-label="Slides">
+        {/* Dots - Bottom Center - Scale and position refined */}
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 flex space-x-3" role="tablist" aria-label="Slides">
             {slides.map((_, slideIndex) => (
                 <ProgressDot key={slideIndex} slideIndex={slideIndex} isActive={currentIndex === slideIndex} isPaused={isPaused}
                     onClick={(e) => { e.stopPropagation(); goToSlide(slideIndex); }}
@@ -239,8 +239,9 @@ const Hero: React.FC = () => {
         <a href="#features" onClick={(e) => { e.stopPropagation(); handleScrollDown(e); }}
           className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
           aria-label="Scroll to next section">
-          <span className="text-[10px] sm:text-xs uppercase tracking-wider mb-1 text-white/80 group-hover:text-white transition-colors font-bold">{t('hero.scrollText')}</span>
-          <ChevronDown size={24} className="animate-bounce-down text-white/80 group-hover:text-brand-orange transition-colors" />
+          {/* Scroll text and icon scaled down */}
+          <span className="text-[9px] uppercase tracking-wider mb-0.5 text-white/80 group-hover:text-white transition-colors font-bold">{t('hero.scrollText')}</span>
+          <ChevronDown size={20} className="animate-bounce-down text-white/80 group-hover:text-brand-orange transition-colors" />
         </a>
       </section>
     </>
