@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                         </p>
                         
                         <div className="pt-2">
-                            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-4">SIGA-NOS</h4>
+                            <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-4">SIGA-NOS</h3>
                             <div className="flex gap-3">
                                 <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5">
                                     <Facebook size={18} className="text-gray-400 group-hover:text-white" />
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className="lg:col-span-2 lg:pl-12">
-                        <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">PÁGINAS</h4>
+                        <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">PÁGINAS</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                             <ul className="space-y-3">
                                 {leftLinks.map(link => (
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">CONTATO</h4>
+                        <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">CONTATO</h3>
                         <ul className="space-y-6">
                             <li className="flex items-start gap-4 group">
                                 <div className="mt-1">

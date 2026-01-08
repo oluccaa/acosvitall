@@ -197,6 +197,8 @@ const Hero: React.FC = () => {
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out
               ${index === currentIndex ? 'opacity-100 animate-kenburns' : 'opacity-0'}
               ${isPaused ? 'animation-paused' : ''}`}
+            width="1920"
+            height="1080"
           />
         ))}
         

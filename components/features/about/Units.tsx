@@ -26,6 +26,8 @@ const Units: React.FC = () => {
                             alt="Mapa das unidades Aços Vital na América do Sul"
                             className="w-full h-auto object-contain max-h-[600px]"
                             loading="lazy" 
+                            width="1000"
+                            height="600"
                         />
                     </div>
                 </div>

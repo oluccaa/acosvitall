@@ -26,7 +26,7 @@ const FeatureItem: React.FC<FeatureData> = ({ icon, title, description }) => (
             </div>
         </div>
         <div className="flex flex-col mt-1">
-            <h3 className="font-bold text-sm text-white mb-1 tracking-wide group-hover:text-brand-orange transition-colors">{title}</h3>
+            <h2 className="font-bold text-sm text-white mb-1 tracking-wide group-hover:text-brand-orange transition-colors">{title}</h2>
             <p className="text-xs text-gray-300 leading-relaxed group-hover:text-white transition-colors">{description}</p>
         </div>
     </div>

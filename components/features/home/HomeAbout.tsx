@@ -59,6 +59,8 @@ const HomeAbout: React.FC<HomeAboutProps> = ({ showButton = true }) => {
                                 src={ASSETS.ABOUT.CONTENT_IMAGE} 
                                 alt={title} 
                                 className="relative rounded-2xl object-cover w-full h-full min-h-[250px] md:min-h-0 max-h-[320px] lg:max-h-[380px] shadow-2xl transition-all duration-700 ease-in-out border border-white/10"
+                                width="500"
+                                height="380"
                             />
                         </div>
                     </div>

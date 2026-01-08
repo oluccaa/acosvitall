@@ -47,6 +47,8 @@ const SectorPill: React.FC<Sector> = ({ name, imgSrc }) => (
                 alt="" // Decorative image
                 className="w-full h-full object-cover"
                 loading="lazy"
+                width="40"
+                height="40"
             />
         </div>
         <span className="font-medium text-brand-blue-dark text-xs tracking-wide whitespace-nowrap">{name}</span>
