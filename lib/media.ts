@@ -19,7 +19,7 @@ const optimize = (url: string, width: number = 800) => {
 };
 
 export const ASSETS = {
-  LOGO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/logo/logo-acos-vital-header.png", 500),
+  LOGO: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/logo/logo.png", 500),
   
   HERO: {
     COMMON_VIDEO: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa&methods=resize%2C2000%2C5000",
