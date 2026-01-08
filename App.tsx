@@ -1,10 +1,10 @@
-
 import React from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import { useRouter } from './hooks/useRouter';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import CookieBanner from './components/common/CookieBanner';
+import FloatingWhatsapp from './components/common/FloatingWhatsapp';
 
 // --- 1. DEFINIÇÃO DAS PÁGINAS (VARIAVEIS) ---
 
@@ -83,6 +83,7 @@ const App: React.FC = () => {
                 </React.Suspense>
             </main>
             <Footer />
+            <FloatingWhatsapp />
             <CookieBanner />
         </div>
     );

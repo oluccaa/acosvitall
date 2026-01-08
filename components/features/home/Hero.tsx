@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useI18n } from '../../../context/I18nContext';
 import { ChevronDown } from 'lucide-react';
@@ -88,8 +87,8 @@ interface ProgressDotProps {
   slideIndex: number;
 }
 const ProgressDot: React.FC<ProgressDotProps> = ({ isActive, isPaused, onClick, slideIndex }) => {
-  const size = 22; // Diminuído de 28 para 22
-  const strokeWidth = 2; // Diminuído de 3 para 2
+  const size = 22;
+  const strokeWidth = 2;
   const center = size / 2;
   const radius = center - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
@@ -201,24 +200,21 @@ const Hero: React.FC = () => {
           />
         ))}
         
-        {/* Gradient Overlay Refined for #081437 */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#081437] via-[#081437]/80 md:via-[#081437]/50 to-transparent z-0"></div>
         
         {ripple.key !== 0 && <span key={ripple.key} className="ripple-effect" style={{ top: ripple.y, left: ripple.x }} aria-hidden="true" />}
         {pulse.key !== 0 && <span key={pulse.key} className="pulse-effect" style={{ top: pulse.y, left: pulse.x }} aria-hidden="true" />}
 
         <div className="relative z-10 flex h-full items-center">
-          <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px]">
+          <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
             <div className="max-w-xl md:max-w-xl lg:max-w-2xl text-center md:text-left mx-auto md:mx-0">
               <div key={currentIndex} role="group" aria-roledescription="slide">
-                {/* Reduced responsive typography scale for notebook/desktop refinement */}
                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 animate-slide-in text-shadow-lg drop-shadow-md text-white" style={{ animationDelay: '0.2s' }}>
                     {currentSlide.title}
                 </h1>
                 <p className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg mb-6 sm:mb-8 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
                     {currentSlide.subtitle}
                 </p>
-                {/* Reduced button padding and font-size for better notebook proportion */}
                 <button onClick={(e) => e.stopPropagation()} className="bg-brand-orange text-white font-bold py-2.5 px-6 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-[10px] sm:text-xs uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" style={{ animationDelay: '0.6s' }}>
                   {currentSlide.buttonText}
                 </button>
@@ -227,7 +223,6 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Dots - Bottom Center - Scale and position refined */}
         <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 flex space-x-3" role="tablist" aria-label="Slides">
             {slides.map((_, slideIndex) => (
                 <ProgressDot key={slideIndex} slideIndex={slideIndex} isActive={currentIndex === slideIndex} isPaused={isPaused}
@@ -239,7 +234,6 @@ const Hero: React.FC = () => {
         <a href="#features" onClick={(e) => { e.stopPropagation(); handleScrollDown(e); }}
           className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
           aria-label="Scroll to next section">
-          {/* Scroll text and icon scaled down */}
           <span className="text-[9px] uppercase tracking-wider mb-0.5 text-white/80 group-hover:text-white transition-colors font-bold">{t('hero.scrollText')}</span>
           <ChevronDown size={20} className="animate-bounce-down text-white/80 group-hover:text-brand-orange transition-colors" />
         </a>

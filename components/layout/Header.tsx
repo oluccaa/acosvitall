@@ -115,14 +115,14 @@ const Header: React.FC = () => {
                     }
                 `}
             >
-                {/* Top Bar - Disappears on Scroll - Uses Main Brand Color */}
+                {/* Top Bar */}
                 <div 
                     className={`
                         w-full transition-all duration-300 ease-in-out relative z-[60] bg-brand-blue-dark border-b border-white/5
                         ${isScrolled ? 'max-h-0 opacity-0 overflow-hidden' : 'max-h-12 py-2.5 opacity-100 overflow-visible'}
                     `}
                 >
-                     <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px] flex justify-between items-center text-[11px] font-medium tracking-wide text-gray-400">
+                     <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl flex justify-between items-center text-[11px] font-medium tracking-wide text-gray-400">
                          <div className="flex items-center gap-4">
                             <a href="tel:1147972352" className="hover:text-brand-orange flex items-center gap-1.5 transition-colors">
                                 <Phone size={11} className="text-brand-orange" /> (11) 4797-2352
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
                     w-full transition-all duration-300 ease-out
                     ${isScrolled ? 'py-3' : 'py-5'}
                 `}>
-                    <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px] relative">
+                    <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative">
                         <div className="flex justify-between items-center gap-6">
                             
                             {/* Logo */}
@@ -179,13 +179,7 @@ const Header: React.FC = () => {
                                 >
                                     <Search size={20} />
                                 </button>
-
-                                <a href="#" className="hidden lg:flex items-center bg-brand-whatsapp hover:bg-brand-whatsapp-dark text-white text-xs font-bold py-2.5 px-6 rounded-full transition-all shadow-lg hover:shadow-brand-whatsapp/30 transform hover:-translate-y-0.5 whitespace-nowrap tracking-wider uppercase">
-                                    <WhatsappIcon size={16} className="mr-2" />
-                                    <span>{t('header.whatsapp')}</span>
-                                </a>
                                 
-                                {/* Mobile Toggle Button */}
                                 <div className="lg:hidden">
                                     <button 
                                         onClick={toggleMobileMenu} 
@@ -213,11 +207,9 @@ const Header: React.FC = () => {
                     ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}
                 `}
             >
-                {/* Decorative Background */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-blue-light/5 rounded-full blur-[80px] pointer-events-none translate-y-1/2 -translate-x-1/2"></div>
 
-                {/* Menu Header (Fixed) */}
                 <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-white/10 relative z-10">
                      <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('layout.menu')}</span>
                      <div className="flex items-center gap-4">
@@ -232,10 +224,7 @@ const Header: React.FC = () => {
                      </div>
                 </div>
 
-                {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide px-6 py-6 relative z-10">
-                    
-                    {/* Search Bar */}
                     <div 
                         className="flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 mb-8 text-gray-200 active:bg-white/10 transition-colors cursor-text hover:border-brand-orange/30"
                         onClick={() => { closeMobileMenu(); setIsSearchOpen(true); }}
@@ -244,9 +233,7 @@ const Header: React.FC = () => {
                         <span className="text-sm font-medium opacity-80">{t('layout.searchPlaceholder')}</span>
                     </div>
 
-                    {/* Navigation Links */}
                     <nav className="flex flex-col gap-1">
-                        {/* 1. HOME */}
                         <a 
                             href="#/" 
                             onClick={closeMobileMenu}
@@ -256,7 +243,6 @@ const Header: React.FC = () => {
                             <span className="font-bold text-lg">{t('header.navLinks.home')}</span>
                         </a>
 
-                        {/* 2. INSTITUCIONAL */}
                         <a 
                             href="#/about" 
                             onClick={closeMobileMenu}
@@ -266,7 +252,6 @@ const Header: React.FC = () => {
                             <span className="font-bold text-lg">{t('header.navLinks.about')}</span>
                         </a>
 
-                        {/* 3. PRODUTOS (Accordion) */}
                         <div className="border-y border-white/5 my-2 py-2">
                             <button 
                                 onClick={() => setIsProductsExpanded(!isProductsExpanded)}
@@ -279,7 +264,6 @@ const Header: React.FC = () => {
                                 <ChevronRight size={20} className={`transition-transform duration-300 ${isProductsExpanded ? 'rotate-90 text-brand-orange' : 'text-gray-500'}`} />
                             </button>
 
-                            {/* Sub-Categories (Groups) */}
                             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isProductsExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                                 <div className="pl-4 pr-2 pb-4 space-y-3">
                                     {MOBILE_PRODUCT_GROUPS.map((group) => {
@@ -304,7 +288,6 @@ const Header: React.FC = () => {
                                                     <ChevronRight size={16} className={`transition-transform ${isActiveGroup ? 'rotate-90 text-brand-orange' : 'text-gray-500'}`} />
                                                 </button>
 
-                                                {/* Actual Products Links */}
                                                 {isActiveGroup && (
                                                     <div className="bg-black/20 p-2 grid grid-cols-1 gap-1 animate-slide-in">
                                                         {groupProducts.map(prod => (
@@ -337,7 +320,6 @@ const Header: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* 4. TOOLS */}
                         <a 
                             href="#/calculator" 
                             onClick={closeMobileMenu}
@@ -374,7 +356,6 @@ const Header: React.FC = () => {
                     </nav>
                 </div>
 
-                {/* Footer (Fixed) */}
                 <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-20">
                      <a 
                         href="#" 

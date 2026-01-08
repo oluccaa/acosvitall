@@ -67,11 +67,10 @@ const FeaturedProducts: React.FC = () => {
         if (!sliderRef.current) return;
         
         const slider = sliderRef.current;
-        const friction = 0.95; // Desaceleração (0.9 a 0.98)
+        const friction = 0.95; 
         
         const step = () => {
             if (Math.abs(pos.current.velocity) < 0.2) {
-                // Fim da animação: reativar snap
                 slider.style.scrollSnapType = 'x mandatory';
                 slider.style.scrollBehavior = 'smooth';
                 return;
@@ -87,8 +86,6 @@ const FeaturedProducts: React.FC = () => {
 
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!sliderRef.current) return;
-        
-        // Cancelar inércia anterior
         if (animationRef.current) cancelAnimationFrame(animationRef.current);
         
         setIsDragging(true);
@@ -99,7 +96,6 @@ const FeaturedProducts: React.FC = () => {
         pos.current.lastTime = performance.now();
         pos.current.velocity = 0;
 
-        // Desativar scroll suave e snap para controle total do mouse
         sliderRef.current.style.scrollSnapType = 'none';
         sliderRef.current.style.scrollBehavior = 'auto';
     };
@@ -112,16 +108,13 @@ const FeaturedProducts: React.FC = () => {
         const x = e.pageX - sliderRef.current.offsetLeft;
         const walk = (x - pos.current.startX);
         
-        // Calcular velocidade instantânea
         const deltaTime = now - pos.current.lastTime;
         if (deltaTime > 0) {
             const deltaX = e.pageX - pos.current.lastX;
-            // Média ponderada para suavizar a velocidade
             pos.current.velocity = (deltaX / deltaTime) * 16; 
         }
 
         if (Math.abs(walk) > 5) pos.current.moved = true;
-
         sliderRef.current.scrollLeft = pos.current.scrollLeft - walk;
         
         pos.current.lastX = e.pageX;
@@ -159,14 +152,13 @@ const FeaturedProducts: React.FC = () => {
 
     return (
         <section className="py-12 md:py-20 bg-white overflow-hidden relative" aria-labelledby="featured-products-title">
-             {/* Background Decorativo */}
              <div className="absolute top-10 left-0 w-full text-center pointer-events-none overflow-hidden opacity-[0.02] select-none">
                 <span className="text-[12vw] font-black uppercase text-brand-blue-dark leading-none whitespace-nowrap">
                     Catálogo
                 </span>
             </div>
 
-            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px] relative z-10 mb-10 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative z-10 mb-10 flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="select-none">
                      <span className="text-brand-orange font-bold tracking-widest text-xs uppercase">Nossos Produtos</span>
                      <h2 id="featured-products-title" className="text-2xl md:text-4xl font-bold text-brand-blue-dark mt-1">
@@ -177,14 +169,12 @@ const FeaturedProducts: React.FC = () => {
                 <div className="flex gap-3">
                     <button
                         onClick={() => scroll('left')}
-                        aria-label="Anterior"
                         className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-blue-dark hover:border-brand-blue-dark hover:text-white transition-all duration-300 shadow-sm active:scale-90"
                     >
                         <ChevronLeft size={20} />
                     </button>
                     <button
                         onClick={() => scroll('right')}
-                        aria-label="Próximo"
                         className="w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/30 hover:bg-brand-orange-dark transition-all duration-300 hover:scale-110 active:scale-90"
                     >
                         <ChevronRight size={20} />
@@ -192,7 +182,7 @@ const FeaturedProducts: React.FC = () => {
                 </div>
             </div>
             
-            <div className="relative max-w-[1920px] mx-auto">
+            <div className="relative">
                 <ul
                     ref={sliderRef}
                     onMouseDown={handleMouseDown}
@@ -201,7 +191,7 @@ const FeaturedProducts: React.FC = () => {
                     onMouseMove={handleMouseMove}
                     onClickCapture={handleLinkClick}
                     className={`
-                        flex overflow-x-auto px-6 sm:px-12 lg:px-24 pb-10 pt-2 scrollbar-hide select-none
+                        flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-10 pt-2 scrollbar-hide select-none
                         will-change-scroll
                         ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
                         ${!isDragging ? 'snap-x snap-mandatory scroll-smooth' : 'snap-none'}
@@ -224,7 +214,6 @@ const FeaturedProducts: React.FC = () => {
                     ))}
                 </ul>
 
-                {/* Sombras laterais para indicação de continuidade */}
                 <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none z-10 opacity-60"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none z-10 opacity-60"></div>
             </div>

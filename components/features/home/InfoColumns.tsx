@@ -32,7 +32,7 @@ const InfoColumns: React.FC = () => {
 
     return (
         <section className="py-10 md:py-16 bg-brand-off-white relative" aria-labelledby="info-columns-title">
-            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px]">
+            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
                 <div className="text-center mb-8 md:mb-12">
                     <h2 id="info-columns-title" className="text-2xl md:text-3xl font-bold text-brand-blue-dark relative inline-block">
                         {t('infoColumns.title')}
@@ -40,7 +40,7 @@ const InfoColumns: React.FC = () => {
                     </h2>
                 </div>
 
-                <ul ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+                <ul ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     {columns.map((column, index) => (
                         <li
                             key={column.id}

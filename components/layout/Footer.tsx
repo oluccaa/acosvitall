@@ -6,7 +6,6 @@ import Logo from '../common/Logo';
 const Footer: React.FC = () => {
     const { t } = useTranslation();
 
-    // Lista unificada de todos os links, todos em CAIXA ALTA
     const allLinks = [
         { key: 'home', label: 'INÍCIO', href: '#/' },
         { key: 'about', label: 'SOBRE NÓS', href: '#/about' },
@@ -18,17 +17,15 @@ const Footer: React.FC = () => {
         { key: 'privacy', label: 'POLÍTICA DE PRIVACIDADE', href: '#/privacy' }
     ];
 
-    // Divide os links em duas colunas para o layout
     const midPoint = Math.ceil(allLinks.length / 2);
     const leftLinks = allLinks.slice(0, midPoint);
     const rightLinks = allLinks.slice(midPoint);
 
     return (
         <footer className="bg-brand-blue-dark text-gray-400 pt-16 pb-8 border-t-[3px] border-brand-orange font-sans">
-            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px]">
+            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     
-                    {/* COLUNA 1: Logo, Descrição e Social */}
                     <div className="space-y-6">
                         <a href="#/" aria-label="Aços Vital" className="block w-48">
                             <Logo className="h-auto w-full" />
@@ -56,7 +53,6 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* COLUNA 2 e 3 (Combinadas): PÁGINAS */}
                     <div className="lg:col-span-2 lg:pl-12">
                         <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">PÁGINAS</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
@@ -83,7 +79,6 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* COLUNA 4: CONTATO */}
                     <div>
                         <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">CONTATO</h4>
                         <ul className="space-y-6">
@@ -113,7 +108,6 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                {/* BOTTOM BAR */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
                     <p>&copy; {new Date().getFullYear() + 1} Aços Vital Indústria e Comércio. Todos os direitos reservados.</p>
                     <p className="opacity-80 hover:opacity-100 transition-opacity">Desenvolvido com excelência</p>
