@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import SteelCalculator from '../components/features/calculator/SteelCalculator';
 import UnitConverter from '../components/features/calculator/UnitConverter';
@@ -16,7 +15,7 @@ const getWhatsappLink = (productName: string) => {
     return `https://wa.me/${phone}?text=${text}`;
 };
 
-// --- ADVERTISING SIDEBAR COMPONENT (SKYSCRAPER STYLE 160x600) ---
+// --- ADVERTISING SIDEBAR COMPONENT (SKYSCRAPER STYLE 160x660) ---
 const AdSidebar: React.FC<{ side: 'left' | 'right' }> = ({ side }) => {
     const ads = side === 'left' ? [
         { img: ASSETS.ADS.CALCULATOR_LEFT, link: getWhatsappLink("Fale com um especialista") }
@@ -32,7 +31,7 @@ const AdSidebar: React.FC<{ side: 'left' | 'right' }> = ({ side }) => {
                     href={ad.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative w-[160px] h-[600px] rounded-lg overflow-hidden border border-white/10 shadow-2xl transition-all hover:border-brand-orange/50 cursor-pointer"
+                    className="group relative w-[160px] h-[660px] rounded-lg overflow-hidden border border-white/10 shadow-2xl transition-all hover:border-brand-orange/50 cursor-pointer"
                 >
                     {/* Dark Gradient Overlay for depth */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-60 group-hover:opacity-40 transition-opacity z-10 duration-500"></div>
@@ -201,13 +200,13 @@ const CalculatorPageContent: React.FC = () => {
                             {renderContent()}
                         </main>
 
-                        {/* BOTTOM AD BANNER (LEADERBOARD STYLE 728x90) */}
+                        {/* BOTTOM AD BANNER (LEADERBOARD STYLE 1446x120) */}
                         <div className="w-full mt-auto pt-6 pb-6 flex justify-center">
                              <a 
                                 href={getWhatsappLink("Entrega Otimizada")} 
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block relative h-[90px] w-full max-w-[728px] rounded-lg overflow-hidden border border-white/10 shadow-lg group"
+                                className="block relative h-[120px] w-full max-w-[1446px] rounded-lg overflow-hidden border border-white/10 shadow-lg group"
                              >
                                 <img
                                     src={ASSETS.ADS.CALCULATOR_BOTTOM}

@@ -29,6 +29,7 @@ export const pt = {
         tables: 'TABLES',
         certifications: 'CERTIFICAÇÕES',
         contact: 'CONTATO',
+        qualityPortal: 'ÁREA DO CLIENTE'
       },
       whatsapp: 'WHATSAPP',
       mobileGroups: {
@@ -48,7 +49,8 @@ export const pt = {
           tablesTitle: "Tabelas Técnicas",
           tablesDesc: "Normas & Medidas",
           contact: "Fale Conosco",
-          whatsappSupport: "Atendimento WhatsApp"
+          whatsappSupport: "Atendimento WhatsApp",
+          clientArea: "Área do Cliente"
       }
     },
     footer: {
@@ -69,7 +71,7 @@ export const pt = {
             },
             usage: {
                 title: "2. Uso das Informações",
-                text: "Utilizamos seus dados para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, si autorizado, enviar comunicações de marketing relevantes."
+                text: "Utilizamos seus data para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, si autorizado, enviar comunicações de marketing relevantes."
             },
             cookies: {
                 title: "3. Cookies e Tecnologias",
@@ -77,7 +79,7 @@ export const pt = {
             },
             security: {
                 title: "4. Segurança",
-                text: "Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais contra acesso não autorizado, alteração, divulgação ou destruição."
+                text: "Adotamos medidas técnicas e organizacionais adequadas para proteger seus data pessoais contra acesso não autorizado, alteração, divulgação ou destruição."
             },
             rights: {
                 title: "5. Seus Direitos (LGPD)",
@@ -129,7 +131,7 @@ export const pt = {
         toolDescriptions: {
             calculator: "Calcule o peso teórico de chapas, tubos, barras e perfis complexos. Essencial para planejamento de materiais, orçamentos e logística.",
             nesting: "Otimize o corte linear de barras e perfis. Reduza o desperdício de material (sucata) calculando o melhor aproveitamento das barras de estoque.",
-            sheetMetal: "Calcule o desenvolvimento (blank) de chapas para a fabricação de cones. Ferramenta essencial para caldeiraria.",
+            sheetMetal: "Calcule o desenvolvimento (blank) de chapas para la fabricação de cones. Ferramenta essencial para caldeiraria.",
             bending: "Calcule o tamanho exato de corte (blank) considerando o desconto de dobra, fator K e tolerancias para chapas dobradas.",
             welding: "Estime a quantidade de consumível de solda necessária para diferentes tipos de juntas. Ideal para planejamento de custos de soldagem.",
             converter: "Converta rapidamente unidades de medida comuns na engenharia industrial (mm, pol, kg, lb, psi, bar) para facilitar seu dia a dia."
@@ -453,7 +455,7 @@ export const pt = {
             fast_delivery: { title: "Entrega Rápida e Flexível", description: "Produção ágil e logística otimizada para cumprir seus prazos em todo o território nacional." },
             certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001, CRC Petrobrás e YPFB." },
             global_reach: { title: "Alcance Global", description: "Atendemos com excelência clientes no Brasil e no exterior, levando nossas soluções além das fronteiras." },
-            satisfied_clients: { title: "+2.000 Clientes Satisfeitos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
+            satisfied_clients: { title: "+2.000 Clientes Satisfechos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
         }
     },
     pillars: {
@@ -732,7 +734,7 @@ export const pt = {
             fittings: {
                 elbows: "Curvas ASME B16.9 e MSS SP-43",
                 elbows3x5x: "Pesos Aproximados (kg) para Curvas de Raio 3x e 5x o Diâmetro Nominal",
-                teeCrossCap: "Te, Cruzeta e CAP ASME B16.9 e MSS SP-43",
+                teeCruzetaCap: "Te, Cruzeta e CAP ASME B16.9 e MSS SP-43",
                 teeCrossRed: "Te e Cruzeta de Redução ASME B16.9",
                 reducerConc: "Dimensões e pesos para Niple de Redução Concêntrica ASME B16.9 MSSP-95",
                 reducerEcc: "Dimensões e pesos para Niple de Redução Excêntrica ASME B16.9 MSSP-95",
@@ -881,7 +883,7 @@ export const pt = {
                 "Aumentar a satisfação dos clientes",
                 "Garantir a qualidade dos produtos",
                 "Capacitar nossos colaboradores",
-                "Manter um ambiente de trabalho seguro"
+                "Mantener um ambiente de trabalho seguro"
             ],
             imageUrl: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2Fafc82e27a4894ee8ba16231adb5e8f09&methods=resize%2C2000%2C5000"
         }

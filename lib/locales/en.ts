@@ -32,6 +32,7 @@ export const en = {
         tables: 'TABLES',
         certifications: 'CERTIFICATIONS',
         contact: 'CONTACT',
+        qualityPortal: 'CLIENT AREA'
       },
       whatsapp: 'WHATSAPP',
       mobileGroups: {
@@ -51,7 +52,8 @@ export const en = {
           tablesTitle: "Technical Tables",
           tablesDesc: "Standards & Measurements",
           contact: "Contact Us",
-          whatsappSupport: "WhatsApp Support"
+          whatsappSupport: "WhatsApp Support",
+          clientArea: "Client Area"
       }
     },
     footer: {
@@ -146,11 +148,11 @@ export const en = {
             subtitle: "Development calculation for boilermaking",
             dimensions: "Cone Dimensions",
             results: "Unfolding Result",
-            memory: "Calculation Memory",
+            memory: "Memory",
             theory: "Calculation based on Euclidean geometry for development of solids of revolution (Concentric Cones).",
             inputs: {
-                D: "Larger Ø (D)",
-                d: "Smaller Ø (d)",
+                D: "Large Ø (D)",
+                d: "Small Ø (d)",
                 H: "Height (H)",
                 T: "Thickness (T)"
             },

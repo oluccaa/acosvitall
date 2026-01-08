@@ -10,7 +10,7 @@ export const es = {
     layout: {
         schedule: "Lun - Vie: 08:00 - 18:00",
         menu: "Menú Principal",
-        searchPlaceholder: "Buscar productos, tablas...",
+        searchPlaceholder: "Buscar produtos, tablas...",
         departments: "Departamentos",
         viewAll: "Ver Todos",
         viewSpecs: "Ver especificaciones",
@@ -32,6 +32,7 @@ export const es = {
         tables: 'TABLAS',
         certifications: 'CERTIFICACIONES',
         contact: 'CONTACTO',
+        qualityPortal: 'ÁREA DEL CLIENTE'
       },
       whatsapp: 'WHATSAPP',
       mobileGroups: {
@@ -51,7 +52,8 @@ export const es = {
           tablesTitle: "Tablas Técnicas",
           tablesDesc: "Normas & Medidas",
           contact: "Contáctenos",
-          whatsappSupport: "Soporte WhatsApp"
+          whatsappSupport: "Soporte WhatsApp",
+          clientArea: "Área del Cliente"
       }
     },
     footer: {
@@ -75,7 +77,7 @@ export const es = {
                 text: "Utilizamos sus datos para: responder a sus solicitudes, enviar cotizaciones, mejorar nuestros productos y servicios, y, si lo autoriza, enviar comunicaciones de marketing relevantes."
             },
             cookies: {
-                title: "3. Cookies y Tecnologías",
+                title: "3. Cookies y Tecnologias",
                 text: "Utilizamos cookies para mejorar la experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido. Puede gestionar sus preferencias de cookies a través de la configuración de su navegador."
             },
             security: {
@@ -132,7 +134,7 @@ export const es = {
             selectItem: "Seleccione un artículo para calcular"
         },
         toolDescriptions: {
-            calculator: "Calcule el peso teórico de chapas, tubos, barras y perfiles complejos. Esencial para planificación de materiales, presupuestos y logística.",
+            calculator: "Calcule el peso teórico de chapas, tubos, barras e perfiles complejos. Esencial para planificación de materiales, presupuestos y logística.",
             nesting: "Optimice el corte lineal de barras y perfiles. Reduzca el desperdicio de material (chatarra) calculando el mejor aprovechamiento de las barras de stock.",
             sheetMetal: "Calcule el desarrollo (blank) de chapas para la fabricación de conos. Herramienta esencial para calderería.",
             bending: "Calcule el tamaño exacto de corte (blank) considerando la deducción de pliegue, factor K y tolerancias para chapas dobladas.",
@@ -190,7 +192,7 @@ export const es = {
             }
         },
         formulas: {
-            title: "Entienda el Cálculo",
+            title: "Entenda el Cálculo",
             general: "El peso se calcula multiplicando el volumen del material por su densidad específica.",
             plate: "Peso = Ancho × Longitud × Espesor × Densidad",
             barRound: "Peso = π × (Radio)² × Longitud × Densidad",
@@ -204,7 +206,7 @@ export const es = {
             }
         },
         calendering: {
-            title: "Fabricación (Desarrollo)",
+            title: "Fabricação (Desarrollo)",
             devLength: "Longitud de la Chapa (Desarrollo)",
             sheetWidth: "Ancho de la Chapa",
             explanation: "El desarrollo de la chapa se calcula con base en la línea neutra del material (Diâmetro Medio).",
@@ -223,8 +225,8 @@ export const es = {
             thickness: "Espesor",
             width: "Ancho",
             length: "Longitud",
-            outerDiameter: "Diámetro Externo",
-            innerDiameter: "Diámetro Interno",
+            outerDiameter: "Diâmetro Externo",
+            innerDiameter: "Diâmetro Interno",
             wallThickness: "Pared",
             height: "Altura",
             diameter: "Diámetro",
@@ -338,7 +340,7 @@ export const es = {
                 concept: "El cálculo utiliza un algoritmo heurístico (Best Fit Decreasing) para resolver el 'Problema de Corte de Stock' unidimensional. El objetivo es minimizar el número de barras utilizadas y el desperdício de material.",
                 glossary: {
                     stock: { title: "Tamaño de la Barra", desc: "Longitud total de la barra virgen disponible en stock (ej: 6000mm o 12000mm)." },
-                    blade: { title: "Ancho de Corte", desc: "Material perdido en cada corte debido al grosor del disco o sierra (kerf). Generalmente entre 3mm y 5mm." },
+                    blade: { title: "Ancho de Corte", desc: "Material perdido en cada corte debido al grosor del disco o sierra (kerf). Generalmente entre 3mm e 5mm." },
                     waste: { title: "Sobra (Chatarra)", desc: "Trozo final de la barra que no es suficiente para producir nuevas piezas. Calculado como: Barra Total - (Suma de las Piezas + Pérdidas de Corte)." },
                     weight: { title: "Peso Lineal", desc: "Masa de la barra por metro (kg/m). Permite calcular el peso total de material comprado e o peso desperdiciado en chatarra." }
                 }
@@ -410,7 +412,7 @@ export const es = {
                 value: "Valor",
                 result: "Resultado"
             },
-            footer: "Conversión Nominal (Tabla Pipe) - Ej: 1/2\" = 15mm | 14\" = 350mm"
+            footer: "Conversión Nominal (Tabla Pipe) - Ex: 1/2\" = 15mm | 14\" = 350mm"
         }
     },
     hero: {
@@ -465,7 +467,7 @@ export const es = {
         subtitle: "¿QUIÉNES SOMOS Y QUÉ BUSCAMOS?",
         title: "Nuestros Pilares",
         list: {
-            mission: { title: "MISIÓN", description: "La empresa entrega productos de acero de alta calidad, fortaleciendo alianzas, promoviendo el crecimiento sostenible." },
+            mission: { title: "MISIÓN", description: "La empresa entrega productos de acero de alta calidad, fortalecendo alianzas, promoviendo el crecimiento sostenible." },
             vision: { title: "VISIÓN", description: "Ser referencia nacional en productos de acero, destacándose por la calidad, innovación y sostenibilidad." },
             values: { title: "VALORES", description: "Calidad, innovación, sostenibilidad, alianza y seguridad." }
         }
@@ -552,7 +554,7 @@ export const es = {
             label: "Buscar Tablas",
             placeholder: "Nombre, dimensión, norma...",
             results: "resultados",
-            helper: "Buscando en títulos e contenido de las tablas...",
+            helper: "Buscando em títulos e conteúdo de las tablas...",
             noResultsTitle: "Ninguna tabla encontrada",
             noResultsText: "Intente otro término de búsqueda.",
             clear: "Limpiar búsqueda",

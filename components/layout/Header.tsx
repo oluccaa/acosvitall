@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram, Linkedin, Search, Phone, ChevronRight, Package, Calculator, FileText, Award, Mail, Layers, Settings, Box, Factory, Home, Menu, X, ArrowRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Search, Phone, ChevronRight, Package, Calculator, FileText, Award, Mail, Layers, Settings, Box, Factory, Home, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../common/LanguageSwitcher';
 import { NavLinks } from './NavLinks';
@@ -25,6 +25,8 @@ const Header: React.FC = () => {
     // Mobile Menu States
     const [activeProductGroup, setActiveProductGroup] = useState<string | null>(null);
     const [isProductsExpanded, setIsProductsExpanded] = useState(false);
+
+    const QUALITY_PORTAL_URL = "https://portaldaqualidade.acosvital.com.br/login";
 
     const MOBILE_PRODUCT_GROUPS = [
         {
@@ -131,6 +133,17 @@ const Header: React.FC = () => {
                             <span className="hidden sm:inline">{t('layout.schedule')}</span>
                          </div>
                          <div className="flex items-center gap-4">
+                            {/* Portal da Qualidade Desktop */}
+                            <a 
+                                href={QUALITY_PORTAL_URL} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 hover:text-brand-orange transition-colors font-bold uppercase tracking-wider"
+                            >
+                                <ShieldCheck size={12} className="text-brand-orange" />
+                                <span>{t('header.navLinks.qualityPortal')}</span>
+                            </a>
+                            <span className="w-px h-3 bg-white/10"></span>
                             <nav aria-label="Redes sociais" className="hidden sm:block">
                                 <ul className="flex items-center space-x-3">
                                     {SOCIAL_LINKS.map((link) => {
@@ -351,6 +364,23 @@ const Header: React.FC = () => {
                         >
                             <Mail size={20} className={isLinkActive('#/contact') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.mobileLinks.contact')}</span>
+                        </a>
+
+                        {/* Portal da Qualidade Mobile */}
+                        <a 
+                            href={QUALITY_PORTAL_URL} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-4 p-4 rounded-xl transition-all bg-brand-orange/5 text-white border border-brand-orange/10 mt-4 group"
+                        >
+                            <div className="w-10 h-10 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all">
+                                <ShieldCheck size={20} />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="font-bold text-lg text-brand-orange">{t('header.navLinks.qualityPortal')}</span>
+                                <span className="text-[10px] text-gray-500 uppercase font-bold">{t('header.mobileLinks.clientArea')}</span>
+                            </div>
                         </a>
 
                     </nav>
