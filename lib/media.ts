@@ -142,6 +142,8 @@ export const ASSETS = {
     HERO: {
         COMMON_VIDEO: `${SB_BASE}/geral/video_hero.mp4`,
         COMMON_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
+        // Fix: Add FEATURES_BG to satisfy components/features/home/Features.tsx
+        FEATURES_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
     },
 
     /** Sobre Nós */
