@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
@@ -12,10 +11,10 @@ interface Product {
 }
 
 const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragging: boolean }> = ({ product, viewDetailsText, isDragging }) => (
-    <li className={`snap-center flex-shrink-0 w-[85%] sm:w-[45%] md:w-[32%] lg:w-[24%] 2xl:w-[20%] pl-4 first:pl-0 select-none ${isDragging ? 'pointer-events-none' : ''}`}>
+    <li className={`snap-center flex-shrink-0 w-[80%] sm:w-[42%] md:w-[30%] lg:w-[22%] 2xl:w-[18%] pl-4 first:pl-0 select-none ${isDragging ? 'pointer-events-none' : ''}`}>
         <a 
             href={product.href} 
-            className="block group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out h-full border border-gray-100 bg-gray-100"
+            className="block group relative aspect-[3/3.8] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out h-full border border-gray-100 bg-gray-100"
             aria-label={`Ver detalhes de ${product.alt}`}
             draggable={false}
         >
@@ -26,18 +25,18 @@ const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragg
                 aria-label={product.alt}
             />
             
-            <div className="absolute inset-0 bg-gradient-to-t from-[#081437] via-[#081437]/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#081437] via-[#081437]/30 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-white">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <span className="inline-block px-2 py-1 mb-3 text-[10px] font-bold uppercase tracking-widest bg-brand-orange text-white rounded shadow-sm">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 text-white">
+                <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <span className="inline-block px-2 py-0.5 mb-2 text-[9px] font-bold uppercase tracking-widest bg-brand-orange text-white rounded shadow-sm">
                         Destaque
                     </span>
-                    <h3 className="font-bold text-xl md:text-2xl mb-2 leading-tight drop-shadow-md">{product.alt}</h3>
-                    <div className="h-0.5 w-12 bg-white/30 mb-4 group-hover:w-full group-hover:bg-brand-orange transition-all duration-500"></div>
+                    <h3 className="font-bold text-lg md:text-xl mb-2 leading-tight drop-shadow-md">{product.alt}</h3>
+                    <div className="h-0.5 w-10 bg-white/30 mb-3 group-hover:w-full group-hover:bg-brand-orange transition-all duration-500"></div>
                     
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-brand-orange">
-                        {viewDetailsText} <ArrowRight size={16} />
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-brand-orange">
+                        {viewDetailsText} <ArrowRight size={14} />
                     </div>
                 </div>
             </div>
@@ -159,18 +158,18 @@ const FeaturedProducts: React.FC = () => {
     };
 
     return (
-        <section className="py-20 md:py-32 bg-white overflow-hidden relative" aria-labelledby="featured-products-title">
+        <section className="py-12 md:py-20 bg-white overflow-hidden relative" aria-labelledby="featured-products-title">
              {/* Background Decorativo */}
-             <div className="absolute top-10 left-0 w-full text-center pointer-events-none overflow-hidden opacity-[0.03] select-none">
-                <span className="text-[15vw] font-black uppercase text-brand-blue-dark leading-none whitespace-nowrap">
+             <div className="absolute top-10 left-0 w-full text-center pointer-events-none overflow-hidden opacity-[0.02] select-none">
+                <span className="text-[12vw] font-black uppercase text-brand-blue-dark leading-none whitespace-nowrap">
                     Catálogo
                 </span>
             </div>
 
-            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px] relative z-10 mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px] relative z-10 mb-10 flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="select-none">
-                     <span className="text-brand-orange font-bold tracking-widest text-sm uppercase">Nossos Produtos</span>
-                     <h2 id="featured-products-title" className="text-3xl md:text-5xl font-bold text-brand-blue-dark mt-2">
+                     <span className="text-brand-orange font-bold tracking-widest text-xs uppercase">Nossos Produtos</span>
+                     <h2 id="featured-products-title" className="text-2xl md:text-4xl font-bold text-brand-blue-dark mt-1">
                         {t('featuredProducts.title')}
                     </h2>
                 </div>
@@ -179,16 +178,16 @@ const FeaturedProducts: React.FC = () => {
                     <button
                         onClick={() => scroll('left')}
                         aria-label="Anterior"
-                        className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-blue-dark hover:border-brand-blue-dark hover:text-white transition-all duration-300 shadow-sm active:scale-90"
+                        className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-blue-dark hover:border-brand-blue-dark hover:text-white transition-all duration-300 shadow-sm active:scale-90"
                     >
-                        <ChevronLeft size={24} />
+                        <ChevronLeft size={20} />
                     </button>
                     <button
                         onClick={() => scroll('right')}
                         aria-label="Próximo"
-                        className="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/30 hover:bg-brand-orange-dark transition-all duration-300 hover:scale-110 active:scale-90"
+                        className="w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/30 hover:bg-brand-orange-dark transition-all duration-300 hover:scale-110 active:scale-90"
                     >
-                        <ChevronRight size={24} />
+                        <ChevronRight size={20} />
                     </button>
                 </div>
             </div>
@@ -202,7 +201,7 @@ const FeaturedProducts: React.FC = () => {
                     onMouseMove={handleMouseMove}
                     onClickCapture={handleLinkClick}
                     className={`
-                        flex overflow-x-auto px-6 sm:px-12 lg:px-24 pb-12 pt-4 scrollbar-hide select-none
+                        flex overflow-x-auto px-6 sm:px-12 lg:px-24 pb-10 pt-2 scrollbar-hide select-none
                         will-change-scroll
                         ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
                         ${!isDragging ? 'snap-x snap-mandatory scroll-smooth' : 'snap-none'}
@@ -226,8 +225,8 @@ const FeaturedProducts: React.FC = () => {
                 </ul>
 
                 {/* Sombras laterais para indicação de continuidade */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none z-10 opacity-80"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none z-10 opacity-80"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none z-10 opacity-60"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none z-10 opacity-60"></div>
             </div>
         </section>
     );

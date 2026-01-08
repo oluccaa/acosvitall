@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useI18n } from '../../context/I18nContext';
 import { SECTORS_LIST } from '../../lib/constants';
@@ -50,7 +49,7 @@ const SectorPill: React.FC<Sector> = ({ name, imgSrc }) => (
                 loading="lazy"
             />
         </div>
-        <span className="font-bold text-brand-blue-dark text-xs tracking-wide whitespace-nowrap">{name}</span>
+        <span className="font-medium text-brand-blue-dark text-xs tracking-wide whitespace-nowrap">{name}</span>
     </div>
 );
 
