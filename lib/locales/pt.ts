@@ -83,7 +83,7 @@ export const pt = {
             },
             rights: {
                 title: "5. Seus Direitos (LGPD)",
-                text: "Você tem o direito de confirmar a existência de tratamento de dados, acessar seus dados, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
+                text: "Você tem o direito de confirmar a existência de tratamento de dados, acessar seus data, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
             },
             contact: {
                 title: "6. Contacto",
@@ -131,7 +131,7 @@ export const pt = {
         toolDescriptions: {
             calculator: "Calcule o peso teórico de chapas, tubos, barras e perfis complexos. Essencial para planejamento de materiais, orçamentos e logística.",
             nesting: "Otimize o corte linear de barras e perfis. Reduza o desperdício de material (sucata) calculando o melhor aproveitamento das barras de estoque.",
-            sheetMetal: "Calcule o desenvolvimento (blank) de chapas para a fabricação de cones. Ferramenta essencial para caldeiraria.",
+            sheetMetal: "Calcule o desenvolvimento (blank) de chapas para the fabricação de cones. Ferramenta essencial para caldeiraria.",
             bending: "Calcule o tamanho exato de corte (blank) considerando o desconto de dobra, fator K e tolerancias para chapas dobradas.",
             welding: "Estime a quantidade de consumível de solda necessária para diferentes tipos de juntas. Ideal para planejamento de custos de soldagem.",
             converter: "Converta rapidamente unidades de medida comuns na engenharia industrial (mm, pol, kg, lb, psi, bar) para facilitar seu dia a dia."
@@ -241,7 +241,7 @@ export const pt = {
             plate: "Chapa",
             tube_round: "Tubo Industrial",
             bar_round: "Barra Redonda",
-            bar_square: "Barra Quadrada",
+            bar_square: "Barra Cuadrada",
             flange_square: "Anel (Corte de Chapa)",
             grating: "Grade de Piso",
             tube_calendered: "Tubo Calandrado",
@@ -468,8 +468,34 @@ export const pt = {
         }
     },
     units: {
-        subtitle: "SOBRE NÓS",
+        subtitle: "AÇOS VITAL PELO MUNDO",
         title: "Onde atuamos",
+        locations: {
+            mogi: {
+                city: "Mogi das Cruzes",
+                state: "São Paulo, Brasil",
+                role: "Unidade Industrial, Centro Logístico e Distribuição",
+                address: "Rod. Pedro Eroles, 1855 - Jd. Aracy, Mogi das Cruzes - SP"
+            },
+            uberaba: {
+                city: "Uberaba",
+                state: "Minas Gerais, Brasil",
+                role: "Unidade Industrial, Centro Logístico e Distribuição",
+                address: "Av. Cristo Rei, 1183 - Jd. das Américas, Uberaba - MG"
+            },
+            bolivia: {
+                city: "Santa Cruz De La Sierra",
+                state: "Andrés Ibáñez, Bolívia",
+                role: "Unidade Industrial, Centro Logístico e Distribuição",
+                address: "Radial 17 1/2 6to y 7mo Anillo - Santa Cruz De La Sierra, Bolívia"
+            },
+            chile: {
+                city: "Arica",
+                state: "Região de Arica e Parinacota, Chile",
+                role: "Unidade Industrial, Centro Logístico e Distribuição",
+                address: "Av. Arturo Prat 391, 5 piso, Of 53, Arica - Chile"
+            }
+        }
     },
     history: {
         title: "Uma história de superação!",
@@ -746,10 +772,9 @@ export const pt = {
                 sockolet: "Dimensões para Sockolet e Thredolet MSS SP 97",
                 plugs: "Plugs - Buchas - Niples ASME B16.11",
                 forgedWeights: "Pesos Aproximados para Conexões de Encaixe e Roscadas",
-                helical: "Tabela de Pressão Máxima Admissível (mca) para Tubos de Aço AMT COR 300 / USI SAC 300 / COR 400",
-                k10: "Dimensões e especificações técnicas para acoplamientos Modelo K10.",
-                relation: "Tabela de relação entre tubos e acoplamientos K10.",
-                couplingThread: "Conexões Tipo Roscado B16.11 - Dimensões em mm"
+                helical: "Tubos Helicoidais",
+                k10: "Modelo K10 - Flexível",
+                relation: "Relação entre Tubos-Acoplamento"
             },
             bars: {
                 flat: "Tabela de pesos e medidas para Barra Chata. Normas: NBR 7007 graus, MR 250 (ASTM A-36), SAE 1045 e 5160.",
@@ -894,14 +919,14 @@ export const pt = {
             subtitle: "Estamos à sua disposição para atender suas dúvidas, críticas ou sugestões.",
         },
         options: {
-            title: "Informações de Contato",
+            title: "Nossas Unidades",
             cards: {
                 phone: {
                     title: "Telefones",
-                    description: "Atendimento comercial e administrative.",
+                    description: "Atendimento comercial e administrativo.",
                 },
                 address: {
-                    title: "Endereço",
+                    title: "Matriz - Mogi das Cruzes",
                     text: "Rod. Pedro Eroles, nº 1855 – KM49\nJardim Aracy, Mogi das Cruzes - SP\nCEP 08770-490",
                     buttonText: "Ver no Google Maps"
                 }
