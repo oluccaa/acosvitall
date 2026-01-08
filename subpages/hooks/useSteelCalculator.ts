@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect } from 'react';
 import { useEngineering, ProjectItemMeta, CalculatorState } from '../context/EngineeringContext';
 
@@ -50,6 +51,8 @@ const safeParse = (val: string | number | undefined): number => {
 
 export const useSteelCalculator = () => {
     const { calculatorState, updateCalculatorField } = useEngineering();
+    
+    // Alias para manter compatibilidade com componentes existentes
     const values = calculatorState;
 
     const [paintConfig, setPaintConfig] = useState<PaintConfig>({ coverage: '10', coats: '1', density: '1.2' });
@@ -61,6 +64,14 @@ export const useSteelCalculator = () => {
     const handleInputChange = useCallback((field: keyof CalculatorState, value: string) => {
         updateCalculatorField(field, value);
     }, [updateCalculatorField]);
+
+    const handlePaintChange = useCallback((field: keyof PaintConfig, value: string) => {
+         setPaintConfig(prev => ({ ...prev, [field]: value }));
+    }, []);
+
+    const toggleExtra = useCallback((field: keyof ExtraConfig) => {
+        setExtras(prev => ({ ...prev, [field]: !prev[field] }));
+    }, []);
 
     const calculate = useCallback((selectedType: ProductType) => {
         const rawW = safeParse(values.width);
@@ -128,21 +139,32 @@ export const useSteelCalculator = () => {
                 surfaceArea = (Math.PI * rawOD * (arc_el * 10)) / 1000000;
                 break;
             case 'fitting_reducer':
-                const R_out = rawOD / 20; 
-                const r_out = rawID / 20; 
+                // Redução Concêntrica (Tronco de Cone)
+                // Volume = (pi * h / 3) * (R^2 + Rr + r^2) - Parte Oca
+                const R_out = rawOD / 20; // D Maior Externo
+                const r_out = rawID / 20; // D Menor Externo (Usando campo InnerDiameter como D2)
                 const R_in = Math.max(0, R_out - (rawT/10));
                 const r_in = Math.max(0, r_out - (rawT/10));
+                
                 const vol_outer = (Math.PI * (rawL/10) / 3) * (Math.pow(R_out, 2) + R_out*r_out + Math.pow(r_out, 2));
                 const vol_inner = (Math.PI * (rawL/10) / 3) * (Math.pow(R_in, 2) + R_in*r_in + Math.pow(r_in, 2));
+                
                 volume = Math.max(0, vol_outer - vol_inner);
-                surfaceArea = (Math.PI * (rawOD + rawID) * Math.sqrt(Math.pow((rawOD-rawID)/2, 2) + Math.pow(rawL, 2))) / 1000000;
+                surfaceArea = (Math.PI * (rawOD + rawID) * Math.sqrt(Math.pow((rawOD-rawID)/2, 2) + Math.pow(rawL, 2))) / 1000000; // Lateral aprox
                 break;
             case 'fitting_tee':
+                // Tê (Aproximação: Cilindro Corpo + Cilindro Derivação)
+                // Corpo: rawOD (D), rawL (Comprimento Corpo)
+                // Derivação: rawOD (D - assumindo igual), rawH (Comprimento Derivação)
                 const r_tee_out = rawOD / 20;
                 const r_tee_in = Math.max(0, r_tee_out - (rawT/10));
                 const area_tee_sect = Math.PI * (Math.pow(r_tee_out, 2) - Math.pow(r_tee_in, 2));
+                
+                // Volume Corpo + Volume Derivação (Descontando a interseção aprox)
                 const vol_body = area_tee_sect * (rawL/10);
+                // Derivação começa do centro ou da parede? Assumindo rawH é do centro
                 const vol_branch = area_tee_sect * (Math.max(0, (rawH/10) - r_tee_out)); 
+                
                 volume = vol_body + vol_branch;
                 surfaceArea = (Math.PI * rawOD * (rawL + rawH)) / 1000000;
                 break;
@@ -161,6 +183,7 @@ export const useSteelCalculator = () => {
     }, [values, extras]);
 
     const reset = useCallback(() => {
+        // Reseta mantendo apenas o material e o tipo
         updateCalculatorField('width', '');
         updateCalculatorField('height', '');
         updateCalculatorField('length', '');
@@ -173,9 +196,19 @@ export const useSteelCalculator = () => {
     }, [updateCalculatorField]);
 
     return { 
-        values, paintConfig, extras, totalWeight, unitWeight, engData, 
-        handleInputChange, calculate, reset, 
+        values, 
+        paintConfig, 
+        extras, 
+        totalWeight, 
+        unitWeight, 
+        engData, 
+        handleInputChange, 
+        handlePaintChange, 
+        toggleExtra, 
+        calculate, 
+        reset, 
         setValues: (newVals: any) => {
+            // Sincroniza um objeto inteiro com o contexto
             Object.keys(newVals).forEach(key => {
                 updateCalculatorField(key as keyof CalculatorState, newVals[key]);
             });

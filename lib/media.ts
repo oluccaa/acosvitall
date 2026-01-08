@@ -14,14 +14,14 @@
  */
 
 /**
- * Larguras padrão para otimização de imagem
+ * Larguras padrão otimizadas para performance
  */
 const IMG_WIDTH = {
-    LOGO: 400,
-    ICON: 200,
-    THUMB: 600,
-    CONTENT: 1000,
-    HERO: 1920
+    LOGO: 300,
+    ICON: 150,
+    THUMB: 400,
+    CONTENT: 800,
+    HERO: 1440 // Reduzido de 1920 para economia de banda
 };
 
 /**
@@ -32,9 +32,11 @@ const IMG_WIDTH = {
  */
 const optimize = (url: string, width: number = IMG_WIDTH.CONTENT): string => {
     if (!url) return '';
+    
     // Apenas aplica o proxy se for uma imagem de armazenamento externo conhecido
-    if (url.includes('supabase.co') || url.includes('unsplash.com')) {
-        return `https://images.builderservices.io/s/cdn/v1.0/i/m?url=${encodeURIComponent(url)}&methods=resize%2C${width}%2C5000`;
+    if (url.includes('supabase.co') || url.includes('unsplash.com') || url.includes('storage.googleapis.com')) {
+        // Adicionamos parâmetros de formato e qualidade para garantir compressão agressiva
+        return `https://images.builderservices.io/s/cdn/v1.0/i/m?url=${encodeURIComponent(url)}&methods=resize%2C${width}%2C5000&format=webp&quality=70`;
     }
     return url;
 };
@@ -44,7 +46,6 @@ const SB_BASE = "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/publ
 
 /**
  * Objeto central de Assets
- * Reestruturado para prover acesso direto às propriedades esperadas pelos componentes.
  */
 export const ASSETS = {
     /** Identidade Visual Global */
@@ -61,14 +62,14 @@ export const ASSETS = {
     ADS: {
         CALCULATOR_LEFT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_esquerda.gif`,
         CALCULATOR_RIGHT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_direita.gif`,
-        CALCULATOR_BOTTOM: optimize(`${SB_BASE}/calculadora_de_aco/ads_fixo/entrega_otimizada_bottom.png`, 1446)
+        CALCULATOR_BOTTOM: optimize(`${SB_BASE}/calculadora_de_aco/ads_fixo/entrega_otimizada_bottom.png`, 1200)
     },
 
     /** Certificações */
     CERTIFICATIONS_LOGOS: {
-        ISO9001: optimize(`${SB_BASE}/sobre_nos/certificacoes/ISO.webp`, 300),
-        CRC: optimize(`${SB_BASE}/sobre_nos/certificacoes/CRC.webp`, 300),
-        YPFB: optimize(`${SB_BASE}/sobre_nos/certificacoes/YPFB.webp`, 300)
+        ISO9001: optimize(`${SB_BASE}/sobre_nos/certificacoes/ISO.webp`, 200),
+        CRC: optimize(`${SB_BASE}/sobre_nos/certificacoes/CRC.webp`, 200),
+        YPFB: optimize(`${SB_BASE}/sobre_nos/certificacoes/YPFB.webp`, 200)
     },
 
     /** Setores Atendidos */
@@ -142,25 +143,21 @@ export const ASSETS = {
     HERO: {
         COMMON_VIDEO: `${SB_BASE}/geral/video_hero.mp4`,
         COMMON_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
-        // Fix: Add FEATURES_BG to satisfy components/features/home/Features.tsx
         FEATURES_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
     },
 
     /** Sobre Nós */
     ABOUT: {
-        UNITS_MAP: optimize(`${SB_BASE}/sobre_nos/onde_atuamos/mapa_v2.webp`, IMG_WIDTH.CONTENT),
-        CONTENT_IMAGE: optimize(`${SB_BASE}/home/sobre/vertical-sobre-empresa.gif`, 500),
+        UNITS_MAP: optimize(`${SB_BASE}/sobre_nos/onde_atuamos/mapa_de_atuacao.webp`, IMG_WIDTH.CONTENT),
+        CONTENT_IMAGE: optimize(`${SB_BASE}/home/sobre/vertical-sobre-empresa.gif`, 400),
     },
 
     /** Certificações Page */
     CERTIFICATIONS: {
-        HERO_BG: optimize("https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa", IMG_WIDTH.HERO),
+        HERO_BG: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/hero.webp", IMG_WIDTH.HERO),
     },
 
-    /** 
-     * Subpáginas de Produtos (Detalhamento) 
-     * Mapeado para ASSETS.PRODUCT_PAGES conforme erro reportado.
-     */
+    /** Subpáginas de Produtos */
     PRODUCT_PAGES: {
         CALDEIRARIA: {
             SLIDES: [
@@ -362,7 +359,6 @@ export const ASSETS = {
 
 /**
  * Atalhos de Assets Legados (Aliasing)
- * Útil se houver componentes antigos que ainda não foram refatorados.
  */
 export const ASSETS_SHORTCUTS = {
     LOGO: ASSETS.LOGO,

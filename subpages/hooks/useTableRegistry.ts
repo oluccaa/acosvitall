@@ -5,6 +5,7 @@ export const useTableRegistry = (initialData: TableItem[]) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTableId, setSelectedTableId] = useState<string | null>(null);
 
+    // Processa os dados para adicionar metadados de busca e caminhos
     const registry = useMemo(() => {
         const lowerTerm = searchTerm.toLowerCase().trim();
 
@@ -37,6 +38,7 @@ export const useTableRegistry = (initialData: TableItem[]) => {
         return process(initialData);
     }, [initialData, searchTerm]);
 
+    // Encontra uma tabela pelo ID na árvore
     const findTable = useCallback((items: TableItem[], id: string): TableItem | null => {
         for (const item of items) {
             if (item.id === id) return item;
