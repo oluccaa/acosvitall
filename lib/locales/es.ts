@@ -6,7 +6,6 @@
 import { pt } from './pt';
 
 export const es = {
-    // ... existing translations ...
     layout: {
         schedule: "Lun - Vie: 08:00 - 18:00",
         menu: "Menú Principal",
@@ -57,7 +56,7 @@ export const es = {
       }
     },
     footer: {
-        slogan: "¡La confianza es lo que nos conecta!",
+        slogan: "¡La confianza é lo que nos conecta!",
         pagesTitle: "Páginas",
         followUsTitle: "Síguenos",
         privacyPolicy: "Política de Privacidad",
@@ -137,7 +136,7 @@ export const es = {
             calculator: "Calcule el peso teórico de chapas, tubos, barras e perfiles complejos. Esencial para planificación de materiales, presupuestos y logística.",
             nesting: "Optimice el corte lineal de barras e perfiles. Reduzca el desperdicio de material (chatarra) calculando el mejor aprovechamiento de las barras de stock.",
             sheetMetal: "Calcule el desarrollo (blank) de chapas para la fabricación de conos. Herramienta esencial para calderería.",
-            bending: "Calcule el tamaño exacto de corte (blank) considerando la deducción de pliegue, factor K y tolerancias para chapas dobladas.",
+            bending: "Calcule el tamaño exacto de corte (blank) considerando la deducción de pliegue, factor K e tolerancias para chapas dobladas.",
             welding: "Estime la cantidad de consumible de soldadura necesaria para diferentes tipos de juntas. Ideal para planificación de costos de soldadura.",
             converter: "Convierta rápidamente unidades de medida comunes en ingeniería industrial (mm, pulg, kg, lb, psi, bar) para facilitar su día a día."
         },
@@ -386,7 +385,7 @@ export const es = {
                 weight: "Masa / Peso",
                 area: "Área",
                 pressure: "Presión",
-                dn: "Diámetro Nominal" // ADDED
+                dn: "Diámetro Nominal"
             },
             units: {
                 mm: "Milímetros (mm)",
@@ -418,7 +417,7 @@ export const es = {
     hero: {
       slides: {
         entressafra: {
-            title: 'Interzafra: ¡Detenga su planta, no su producción!',
+            title: 'Interzafra:\n¡Detenga su planta, no su producción!',
             subtitle: 'La interzafra es corta. Cada día parado custa millones.',
             buttonText: 'Nuestras Soluciones'
         },
@@ -428,12 +427,12 @@ export const es = {
             buttonText: 'Línea Trapezoidal'
         },
         excellence: {
-            title: 'Excelencia en Aceros: ¡La confianza nos conecta!',
+            title: 'Excelencia en Aceros:\n¡La confianza nos\nconecta!',
             subtitle: 'Chapas, Tubos, Bridas, Conexiones y Aceros en general. ¡Traemos soluciones innovadoras para desafíos complejos!',
             buttonText: 'Explorar Productos'
         },
         flanges: {
-            title: 'Excelencia en Aceros: ¡La confianza nos conecta!',
+            title: 'Excelencia en Aceros:\n¡La confianza nos\nconecta!',
             subtitle: 'Chapas, Tubos, Bridas, Conexiones y Aceros en general. ¡Traemos soluciones innovadoras para desafíos complejos!',
             buttonText: 'Ver Bridas'
         },
@@ -554,7 +553,7 @@ export const es = {
             label: "Buscar Tablas",
             placeholder: "Nombre, dimensión, norma...",
             results: "resultados",
-            helper: "Buscando em títulos e conteúdo de las tablas...",
+            helper: "Buscando em títulos e contenido de las tablas...",
             noResultsTitle: "Ninguna tabla encontrada",
             noResultsText: "Intente otro término de búsqueda.",
             clear: "Limpiar búsqueda",

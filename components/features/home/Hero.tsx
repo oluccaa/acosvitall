@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useI18n } from '../../../context/I18nContext';
 import { ChevronDown } from 'lucide-react';
@@ -211,7 +212,7 @@ const Hero: React.FC = () => {
           <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
             <div className="max-w-xl md:max-w-xl lg:max-w-2xl text-center md:text-left mx-auto md:mx-0">
               <div key={currentIndex} role="group" aria-roledescription="slide">
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 animate-slide-in text-shadow-lg drop-shadow-md text-white" style={{ animationDelay: '0.2s' }}>
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 animate-slide-in text-shadow-lg drop-shadow-md text-white whitespace-pre-line" style={{ animationDelay: '0.2s' }}>
                     {currentSlide.title}
                 </h1>
                 <p className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg mb-6 sm:mb-8 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>

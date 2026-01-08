@@ -6,7 +6,6 @@
 import { pt } from './pt';
 
 export const en = {
-    // ... existing translations ...
     layout: {
         schedule: "Mon - Fri: 08:00 - 18:00",
         menu: "Main Menu",
@@ -100,8 +99,6 @@ export const en = {
             decline: "Decline"
         }
     },
-    // ... (REST OF THE FILE IS IDENTICAL TO PREVIOUS VERSION)
-    // ...
     calculatorPage: {
         title: "Vital Steel Suite",
         subtitle: "Engineering Workstation v5.0",
@@ -388,7 +385,7 @@ export const en = {
                 weight: "Mass / Weight",
                 area: "Area",
                 pressure: "Pressure",
-                dn: "Nominal Diameter" // ADDED
+                dn: "Nominal Diameter"
             },
             units: {
                 mm: "Millimeters (mm)",
@@ -420,7 +417,7 @@ export const en = {
     hero: {
       slides: {
         entressafra: {
-            title: 'Off-season: Stop your plant, not your production!',
+            title: 'Off-season:\nStop your plant, not your production!',
             subtitle: 'The off-season is short. Each day stopped costs millions.',
             buttonText: 'Our Solutions'
         },
@@ -430,12 +427,12 @@ export const en = {
             buttonText: 'Trapezoidal Line'
         },
         excellence: {
-            title: 'Steel Excellence: Trust is what connects us!',
+            title: 'Steel Excellence:\nTrust is what connects\nus!',
             subtitle: 'Plates, Pipes, Flanges, Fittings, and General Steel. We bring innovative solutions for complex challenges!',
             buttonText: 'Explore Products'
         },
         flanges: {
-            title: 'Steel Excellence: Trust is what connects us!',
+            title: 'Steel Excellence:\nTrust is what connects\nus!',
             subtitle: 'Plates, Pipes, Flanges, Fittings, and General Steel. We bring innovative solutions for complex challenges!',
             buttonText: 'View Flanges'
         },

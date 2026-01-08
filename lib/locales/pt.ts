@@ -71,7 +71,7 @@ export const pt = {
             },
             usage: {
                 title: "2. Uso das Informações",
-                text: "Utilizamos seus data para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, si autorizado, enviar comunicações de marketing relevantes."
+                text: "Utilizamos seus dados para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, se autorizado, enviar comunicações de marketing relevantes."
             },
             cookies: {
                 title: "3. Cookies e Tecnologias",
@@ -79,7 +79,7 @@ export const pt = {
             },
             security: {
                 title: "4. Segurança",
-                text: "Adotamos medidas técnicas e organizacionais adequadas para proteger seus data pessoais contra acesso não autorizado, alteração, divulgação ou destruição."
+                text: "Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais contra acesso não autorizado, alteração, divulgação ou destruição."
             },
             rights: {
                 title: "5. Seus Direitos (LGPD)",
@@ -131,7 +131,7 @@ export const pt = {
         toolDescriptions: {
             calculator: "Calcule o peso teórico de chapas, tubos, barras e perfis complexos. Essencial para planejamento de materiais, orçamentos e logística.",
             nesting: "Otimize o corte linear de barras e perfis. Reduza o desperdício de material (sucata) calculando o melhor aproveitamento das barras de estoque.",
-            sheetMetal: "Calcule o desenvolvimento (blank) de chapas para la fabricação de cones. Ferramenta essencial para caldeiraria.",
+            sheetMetal: "Calcule o desenvolvimento (blank) de chapas para a fabricação de cones. Ferramenta essencial para caldeiraria.",
             bending: "Calcule o tamanho exato de corte (blank) considerando o desconto de dobra, fator K e tolerancias para chapas dobradas.",
             welding: "Estime a quantidade de consumível de solda necessária para diferentes tipos de juntas. Ideal para planejamento de custos de soldagem.",
             converter: "Converta rapidamente unidades de medida comuns na engenharia industrial (mm, pol, kg, lb, psi, bar) para facilitar seu dia a dia."
@@ -413,7 +413,7 @@ export const pt = {
     hero: {
       slides: {
         entressafra: {
-            title: 'Entressafra: Pare sua usina, não sua produção!',
+            title: 'Entressafra:\nPare sua usina, não sua produção!',
             subtitle: 'A entressafra é curta. Cada dia parado custa milhões.',
             buttonText: 'Nossas Soluções'
         },
@@ -423,12 +423,12 @@ export const pt = {
             buttonText: 'Linha Trapezoidal'
         },
         excellence: {
-            title: 'Excelência em Aços: A confiança é o que nos conecta!',
+            title: 'Excelência em Aços:\nA confiança é o que nos\nconecta!',
             subtitle: 'Chapas, Tubos, Flanges, Conexões e Aços em geral. Trazemos soluções inovadoras para desafios complexos!',
             buttonText: 'Explorar Produtos'
         },
         flanges: {
-            title: 'Excelência em Aços: A confiança é o que nos conecta!',
+            title: 'Excelência em Aços:\nA confiança é o que nos\nconecta!',
             subtitle: 'Chapas, Tubos, Flanges, Conexões e Aços em geral. Trazemos soluções inovadoras para desafios complexos!',
             buttonText: 'Ver Flanges'
         },
@@ -455,7 +455,7 @@ export const pt = {
             fast_delivery: { title: "Entrega Rápida e Flexível", description: "Produção ágil e logística otimizada para cumprir seus prazos em todo o território nacional." },
             certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001, CRC Petrobrás e YPFB." },
             global_reach: { title: "Alcance Global", description: "Atendemos com excelência clientes no Brasil e no exterior, levando nossas soluções além das fronteiras." },
-            satisfied_clients: { title: "+2.000 Clientes Satisfechos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
+            satisfied_clients: { title: "+2.000 Clientes Satisfeitos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
         }
     },
     pillars: {
@@ -846,11 +846,11 @@ export const pt = {
         mainContent: {
             title: "Certificações e Homologações da Aços Vital",
             p1: "A Aços Vital se destaca pela qualidade de seus produtos e serviços, contando com a expertise de sua equipe técnica.",
-            p2: "Todo o processo de fabricação conta com tecnologia de ponta, atendendo às normas e aos mais rigorosos padrões de qualificação. Além das certificaciones <b>ISO 9001</b> e <b>CRC Petrobras</b>, que atestam a excelência dos produtos fabricados pela Aços Vital.",
+            p2: "Todo o processo de fabricação conta com tecnologia de ponta, atendendo às normas e aos mais rigorosos padrões de qualificação. Além das certificações <b>ISO 9001</b> e <b>CRC Petrobras</b>, que atestam a excelência dos produtos fabricados pela Aços Vital.",
             p3: "Todos os nossos produtos são produzidos nas principais siderúrgicas do país: <b>Arcelor Mittal</b>, <b>Gerdau</b>, <b>Usiminas</b> e <b>CSN</b>.",
         },
         grid: {
-            title: "Nuestras Certificaciones",
+            title: "Nossas Certificações",
             subtitle: "Certificados de capacidade técnica e sistema de gestão.",
             items: {
                 iso9001: {
@@ -883,7 +883,7 @@ export const pt = {
                 "Aumentar a satisfação dos clientes",
                 "Garantir a qualidade dos produtos",
                 "Capacitar nossos colaboradores",
-                "Mantener um ambiente de trabalho seguro"
+                "Manter um ambiente de trabalho seguro"
             ],
             imageUrl: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2Fafc82e27a4894ee8ba16231adb5e8f09&methods=resize%2C2000%2C5000"
         }
@@ -898,7 +898,7 @@ export const pt = {
             cards: {
                 phone: {
                     title: "Telefones",
-                    description: "Atendimento comercial e administrativo.",
+                    description: "Atendimento comercial e administrative.",
                 },
                 address: {
                     title: "Endereço",
@@ -920,7 +920,7 @@ export const pt = {
             sendButton: "Enviar Mensagem",
             successTitle: "Mensagem Enviada!",
             successMsg: "Obrigado por entrar em contato. Nossa equipe técnica recebeu sua solicitação e retornará em breve.",
-            sendAnother: "Enviar outra mensagem",
+            sendAnother: "Enviar outro mensagem",
             errorMsg: "Não foi possível enviar sua mensagem automaticamente. Por favor, tente via WhatsApp ou e-mail.",
             whatsappButton: "Enviar no WhatsApp",
             whatsappHint: "* Se preferir, utilize o botão do WhatsApp para um atendimento imediato."
