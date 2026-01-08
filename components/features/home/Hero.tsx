@@ -88,7 +88,7 @@ interface ProgressDotProps {
   slideIndex: number;
 }
 const ProgressDot: React.FC<ProgressDotProps> = ({ isActive, isPaused, onClick, slideIndex }) => {
-  const size = 20; 
+  const size = 18; 
   const strokeWidth = 2;
   const center = size / 2;
   const radius = center - strokeWidth / 2;
@@ -97,7 +97,7 @@ const ProgressDot: React.FC<ProgressDotProps> = ({ isActive, isPaused, onClick, 
   return (
     <button
       onClick={onClick}
-      className="relative w-4.5 h-4.5 2xl:w-10 2xl:h-10 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#081437]/50 focus:ring-white transition-transform hover:scale-110"
+      className="relative w-4 h-4 2xl:w-5 2xl:h-5 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#081437]/50 focus:ring-white transition-transform hover:scale-110"
       style={{ '--circumference': circumference } as React.CSSProperties}
       aria-selected={isActive}
       role="tab"
@@ -182,7 +182,7 @@ const Hero: React.FC = () => {
       <style>{animationStyles}</style>
       <section 
         onClick={handleClickOnSlider}
-        className="relative h-[80vh] min-h-[500px] md:h-[75vh] 2xl:h-[85vh] 2xl:max-h-[1200px] text-white overflow-hidden cursor-pointer w-full bg-[#081437]"
+        className="relative h-[80vh] min-h-[500px] md:h-[75vh] 2xl:h-[80vh] 2xl:max-h-[1000px] text-white overflow-hidden cursor-pointer w-full bg-[#081437]"
         style={{ '--slide-duration': `${SLIDE_DURATION_MS}ms` } as React.CSSProperties}
         aria-roledescription="carousel"
         aria-live={isPaused ? "polite" : "off"}
@@ -201,24 +201,24 @@ const Hero: React.FC = () => {
           />
         ))}
         
-        <div className="absolute inset-0 bg-gradient-to-r from-[#081437] via-[#081437]/80 lg:via-[#081437]/40 to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#081437] via-[#081437]/80 lg:via-[#081437]/30 to-transparent z-0"></div>
         
         {ripple.key !== 0 && <span key={ripple.key} className="ripple-effect" style={{ top: ripple.y, left: ripple.x }} aria-hidden="true" />}
         {pulse.key !== 0 && <span key={pulse.key} className="pulse-effect" style={{ top: pulse.y, left: pulse.x }} aria-hidden="true" />}
 
         <div className="relative z-10 flex h-full items-center">
           <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-[1920px]">
-            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl text-center md:text-left mx-auto md:mx-0">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl 2xl:max-w-5xl text-center md:text-left mx-auto md:mx-0">
               <div key={currentIndex} role="group" aria-roledescription="slide">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl 2xl:text-[10rem] font-bold leading-[0.95] mb-4 sm:mb-6 2xl:mb-12 animate-slide-in text-white drop-shadow-lg" style={{ animationDelay: '0.2s' }}>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold leading-[1.1] mb-4 sm:mb-6 2xl:mb-8 animate-slide-in text-white drop-shadow-lg" style={{ animationDelay: '0.2s' }}>
                     {currentSlide.title}
                 </h1>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-4xl mb-8 sm:mb-10 2xl:mb-20 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-xl 2xl:max-w-5xl mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-xl mb-8 sm:mb-10 2xl:mb-12 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-xl 2xl:max-w-3xl mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
                     {currentSlide.subtitle}
                 </p>
                 <button 
                     onClick={(e) => e.stopPropagation()} 
-                    className="bg-brand-orange text-white font-bold py-3 px-8 2xl:py-8 2xl:px-20 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-xs 2xl:text-3xl uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" 
+                    className="bg-brand-orange text-white font-bold py-3 px-10 2xl:py-4 2xl:px-12 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-xs 2xl:text-lg uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" 
                     style={{ animationDelay: '0.6s' }}
                 >
                   {currentSlide.buttonText}
@@ -228,7 +228,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        <div className="absolute bottom-24 2xl:bottom-32 left-1/2 -translate-x-1/2 z-10 flex space-x-4 2xl:space-x-8" role="tablist" aria-label="Slides">
+        <div className="absolute bottom-20 2xl:bottom-24 left-1/2 -translate-x-1/2 z-10 flex space-x-4 2xl:space-x-6" role="tablist" aria-label="Slides">
             {slides.map((_, slideIndex) => (
                 <ProgressDot key={slideIndex} slideIndex={slideIndex} isActive={currentIndex === slideIndex} isPaused={isPaused}
                     onClick={(e) => { e.stopPropagation(); goToSlide(slideIndex); }}
@@ -237,10 +237,10 @@ const Hero: React.FC = () => {
         </div>
 
         <a href="#features" onClick={(e) => { e.stopPropagation(); handleScrollDown(e); }}
-          className="absolute bottom-6 2xl:bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
+          className="absolute bottom-6 2xl:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
           aria-label="Scroll to next section">
-          <span className="text-[10px] 2xl:text-xl uppercase tracking-wider mb-2 text-white/80 group-hover:text-white transition-colors font-bold">{t('hero.scrollText')}</span>
-          <ChevronDown className="animate-bounce-down text-white/80 group-hover:text-brand-orange transition-colors w-6 h-6 2xl:w-12 2xl:h-12" />
+          <span className="text-[10px] 2xl:text-xs uppercase tracking-wider mb-1 text-white/80 group-hover:text-white transition-colors font-bold">{t('hero.scrollText')}</span>
+          <ChevronDown className="animate-bounce-down text-white/80 group-hover:text-brand-orange transition-colors w-6 h-6 2xl:w-8 2xl:h-8" />
         </a>
       </section>
     </>
