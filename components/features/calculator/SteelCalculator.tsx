@@ -19,6 +19,7 @@ const safeParseUI = (val: string | number): number => {
     return parseFloat(val.toString().replace(',', '.')) || 0;
 };
 
+// --- PRESETS DE ESPESSURA/MEDIDAS ---
 const COMMON_PRESETS = [
     { label: '1/8"', val: '3,17' },
     { label: '3/16"', val: '4,76' },
@@ -60,6 +61,7 @@ const SteelCalculator: React.FC = () => {
         updateCalculatorField
     } = useEngineering();
 
+    // Move Categories inside component to use 't'
     const CATEGORIES = {
         raw: { id: 'raw', label: t('calculatorPage.categories.raw'), items: [
             { id: 'plate', icon: <Layers size={14} />, label: t('calculatorPage.products.plate') },
@@ -80,9 +82,20 @@ const SteelCalculator: React.FC = () => {
         ]}
     };
 
+    // Descriptions using translation keys
+    // We map keys directly to t() call when rendering or constructing strings
+    const getDescription = (key: string) => t(`calculatorPage.toolDescriptions.${key}`); // Note: Using toolDescriptions prefix for generic descriptions if applicable or specific keys
+
+    // Specific field help text
+    const getFieldHelp = (key: string) => {
+        // Fallback or specific translation logic if needed
+        return ""; // Simplified for now as tooltips were hardcoded in previous version
+    };
+
     const selectedType = (calculatorState.selectedType as ProductType) || 'plate';
     const setSelectedType = (type: ProductType) => {
         updateCalculatorField('selectedType', type);
+        // Reset active field when changing type to avoid confusion
         setActiveField('thickness'); 
     };
 
@@ -91,7 +104,11 @@ const SteelCalculator: React.FC = () => {
     const [isCustomExpanded, setIsCustomExpanded] = useState<boolean>(false);
     const [editHistory, setEditHistory] = useState<TubeField[]>([]);
     const [copied, setCopied] = useState(false);
+    
+    // Estado para controlar qual campo receberá o preset
     const [activeField, setActiveField] = useState<keyof CalculatorState>('thickness');
+
+    // Estado para forçar a unidade do input de espessura
     const [thicknessUnitForce, setThicknessUnitForce] = useState<ForcedUnit | undefined>(undefined);
 
     const { 
@@ -103,8 +120,10 @@ const SteelCalculator: React.FC = () => {
         calculate(selectedType);
     }, [calculatorState, extras, calculate, selectedType]);
 
+    // Cálculo da Área Total para o HUD
     const totalArea = (engData.surfaceArea || 0) * safeParseUI(values.quantity);
 
+    // Lógica de Stack para Tubos (Cálculo automático de parede/diâmetro)
     const handleTubeInput = (field: TubeField, value: string) => {
         const currentValues = { ...calculatorState, [field]: value };
         let newHistory = editHistory.filter(f => f !== field);
@@ -173,6 +192,7 @@ const SteelCalculator: React.FC = () => {
 
     const renderTubeInput = (field: TubeField, label: string) => {
         const isAuto = calculatedField === field;
+        
         return (
             <MeasurementInput 
                 value={values[field] || ''} 
@@ -190,14 +210,19 @@ const SteelCalculator: React.FC = () => {
         const id = e.target.value;
         setMeshId(id);
         const option = MESH_OPTIONS.find(opt => opt.id === id);
-        if (option && id !== 'custom') handleInputChange('pitch', option.pitch);
+        if (option) {
+            if (id !== 'custom') {
+                handleInputChange('pitch', option.pitch);
+            }
+        }
     };
 
     const handleExpandedPatternSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const id = e.target.value;
         setExpandedPatternId(id);
-        if (id === 'custom') setIsCustomExpanded(true);
-        else {
+        if (id === 'custom') {
+            setIsCustomExpanded(true);
+        } else {
             setIsCustomExpanded(false);
             const pattern = EXPANDED_PATTERNS.find(p => p.id === id);
             if (pattern) {
@@ -216,15 +241,23 @@ const SteelCalculator: React.FC = () => {
 
     const handlePresetClick = (val: string) => {
         if (activeField) {
-            if (['outerDiameter', 'innerDiameter', 'thickness'].includes(activeField) && isTubeType) handleTubeInput(activeField as TubeField, val);
-            else handleInputChange(activeField, val);
+            if (['outerDiameter', 'innerDiameter', 'thickness'].includes(activeField) && isTubeType) {
+                // Special handling for tubes with stack logic
+                handleTubeInput(activeField as TubeField, val);
+            } else {
+                handleInputChange(activeField, val);
+            }
+            // Força a unidade para 'mm' no campo ativo
             setThicknessUnitForce({ unit: 'mm', timestamp: Date.now() });
         }
     };
 
     const generateTechnicalSpec = () => {
-        const matKey = values.material === 'carbon' ? "carbon" : values.material === 'inox304' ? "inox304" : values.material === 'inox316' ? "inox316" : "aluminum";
+        const matKey = values.material === 'carbon' ? "carbon" : 
+                   values.material === 'inox304' ? "inox304" : 
+                   values.material === 'inox316' ? "inox316" : "aluminum";
         const mat = t(`calculatorPage.materials.${matKey}`);
+                   
         const fmt = (v: string, suffix: string = "mm") => v ? `${v}${suffix}` : "?";
         const prodName = t(`calculatorPage.products.${selectedType}` as any);
         
@@ -233,14 +266,21 @@ const SteelCalculator: React.FC = () => {
             case 'bar_round': return `${prodName} ${mat} - Ø ${fmt(values.outerDiameter)} x ${fmt(values.length)}`;
             case 'bar_square': return `${prodName} ${mat} - ${fmt(values.width)} x ${fmt(values.length)}`;
             case 'tube_round': return `${prodName} ${mat} - Ø ${fmt(values.outerDiameter)} x ${t('calculatorPage.inputs.wallThickness')} ${fmt(values.thickness)} x ${fmt(values.length)}`;
-            default: return `${prodName} ${mat}`;
+            case 'tube_calendered': return `${prodName} ${mat} - Ø ${fmt(values.outerDiameter)} x ${fmt(values.thickness)} x ${fmt(values.length)}`;
+            case 'flange_square': return `${prodName} ${mat} - Ø Ext ${fmt(values.outerDiameter)} x Ø Int ${fmt(values.innerDiameter)} x ${fmt(values.thickness)}`;
+            case 'fitting_elbow': return `${prodName} ${mat} - Ø ${fmt(values.outerDiameter)} x ${fmt(values.thickness)} - R ${fmt(values.radius)} (${values.angle}°)`;
+            case 'fitting_reducer': return `${prodName} ${mat} - Ø Maior ${fmt(values.outerDiameter)} x Ø Menor ${fmt(values.innerDiameter)} x ${fmt(values.thickness)} x H ${fmt(values.length)}`;
+            case 'fitting_tee': return `${prodName} ${mat} - Ø ${fmt(values.outerDiameter)} x ${fmt(values.thickness)} - Corpo ${fmt(values.length)} / Deriv. ${fmt(values.height)}`;
+            case 'grating': return `${prodName} ${mat} - ${values.length}x${values.width} - Barra ${values.height}x${values.thickness}`;
+            case 'expanded_metal': return `${prodName} ${mat} - ${values.width}x${values.length}`;
+            default: return `Item ${mat}`;
         }
     };
 
     const addItem = () => {
         if (totalWeight <= 0) return;
         const qty = safeParseUI(values.quantity) > 0 ? safeParseUI(values.quantity) : 1;
-        addProjectItem({
+        const mainItem: ProjectItem = {
             id: generateId(),
             type: selectedType,
             material: values.material,
@@ -250,7 +290,8 @@ const SteelCalculator: React.FC = () => {
             totalWeight: totalWeight,
             timestamp: Date.now(),
             meta: engData.meta
-        });
+        };
+        addProjectItem(mainItem);
     };
 
     const handleWhatsAppQuote = () => {
@@ -283,8 +324,13 @@ const SteelCalculator: React.FC = () => {
 
     return (
         <div className="flex flex-col gap-6 font-sans">
+            
+            {/* ROW 1: INPUTS (Selection) & PARAMETERS/RESULT (Merged) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                {/* 1. SELECTION (Left) */}
                 <div className="lg:col-span-3 h-full">
+                    {/* Alteração: Removido max-h e overflow para mostrar tudo */}
                     <div className="bg-[#0f172a] border border-white/5 rounded-xl p-3 shadow-xl flex flex-col">
                         <div className="flex justify-between items-center mb-4 px-1 pb-2 border-b border-white/5">
                             <h3 className="text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
@@ -294,6 +340,8 @@ const SteelCalculator: React.FC = () => {
                                 <RefreshCcw size={12} />
                             </button>
                         </div>
+                        
+                        {/* Alteração: Removido overflow-y-auto e flex-1 para crescimento natural */}
                         <div className="space-y-4">
                             {(Object.values(CATEGORIES) as any[]).map((cat) => (
                                 <div key={cat.id}>
@@ -328,8 +376,11 @@ const SteelCalculator: React.FC = () => {
                     </div>
                 </div>
 
+                {/* 2. PARAMETERS & RESULT (Right - Merged) */}
                 <div className="lg:col-span-9 h-full">
                     <div className="bg-[#0f172a] border border-white/5 rounded-xl shadow-xl h-full flex flex-col relative overflow-hidden">
+                        
+                        {/* Header do Card */}
                         <div className="p-4 flex items-center justify-between border-b border-white/5">
                             <h3 className="text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
                                 <Calculator size={12} className="text-brand-blue-light" /> {t('calculatorPage.common.console')}
@@ -349,9 +400,13 @@ const SteelCalculator: React.FC = () => {
                             </div>
                         </div>
 
+                        {/* Corpo Dividido: Inputs (Esq) vs Dados Técnicos (Dir) */}
                         <div className="p-5 flex-1 flex flex-col lg:flex-row gap-8 overflow-y-auto custom-scrollbar">
+                             
+                             {/* COLUNA ESQUERDA: INPUTS */}
                              <div className="flex-1 space-y-4">
                                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+                                     {/* Lógica de Renderização de Inputs */}
                                      {(selectedType === 'plate' || selectedType === 'bar_square' || selectedType === 'flange_square') && (
                                         renderInput('width', (selectedType === 'flange_square' || selectedType === 'bar_square') ? t('calculatorPage.inputs.side') : t('calculatorPage.inputs.width'))
                                     )}
@@ -364,8 +419,11 @@ const SteelCalculator: React.FC = () => {
                                             </div>
                                             {renderInput('height', t('calculatorPage.inputs.barHeight'))}
                                             {renderInput('thickness', t('calculatorPage.inputs.barThickness'))}
+                                            
                                             <div className="col-span-1 sm:col-span-2">
-                                                <div className="flex items-center gap-1 mb-0.5"><label className="text-[10px] text-gray-400 uppercase font-bold">{t('calculatorPage.inputs.mesh')}</label></div>
+                                                <div className="flex items-center gap-1 mb-0.5">
+                                                    <label className="text-[10px] text-gray-400 uppercase font-bold">{t('calculatorPage.inputs.mesh')}</label>
+                                                </div>
                                                 <div className="flex gap-2">
                                                     <div className="relative flex-1">
                                                         <select value={meshId} onChange={handleMeshSelect} className="w-full bg-[#1e293b] border border-white/10 rounded-md py-1.5 pl-2 text-white text-[10px] outline-none appearance-none h-8">
@@ -391,9 +449,14 @@ const SteelCalculator: React.FC = () => {
                                                 </div>
                                             </div>
                                             {isCustomExpanded && (
-                                                <>{renderInput('thickness', t('calculatorPage.inputs.thickness'))}{renderInput('strandWidth', t('calculatorPage.inputs.strandWidth'))}{renderInput('meshSWD', t('calculatorPage.inputs.meshSWD'))}</>
+                                                <>
+                                                    {renderInput('thickness', t('calculatorPage.inputs.thickness'))}
+                                                    {renderInput('strandWidth', t('calculatorPage.inputs.strandWidth'))}
+                                                    {renderInput('meshSWD', t('calculatorPage.inputs.meshSWD'))}
+                                                </>
                                             )}
-                                            {renderInput('width', t('calculatorPage.inputs.width'))}{renderInput('length', t('calculatorPage.inputs.length'))}
+                                            {renderInput('width', t('calculatorPage.inputs.width'))}
+                                            {renderInput('length', t('calculatorPage.inputs.length'))}
                                         </>
                                     )}
 
@@ -411,19 +474,42 @@ const SteelCalculator: React.FC = () => {
                                     {selectedType === 'bar_round' && (renderInput('outerDiameter', t('calculatorPage.inputs.diameter')))}
                                     
                                     {selectedType === 'fitting_elbow' && (
-                                        <>{renderInput('radius', t('calculatorPage.inputs.radius'))}<div><label className="text-[10px] text-gray-400 uppercase font-bold">{t('calculatorPage.inputs.angle')}</label><input type="text" value={values.angle} onChange={(e) => handleInputChange('angle', e.target.value)} className="w-full bg-[#1e293b] border border-white/10 rounded-md py-1.5 px-2 text-white text-xs outline-none focus:border-brand-orange transition-colors h-8" /></div></>
+                                        <>
+                                            {renderInput('radius', t('calculatorPage.inputs.radius'))}
+                                            <div>
+                                                <div className="flex items-center gap-1 mb-0.5">
+                                                    <label className="text-[10px] text-gray-400 uppercase font-bold">{t('calculatorPage.inputs.angle')}</label>
+                                                </div>
+                                                <input type="text" value={values.angle} onChange={(e) => handleInputChange('angle', e.target.value)} className="w-full bg-[#1e293b] border border-white/10 rounded-md py-1.5 px-2 text-white text-xs outline-none focus:border-brand-orange transition-colors h-8" />
+                                            </div>
+                                        </>
                                     )}
 
                                      {selectedType === 'fitting_reducer' && (
-                                        <>{renderInput('outerDiameter', "Ø Maior (Ext)")}{renderInput('innerDiameter', "Ø Menor (Ext)")}{renderInput('length', t('calculatorPage.inputs.height'))}{renderInput('thickness', t('calculatorPage.inputs.thickness'))}</>
+                                        <>
+                                            {renderInput('outerDiameter', "Ø Maior (Ext)")}
+                                            {renderInput('innerDiameter', "Ø Menor (Ext)")}
+                                            {renderInput('length', t('calculatorPage.inputs.height'))}
+                                            {renderInput('thickness', t('calculatorPage.inputs.thickness'))}
+                                        </>
                                     )}
 
                                     {selectedType === 'fitting_tee' && (
-                                        <>{renderInput('outerDiameter', "Ø Corpo (Ext)")}{renderInput('thickness', t('calculatorPage.inputs.thickness'))}{renderInput('length', "Comp. Corpo")}{renderInput('height', "Comp. Derivação")}</>
+                                        <>
+                                            {renderInput('outerDiameter', "Ø Corpo (Ext)")}
+                                            {renderInput('thickness', t('calculatorPage.inputs.thickness'))}
+                                            {renderInput('length', "Comp. Corpo")}
+                                            {renderInput('height', "Comp. Derivação")}
+                                        </>
                                     )}
 
-                                    {(selectedType === 'plate') && renderInput('thickness', t('calculatorPage.inputs.thickness'))}
+                                    {(selectedType === 'plate') && (
+                                        <div className="col-span-1">
+                                            {renderInput('thickness', t('calculatorPage.inputs.thickness'))}
+                                        </div>
+                                    )}
 
+                                    {/* PRESETS DE ESPESSURA */}
                                     {(!typesWithoutThickness.includes(selectedType) && !isCustomExpanded) && (
                                         <div className="col-span-1 sm:col-span-2 xl:col-span-3 flex flex-col gap-1 pb-1 mt-1">
                                             <div className="flex items-center gap-1 text-[9px] text-brand-orange uppercase font-bold tracking-wider">
@@ -431,13 +517,22 @@ const SteelCalculator: React.FC = () => {
                                             </div>
                                             <div className="flex gap-1.5 flex-wrap items-end">
                                                 {COMMON_PRESETS.map((t_preset) => (
-                                                    <button key={t_preset.label} onClick={() => handlePresetClick(t_preset.val)} className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-gray-400 hover:text-white hover:bg-white/10 hover:border-brand-orange/30 transition-all h-6 active:bg-brand-orange/20" title={t('calculatorPage.common.presetsHelp')}>{t_preset.label}</button>
+                                                    <button 
+                                                        key={t_preset.label} 
+                                                        onClick={() => handlePresetClick(t_preset.val)}
+                                                        className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-gray-400 hover:text-white hover:bg-white/10 hover:border-brand-orange/30 transition-all h-6 active:bg-brand-orange/20"
+                                                        title={t('calculatorPage.common.presetsHelp')}
+                                                    >
+                                                        {t_preset.label}
+                                                    </button>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
 
-                                    {(selectedType !== 'plate' && !isTubeType && !typesWithoutThickness.includes(selectedType) && !['fitting_reducer', 'fitting_tee', 'grating', 'expanded_metal'].includes(selectedType)) && renderInput('thickness', t('calculatorPage.inputs.thickness'))}
+                                    {(selectedType !== 'plate' && !isTubeType && !typesWithoutThickness.includes(selectedType) && !['fitting_reducer', 'fitting_tee', 'grating', 'expanded_metal'].includes(selectedType)) && (
+                                        renderInput('thickness', t('calculatorPage.inputs.thickness'))
+                                    )}
                                     
                                     <div className="col-span-1">
                                         <label className="text-[10px] text-gray-400 uppercase font-bold mb-0.5 block">{t('calculatorPage.inputs.quantity')}</label>
@@ -449,104 +544,191 @@ const SteelCalculator: React.FC = () => {
                                  </div>
                              </div>
 
-                             <div className="w-full lg:w-[280px] xl:w-[320px] 2xl:w-[450px] flex flex-row lg:flex-col gap-4">
-                                <h4 className="hidden lg:flex text-[10px] 2xl:text-base font-bold text-gray-500 uppercase tracking-widest border-b border-white/10 pb-2 mb-1 items-center justify-between">
+                             {/* COLUNA DIREITA: DADOS TÉCNICOS ENRIQUECIDOS */}
+                             <div className="w-full lg:w-[280px] xl:w-[320px] flex flex-row lg:flex-col gap-4">
+                                <h4 className="hidden lg:flex text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-white/10 pb-2 mb-1 items-center justify-between">
                                     <span>{t('calculatorPage.common.telemetry')}</span>
-                                    <div className="flex gap-1"><div className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></div><div className="w-1.5 h-1.5 rounded-full bg-brand-blue-light/50"></div></div>
+                                    <div className="flex gap-1">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></div>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-blue-light/50"></div>
+                                    </div>
                                 </h4>
                                 
-                                <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4 2xl:p-10 flex flex-col relative overflow-hidden group hover:bg-white/10 transition-colors">
-                                    <div className="absolute top-0 right-0 p-2 2xl:p-6 opacity-10 group-hover:opacity-20 transition-opacity"><Paintbrush size={window.innerWidth > 1536 ? 64 : 32} /></div>
-                                    <span className="text-[10px] 2xl:text-base text-gray-400 uppercase font-bold tracking-wider mb-1 block">{t('calculatorPage.common.surfaceArea')}</span>
+                                {/* CARD SECUNDÁRIO: ÁREA DE PINTURA */}
+                                <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col relative overflow-hidden group hover:bg-white/10 transition-colors">
+                                    <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                                        <Paintbrush size={32} />
+                                    </div>
+                                    <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider mb-1 block">{t('calculatorPage.common.surfaceArea')}</span>
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-xl 2xl:text-5xl font-mono font-bold text-white">{(engData.surfaceArea || 0).toFixed(2)}</span>
-                                        <span className="text-xs 2xl:text-xl text-gray-500">m²</span>
+                                        <span className="text-xl font-mono font-bold text-white">
+                                            {(engData.surfaceArea || 0).toFixed(2)}
+                                        </span>
+                                        <span className="text-xs text-gray-500">m²</span>
                                     </div>
                                 </div>
 
-                                <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4 2xl:p-10 flex flex-col lg:mt-auto group hover:bg-white/10 transition-colors">
+                                {/* CARD TERCIÁRIO: DENSIDADE */}
+                                <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col lg:mt-auto group hover:bg-white/10 transition-colors">
                                      <div className="flex justify-between items-center mb-1">
-                                        <span className="text-[10px] 2xl:text-base text-gray-400 uppercase font-bold tracking-wider">{t('calculatorPage.common.density')}</span>
-                                        <Ruler size={14} className="text-gray-600 group-hover:text-brand-orange transition-colors 2xl:w-6 2xl:h-6"/>
+                                        <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">{t('calculatorPage.common.density')}</span>
+                                        <Ruler size={14} className="text-gray-600 group-hover:text-brand-orange transition-colors"/>
                                      </div>
-                                    <div className="text-sm 2xl:text-3xl font-mono text-gray-300">
-                                        {DENSITIES[values.material]} <span className="text-[10px] 2xl:text-lg text-gray-600">g/cm³</span>
+                                    <div className="text-sm font-mono text-gray-300">
+                                        {DENSITIES[values.material]} <span className="text-[10px] text-gray-600">g/cm³</span>
                                     </div>
                                 </div>
                              </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-[#050c21] via-[#0b162e] to-[#050c21] border-t border-brand-orange/30 p-4 lg:p-8 2xl:p-14 mt-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+                        {/* --- BARRA DE RESULTADO INTEGRADA (DOCK GIGANTE) --- */}
+                        <div className="bg-gradient-to-r from-[#050c21] via-[#0b162e] to-[#050c21] border-t border-brand-orange/30 p-4 lg:p-8 mt-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_-10px_40px_rgba(0,0,0,0.4)] min-h-[120px] lg:min-h-[140px]">
+                            {/* Decorative Line Top */}
                             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange/60 to-transparent"></div>
 
-                            <div className="flex flex-col md:flex-row items-center gap-8 2xl:gap-20 w-full md:w-auto text-center md:text-left">
+                            <div className="flex flex-col md:flex-row items-center gap-8 w-full md:w-auto text-center md:text-left">
+                                {/* Peso Principal - GIGANTE (TOTAL) */}
                                 <div className="flex flex-col items-center md:items-start">
-                                    <span className="text-[10px] 2xl:text-lg font-bold uppercase text-brand-orange tracking-[0.2em] mb-1 flex items-center gap-2">
-                                        <Info size={12} className="2xl:w-5 2xl:h-5" /> {t('calculatorPage.common.totalWeight')} ({values.quantity} un)
+                                    <span className="text-[10px] font-bold uppercase text-brand-orange tracking-[0.2em] mb-1 flex items-center gap-2">
+                                        <Info size={12} /> {t('calculatorPage.common.totalWeight')} ({values.quantity} un)
                                     </span>
-                                    <div className="flex items-baseline gap-2 cursor-pointer group/copy justify-center md:justify-start" onClick={copyResult} title="Clique para copiar">
-                                        <span className="text-4xl lg:text-6xl 2xl:text-9xl font-mono font-bold text-white tracking-tighter leading-none group-hover/copy:text-brand-orange transition-colors drop-shadow-2xl">
+                                    <div 
+                                        className="flex items-baseline gap-2 cursor-pointer group/copy justify-center md:justify-start" 
+                                        onClick={copyResult} 
+                                        title="Clique para copiar"
+                                    >
+                                        <span className="text-4xl lg:text-6xl font-mono font-bold text-white tracking-tighter leading-none group-hover/copy:text-brand-orange transition-colors drop-shadow-2xl">
                                             {totalWeight > 0 ? totalWeight.toFixed(2) : '0.00'}
                                         </span>
-                                        <span className="text-lg lg:text-xl 2xl:text-4xl font-medium text-gray-500 mb-1">kg</span>
-                                        {copied && <span className="text-xs 2xl:text-lg text-green-400 font-bold animate-pulse ml-2 bg-green-900/30 px-2 py-0.5 rounded border border-green-500/30">Copiado!</span>}
+                                        <span className="text-lg lg:text-xl font-medium text-gray-500 mb-1">kg</span>
+                                        {copied && <span className="text-xs text-green-400 font-bold animate-pulse ml-2 bg-green-900/30 px-2 py-0.5 rounded border border-green-500/30">Copiado!</span>}
                                     </div>
                                 </div>
 
-                                <div className="hidden md:block w-px h-12 2xl:h-24 bg-white/10"></div>
+                                {/* Divisor Vertical (Desktop) */}
+                                <div className="hidden md:block w-px h-12 bg-white/10"></div>
 
-                                <div className="flex flex-row md:flex-col justify-center gap-6 md:gap-2 2xl:gap-6">
+                                {/* Dados Secundários (Unitário + Área) */}
+                                <div className="flex flex-row md:flex-col justify-center gap-6 md:gap-2">
+                                        {/* Unit Weight */}
                                         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
-                                            <span className="text-[9px] 2xl:text-base text-gray-500 uppercase font-bold tracking-wider text-center md:text-right md:w-16 2xl:w-32">{t('calculatorPage.common.unitWeight')}:</span>
+                                            <span className="text-[9px] text-gray-500 uppercase font-bold tracking-wider text-center md:text-right md:w-16">{t('calculatorPage.common.unitWeight')}:</span>
                                             <div className="flex items-baseline gap-1.5">
-                                            <span className="text-lg md:text-2xl 2xl:text-5xl font-mono font-bold text-gray-300 tracking-tight">{unitWeight > 0 ? unitWeight.toFixed(2) : '0.00'}</span>
-                                            <span className="text-[10px] 2xl:text-xl text-gray-600 font-medium uppercase">kg</span>
+                                            <span className="text-lg md:text-2xl font-mono font-bold text-gray-300 tracking-tight">
+                                                {unitWeight > 0 ? unitWeight.toFixed(2) : '0.00'}
+                                            </span>
+                                            <span className="text-[10px] text-gray-600 font-medium uppercase">kg</span>
                                             </div>
                                         </div>
+                                        
                                         <div className="hidden md:block w-full h-px bg-white/5"></div>
+                                        
+                                        {/* Total Area */}
                                         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
-                                            <span className="text-[9px] 2xl:text-base text-gray-500 uppercase font-bold tracking-wider text-center md:text-right md:w-16 2xl:w-32">{t('calculatorPage.common.totalArea')}:</span>
+                                            <span className="text-[9px] text-gray-500 uppercase font-bold tracking-wider text-center md:text-right md:w-16">{t('calculatorPage.common.totalArea')}:</span>
                                             <div className="flex items-baseline gap-1.5">
-                                            <span className="text-lg md:text-2xl 2xl:text-5xl font-mono font-bold text-gray-300 tracking-tight">{totalArea > 0 ? totalArea.toFixed(2) : '0.00'}</span>
-                                            <span className="text-[10px] 2xl:text-xl text-gray-600 font-medium uppercase">m²</span>
+                                            <span className="text-lg md:text-2xl font-mono font-bold text-gray-300 tracking-tight">
+                                                {totalArea > 0 ? totalArea.toFixed(2) : '0.00'}
+                                            </span>
+                                            <span className="text-[10px] text-gray-600 font-medium uppercase">m²</span>
                                             </div>
                                         </div>
                                 </div>
                             </div>
 
-                            <button onClick={addItem} disabled={totalWeight <= 0} className="w-full md:w-auto bg-brand-orange hover:bg-white hover:text-brand-orange text-white font-bold py-4 px-10 2xl:py-8 2xl:px-20 rounded-xl shadow-2xl transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 uppercase tracking-wider text-sm 2xl:text-2xl whitespace-nowrap transform hover:-translate-y-1 group">
-                                <Plus size={18} strokeWidth={3} className="2xl:w-8 2xl:h-8" /> <span>{t('calculatorPage.common.addToList')}</span>
-                                <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 2xl:w-6 2xl:h-6" />
+                            {/* Botão de Ação */}
+                            <button 
+                                type="button" 
+                                onClick={addItem} 
+                                disabled={totalWeight <= 0}
+                                className="w-full md:w-auto bg-brand-orange hover:bg-white hover:text-brand-orange text-white font-bold py-4 px-10 rounded-xl shadow-[0_0_20px_rgba(234,97,0,0.3)] hover:shadow-[0_0_30px_rgba(234,97,0,0.5)] transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 uppercase tracking-wider text-sm whitespace-nowrap transform hover:-translate-y-0.5 group"
+                            >
+                                <Plus size={18} strokeWidth={3} /> 
+                                <span>{t('calculatorPage.common.addToList')}</span>
+                                <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {/* ROW 2: LISTA DE MATERIAIS (Full Width) */}
             <div className="w-full">
                  <div className="bg-[#0f172a] border border-white/5 rounded-xl shadow-xl flex flex-col overflow-hidden min-h-[300px]">
                         <div className="px-4 py-3 border-b border-white/5 bg-[#1e293b]/50 flex flex-col sm:flex-row items-center justify-between gap-3">
-                            <h3 className="font-bold text-white flex items-center gap-2 uppercase text-xs 2xl:text-lg tracking-wide"><ShoppingCart size={14} className="text-brand-orange 2xl:w-6 2xl:h-6" /> {t('calculatorPage.common.materialList')}</h3>
-                            <div className="flex gap-1.5"><button className="text-gray-400 hover:text-white p-1.5 rounded hover:bg-white/10 transition-colors"><Printer size={14} /></button><button className="text-gray-400 hover:text-white p-1.5 rounded hover:bg-white/10 transition-colors"><Share2 size={14} /></button><div className="w-px h-5 bg-white/10 mx-1 self-center"></div><button onClick={clearProject} className="text-red-400 hover:text-red-300 flex items-center gap-1 px-2 py-1 rounded hover:bg-red-500/10 transition-colors text-[10px] 2xl:text-base font-bold uppercase"><Trash2 size={12} /> {t('calculatorPage.common.clear')}</button></div>
+                            <div>
+                                <h3 className="font-bold text-white flex items-center gap-2 uppercase text-xs tracking-wide">
+                                    <ShoppingCart size={14} className="text-brand-orange" /> {t('calculatorPage.common.materialList')}
+                                </h3>
+                            </div>
+                            <div className="flex gap-1.5">
+                                 <button className="text-gray-400 hover:text-white p-1.5 rounded hover:bg-white/10 transition-colors" title={t('calculatorPage.common.print')}>
+                                    <Printer size={14} />
+                                 </button>
+                                 <button className="text-gray-400 hover:text-white p-1.5 rounded hover:bg-white/10 transition-colors" title={t('calculatorPage.common.share')}>
+                                    <Share2 size={14} />
+                                 </button>
+                                 <div className="w-px h-5 bg-white/10 mx-1 self-center"></div>
+                                 <button onClick={clearProject} className="text-red-400 hover:text-red-300 flex items-center gap-1 px-2 py-1 rounded hover:bg-red-500/10 transition-colors text-[10px] font-bold uppercase">
+                                    <Trash2 size={12} /> {t('calculatorPage.common.clear')}
+                                </button>
+                            </div>
                         </div>
-                        <div className="flex-1 overflow-auto max-h-[350px] 2xl:max-h-[600px] scrollbar-thin scrollbar-thumb-gray-600 p-0">
+
+                        <div className="flex-1 overflow-auto max-h-[350px] scrollbar-thin scrollbar-thumb-gray-600 p-0">
                             {projectItems.length === 0 ? (
-                                <div className="flex flex-col items-center justify-center h-48 2xl:h-96 text-gray-500"><Package size={32} className="mb-2 opacity-20 2xl:w-16 2xl:h-16" /><p className="text-xs 2xl:text-xl font-medium">{t('calculatorPage.common.emptyList')}</p></div>
+                                <div className="flex flex-col items-center justify-center h-48 text-gray-500">
+                                    <Package size={32} className="mb-2 opacity-20" />
+                                    <p className="text-xs font-medium">{t('calculatorPage.common.emptyList')}</p>
+                                </div>
                             ) : (
                                 <table className="w-full text-left border-collapse">
-                                    <thead className="bg-[#1e293b] text-gray-400 font-bold text-[9px] 2xl:text-sm uppercase tracking-wider sticky top-0 z-10 shadow-sm"><tr><th className="px-4 py-2 border-b border-white/5">{t('calculatorPage.project.item')}</th><th className="px-4 py-2 border-b border-white/5 text-center">{t('calculatorPage.project.qty')}</th><th className="px-4 py-2 border-b border-white/5 text-right">{t('calculatorPage.result.weightPerPiece')}</th><th className="px-4 py-2 border-b border-white/5 text-right">{t('calculatorPage.result.totalWeight')}</th><th className="px-4 py-2 border-b border-white/5 w-8"></th></tr></thead>
+                                    <thead className="bg-[#1e293b] text-gray-400 font-bold text-[9px] uppercase tracking-wider sticky top-0 z-10 shadow-sm">
+                                        <tr>
+                                            <th className="px-4 py-2 border-b border-white/5">{t('calculatorPage.project.item')}</th>
+                                            <th className="px-4 py-2 border-b border-white/5 text-center">{t('calculatorPage.project.qty')}</th>
+                                            <th className="px-4 py-2 border-b border-white/5 text-right">{t('calculatorPage.result.weightPerPiece')}</th>
+                                            <th className="px-4 py-2 border-b border-white/5 text-right">{t('calculatorPage.result.totalWeight')}</th>
+                                            <th className="px-4 py-2 border-b border-white/5 w-8"></th>
+                                        </tr>
+                                    </thead>
                                     <tbody className="divide-y divide-white/5">
                                         {projectItems.map((item, idx) => (
-                                            <tr key={item.id} className="hover:bg-white/5 transition-colors group"><td className="px-4 py-2.5"><div className="font-bold text-gray-200 text-[11px] 2xl:text-lg leading-tight">{idx + 1}. {t(`calculatorPage.products.${item.type}` as any).toUpperCase()}</div><div className="text-[9px] 2xl:text-base text-gray-500 mt-0.5 font-mono leading-tight">{item.specs}</div></td><td className="px-4 py-2.5 text-center text-xs 2xl:text-lg font-medium text-gray-400">{item.quantity}</td><td className="px-4 py-2.5 text-right font-mono text-xs 2xl:text-lg text-gray-500">{item.unitWeight.toFixed(2)}</td><td className="px-4 py-2.5 text-right font-mono text-xs 2xl:text-lg font-bold text-brand-blue-light">{item.totalWeight.toFixed(2)} <span className="text-[9px] 2xl:text-sm text-gray-600 font-normal">kg</span></td><td className="px-4 py-2.5 text-center"><button onClick={() => removeFromProject(item.id)} className="text-gray-600 hover:text-red-400 transition-colors p-1 rounded"><Trash2 size={12} /></button></td></tr>
+                                            <tr key={item.id} className="hover:bg-white/5 transition-colors group">
+                                                <td className="px-4 py-2.5">
+                                                    <div className="font-bold text-gray-200 text-[11px] leading-tight">{idx + 1}. {t(`calculatorPage.products.${item.type}` as any).toUpperCase()}</div>
+                                                    <div className="text-[9px] text-gray-500 mt-0.5 font-mono leading-tight">{item.specs}</div>
+                                                </td>
+                                                <td className="px-4 py-2.5 text-center text-xs font-medium text-gray-400">{item.quantity}</td>
+                                                <td className="px-4 py-2.5 text-right font-mono text-xs text-gray-500">
+                                                    {item.unitWeight.toFixed(2)}
+                                                </td>
+                                                <td className="px-4 py-2.5 text-right font-mono text-xs font-bold text-brand-blue-light">
+                                                    {item.totalWeight.toFixed(2)} <span className="text-[9px] text-gray-600 font-normal">kg</span>
+                                                </td>
+                                                <td className="px-4 py-2.5 text-center">
+                                                    <button onClick={() => removeFromProject(item.id)} className="text-gray-600 hover:text-red-400 transition-colors p-1 rounded hover:bg-red-500/10">
+                                                        <Trash2 size={12} />
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             )}
                         </div>
+
                         {projectItems.length > 0 && (
-                            <div className="p-4 2xl:p-10 bg-[#1e293b]/30 border-t border-white/5 flex justify-between items-center gap-4">
-                                <div><span className="text-[9px] 2xl:text-base text-gray-500 uppercase font-bold tracking-widest block">{t('calculatorPage.common.projectTotal')}</span><div className="text-2xl 2xl:text-6xl font-bold text-white leading-none">{projectItems.reduce((acc, i) => acc + i.totalWeight, 0).toFixed(2)} <span className="text-xs 2xl:text-3xl text-gray-500 font-medium">kg</span></div></div>
-                                <button onClick={handleWhatsAppQuote} className="bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-2.5 px-6 2xl:py-6 2xl:px-16 rounded-xl transition-all shadow-xl flex items-center justify-center gap-2 text-xs 2xl:text-2xl uppercase tracking-wide"><WhatsappIcon size={16} className="2xl:w-10 2xl:h-10" /> <span className="hidden sm:inline">{t('calculatorPage.common.requestQuote')}</span></button>
+                            <div className="p-4 bg-[#1e293b]/30 border-t border-white/5 flex justify-between items-center gap-4">
+                                <div>
+                                    <span className="text-[9px] text-gray-500 uppercase font-bold tracking-widest block">{t('calculatorPage.common.projectTotal')}</span>
+                                    <div className="text-2xl font-bold text-white leading-none">
+                                        {projectItems.reduce((acc, i) => acc + i.totalWeight, 0).toFixed(2)} <span className="text-xs text-gray-500 font-medium">kg</span>
+                                    </div>
+                                </div>
+                                <button onClick={handleWhatsAppQuote} className="bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-2 px-4 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-1.5 text-xs uppercase tracking-wide">
+                                    <WhatsappIcon size={16} /> <span className="hidden sm:inline">{t('calculatorPage.common.requestQuote')}</span>
+                                </button>
                             </div>
                         )}
                     </div>
