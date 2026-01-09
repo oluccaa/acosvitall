@@ -109,7 +109,7 @@ export const ASSETS = {
         COMMON_VIDEO: `${SB_BASE}/geral/video_hero.mp4`,
         COMMON_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
         FEATURES_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
-        ABOUT_ANIMATED_BG: `${SB_BASE}/home/sobre/vertical-sobre-empresa.avif`
+        ABOUT_ANIMATED_BG: `${SB_BASE}/sobre_nos/hero/heroAbout.avif`
     },
 
     ABOUT: {
