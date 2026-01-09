@@ -29,6 +29,7 @@ const Features: React.FC = () => {
             className="relative py-6 md:py-10 border-b border-white/5"
             aria-label="Principais características"
         >
+            {/* Fundo removido conforme solicitado para um design mais integrado */}
             <div className="container mx-auto px-6 sm:px-12 lg:px-24 relative z-10 max-w-[1920px]">
                 <div ref={featuresContainerRef} className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-y-0 max-w-7xl mx-auto">
                     {FEATURES_LIST.map((feature, index) => (

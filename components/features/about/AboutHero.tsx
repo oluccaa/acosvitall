@@ -6,27 +6,20 @@ import { ASSETS } from '../../../lib/media';
 
 const AboutHero: React.FC = () => {
     const { t } = useTranslation();
-    
-    // Fix: using 'about.title' as it is the correct key in the locale files
     const title = t('about.title');
     
-    const videoUrl = ASSETS.HERO.COMMON_VIDEO;
-    const posterUrl = ASSETS.HERO.COMMON_BG;
+    // Agora utilizamos o AVIF animado como fundo para melhor performance LCP
+    const bgUrl = ASSETS.HERO.ABOUT_ANIMATED_BG;
 
     return (
         <section className="relative h-[400px] md:h-[500px] text-white flex items-center justify-center text-center overflow-hidden">
-            <video
-                key={videoUrl}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute z-0 top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover transform -translate-x-1/2 -translate-y-1/2"
-                poster={posterUrl}
-            >
-                <source src={videoUrl} type="video/mp4" />
-            </video>
+            {/* Background Image (Animated AVIF) */}
+            <div 
+                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+                style={{ backgroundImage: `url('${bgUrl}')` }}
+            ></div>
 
+            {/* Overlay */}
             <div className="absolute inset-0 bg-brand-blue-dark/60 z-10"></div>
 
             <div className="relative z-20 container mx-auto px-6 sm:px-12 lg:px-24">

@@ -3,76 +3,47 @@
  * ============================================================================
  * BIBLIOTECA DE ASSETS - AÇOS VITAL
  * ============================================================================
- * 
- * Este arquivo centraliza todas as referências de mídia do projeto.
- * 
- * ESTRATÉGIA DE OTIMIZAÇÃO:
- * Utilizamos um proxy de redimensionamento (builderservices.io) para:
- * 1. Reduzir o peso das imagens originais do Supabase/Unsplash.
- * 2. Converter formatos pesados para WebP automaticamente.
- * 3. Gerenciar cache de longa duração (permanente) para melhor pontuação no LCP.
  */
 
-/**
- * Larguras padrão otimizadas para performance
- */
 const IMG_WIDTH = {
     LOGO: 300,
     ICON: 150,
     THUMB: 400,
     CONTENT: 800,
-    HERO: 1000 // Ajustado para 1000 para bater exatamente com o preload do index.html
+    HERO: 1000 
 };
 
-/**
- * Helper para otimização de URLs de imagens baseadas em proxy.
- * @param url URL original do asset
- * @param width Largura desejada em pixels
- * @returns URL otimizada para web
- */
 const optimize = (url: string, width: number = IMG_WIDTH.CONTENT): string => {
     if (!url) return '';
-    
-    // Apenas aplica o proxy se for uma imagem de armazenamento externo conhecido
     if (url.includes('supabase.co') || url.includes('unsplash.com') || url.includes('storage.googleapis.com')) {
-        // Adicionamos parâmetros de formato e qualidade para garantir compressão agressiva
         return `https://images.builderservices.io/s/cdn/v1.0/i/m?url=${encodeURIComponent(url)}&methods=resize%2C${width}%2C5000&format=webp&quality=70`;
     }
     return url;
 };
 
-// Base URLs for consistency
 const SB_BASE = "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets";
 
-/**
- * Objeto central de Assets
- */
 export const ASSETS = {
-    /** Identidade Visual Global */
     LOGO: optimize(`${SB_BASE}/geral/logo/logo.png`, IMG_WIDTH.LOGO),
     FAVICON: "/favicon.svg",
 
-    /** Portal e Global */
     GLOBAL: {
         LOGO: optimize(`${SB_BASE}/geral/logo/logo.png`, IMG_WIDTH.LOGO),
         FAVICON: "/favicon.svg",
     },
 
-    /** Publicidade (ADS) */
     ADS: {
         CALCULATOR_LEFT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_esquerda.avif`,
         CALCULATOR_RIGHT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_direita.avif`,
         CALCULATOR_BOTTOM: optimize(`${SB_BASE}/calculadora_de_aco/ads_fixo/entrega_otimizada_bottom.png`, 1200)
     },
 
-    /** Certificações */
     CERTIFICATIONS_LOGOS: {
         ISO9001: optimize(`${SB_BASE}/sobre_nos/certificacoes/ISO.webp`, 200),
         CRC: optimize(`${SB_BASE}/sobre_nos/certificacoes/CRC.webp`, 200),
         YPFB: optimize(`${SB_BASE}/sobre_nos/certificacoes/YPFB.webp`, 200)
     },
 
-    /** Setores Atendidos */
     SECTORS: {
         AGRICULTURE: optimize(`${SB_BASE}/geral/setores_atendidos/1.webp`, IMG_WIDTH.ICON),
         ARCHITECTURE: optimize(`${SB_BASE}/geral/setores_atendidos/2.webp`, IMG_WIDTH.ICON),
@@ -88,7 +59,6 @@ export const ASSETS = {
         STEEL: optimize(`${SB_BASE}/geral/setores_atendidos/12.webp`, IMG_WIDTH.ICON),
     },
 
-    /** Hero Slides */
     HERO_SLIDES_IMGS: {
         ENTRESSAFRA: optimize(`${SB_BASE}/home/hero/1.webp`, IMG_WIDTH.HERO),
         TRAPEZOIDAL: optimize(`${SB_BASE}/home/hero/2.webp`, IMG_WIDTH.HERO),
@@ -97,7 +67,6 @@ export const ASSETS = {
         FLOORING: optimize(`${SB_BASE}/home/hero/5.webp`, IMG_WIDTH.HERO)
     },
 
-    /** Thumbnails do Catálogo Principal */
     PRODUCT_THUMBNAILS: {
         FLANGES: optimize(`${SB_BASE}/home/produtos_destaques/1.webp`, IMG_WIDTH.THUMB),
         TUBES: optimize(`${SB_BASE}/home/produtos_destaques/2.webp`, IMG_WIDTH.THUMB),
@@ -115,7 +84,6 @@ export const ASSETS = {
         GROOVED: optimize(`${SB_BASE}/home/produtos_destaques/11.webp`, IMG_WIDTH.THUMB)
     },
 
-    /** Produtos em Destaque (Home Carousel) */
     HOME_FEATURED: {
         FLANGE: optimize(`${SB_BASE}/home/produtos_destaques/1.webp`, IMG_WIDTH.THUMB),
         TUBOS: optimize(`${SB_BASE}/home/produtos_destaques/2.webp`, IMG_WIDTH.THUMB),
@@ -133,31 +101,27 @@ export const ASSETS = {
         TANQUES: optimize(`${SB_BASE}/home/produtos_destaques/7.webp`, IMG_WIDTH.THUMB)
     },
 
-    /** CTA & Globais */
     CTA: {
         BG: optimize(`${SB_BASE}/geral/cta/cta.webp`, IMG_WIDTH.HERO),
         BG_GIF: `${SB_BASE}/geral/cta/cta.avif`
     },
 
-    /** Elementos da Hero */
     HERO: {
         COMMON_VIDEO: `${SB_BASE}/geral/video_hero.mp4`,
         COMMON_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
         FEATURES_BG: optimize(`${SB_BASE}/home/hero/3.webp`, IMG_WIDTH.HERO),
+        ABOUT_ANIMATED_BG: `${SB_BASE}/home/sobre/vertical-sobre-empresa.avif`
     },
 
-    /** Sobre Nós */
     ABOUT: {
         UNITS_MAP: optimize(`${SB_BASE}/sobre_nos/onde_atuamos/mapa_de_atuacao.webp`, IMG_WIDTH.CONTENT),
-        CONTENT_IMAGE: optimize(`${SB_BASE}/home/sobre/vertical-sobre-empresa.avif`, 400),
+        CONTENT_IMAGE: `${SB_BASE}/home/sobre/vertical-sobre-empresa.avif`,
     },
 
-    /** Certificações Page */
     CERTIFICATIONS: {
         HERO_BG: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/hero.webp", IMG_WIDTH.HERO),
     },
 
-    /** Subpáginas de Produtos */
     PRODUCT_PAGES: {
         CALDEIRARIA: {
             SLIDES: [
@@ -357,9 +321,6 @@ export const ASSETS = {
     }
 };
 
-/**
- * Atalhos de Assets Legados (Aliasing)
- */
 export const ASSETS_SHORTCUTS = {
     LOGO: ASSETS.LOGO,
     CTA_BG: ASSETS.CTA.BG
