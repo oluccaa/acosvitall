@@ -80,7 +80,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                     relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
                                     px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
                                     ${isScrolled ? 'py-4' : 'py-7'}
-                                    ${active || (isProducts && isMegaMenuOpen) ? 'text-brand-orange' : 'text-gray-300 hover:text-white'}
+                                    ${active || (isProducts && isMegaMenuOpen) ? 'text-white' : 'text-gray-300 hover:text-white'}
                                 `}
                             >
                                 {link.text}
@@ -101,7 +101,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                     relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
                                     px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
                                     ${isScrolled ? 'py-4' : 'py-7'}
-                                    ${active ? 'text-brand-orange' : 'text-gray-300 hover:text-white'}
+                                    ${active ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}
                                 `}
                             >
                                 {link.text}
