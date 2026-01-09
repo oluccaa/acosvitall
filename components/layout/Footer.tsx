@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
     };
 
     return (
-        <footer className="bg-brand-blue-dark text-gray-400 pt-16 pb-8 border-t-[3px] border-brand-orange font-sans">
+        <footer className="bg-brand-blue-dark text-gray-300 pt-16 pb-8 border-t-[3px] border-brand-orange font-sans">
             <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                         <Link to="/" aria-label="Aços Vital" className="block w-48">
                             <Logo className="h-auto w-full" />
                         </Link>
-                        <p className="text-sm leading-relaxed text-gray-400">
+                        <p className="text-sm leading-relaxed text-gray-300">
                             {t('footer.description')}
                         </p>
                         
@@ -57,9 +57,10 @@ const Footer: React.FC = () => {
                                             href={link.href} 
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            aria-label={link.key}
                                             className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5"
                                         >
-                                            {Icon && <Icon size={18} className="text-gray-400 group-hover:text-white" />}
+                                            {Icon && <Icon size={18} className="text-gray-300 group-hover:text-white" />}
                                         </a>
                                     );
                                 })}
@@ -76,7 +77,7 @@ const Footer: React.FC = () => {
                                 {leftLinks.map(link => (
                                     <li key={link.key}>
                                         <Link to={link.href} className="flex items-center gap-2 hover:text-brand-orange transition-colors text-sm font-medium uppercase group">
-                                            <ChevronRight size={14} className="text-gray-600 group-hover:text-brand-orange transition-colors" />
+                                            <ChevronRight size={14} className="text-gray-400 group-hover:text-brand-orange transition-colors" />
                                             {link.label}
                                         </Link>
                                     </li>
@@ -86,7 +87,7 @@ const Footer: React.FC = () => {
                                 {rightLinks.map(link => (
                                     <li key={link.key}>
                                         <Link to={link.href} className="flex items-center gap-2 hover:text-brand-orange transition-colors text-sm font-medium uppercase group">
-                                            <ChevronRight size={14} className="text-gray-600 group-hover:text-brand-orange transition-colors" />
+                                            <ChevronRight size={14} className="text-gray-400 group-hover:text-brand-orange transition-colors" />
                                             {link.label}
                                         </Link>
                                     </li>
@@ -104,7 +105,7 @@ const Footer: React.FC = () => {
                                 <div className="mt-1">
                                     <MapPin size={20} className="text-brand-orange" />
                                 </div>
-                                <address className="not-italic text-sm text-gray-400 leading-relaxed group-hover:text-white transition-colors">
+                                <address className="not-italic text-sm text-gray-300 leading-relaxed group-hover:text-white transition-colors">
                                     Rod. Pedro Eroles, nº 1855 – KM49<br/>
                                     Jardim Aracy, Mogi das Cruzes - SP<br/>
                                     CEP 08770-490
@@ -112,13 +113,13 @@ const Footer: React.FC = () => {
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <Phone size={20} className="text-brand-orange" />
-                                <a href="tel:1147972352" className="text-sm text-gray-400 group-hover:text-white transition-colors">
+                                <a href="tel:1147972352" className="text-sm text-gray-300 group-hover:text-white transition-colors">
                                     (11) 4797-2352
                                 </a>
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <Mail size={20} className="text-brand-orange" />
-                                <a href="mailto:acosvital@acosvital.com.br" className="text-sm text-gray-400 group-hover:text-white transition-colors">
+                                <a href="mailto:acosvital@acosvital.com.br" className="text-sm text-gray-300 group-hover:text-white transition-colors">
                                     acosvital@acosvital.com.br
                                 </a>
                             </li>
@@ -126,7 +127,7 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
                     <p>@ 2026 Aços Vital. Todos os direitos reservados</p>
                 </div>
             </div>

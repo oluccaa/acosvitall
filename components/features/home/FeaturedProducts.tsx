@@ -174,12 +174,14 @@ const FeaturedProducts: React.FC = () => {
                     <button
                         onClick={() => scroll('left')}
                         className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-blue-dark hover:border-brand-blue-dark hover:text-white transition-all duration-300 shadow-sm active:scale-90"
+                        aria-label="Ver produtos anteriores"
                     >
                         <ChevronLeft size={20} />
                     </button>
                     <button
                         onClick={() => scroll('right')}
                         className="w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/30 hover:bg-brand-orange-dark transition-all duration-300 hover:scale-110 active:scale-90"
+                        aria-label="Ver próximos produtos"
                     >
                         <ChevronRight size={20} />
                     </button>
