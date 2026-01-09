@@ -4,10 +4,10 @@ import { Award, Globe, Truck, Users, Building2, ShieldCheck, Medal, Target, Ligh
 import { ASSETS } from './media';
 
 export const SOCIAL_LINKS = [
-    { key: "facebook", href: "#" },
-    { key: "instagram", href: "#" },
-    { key: "linkedin", href: "#" },
-    { key: "youtube", href: "#" },
+    { key: "facebook", href: "https://www.facebook.com/acosvital/" },
+    { key: "instagram", href: "https://www.instagram.com/acosvital?igsh=MWo1amd2Z2s4eDJ2dw==" },
+    { key: "linkedin", href: "https://www.linkedin.com/company/acosvital/" },
+    { key: "youtube", href: "https://www.youtube.com/@acosvital/featured" },
 ];
 
 export const NAV_LINKS = [

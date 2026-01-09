@@ -5,7 +5,7 @@ import {
     Calculator, Circle, Square, Box, Layers, Disc, Grid, LayoutGrid, 
     Cylinder, CornerDownRight, ShoppingCart, BoxSelect, RefreshCcw, Plus, Trash2, Info, ChevronDown,
     Filter, Split, Package, Printer, Share2, Zap, Ruler, Scale, Paintbrush, ArrowRight, MousePointerClick,
-    Wrench, Settings2, Loader2, Sparkles
+    Wrench, Settings2, Loader2, Sparkles, MonitorSmartphone
 } from 'lucide-react';
 import WhatsappIcon from '../../common/icons/WhatsappIcon';
 import MeasurementInput, { ForcedUnit } from '../../common/MeasurementInput';
@@ -237,7 +237,8 @@ const SteelCalculator: React.FC = () => {
     const handleReset = () => {
         setIsResetting(true);
         reset();
-        setTimeout(() => setIsResetting(false), 600);
+        setEditHistory([]);
+        setTimeout(() => setIsResetting(false), 800);
     };
 
     const generateTechnicalSpec = () => {
@@ -313,10 +314,10 @@ const SteelCalculator: React.FC = () => {
     );
 
     return (
-        <div className={`flex flex-col gap-6 font-sans transition-all duration-500 ${isResetting ? 'scale-[0.99] blur-[1px] opacity-70' : ''}`}>
+        <div className={`flex flex-col gap-6 font-sans transition-all duration-700 ${isResetting ? 'opacity-40 blur-sm scale-[0.99]' : 'opacity-100 blur-0 scale-100'}`}>
             
             {/* WORKSTATION CONSOLE - UNIFIED VERSION */}
-            <div className={`bg-[#0f172a] border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ${isResetting ? 'ring-4 ring-brand-blue-light/20 shadow-[0_0_40px_rgba(56,127,217,0.2)]' : ''}`}>
+            <div className={`bg-[#0f172a] border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ${isResetting ? 'ring-4 ring-brand-orange/20 shadow-[0_0_50px_rgba(255,117,26,0.15)]' : ''}`}>
                 
                 {/* 1. SELECTION HEADER (Horizontal Integration) */}
                 <div className="p-4 border-b border-white/5 bg-[#131d33] flex flex-col md:flex-row items-center justify-between gap-4">
@@ -332,8 +333,12 @@ const SteelCalculator: React.FC = () => {
 
                     <div className="flex items-center gap-3 bg-black/20 p-1.5 rounded-xl border border-white/5">
                         <span className="text-[10px] text-gray-400 font-bold uppercase px-2">{t('calculatorPage.common.clear')}</span>
-                        <button onClick={handleReset} className="p-2 bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-lg transition-all active:scale-90 group" title={t('calculatorPage.common.clear')}>
-                            <RefreshCcw size={16} className={`group-active:rotate-180 transition-transform duration-500 ${isResetting ? 'animate-spin' : ''}`} />
+                        <button 
+                            onClick={handleReset} 
+                            className={`p-2 bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-lg transition-all active:scale-90 group ${isResetting ? 'bg-brand-orange/20 text-brand-orange' : ''}`} 
+                            title={t('calculatorPage.common.clear')}
+                        >
+                            <RefreshCcw size={16} className={`transition-transform duration-700 ${isResetting ? 'rotate-[360deg] scale-110' : 'group-hover:rotate-45'}`} />
                         </button>
                     </div>
                 </div>
@@ -546,7 +551,7 @@ const SteelCalculator: React.FC = () => {
                                 <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest">{t('calculatorPage.common.surfaceArea')}</span>
                             </div>
                             <div className="flex items-baseline gap-1">
-                                <span className="text-xl font-mono font-black text-white">
+                                <span className={`text-xl font-mono font-black transition-colors ${engData.surfaceArea && engData.surfaceArea > 0 ? 'text-white' : 'text-white/10'}`}>
                                     {(engData.surfaceArea || 0).toFixed(2)}
                                 </span>
                                 <span className="text-[10px] text-gray-500 font-bold uppercase">m²</span>
@@ -595,13 +600,14 @@ const SteelCalculator: React.FC = () => {
                                     {copied && <span className="text-[10px] text-green-400 font-black animate-pulse bg-green-900/30 px-2 py-1 rounded border border-green-500/30 ml-2">COPIED!</span>}
                                 </div>
                             ) : (
-                                <div className="flex items-center gap-4 py-4 opacity-30 select-none animate-in fade-in duration-700">
+                                <div className="flex items-center gap-4 py-4 opacity-40 select-none animate-in fade-in duration-700">
                                     <div className="flex flex-col">
                                         <div className="flex gap-1 mb-2">
-                                            {[1,2,3,4,5].map(i => <div key={i} className="w-8 h-1.5 bg-white/20 rounded-full"></div>)}
+                                            {[1,2,3,4,5].map(i => <div key={i} className="w-8 h-1.5 bg-white/10 rounded-full"></div>)}
                                         </div>
-                                        <span className="text-xl font-black uppercase tracking-widest text-white/50">{t('calculatorPage.common.waiting')}</span>
+                                        <span className="text-xl font-black uppercase tracking-widest text-white/20">{t('calculatorPage.common.waiting')}</span>
                                     </div>
+                                    <MonitorSmartphone size={32} className="text-white/5 -rotate-12" />
                                 </div>
                             )}
                         </div>
@@ -613,8 +619,8 @@ const SteelCalculator: React.FC = () => {
                             <div className="flex flex-col items-center lg:items-end gap-1">
                                 <span className="text-[9px] text-gray-500 uppercase font-black tracking-widest">{t('calculatorPage.common.unitWeight')}</span>
                                 <div className="flex items-baseline gap-1.5">
-                                    <span className={`text-xl md:text-3xl font-mono font-black tracking-tight transition-all duration-300 ${unitWeight > 0 ? 'text-gray-300' : 'text-white/10'}`}>
-                                        {unitWeight > 0 ? unitWeight.toFixed(2) : '---'}
+                                    <span className={`text-xl md:text-3xl font-mono font-black tracking-tight transition-all duration-300 ${unitWeight > 0 ? 'text-gray-300' : 'text-white/5'}`}>
+                                        {unitWeight > 0 ? unitWeight.toFixed(2) : '0.00'}
                                     </span>
                                     <span className="text-[9px] text-gray-600 font-black uppercase">kg</span>
                                 </div>
@@ -623,8 +629,8 @@ const SteelCalculator: React.FC = () => {
                             <div className="flex flex-col items-center lg:items-end gap-1">
                                 <span className="text-[9px] text-gray-500 uppercase font-black tracking-widest">{t('calculatorPage.common.totalArea')}</span>
                                 <div className="flex items-baseline gap-1.5">
-                                    <span className={`text-xl md:text-3xl font-mono font-black tracking-tight transition-all duration-300 ${totalArea > 0 ? 'text-gray-300' : 'text-white/10'}`}>
-                                        {totalArea > 0 ? totalArea.toFixed(2) : '---'}
+                                    <span className={`text-xl md:text-3xl font-mono font-black tracking-tight transition-all duration-300 ${totalArea > 0 ? 'text-gray-300' : 'text-white/5'}`}>
+                                        {totalArea > 0 ? totalArea.toFixed(2) : '0.00'}
                                     </span>
                                     <span className="text-[9px] text-gray-600 font-black uppercase">m²</span>
                                 </div>

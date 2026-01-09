@@ -3,6 +3,7 @@ import React from 'react';
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
+import { SOCIAL_LINKS } from '../../lib/constants';
 
 const Footer: React.FC = () => {
     const { t } = useTranslation();
@@ -22,6 +23,13 @@ const Footer: React.FC = () => {
     const leftLinks = allLinks.slice(0, midPoint);
     const rightLinks = allLinks.slice(midPoint);
 
+    const SOCIAL_ICONS: Record<string, any> = {
+        facebook: Facebook,
+        instagram: Instagram,
+        linkedin: Linkedin,
+        youtube: Youtube
+    };
+
     return (
         <footer className="bg-brand-blue-dark text-gray-400 pt-16 pb-8 border-t-[3px] border-brand-orange font-sans">
             <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
@@ -40,18 +48,20 @@ const Footer: React.FC = () => {
                                 {t('footer.followUsTitle')}
                             </h3>
                             <div className="flex gap-3">
-                                <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5">
-                                    <Facebook size={18} className="text-gray-400 group-hover:text-white" />
-                                </a>
-                                <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5">
-                                    <Instagram size={18} className="text-gray-400 group-hover:text-white" />
-                                </a>
-                                <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5">
-                                    <Linkedin size={18} className="text-gray-400 group-hover:text-white" />
-                                </a>
-                                <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5">
-                                    <Youtube size={18} className="text-gray-400 group-hover:text-white" />
-                                </a>
+                                {SOCIAL_LINKS.map((link) => {
+                                    const Icon = SOCIAL_ICONS[link.key];
+                                    return (
+                                        <a 
+                                            key={link.key}
+                                            href={link.href} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5"
+                                        >
+                                            {Icon && <Icon size={18} className="text-gray-400 group-hover:text-white" />}
+                                        </a>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
@@ -116,10 +126,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                    <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
-                    <p className="opacity-80 hover:opacity-100 transition-opacity">
-                        {t('footer.developedBy')}
-                    </p>
+                    <p>@ 2026 Aços Vital. Todos os direitos reservados</p>
                 </div>
             </div>
         </footer>
