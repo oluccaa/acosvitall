@@ -9,7 +9,7 @@ const CallToAction: React.FC = () => {
     return (
         <section 
             className="relative py-12 md:py-16 lg:py-20 bg-cover bg-center text-white overflow-hidden"
-            style={{ backgroundImage: `url('${ASSETS.CTA.BG_GIF}')` }}
+            style={{ backgroundImage: `url('${ASSETS.CTA.BG}')` }}
         >
             {/* Overlay Div - Refinado para manter o contraste sem pesar */}
             <div className="absolute inset-0 bg-brand-blue-dark/85"></div>
