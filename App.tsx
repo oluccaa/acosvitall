@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import LoadingSpinner from './components/common/LoadingSpinner';
@@ -36,33 +36,6 @@ const GroovedProductPage = React.lazy(() => import('./subpages/GroovedProductPag
 const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueCombustivelProductPage'));
 
 const App: React.FC = () => {
-    const navigate = useNavigate();
-
-    // Interceptor global para transformar tags <a> em navegações do React Router
-    useEffect(() => {
-        const handleGlobalClick = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            const anchor = target.closest('a');
-            
-            if (anchor && 
-                anchor.href.startsWith(window.location.origin) && 
-                !anchor.hasAttribute('download') && 
-                anchor.target !== '_blank') {
-                
-                const url = new URL(anchor.href);
-                // Se for âncora interna na mesma página (#id), deixa o browser tratar
-                if (url.pathname === window.location.pathname && url.hash) return;
-                
-                e.preventDefault();
-                navigate(url.pathname + url.search + url.hash);
-                window.scrollTo(0, 0);
-            }
-        };
-
-        document.addEventListener('click', handleGlobalClick);
-        return () => document.removeEventListener('click', handleGlobalClick);
-    }, [navigate]);
-
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">
             <Header />

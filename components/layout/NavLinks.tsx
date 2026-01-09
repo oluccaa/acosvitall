@@ -1,5 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useRouter } from '../../hooks/useRouter';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown } from 'lucide-react';
@@ -52,13 +53,9 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [isMegaMenuOpen]);
 
-    const handleToggleProducts = (e: React.MouseEvent, key?: string) => {
+    const handleMouseEnter = (key?: string) => {
         if (key === 'products') {
-            e.preventDefault();
-            setIsMegaMenuOpen(!isMegaMenuOpen);
-        } else {
-            setIsMegaMenuOpen(false);
-            if (onLinkClick) onLinkClick();
+            setIsMegaMenuOpen(true);
         }
     };
 
@@ -71,26 +68,46 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                  const isProducts = link.key === 'products';
 
                  return (
-                    <div key={link.href} className="relative">
-                        <a 
-                            href={link.href} 
-                            onClick={(e) => handleToggleProducts(e, link.key)}
-                            className={`
-                                relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
-                                px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
-                                ${isScrolled ? 'py-4' : 'py-7'}
-                                ${active || (isProducts && isMegaMenuOpen) ? 'text-brand-orange' : 'text-gray-300 hover:text-white'}
-                            `}
-                        >
-                            {link.text}
-                            {isProducts && (
+                    <div 
+                        key={link.href} 
+                        className="relative"
+                        onMouseEnter={() => handleMouseEnter(link.key)}
+                    >
+                        {isProducts ? (
+                            <button 
+                                onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                                className={`
+                                    relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
+                                    px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
+                                    ${isScrolled ? 'py-4' : 'py-7'}
+                                    ${active || (isProducts && isMegaMenuOpen) ? 'text-brand-orange' : 'text-gray-300 hover:text-white'}
+                                `}
+                            >
+                                {link.text}
                                 <ChevronDown 
                                     size={14} 
                                     className={`transition-transform duration-300 ${isMegaMenuOpen ? 'rotate-180 text-brand-orange' : 'text-gray-500'}`} 
                                 />
-                            )}
-                            <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-brand-orange transform origin-left transition-transform duration-300 ease-out ${(active || (isProducts && isMegaMenuOpen)) ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                        </a>
+                                <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-brand-orange transform origin-left transition-transform duration-300 ease-out ${(active || isMegaMenuOpen) ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                            </button>
+                        ) : (
+                            <Link 
+                                to={link.href} 
+                                onClick={() => {
+                                    setIsMegaMenuOpen(false);
+                                    if (onLinkClick) onLinkClick();
+                                }}
+                                className={`
+                                    relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
+                                    px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
+                                    ${isScrolled ? 'py-4' : 'py-7'}
+                                    ${active ? 'text-brand-orange' : 'text-gray-300 hover:text-white'}
+                                `}
+                            >
+                                {link.text}
+                                <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-brand-orange transform origin-left transition-transform duration-300 ease-out ${active ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                            </Link>
+                        )}
 
                         {isProducts && (
                             <MegaMenu 

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ASSETS } from '../../lib/media';
 
@@ -31,9 +32,12 @@ const CallToAction: React.FC = () => {
                         {t('callToAction.description')}
                     </p>
                     
-                    <button className="bg-brand-orange text-white font-bold py-3.5 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 text-xs uppercase tracking-[0.15em] shadow-xl shadow-brand-orange/20 transform hover:-translate-y-1 active:scale-95 border border-brand-orange-dark/30">
+                    <Link 
+                        to="/contact" 
+                        className="bg-brand-orange text-white font-bold py-3.5 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 text-xs uppercase tracking-[0.15em] shadow-xl shadow-brand-orange/20 transform hover:-translate-y-1 active:scale-95 border border-brand-orange-dark/30 inline-block"
+                    >
                         {t('callToAction.buttonText')}
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

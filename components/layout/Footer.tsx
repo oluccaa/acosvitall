@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
@@ -36,9 +37,9 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     
                     <div className="space-y-6">
-                        <a href="/" aria-label="Aços Vital" className="block w-48">
+                        <Link to="/" aria-label="Aços Vital" className="block w-48">
                             <Logo className="h-auto w-full" />
-                        </a>
+                        </Link>
                         <p className="text-sm leading-relaxed text-gray-400">
                             {t('footer.description')}
                         </p>
@@ -74,20 +75,20 @@ const Footer: React.FC = () => {
                             <ul className="space-y-3">
                                 {leftLinks.map(link => (
                                     <li key={link.key}>
-                                        <a href={link.href} className="flex items-center gap-2 hover:text-brand-orange transition-colors text-sm font-medium uppercase group">
+                                        <Link to={link.href} className="flex items-center gap-2 hover:text-brand-orange transition-colors text-sm font-medium uppercase group">
                                             <ChevronRight size={14} className="text-gray-600 group-hover:text-brand-orange transition-colors" />
                                             {link.label}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
                             <ul className="space-y-3">
                                 {rightLinks.map(link => (
                                     <li key={link.key}>
-                                        <a href={link.href} className="flex items-center gap-2 hover:text-brand-orange transition-colors text-sm font-medium uppercase group">
+                                        <Link to={link.href} className="flex items-center gap-2 hover:text-brand-orange transition-colors text-sm font-medium uppercase group">
                                             <ChevronRight size={14} className="text-gray-600 group-hover:text-brand-orange transition-colors" />
                                             {link.label}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

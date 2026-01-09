@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Search, Phone, ChevronRight, Package, Calculator, FileText, Award, Mail, Layers, Settings, Box, Factory, Home, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../common/LanguageSwitcher';
@@ -138,7 +139,7 @@ const Header: React.FC = () => {
                                         const Icon = SOCIAL_ICONS[link.key];
                                         return (
                                             <li key={link.key}>
-                                                <a href={link.href} aria-label={link.key} className="hover:text-white transition-colors block">
+                                                <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.key} className="hover:text-white transition-colors block">
                                                     {Icon && <Icon size={13} aria-hidden="true" />}
                                                 </a>
                                             </li>
@@ -158,9 +159,9 @@ const Header: React.FC = () => {
                         <div className="flex justify-between items-center gap-6">
                             
                             {/* Logo */}
-                            <a href="/" aria-label="Aços Vital Home" className="flex-shrink-0 z-50 transition-transform duration-300 hover:scale-105 origin-left">
+                            <Link to="/" aria-label="Aços Vital Home" className="flex-shrink-0 z-50 transition-transform duration-300 hover:scale-105 origin-left">
                                 <Logo className={`transition-all duration-300 ${isScrolled ? 'h-[35px] md:h-[40px]' : 'h-[45px] md:h-[55px]'}`} />
-                            </a>
+                            </Link>
                             
                             {/* Desktop Nav */}
                             <div className="hidden lg:flex flex-1 justify-center">
@@ -232,23 +233,23 @@ const Header: React.FC = () => {
                     </div>
 
                     <nav className="flex flex-col gap-1">
-                        <a 
-                            href="/" 
+                        <Link 
+                            to="/" 
                             onClick={closeMobileMenu}
                             className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
                             <Home size={20} className={isLinkActive('/') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.navLinks.home')}</span>
-                        </a>
+                        </Link>
 
-                        <a 
-                            href="/about" 
+                        <Link 
+                            to="/about" 
                             onClick={closeMobileMenu}
                             className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/about') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
                             <Award size={20} className={isLinkActive('/about') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.navLinks.about')}</span>
-                        </a>
+                        </Link>
 
                         <div className="border-y border-white/5 my-2 py-2">
                             <button 
@@ -289,9 +290,9 @@ const Header: React.FC = () => {
                                                 {isActiveGroup && (
                                                     <div className="bg-black/20 p-2 grid grid-cols-1 gap-1 animate-slide-in">
                                                         {groupProducts.map(prod => (
-                                                            <a 
+                                                            <Link 
                                                                 key={prod.id} 
-                                                                href={prod.href}
+                                                                to={prod.href}
                                                                 onClick={closeMobileMenu}
                                                                 className="flex items-center justify-between p-3 rounded-md hover:bg-white/5 transition-colors text-gray-300 hover:text-white group"
                                                             >
@@ -299,7 +300,7 @@ const Header: React.FC = () => {
                                                                     {t(`productsPage.categories.${prod.id}`)}
                                                                 </span>
                                                                 <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-brand-orange" />
-                                                            </a>
+                                                            </Link>
                                                         ))}
                                                     </div>
                                                 )}
@@ -307,19 +308,19 @@ const Header: React.FC = () => {
                                         );
                                     })}
                                     
-                                    <a 
-                                        href="/catalog" 
+                                    <Link 
+                                        to="/catalog" 
                                         onClick={closeMobileMenu}
                                         className="flex items-center justify-center gap-2 w-full p-4 mt-2 rounded-xl bg-brand-orange/10 border border-brand-orange/30 text-brand-orange font-bold text-xs uppercase tracking-wide hover:bg-brand-orange hover:text-white transition-all"
                                     >
                                         <FileText size={16} /> {t('header.mobileLinks.downloadCatalog')}
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
 
-                        <a 
-                            href="/calculator" 
+                        <Link 
+                            to="/calculator" 
                             onClick={closeMobileMenu}
                             className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/calculator') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
@@ -328,10 +329,10 @@ const Header: React.FC = () => {
                                 <span className="font-bold text-lg">{t('header.mobileLinks.calculatorTitle')}</span>
                                 <span className="text-[10px] text-gray-500 uppercase font-bold">{t('header.mobileLinks.calculatorDesc')}</span>
                             </div>
-                        </a>
+                        </Link>
 
-                        <a 
-                            href="/tables" 
+                        <Link 
+                            to="/tables" 
                             onClick={closeMobileMenu}
                             className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/tables') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
@@ -340,16 +341,16 @@ const Header: React.FC = () => {
                                 <span className="font-bold text-lg">{t('header.mobileLinks.tablesTitle')}</span>
                                 <span className="text-[10px] text-gray-500 uppercase font-bold">{t('header.mobileLinks.tablesDesc')}</span>
                             </div>
-                        </a>
+                        </Link>
                         
-                         <a 
-                            href="/contact" 
+                         <Link 
+                            to="/contact" 
                             onClick={closeMobileMenu}
                             className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/contact') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
                             <Mail size={20} className={isLinkActive('/contact') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.navLinks.contact')}</span>
-                        </a>
+                        </Link>
 
                         {/* Portal da Qualidade Mobile */}
                         <a 
@@ -388,7 +389,7 @@ const Header: React.FC = () => {
                              {SOCIAL_LINKS.map((link) => {
                                 const Icon = SOCIAL_ICONS[link.key];
                                 return (
-                                    <a key={link.key} href={link.href} className="text-gray-500 hover:text-brand-orange transition-colors">
+                                    <a key={link.key} href={link.href} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-orange transition-colors">
                                         {Icon && <Icon size={20} />}
                                     </a>
                                 );

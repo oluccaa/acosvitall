@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
     Layers, Settings, Box, Factory, ArrowRight, 
@@ -47,7 +48,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
 
     return (
         <div 
-            className={`fixed inset-x-0 z-[200] flex justify-center px-6 sm:px-12 lg:px-24 transition-all duration-500 animate-in fade-in slide-in-from-top-6
+            className={`fixed inset-x-0 z-[200] flex justify-center px-6 sm:px-12 lg:px-24 transition-all duration-500 animate-in fade-in slide-in-from-top-4
                 ${isScrolled ? 'top-[60px]' : 'top-[110px]'}
             `}
         >
@@ -76,8 +77,8 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                                         
                                         return (
                                             <li key={itemId}>
-                                                <a 
-                                                    href={product.href}
+                                                <Link 
+                                                    to={product.href}
                                                     onClick={onClose}
                                                     className="group/item flex items-center justify-between p-2.5 rounded-xl hover:bg-white/5 transition-all"
                                                 >
@@ -85,7 +86,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                                                         {t(`productsPage.categories.${product.id}`)}
                                                     </span>
                                                     <ChevronRight size={14} className="text-gray-600 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all" />
-                                                </a>
+                                                </Link>
                                             </li>
                                         );
                                     })}
@@ -103,19 +104,19 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                             <p className="text-[11px] text-gray-400 leading-relaxed mb-6">
                                 Workstation de alta precisão para cálculos técnicos e orçamentação industrial.
                             </p>
-                            <a 
-                                href="/calculator"
+                            <Link 
+                                to="/calculator"
                                 onClick={onClose}
                                 className="inline-flex items-center gap-2 text-[10px] font-black text-white uppercase tracking-widest hover:text-brand-orange transition-colors group"
                             >
-                                <calculator size={14} className="text-brand-orange" />
+                                <Calculator size={14} className="text-brand-orange" />
                                 Acessar Workstation <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform ml-1" />
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="mt-8 pt-8 border-t border-white/5">
-                            <a 
-                                href="/catalog"
+                            <Link 
+                                to="/catalog"
                                 onClick={onClose}
                                 className="flex items-center gap-4 p-5 rounded-2xl bg-brand-orange/10 border border-brand-orange/20 hover:bg-brand-orange transition-all group"
                             >
@@ -126,7 +127,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                                     <span className="block text-[9px] font-black text-brand-orange uppercase group-hover:text-white transition-colors">Download</span>
                                     <span className="block text-xs font-bold text-white uppercase tracking-tight">Catálogo 2025</span>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

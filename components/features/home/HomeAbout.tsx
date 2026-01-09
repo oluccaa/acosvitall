@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ASSETS } from '../../../lib/media';
 import { ArrowRight } from 'lucide-react';
@@ -39,13 +40,13 @@ const HomeAbout: React.FC<HomeAboutProps> = ({ showButton = true }) => {
 
                                 {showButton && (
                                     <div className="mt-8">
-                                        <a 
-                                            href="/about" 
+                                        <Link 
+                                            to="/contact" 
                                             className="inline-flex items-center gap-2 bg-brand-orange text-white font-bold py-3 px-8 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-brand-orange/30 text-xs uppercase tracking-wider group"
                                         >
                                             {t('about.callToAction.buttonText')}
                                             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                                        </a>
+                                        </Link>
                                     </div>
                                 )}
                             </div>

@@ -1,5 +1,6 @@
 
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useI18n } from '../../../context/I18nContext';
 import { ChevronDown } from 'lucide-react';
 import { HERO_SLIDES } from '../../../lib/constants';
@@ -197,7 +198,7 @@ const Hero: React.FC = () => {
             loading={index === 0 ? 'eager' : 'lazy'}
             decoding={index === 0 ? 'sync' : 'async'}
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out
-              ${index === currentIndex ? 'opacity-100 animate-kenburns' : 'opacity-0'}
+              ${index === currentIndex ? 'opacity-100' : 'opacity-0'}
               ${isPaused ? 'animation-paused' : ''}`}
             width="1000"
             height="563"
@@ -219,9 +220,14 @@ const Hero: React.FC = () => {
                 <p className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg mb-6 sm:mb-8 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
                     {currentSlide.subtitle}
                 </p>
-                <button onClick={(e) => e.stopPropagation()} className="bg-brand-orange text-white font-bold py-2.5 px-6 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-[10px] sm:text-xs uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20" style={{ animationDelay: '0.6s' }}>
+                <Link 
+                    to="/contact"
+                    onClick={(e) => e.stopPropagation()} 
+                    className="bg-brand-orange text-white font-bold py-2.5 px-6 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-[10px] sm:text-xs uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20 inline-block" 
+                    style={{ animationDelay: '0.6s' }}
+                >
                   {currentSlide.buttonText}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
