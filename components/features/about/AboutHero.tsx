@@ -14,14 +14,13 @@ const AboutHero: React.FC = () => {
     const posterUrl = ASSETS.HERO.COMMON_BG;
 
     return (
-        <section className="relative h-[250px] text-white flex items-center justify-center text-center overflow-hidden">
+        <section className="relative h-[400px] md:h-[500px] text-white flex items-center justify-center text-center overflow-hidden">
             <video
                 key={videoUrl}
                 autoPlay
                 loop
                 muted
                 playsInline
-                // Fix: Removed fetchPriority as it is not a standard React property for HTMLVideoElement
                 className="absolute z-0 top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover transform -translate-x-1/2 -translate-y-1/2"
                 poster={posterUrl}
             >
@@ -31,7 +30,9 @@ const AboutHero: React.FC = () => {
             <div className="absolute inset-0 bg-brand-blue-dark/60 z-10"></div>
 
             <div className="relative z-20 container mx-auto px-6 sm:px-12 lg:px-24">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight">{title}</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight animate-slide-in drop-shadow-md text-white whitespace-pre-line">
+                    {title}
+                </h1>
             </div>
             
             <a 
@@ -39,7 +40,7 @@ const AboutHero: React.FC = () => {
               className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
               aria-label="Rolar para o conteúdo"
             >
-              <ChevronDown size={32} className="text-white/80 group-hover:text-white transition-colors animate-bounce" />
+              <ChevronDown size={32} className="text-white/80 group-hover:text-brand-orange transition-colors animate-bounce" />
             </a>
         </section>
     );

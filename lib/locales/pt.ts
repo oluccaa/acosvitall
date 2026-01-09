@@ -60,6 +60,11 @@ export const pt = {
         copyright: "Aços Vital Indústria e Comércio. Todos os direitos reservados.",
         developedBy: "Desenvolvido com excelência"
     },
+    notFoundPage: {
+        title: "Ops! Página não encontrada",
+        message: "O caminho que você tentou acessar não existe ou foi movido. Utilize o menu superior para navegar ou volte para a página inicial.",
+        homeButton: "Voltar para o Início"
+    },
     privacy: {
         title: "Política de Privacidade",
         lastUpdated: "Última atualização: Março de 2025",
@@ -83,10 +88,10 @@ export const pt = {
             },
             rights: {
                 title: "5. Seus Direitos (LGPD)",
-                text: "Você tem o direito de confirmar a existência de tratamento de dados, acessar seus dados, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
+                text: "Você tem o direito de confirmar a existência de tratamento de dados, acessá seus dados, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
             },
             contact: {
-                title: "6. Contato",
+                title: "6. Contacto",
                 text: "Para exercer seus direitos ou tirar dúvidas sobre esta política, entre em contato conosco através do e-mail: lgpd@acosvital.com.br"
             }
         },
@@ -158,7 +163,7 @@ export const pt = {
                 gap: "Raiz / Abertura (g) mm",
                 angle: "Ângulo (α) °",
                 weldLength: "Comp. da Solda (m)",
-                reinforcement: "Reforço / Coroa (%)",
+                reinforcement: "Refuérzo / Coroa (%)",
                 estimatedWeight: "Peso Estimado",
                 volume: "Volume Total"
             }
@@ -196,7 +201,7 @@ export const pt = {
             telemetry: "Telemetria",
             presets: "Presets de Medida",
             presetsHelp: "Selecione um campo acima e clique em um preset para aplicar automaticamente.",
-            surfaceArea: "Área Superficial",
+            surfaceArea: "Area Superficial",
             density: "Densidade do Aço",
             totalWeight: "Peso Total do Projeto",
             unitWeight: "Peso Unitário",
@@ -433,10 +438,10 @@ export const pt = {
         }
     },
     callToAction: {
-        title: "O que nos torna especiais?",
-        subtitle: "Nossa excelência técnica e logística.",
-        description: "Contamos com um time altamente qualificado pronto para atender seu projeto com agilidade.",
-        buttonText: "FALAR COM UM CONSULTOR"
+        title: "Pronto para elevar o nível do seu projeto?",
+        subtitle: "Excelência técnica em cada tonelada.",
+        description: "Nossa qualidade certificada é a base para o sucesso dos maiores projetos de infraestrutura do país.",
+        buttonText: "SOLICITAR ANÁLISE TÉCNICA"
     },
     infoColumns: {
         title: "Nosso Compromiso",
@@ -473,17 +478,28 @@ export const pt = {
         }
     },
     certificationsPage: {
-        hero: { title: "Qualidade Certificada", subtitle: "Garantia de conformidade em cada peça." },
+        hero: { title: "Qualidade de Classe Mundial", subtitle: "Seguimos os padrões mais rigorosos do mercado global de aço." },
         grid: {
-            title: "Nessas Certificações",
-            subtitle: "Padrões internacionais de gestão e segurança.",
+            title: "Reconhecimento e Conformidade",
+            subtitle: "Nossas certificações atestam a rastreabilidade e precisão técnica em todos os processos fabris.",
             items: {
-                iso9001: { name: "ISO 9001:2015", issuer: "Bureau Veritas", description: "Gestão de Qualidade Certificada." },
-                crc_petrobras: { name: "CRC Petrobras", issuer: "Petrobras", description: "Cadastro de Fornecedores Petrobras." },
-                ypfb: { name: "YPFB", issuer: "Bolívia", description: "Qualificação técnica internacional." },
-                dun_bradstreet: { name: "Dun & Bradstreet", issuer: "D&B", description: "Solidez comercial comprovada." }
+                iso9001: { name: "ISO 9001:2015", issuer: "Bureau Veritas", description: "Padrão ouro em gestão de qualidade e otimização de processos industriais." },
+                crc_petrobras: { name: "CRC Petrobras", issuer: "Petrobras", description: "Certificado de Registro Cadastral aprovado para o setor de Óleo & Gás." },
+                ypfb: { name: "YPFB", issuer: "Bolívia", description: "Homologação internacional para fornecimento em projetos de alta criticidade." },
+                dun_bradstreet: { name: "Solidez Comercial", issuer: "D&B", description: "Classificação comercial de alta solidez e transparência corporativa." }
             }
         },
-        policy: { title: "Objetivos da Qualidade", description: "Excelência, Sustentabilidade e Foco no Cliente." }
+        policy: { 
+            title: "Sistema de Gestão Vital", 
+            description: "Nossa política de qualidade não é apenas um documento, é o DNA de cada peça que sai de nossas fábricas.",
+            points: [
+                "Rastreabilidade: Total de Matéria-Prima",
+                "Inspeções: 100% dos Lotes",
+                "Conformidade: Absoluta com Normas ANSI/ASME",
+                "Treinamento: Contínuo do Time Técnico",
+                "Compromisso: Sustentabilidade Operacional",
+                "Foco: Redução de Prazos via Logística Ágil"
+            ]
+        }
     }
 };

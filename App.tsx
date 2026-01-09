@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -36,43 +37,41 @@ const EletrodutosProductPage = React.lazy(() => import('./subpages/EletrodutosPr
 const GroovedProductPage = React.lazy(() => import('./subpages/GroovedProductPage'));
 const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueCombustivelProductPage'));
 
-// --- 2. CONFIGURAÇÃO DA PÁGINA INICIAL ---
-const PaginaPrincipal = HomePage; 
-
-// --- 3. MAPEAMENTO DE ROTAS ---
+// --- 2. MAPEAMENTO DE ROTAS (BROWSER ROUTER) ---
 
 const routes: { [key: string]: React.ComponentType } = {
-    '#/': PaginaPrincipal,
-    '#/home': HomePage,
-    '#/about': AboutPage,
-    '#/products': ProductsPage,
-    '#/catalog': CatalogPage,
-    '#/tables': TablesPage,
-    '#/calculator': CalculatorPage,
-    '#/certifications': CertificationsPage,
-    '#/contact': ContactPage,
-    '#/privacy': PrivacyPolicyPage,
+    '/': HomePage, 
+    '/index.html': HomePage,
+    '/home': HomePage,
+    '/about': AboutPage,
+    '/products': ProductsPage,
+    '/catalog': CatalogPage,
+    '/tables': TablesPage,
+    '/calculator': CalculatorPage,
+    '/certifications': CertificationsPage,
+    '/contact': ContactPage,
+    '/privacy': PrivacyPolicyPage,
     
     // Rotas de Produtos
-    '#/products/flanges': FlangeProductPage, 
-    '#/products/tubos': TubosProductPage,
-    '#/products/conexoes': ConexoesProductPage, 
-    '#/products/valvulas': ValvulasProductPage, 
-    '#/products/perfis': PerfisLaminadosProductPage,
-    '#/products/chapas': ChapasProductPage, 
-    '#/products/grades': GradesPisoProductPage,
-    '#/products/telhas': TelhasTrapezoidaisProductPage,
-    '#/products/civil': CivilProductPage, 
-    '#/products/caldeiraria': CaldeirariaProductPage, 
-    '#/products/oxicorte': OxicorteProductPage, 
-    '#/products/eletrodutos': EletrodutosProductPage, 
-    '#/products/grooved': GroovedProductPage, 
-    '#/products/tanques': TanqueCombustivelProductPage,
+    '/products/flanges': FlangeProductPage, 
+    '/products/tubos': TubosProductPage,
+    '/products/conexoes': ConexoesProductPage, 
+    '/products/valvulas': ValvulasProductPage, 
+    '/products/perfis': PerfisLaminadosProductPage,
+    '/products/chapas': ChapasProductPage, 
+    '/products/grades': GradesPisoProductPage,
+    '/products/telhas': TelhasTrapezoidaisProductPage,
+    '/products/civil': CivilProductPage, 
+    '/products/caldeiraria': CaldeirariaProductPage, 
+    '/products/oxicorte': OxicorteProductPage, 
+    '/products/eletrodutos': EletrodutosProductPage, 
+    '/products/grooved': GroovedProductPage, 
+    '/products/tanques': TanqueCombustivelProductPage,
 };
 
 const App: React.FC = () => {
-    const route = useRouter();
-    const Page = routes[route] || NotFoundPage;
+    const currentPath = useRouter();
+    const Page = routes[currentPath] || NotFoundPage;
     
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">

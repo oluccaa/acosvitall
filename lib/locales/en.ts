@@ -484,6 +484,17 @@ export const en = {
                 dun_bradstreet: { name: "Dun & Bradstreet", issuer: "D&B", description: "Proven commercial solidity." }
             }
         },
-        policy: { title: "Quality Objectives", description: "Excellence, Sustainability and Customer Focus." }
+        policy: { 
+            title: "Quality Objectives", 
+            description: "Excellence, Sustainability and Customer Focus.",
+            points: [
+                "Traceability: Full raw material control",
+                "Inspections: 100% batch testing",
+                "Compliance: Absolute adherence to standards",
+                "Training: Continuous technical growth",
+                "Commitment: Sustainable operations",
+                "Focus: Agile logistics delivery"
+            ]
+        }
     }
 };

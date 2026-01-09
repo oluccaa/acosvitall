@@ -11,13 +11,13 @@ export const SOCIAL_LINKS = [
 ];
 
 export const NAV_LINKS = [
-  { key: 'home', href: '#/' },
-  { key: 'about', href: '#/about' },
-  { key: 'products', href: '#/products' },
-  { key: 'catalog', href: '#/catalog' },
-  { key: 'calculator', href: '#/calculator' },
-  { key: 'certifications', href: '#/certifications' },
-  { key: 'contact', href: '#/contact' },
+  { key: 'home', href: '/home' },
+  { key: 'about', href: '/about' },
+  { key: 'products', href: '/products' },
+  { key: 'catalog', href: '/catalog' },
+  { key: 'calculator', href: '/calculator' },
+  { key: 'certifications', href: '/certifications' },
+  { key: 'contact', href: '/contact' },
 ];
 
 export const FEATURES_LIST = [
@@ -127,88 +127,88 @@ export const PRODUCT_CATEGORIES = [
   { 
     id: 'flanges', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.FLANGES,
-    href: '#/products/flanges' 
+    href: '/products/flanges' 
   },
   { 
     id: 'tubes', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.TUBES, 
-    href: '#/products/tubos' 
+    href: '/products/tubos' 
   },
   { 
     id: 'fittings', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.FITTINGS, 
-    href: '#/products/conexoes' 
+    href: '/products/conexoes' 
   },
   { 
     id: 'valves', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.VALVES, 
-    href: '#/products/valvulas' 
+    href: '/products/valvulas' 
   },
   { 
     id: 'profiles', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.PROFILES, 
-    href: '#/products/perfis' 
+    href: '/products/perfis' 
   },
   { 
     id: 'plates', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.PLATES, 
-    href: '#/products/chapas' 
+    href: '/products/chapas' 
   },
   { 
     id: 'gratings', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.GRATINGS, 
-    href: '#/products/grades' 
+    href: '/products/grades' 
   },
   { 
     id: 'tiles', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.TILES, 
-    href: '#/products/telhas' 
+    href: '/products/telhas' 
   },
   { 
     id: 'civil', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.CIVIL, 
-    href: '#/products/civil' 
+    href: '/products/civil' 
   },
   { 
     id: 'boilermaking', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.BOILERMAKING, 
-    href: '#/products/caldeiraria' 
+    href: '/products/caldeiraria' 
   },
   { 
     id: 'cutting', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.CUTTING, 
-    href: '#/products/oxicorte' 
+    href: '/products/oxicorte' 
   },
   { 
     id: 'conduits', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.CONDUITS, 
-    href: '#/products/eletrodutos' 
+    href: '/products/eletrodutos' 
   },
   { 
     id: 'tanks', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.TANKS, 
-    href: '#/products/tanques' 
+    href: '/products/tanques' 
   },
   { 
     id: 'grooved', 
     imageUrl: ASSETS.PRODUCT_THUMBNAILS.GROOVED, 
-    href: '#/products/grooved' 
+    href: '/products/grooved' 
   },
 ];
 
 export const FEATURED_PRODUCTS_LIST = [
-    { id: 'flanges', imageUrl: ASSETS.HOME_FEATURED.FLANGE, href: '#/products/flanges' },
-    { id: 'tubes', imageUrl: ASSETS.HOME_FEATURED.TUBOS, href: '#/products/tubos' },
-    { id: 'boilermaking', imageUrl: ASSETS.HOME_FEATURED.CALDEIRARIA, href: '#/products/caldeiraria' },
-    { id: 'plates', imageUrl: ASSETS.HOME_FEATURED.CHAPAS, href: '#/products/chapas' },
-    { id: 'fittings', imageUrl: ASSETS.HOME_FEATURED.CONEXOES, href: '#/products/conexoes' },
-    { id: 'valves', imageUrl: ASSETS.HOME_FEATURED.VALVULAS, href: '#/products/valvulas' },
-    { id: 'profiles', imageUrl: ASSETS.HOME_FEATURED.PERFIS, href: '#/products/perfis' },
-    { id: 'gratings', imageUrl: ASSETS.HOME_FEATURED.GRADE, href: '#/products/grades' },
-    { id: 'tiles', imageUrl: ASSETS.HOME_FEATURED.TELHAS, href: '#/products/telhas' },
-    { id: 'civil', imageUrl: ASSETS.HOME_FEATURED.CIVIL, href: '#/products/civil' },
-    { id: 'cutting', imageUrl: ASSETS.HOME_FEATURED.OXICORTE, href: '#/products/oxicorte' },
-    { id: 'conduits', imageUrl: ASSETS.HOME_FEATURED.ELETRODUTOS, href: '#/products/eletrodutos' },
-    { id: 'grooved', imageUrl: ASSETS.HOME_FEATURED.GROOVED, href: '#/products/grooved' },
-    { id: 'tanks', imageUrl: ASSETS.HOME_FEATURED.TANQUES, href: '#/products/tanques' },
+    { id: 'flanges', imageUrl: ASSETS.HOME_FEATURED.FLANGE, href: '/products/flanges' },
+    { id: 'tubes', imageUrl: ASSETS.HOME_FEATURED.TUBOS, href: '/products/tubos' },
+    { id: 'boilermaking', imageUrl: ASSETS.HOME_FEATURED.CALDEIRARIA, href: '/products/caldeiraria' },
+    { id: 'plates', imageUrl: ASSETS.HOME_FEATURED.CHAPAS, href: '/products/chapas' },
+    { id: 'fittings', imageUrl: ASSETS.HOME_FEATURED.CONEXOES, href: '/products/conexoes' },
+    { id: 'valves', imageUrl: ASSETS.HOME_FEATURED.VALVULAS, href: '/products/valvulas' },
+    { id: 'profiles', imageUrl: ASSETS.HOME_FEATURED.PERFIS, href: '/products/perfis' },
+    { id: 'gratings', imageUrl: ASSETS.HOME_FEATURED.GRADE, href: '/products/grades' },
+    { id: 'tiles', imageUrl: ASSETS.HOME_FEATURED.TELHAS, href: '/products/telhas' },
+    { id: 'civil', imageUrl: ASSETS.HOME_FEATURED.CIVIL, href: '/products/civil' },
+    { id: 'cutting', imageUrl: ASSETS.HOME_FEATURED.OXICORTE, href: '/products/oxicorte' },
+    { id: 'conduits', imageUrl: ASSETS.HOME_FEATURED.ELETRODUTOS, href: '/products/eletrodutos' },
+    { id: 'grooved', imageUrl: ASSETS.HOME_FEATURED.GROOVED, href: '/products/grooved' },
+    { id: 'tanks', imageUrl: ASSETS.HOME_FEATURED.TANQUES, href: '/products/tanques' },
 ];

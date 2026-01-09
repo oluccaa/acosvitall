@@ -111,8 +111,8 @@ const Header: React.FC = () => {
         <>
             {/* Header Sticky Container */}
             <header className={`sticky top-0 z-[100] w-full transition-all duration-300 ${isScrolled ? 'bg-brand-blue-dark/95 backdrop-blur-md shadow-lg' : 'bg-brand-blue-dark'}`}>
-                {/* Top Bar */}
-                <div className={`w-full bg-brand-blue-dark border-b border-white/5 transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0 opacity-0' : 'py-2.5 h-auto opacity-100'}`}>
+                {/* Top Bar - Corrigido clipping removendo overflow-hidden quando aberto */}
+                <div className={`w-full bg-brand-blue-dark border-b border-white/5 transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'py-2.5 h-auto opacity-100'}`}>
                      <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl flex justify-between items-center text-[11px] font-medium tracking-wide text-gray-400">
                          <div className="flex items-center gap-4">
                             <a href="tel:1147972352" className="hover:text-brand-orange flex items-center gap-1.5 transition-colors">

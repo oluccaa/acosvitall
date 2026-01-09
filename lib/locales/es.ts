@@ -3,7 +3,7 @@ export const es = {
     layout: {
         schedule: "Lun - Vie: 07:00 - 17:00",
         menu: "Menú Principal",
-        searchPlaceholder: "Buscar productos, tablas...",
+        searchPlaceholder: "Buscar produtos, tablas...",
         departments: "Departamentos",
         viewAll: "Ver Todos",
         viewSpecs: "Ver especificações",
@@ -74,7 +74,7 @@ export const es = {
                 text: "Usamos sus datos para: responder solicitudes, enviar presupuestos, mejorar servicios y comunicaciones de marketing."
             },
             cookies: {
-                title: "3. Cookies y Tecnologías",
+                title: "3. Cookies y Tecnologias",
                 text: "Usamos cookies para mejorar la experiencia. Puede gestionar sus preferencias en su navegador."
             },
             security: {
@@ -205,7 +205,7 @@ export const es = {
             addToList: "Añadir a la Lista",
             materialList: "Lista de Materiales",
             materialListDesc: "Ítems añadidos al proyecto",
-            action: "Acción",
+            action: "Action",
             print: "Imprimir Lista",
             share: "Compartir",
             clear: "Limpiar Campos",
@@ -310,7 +310,7 @@ export const es = {
     about: {
         title: "¡La confiança es lo que nos conecta!",
         p1: "Aços Vital es referencia en la fabricación de bridas, tubos, curvas y rejillas para los sectores industriales.",
-        p2: "La empresa se destaca por la alta calidad y precisión de sus productos, con atención personalizada.",
+        p2: "La empresa destaca por la alta calidad y precisión de sus productos, con atención personalizada.",
         p3: "Con procesos optimizados y profissionais qualificados, Aços Vital garantiza durabilidad y rendimiento.",
         p4: "Somos el socio confiable que une un equipo técnico de alto rendimiento con productos de extrema calidad.",
         callToAction: {
@@ -484,6 +484,17 @@ export const es = {
                 dun_bradstreet: { name: "Dun & Bradstreet", issuer: "D&B", description: "Solidez comercial comprobada." }
             }
         },
-        policy: { title: "Objetivos de Calidad", description: "Excelencia, Sostenibilidad y Foco en el Cliente." }
+        policy: { 
+            title: "Objetivos de Calidad", 
+            description: "Excellence, Sustainability y Foco en el Cliente.",
+            points: [
+                "Trazabilidad: Control total de materia prima",
+                "Inspecciones: 100% de los lotes inspeccionados",
+                "Conformidad: Adherencia absoluta a las normas",
+                "Entrenamiento: Crecimiento técnico continuo",
+                "Compromiso: Operaciones sostenibles",
+                "Foco: Logística de entrega ágil"
+            ]
+        }
     }
 };
