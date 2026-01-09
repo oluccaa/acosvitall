@@ -62,10 +62,10 @@ const CalculatorPageContent: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const tabs = [
-        { id: 'calculator', label: t('calculatorPage.tabs.calculator'), icon: <Calculator size={18} />, desc: "Peso Teórico" },
-        { id: 'nesting', label: t('calculatorPage.tabs.nesting'), icon: <Scissors size={18} />, desc: "Otimização" },
-        { id: 'welding', label: t('calculatorPage.tabs.welding'), icon: <Flame size={18} />, desc: "Solda" },
-        { id: 'converter', label: t('calculatorPage.tabs.converter'), icon: <ArrowLeftRight size={18} />, desc: "Conversor" },
+        { id: 'calculator', label: t('calculatorPage.tabs.calculator'), icon: <Calculator size={18} />, desc: t('calculatorPage.tabs.calculatorDesc') },
+        { id: 'nesting', label: t('calculatorPage.tabs.nesting'), icon: <Scissors size={18} />, desc: t('calculatorPage.tabs.nestingDesc') },
+        { id: 'welding', label: t('calculatorPage.tabs.welding'), icon: <Flame size={18} />, desc: t('calculatorPage.tabs.weldingDesc') },
+        { id: 'converter', label: t('calculatorPage.tabs.converter'), icon: <ArrowLeftRight size={18} />, desc: t('calculatorPage.tabs.converterDesc') },
     ];
 
     const renderContent = () => {
@@ -124,11 +124,11 @@ const CalculatorPageContent: React.FC = () => {
             {/* CENTER CONTENT */}
             <div className="flex-1 flex flex-col h-full overflow-hidden relative z-10">
                 
-                {/* Scrollable Container - Modified: Reduced max-width to 1024px (max-w-5xl) */}
+                {/* Scrollable Container */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-                    <div className="w-full max-w-5xl mx-auto flex flex-col min-h-full">
+                    <div className="w-full max-w-7xl mx-auto flex flex-col min-h-full">
                         
-                        {/* Header da Workstation - New Stacked Design */}
+                        {/* Header da Workstation */}
                         <header className="bg-[#0f172a] border border-white/5 rounded-xl shadow-xl p-5 md:p-6 mb-6 flex flex-col gap-6 transition-all duration-300">
                             
                             {/* Line 1: Identity & Controls */}
@@ -145,7 +145,7 @@ const CalculatorPageContent: React.FC = () => {
                                             <button 
                                                 onClick={toggleFullScreen}
                                                 className="p-2 bg-white/5 hover:bg-brand-orange hover:text-white rounded-lg transition-all border border-white/10 active:scale-90"
-                                                title={isFullScreen ? "Sair da Tela Cheia" : "Tela Cheia"}
+                                                title={isFullScreen ? "Exit Full Screen" : "Full Screen"}
                                             >
                                                 {isFullScreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
                                             </button>
@@ -159,10 +159,10 @@ const CalculatorPageContent: React.FC = () => {
                                 {/* Dynamic Tech Status for Desktop */}
                                 <div className="hidden md:flex items-center gap-4">
                                     <div className="flex flex-col items-end">
-                                        <span className="text-[9px] font-black text-brand-orange uppercase tracking-widest">System Status</span>
+                                        <span className="text-[9px] font-black text-brand-orange uppercase tracking-widest">{t('calculatorPage.common.systemStatus')}</span>
                                         <span className="text-[10px] text-green-400 flex items-center gap-1.5 font-mono">
                                             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-                                            Operational v5.0.4
+                                            {t('calculatorPage.common.operational')} v5.0.4
                                         </span>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@ const CalculatorPageContent: React.FC = () => {
                                 href={getWhatsappLink("Entrega Otimizada")} 
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block relative h-[120px] w-full max-w-5xl rounded-lg overflow-hidden border border-white/10 shadow-lg group"
+                                className="block relative h-[120px] w-full max-w-7xl rounded-lg overflow-hidden border border-white/10 shadow-lg group"
                              >
                                 <img
                                     src={ASSETS.ADS.CALCULATOR_BOTTOM}

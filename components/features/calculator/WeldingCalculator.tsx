@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flame, Info, Ruler } from 'lucide-react';
@@ -16,10 +17,6 @@ const WeldDiagram: React.FC<{ type: JointType }> = ({ type }) => {
         <text x={x} y={y} fill={textColor} fontSize="10" fontWeight="bold" textAnchor={anchor} style={{ pointerEvents: 'none' }}>{text}</text>
     );
 
-    const Line: React.FC<{ x1: number, y1: number, x2: number, y2: number, dashed?: boolean }> = ({ x1, y1, x2, y2, dashed }) => (
-        <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={dimColor} strokeWidth="1" strokeDasharray={dashed ? "3 3" : ""} />
-    );
-
     const Arrow: React.FC<{ x1: number, y1: number, x2: number, y2: number, label?: string }> = ({ x1, y1, x2, y2, label }) => (
         <g>
             <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={dimColor} strokeWidth="1" />
@@ -36,7 +33,7 @@ const WeldDiagram: React.FC<{ type: JointType }> = ({ type }) => {
                 <rect x="140" y="20" width="20" height="60" fill={metalColor} rx="2" />
                 <path d="M140 80 L110 80 L140 50 Z" fill={weldColor} />
                 <path d="M160 80 L190 80 L160 50 Z" fill={weldColor} />
-                <Arrow x1={110} y1={95} x2={140} y2={95} label="z (Perna)" />
+                <Arrow x1={110} y1={95} x2={140} y2={95} label="z" />
             </svg>
         );
     }
@@ -48,13 +45,12 @@ const WeldDiagram: React.FC<{ type: JointType }> = ({ type }) => {
                 <path d="M260 50 L170 50 L155 90 L260 90 Z" fill={metalColor} />
                 <path d="M130 50 L170 50 L155 90 L145 90 Z" fill={weldColor} />
                 <path d="M130 50 Q150 40 170 50" fill={weldColor} />
-                <Arrow x1={30} y1={50} x2={30} y2={90} label="t (Espessura)" />
-                <Text x={150} y={40} text="α (Ângulo)" />
+                <Arrow x1={30} y1={50} x2={30} y2={90} label="t" />
+                <Text x={150} y={40} text="α" />
             </svg>
         );
     }
     
-    // Default X
     return (
         <svg width="100%" height="120" viewBox="0 0 300 120" className="bg-black/20 rounded">
              <path d="M40 40 L130 40 L145 60 L130 80 L40 80 Z" fill={metalColor} />
@@ -72,7 +68,6 @@ const WeldingCalculator: React.FC = () => {
     const [resultWeight, setResultWeight] = useState<number>(0);
     const [resultVolume, setResultVolume] = useState<number>(0);
 
-    // Processar payload vindo da Calculadora de Aço (Interoperabilidade)
     useEffect(() => {
         if (weldingPayload) {
             updateCalculatorField('weldLength', weldingPayload.length.toString());
@@ -131,9 +126,9 @@ const WeldingCalculator: React.FC = () => {
                         <button 
                             key={type}
                             onClick={() => updateCalculatorField('weldJointType', type)}
-                            className={`p-2 rounded-lg border transition-all flex flex-col items-center gap-1 ${calculatorState.weldJointType === type ? 'bg-brand-orange border-brand-orange text-white shadow-md' : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'}`}
+                            className={`p-2 rounded-lg border transition-all flex flex-col items-center justify-center text-center h-10 ${calculatorState.weldJointType === type ? 'bg-brand-orange border-brand-orange text-white shadow-md' : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'}`}
                         >
-                            <span className="text-[9px] font-bold uppercase">{t(`calculatorPage.welding.types.${type}`)}</span>
+                            <span className="text-[9px] font-bold uppercase leading-none">{t(`calculatorPage.welding.types.${type}`)}</span>
                         </button>
                     ))}
                 </div>
@@ -153,26 +148,44 @@ const WeldingCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {calculatorState.weldJointType === 'fillet' ? (
-                            <div className="col-span-1"><label className={labelClass}>Perna (z) mm</label><input type="number" value={calculatorState.weldLegSize} onChange={e => updateCalculatorField('weldLegSize', e.target.value)} className={inputClass} /></div>
+                            <div className="col-span-1">
+                                <label className={labelClass}>{t('calculatorPage.welding.labels.legSize')}</label>
+                                <input type="number" value={calculatorState.weldLegSize} onChange={e => updateCalculatorField('weldLegSize', e.target.value)} className={inputClass} />
+                            </div>
                         ) : (
                             <>
-                                <div className="col-span-1"><label className={labelClass}>Espessura (t) mm</label><input type="number" value={calculatorState.thickness} onChange={e => updateCalculatorField('thickness', e.target.value)} className={inputClass} /></div>
-                                <div className="col-span-1"><label className={labelClass}>Raiz (g) mm</label><input type="number" value={calculatorState.weldGap} onChange={e => updateCalculatorField('weldGap', e.target.value)} className={inputClass} /></div>
-                                <div className="col-span-1"><label className={labelClass}>Ângulo (α) °</label><input type="number" value={calculatorState.weldAngle} onChange={e => updateCalculatorField('weldAngle', e.target.value)} className={inputClass} /></div>
+                                <div className="col-span-1">
+                                    <label className={labelClass}>{t('calculatorPage.welding.labels.thickness')}</label>
+                                    <input type="number" value={calculatorState.thickness} onChange={e => updateCalculatorField('thickness', e.target.value)} className={inputClass} />
+                                </div>
+                                <div className="col-span-1">
+                                    <label className={labelClass}>{t('calculatorPage.welding.labels.gap')}</label>
+                                    <input type="number" value={calculatorState.weldGap} onChange={e => updateCalculatorField('weldGap', e.target.value)} className={inputClass} />
+                                </div>
+                                <div className="col-span-1">
+                                    <label className={labelClass}>{t('calculatorPage.welding.labels.angle')}</label>
+                                    <input type="number" value={calculatorState.weldAngle} onChange={e => updateCalculatorField('weldAngle', e.target.value)} className={inputClass} />
+                                </div>
                             </>
                         )}
-                        <div className="col-span-1"><label className={labelClass}>Comp. Solda (m)</label><input type="number" value={calculatorState.weldLength} onChange={e => updateCalculatorField('weldLength', e.target.value)} className={inputClass} /></div>
-                        <div className="col-span-1"><label className={labelClass}>Reforço (%)</label><input type="number" value={calculatorState.weldReinforcement} onChange={e => updateCalculatorField('weldReinforcement', e.target.value)} className={inputClass} /></div>
+                        <div className="col-span-1">
+                            <label className={labelClass}>{t('calculatorPage.welding.labels.weldLength')}</label>
+                            <input type="number" value={calculatorState.weldLength} onChange={e => updateCalculatorField('weldLength', e.target.value)} className={inputClass} />
+                        </div>
+                        <div className="col-span-1">
+                            <label className={labelClass}>{t('calculatorPage.welding.labels.reinforcement')}</label>
+                            <input type="number" value={calculatorState.weldReinforcement} onChange={e => updateCalculatorField('weldReinforcement', e.target.value)} className={inputClass} />
+                        </div>
                     </div>
                 </div>
 
                 <div className="flex-1 grid grid-cols-2 gap-3">
                     <div className="bg-gradient-to-br from-brand-blue-dark to-[#0f172a] rounded-lg p-4 border border-white/10 flex flex-col justify-center items-center shadow-md">
-                        <span className="text-brand-blue-light text-[10px] uppercase tracking-widest font-bold mb-1">Peso Estimado</span>
+                        <span className="text-brand-blue-light text-[10px] uppercase tracking-widest font-bold mb-1">{t('calculatorPage.welding.labels.estimatedWeight')}</span>
                         <div className="text-2xl font-mono font-bold text-white">{resultWeight.toFixed(2)} <span className="text-xs text-gray-400">kg</span></div>
                     </div>
                     <div className="bg-[#1e293b] rounded-lg p-4 border border-white/5 flex flex-col justify-center items-center shadow-md">
-                        <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold mb-1">Volume</span>
+                        <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold mb-1">{t('calculatorPage.welding.labels.volume')}</span>
                         <div className="text-xl font-mono font-bold text-white">{resultVolume.toFixed(0)} <span className="text-xs text-gray-500">cm³</span></div>
                     </div>
                 </div>

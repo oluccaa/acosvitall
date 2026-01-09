@@ -50,11 +50,15 @@ export const pt = {
       }
     },
     footer: {
+        description: "Aços Vital destaca-se como fabricante de Flanges, Curvas de Gomos, Tubos Calandrados, Chapas Expandidas e Grades de Piso com a mais alta qualidade para atender as demandas do mercado.",
         slogan: "A confiança é o que nos conecta!",
-        pagesTitle: "Páginas",
-        followUsTitle: "Siga-nos",
-        privacyPolicy: "Política de Privacidade",
-        terms: "Termos de Uso"
+        pagesTitle: "PÁGINAS",
+        followUsTitle: "SIGA-NOS",
+        contactTitle: "CONTATO",
+        privacyPolicy: "POLÍTICA DE PRIVACIDADE",
+        terms: "Termos de Uso",
+        copyright: "Aços Vital Indústria e Comércio. Todos os direitos reservados.",
+        developedBy: "Desenvolvido com excelência"
     },
     privacy: {
         title: "Política de Privacidade",
@@ -96,37 +100,124 @@ export const pt = {
     calculatorPage: {
         title: "Vital Steel Suite",
         subtitle: "Workstation de Engenharia v5.0",
+        selectMaterial: "Selecionar Material",
         tabs: {
             calculator: "Calculadora",
+            calculatorDesc: "Peso Teórico",
             nesting: "Otimização",
+            nestingDesc: "Corte Linear",
             welding: "Estimativa",
-            converter: "Conversor"
+            weldingDesc: "Solda",
+            converter: "Conversor",
+            converterDesc: "Unidades"
+        },
+        converter: {
+            title: "Conversor de Unidades Industriais",
+            categories: {
+                length: "Comprimento",
+                weight: "Peso / Massa",
+                area: "Área",
+                pressure: "Pressão",
+                dn: "Tabela de Tubos (DN)"
+            },
+            labels: {
+                value: "Valor",
+                from: "Unidade de Origem",
+                result: "Resultado",
+                to: "Unidade de Destino"
+            },
+            units: {
+                mm: "Milímetros (mm)",
+                cm: "Centímetros (cm)",
+                m: "Metros (m)",
+                in: "Polegadas (in)",
+                ft: "Pés (ft)",
+                kg: "Quilos (kg)",
+                lb: "Libras (lb)",
+                ton: "Toneladas (ton)",
+                m2: "Metros Quadrados (m²)",
+                cm2: "Centímetros Quadrados (cm²)",
+                ft2: "Pés Quadrados (ft²)",
+                in2: "Pol. Quadradas (in²)",
+                bar: "Bar",
+                psi: "PSI (lb/pol²)",
+                mpa: "Megapascal (MPa)",
+                kgfcm2: "kgf/cm²"
+            }
+        },
+        welding: {
+            title: "Estimativa de Consumo de Solda",
+            types: {
+                fillet: "Filete (T)",
+                buttV: "Topo em V",
+                buttX: "Topo em X"
+            },
+            labels: {
+                legSize: "Perna (z) mm",
+                thickness: "Espessura (t) mm",
+                gap: "Raiz / Abertura (g) mm",
+                angle: "Ângulo (α) °",
+                weldLength: "Comp. da Solda (m)",
+                reinforcement: "Reforço / Coroa (%)",
+                estimatedWeight: "Peso Estimado",
+                volume: "Volume Total"
+            }
+        },
+        nesting: {
+            params: "Parâmetros da Barra",
+            barLength: "Comprimento da Barra",
+            bladeWidth: "Espessura da Serra (Kerf)",
+            addPieces: "Adicionar Peças",
+            length: "Comprimento",
+            qty: "Quantidade",
+            cutList: "Lista de Corte",
+            waiting: "Aguardando Medidas",
+            waitingDesc: "Adicione o comprimento e quantidade das peças para gerar o plano de corte otimizado.",
+            calculateBtn: "Calcular Aproveitamento",
+            errorLength: "O comprimento da peça excede o tamanho disponível da barra.",
+            results: {
+                totalBars: "Barras Necessárias",
+                barUsage: "Aproveitamento",
+                efficiency: "Eficiência Técnica",
+                totalWaste: "Perda Total (mm)",
+                scraps: "Retalhos de Fim",
+                cutPlan: "Plano de Corte Otimizado",
+                hoverDetails: "Passe o mouse sobre os segmentos para detalhes"
+            }
         },
         common: {
-            selection: "Seleção",
+            selection: "Configuração do Material",
+            selectionDesc: "Escolha o material para dimensionar",
+            techParams: "Parâmetros Técnicos",
+            autoSystem: "Sistema Automático",
+            systemStatus: "Status do Sistema",
+            operational: "Operacional",
             console: "Console de Engenharia",
             telemetry: "Telemetria",
             presets: "Presets de Medida",
-            presetsHelp: "Selecione um campo acima e clique em um preset para aplicar.",
+            presetsHelp: "Selecione um campo acima e clique em um preset para aplicar automaticamente.",
             surfaceArea: "Área Superficial",
-            density: "Densidade",
-            totalWeight: "Peso Total",
-            unitWeight: "Unitário",
+            density: "Densidade do Aço",
+            totalWeight: "Peso Total do Projeto",
+            unitWeight: "Peso Unitário",
             totalArea: "Área Total",
-            addToList: "Adicionar à Lista",
+            quantity: "Quantidade",
+            addToList: "Adicionar à Lista de Materiais",
             materialList: "Lista de Materiais",
-            print: "Imprimir",
+            materialListDesc: "Itens adicionados ao seu projeto",
+            action: "Ação",
+            print: "Imprimir Lista",
             share: "Compartilhar",
-            clear: "Limpar",
-            emptyList: "Nenhum item adicionado.",
+            clear: "Limpar Campos",
+            emptyList: "Nenhum item adicionado ao projeto.",
             projectTotal: "Total do Projeto",
-            requestQuote: "Solicitar Cotação",
+            requestQuote: "Solicitar Orçamento via WhatsApp",
             waiting: "Aguardando Cálculo",
-            selectItem: "Selecione um item para calcular",
+            selectItem: "Selecione um item para iniciar o cálculo",
             densityUnit: "g/cm³"
         },
         categories: {
-            raw: "Matéria Prima",
+            raw: "Matéria-Prima",
             piping: "Caldeiraria & Tubulação",
             structural: "Industrial & Estrutural"
         },
@@ -136,33 +227,33 @@ export const pt = {
             length: "Comprimento",
             outerDiameter: "Diâmetro Externo",
             innerDiameter: "Diâmetro Interno",
-            wallThickness: "Parede",
+            wallThickness: "Parede / Schedule",
             height: "Altura",
             diameter: "Diâmetro",
             quantity: "Quantidade",
             angle: "Ângulo (°)",
             pitch: "Passo da Malha",
-            strandWidth: "Cordão",
+            strandWidth: "Largura do Cordão",
             meshSWD: "Malha SWD",
             radius: "Raio de Centro",
-            side: "Lado",
-            barHeight: "Alt. Barra",
-            barThickness: "Esp. Barra",
-            mesh: "Malha",
-            gap: "Vão"
+            side: "Lado / Largura",
+            barHeight: "Alt. da Barra",
+            barThickness: "Esp. da Barra",
+            mesh: "Configuração da Malha",
+            gap: "Vão Livre"
         },
         products: {
-            plate: "Chapa",
-            tube_round: "Tubo Industrial",
+            plate: "Chapa de Aço",
+            tube_round: "Tubo Industrial / Schedule",
             bar_round: "Barra Redonda",
             bar_square: "Barra Quadrada",
-            flange_square: "Anel (Corte de Chapa)",
-            grating: "Grade de Piso",
+            flange_square: "Anel / Disco (Corte de Chapa)",
+            grating: "Grade de Piso Industrial",
             tube_calendered: "Tubo Calandrado",
             expanded_metal: "Chapa Expandida",
-            fitting_elbow: "Curva",
-            fitting_reducer: "Redução",
-            fitting_tee: "Tê"
+            fitting_elbow: "Curva de Raio Longo",
+            fitting_reducer: "Redução Concêntrica",
+            fitting_tee: "Conexão Tê"
         },
         materials: {
             carbon: "Aço Carbono (7.85)",
@@ -175,13 +266,13 @@ export const pt = {
             totalWeight: "Peso Total",
             developedLength: "Desenvolvimento (L)",
             unit: "kg",
-            surfaceArea: "Área de Pintura",
+            surfaceArea: "Area para Pintura",
             grossWeight: "Peso Bruto (Chapa)",
-            netWeight: "Peso Líquido (Anel)",
-            scrap: "Taxa de Refugo"
+            netWeight: "Peso Líquido (Peça)",
+            scrap: "Taxa de Retalho"
         },
         project: {
-            item: "Item",
+            item: "Descrição do Item",
             qty: "Qtd",
             weight: "Peso"
         }
@@ -219,7 +310,7 @@ export const pt = {
     about: {
         title: "A confiança é o que nos conecta!",
         p1: "A Aços Vital é referência na fabricação de flanges, tubos, curvas e grades para os setores industrial e da construção civil.",
-        p2: "A empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.",
+        p2: "La empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.",
         p3: "Com processos otimizados e profissionais qualificados, a Aços Vital garante durabilidade, performance e prazos de entrega diferenciados.",
         p4: "Somos o parceiro confiável que une um time técnico de alta performance, produtos de extrema qualidade e acabamento incomparável. Aços Vital é a melhor decisão para o seu negócio.",
         callToAction: {
@@ -288,7 +379,7 @@ export const pt = {
         items: {
             flanges: "Flanges",
             tubes: "Tubos",
-            boilermaking: "Caldeiraria",
+            boilermaking: "Calderaria",
             plates: "Chapas",
             fittings: "Conexões",
             valves: "Válvulas",
@@ -316,7 +407,7 @@ export const pt = {
             gratings: "Grades de Piso",
             tiles: "Telhas",
             civil: "Civil",
-            boilermaking: "Caldeiraria",
+            boilermaking: "Calderaria",
             cutting: "Oxicorte",
             conduits: "Eletrodutos",
             grooved: "Linha Grooved",
@@ -384,7 +475,7 @@ export const pt = {
     certificationsPage: {
         hero: { title: "Qualidade Certificada", subtitle: "Garantia de conformidade em cada peça." },
         grid: {
-            title: "Nossas Certificações",
+            title: "Nessas Certificações",
             subtitle: "Padrões internacionais de gestão e segurança.",
             items: {
                 iso9001: { name: "ISO 9001:2015", issuer: "Bureau Veritas", description: "Gestão de Qualidade Certificada." },

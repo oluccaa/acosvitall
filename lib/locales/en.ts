@@ -50,11 +50,15 @@ export const en = {
       }
     },
     footer: {
+        description: "Aços Vital stands out as a manufacturer of Flanges, Mitered Elbows, Calendered Tubes, Expanded Metal and Floor Gratings with the highest quality to meet market demands.",
         slogan: "Trust is what connects us!",
-        pagesTitle: "Pages",
-        followUsTitle: "Follow Us",
-        privacyPolicy: "Privacy Policy",
-        terms: "Terms of Use"
+        pagesTitle: "PAGES",
+        followUsTitle: "FOLLOW US",
+        contactTitle: "CONTACT",
+        privacyPolicy: "PRIVACY POLICY",
+        terms: "Terms of Use",
+        copyright: "Aços Vital Industry and Trade. All rights reserved.",
+        developedBy: "Developed with excellence"
     },
     privacy: {
         title: "Privacy Policy",
@@ -96,33 +100,120 @@ export const en = {
     calculatorPage: {
         title: "Vital Steel Suite",
         subtitle: "Engineering Workstation v5.0",
+        selectMaterial: "Select Material",
         tabs: {
             calculator: "Calculator",
-            nesting: "Nesting",
+            calculatorDesc: "Theoretical Weight",
+            nesting: "Optimization",
+            nestingDesc: "Linear Nesting",
             welding: "Estimation",
-            converter: "Converter"
+            weldingDesc: "Welding",
+            converter: "Converter",
+            converterDesc: "Units"
+        },
+        converter: {
+            title: "Industrial Unit Converter",
+            categories: {
+                length: "Length",
+                weight: "Weight / Mass",
+                area: "Area",
+                pressure: "Pressure",
+                dn: "Pipe Schedule Table (DN)"
+            },
+            labels: {
+                value: "Value",
+                from: "Source Unit",
+                result: "Result",
+                to: "Target Unit"
+            },
+            units: {
+                mm: "Millimeters (mm)",
+                cm: "Centimeters (cm)",
+                m: "Meters (m)",
+                in: "Inches (in)",
+                ft: "Feet (ft)",
+                kg: "Kilograms (kg)",
+                lb: "Pounds (lb)",
+                ton: "Metric Tons (ton)",
+                m2: "Square Meters (m²)",
+                cm2: "Square Centimeters (cm²)",
+                ft2: "Square Feet (ft²)",
+                in2: "Square Inches (in²)",
+                bar: "Bar",
+                psi: "PSI (lb/in²)",
+                mpa: "Megapascal (MPa)",
+                kgfcm2: "kgf/cm²"
+            }
+        },
+        welding: {
+            title: "Weld Consumable Estimation",
+            types: {
+                fillet: "Fillet Weld (T)",
+                buttV: "V-Butt Joint",
+                buttX: "X-Butt Joint"
+            },
+            labels: {
+                legSize: "Leg Size (z) mm",
+                thickness: "Thickness (t) mm",
+                gap: "Root Gap (g) mm",
+                angle: "Bevel Angle (α) °",
+                weldLength: "Weld Length (m)",
+                reinforcement: "Reinforcement / Crown (%)",
+                estimatedWeight: "Estimated Weight",
+                volume: "Total Volume"
+            }
+        },
+        nesting: {
+            params: "Stock Parameters",
+            barLength: "Stock Bar Length",
+            bladeWidth: "Saw Thickness (Kerf)",
+            addPieces: "Add Cut Pieces",
+            length: "Length",
+            qty: "Quantity",
+            cutList: "Cut List",
+            waiting: "Awaiting Input",
+            waitingDesc: "Add piece length and quantity to generate the optimized cutting plan.",
+            calculateBtn: "Optimize Nesting",
+            errorLength: "Piece length exceeds the available stock bar size.",
+            results: {
+                totalBars: "Required Bars",
+                barUsage: "Yield Rate",
+                efficiency: "Technical Efficiency",
+                totalWaste: "Total Scrap (mm)",
+                scraps: "End Pieces",
+                cutPlan: "Optimized Cutting Plan",
+                hoverDetails: "Hover over segments for details"
+            }
         },
         common: {
-            selection: "Selection",
+            selection: "Material Configuration",
+            selectionDesc: "Choose the material to dimension",
+            techParams: "Technical Parameters",
+            autoSystem: "Automatic System",
+            systemStatus: "System Status",
+            operational: "Operational",
             console: "Engineering Console",
             telemetry: "Telemetry",
-            presets: "Presets",
-            presetsHelp: "Select a field and click a preset to apply.",
+            presets: "Dimension Presets",
+            presetsHelp: "Select a field above and click a preset to apply automatically.",
             surfaceArea: "Surface Area",
-            density: "Density",
-            totalWeight: "Total Weight",
+            density: "Steel Density",
+            totalWeight: "Project Total Weight",
             unitWeight: "Unit Weight",
             totalArea: "Total Area",
-            addToList: "Add to List",
-            materialList: "Material List",
-            print: "Print",
-            share: "Share",
-            clear: "Clear",
-            emptyList: "No items added.",
-            projectTotal: "Project Total",
-            requestQuote: "Request Quote",
-            waiting: "Waiting for Calculation",
-            selectItem: "Select an item to calculate",
+            quantity: "Quantity",
+            addToList: "Add to Material List",
+            materialList: "Bill of Materials",
+            materialListDesc: "Items added to your project",
+            action: "Action",
+            print: "Print List",
+            share: "Share Project",
+            clear: "Clear Fields",
+            emptyList: "No items added to the project.",
+            projectTotal: "Grand Total",
+            requestQuote: "Request Quote via WhatsApp",
+            waiting: "Calculating...",
+            selectItem: "Select an item to start calculation",
             densityUnit: "g/cm³"
         },
         categories: {
@@ -136,33 +227,33 @@ export const en = {
             length: "Length",
             outerDiameter: "Outer Diameter",
             innerDiameter: "Inner Diameter",
-            wallThickness: "Wall",
+            wallThickness: "Wall / Schedule",
             height: "Height",
             diameter: "Diameter",
             quantity: "Quantity",
             angle: "Angle (°)",
             pitch: "Mesh Pitch",
-            strandWidth: "Strand",
+            strandWidth: "Strand Width",
             meshSWD: "Mesh SWD",
             radius: "Center Radius",
-            side: "Side",
+            side: "Side / Width",
             barHeight: "Bar Height",
             barThickness: "Bar Thickness",
-            mesh: "Mesh",
-            gap: "Gap"
+            mesh: "Mesh Configuration",
+            gap: "Clear Span"
         },
         products: {
-            plate: "Plate",
-            tube_round: "Industrial Tube",
+            plate: "Steel Plate",
+            tube_round: "Industrial / Schedule Tube",
             bar_round: "Round Bar",
             bar_square: "Square Bar",
-            flange_square: "Ring (Plate Cut)",
-            grating: "Floor Grating",
-            tube_calendered: "Calendered Tube",
+            flange_square: "Ring / Disc (Plate Cut)",
+            grating: "Industrial Floor Grating",
+            tube_calendered: "Rolled / Calendered Tube",
             expanded_metal: "Expanded Metal",
-            fitting_elbow: "Elbow",
-            fitting_reducer: "Reducer",
-            fitting_tee: "Tee"
+            fitting_elbow: "Long Radius Elbow",
+            fitting_reducer: "Concentric Reducer",
+            fitting_tee: "Tee Fitting"
         },
         materials: {
             carbon: "Carbon Steel (7.85)",
@@ -173,15 +264,15 @@ export const en = {
         result: {
             weightPerPiece: "Unit Weight",
             totalWeight: "Total Weight",
-            developedLength: "Development (L)",
+            developedLength: "Developed Length (L)",
             unit: "kg",
-            surfaceArea: "Painting Area",
+            surfaceArea: "Coating Area",
             grossWeight: "Gross Weight (Plate)",
-            netWeight: "Net Weight (Ring)",
+            netWeight: "Net Weight (Part)",
             scrap: "Scrap Rate"
         },
         project: {
-            item: "Item",
+            item: "Item Description",
             qty: "Qty",
             weight: "Weight"
         }
@@ -221,7 +312,7 @@ export const en = {
         p1: "Aços Vital is a benchmark in the manufacture of flanges, tubes, curves and gratings for the industrial and construction sectors.",
         p2: "The company stands out for the high quality and precision of its products, offering tailor-made solutions and personalized service.",
         p3: "With optimized processes and qualified professionals, Aços Vital guarantees durability, performance and differentiated delivery times.",
-        p4: "We are the reliable partner that unites a high-performance technical team, extremely high-quality products and incomparable finishing.",
+        p4: "We are the reliable partner that unites a high-performance technical team, extremely high-quality products and incomparable finishing. Aços Vital is the best decision for your business.",
         callToAction: {
              buttonText: "TALK TO A CONSULTANT"
         }
@@ -238,7 +329,7 @@ export const en = {
         subtitle: "WHO WE ARE AND WHAT WE SEEK?",
         title: "Our Pillars",
         list: {
-            mission: { title: "MISSION", description: "Delivering high-quality steel products, strengthening partnerships, promoting sustainable growth." },
+            mission: { title: "MISSION", description: "The company delivers high-quality steel products, strengthening partnerships, and promoting sustainable growth." },
             vision: { title: "VISION", description: "To be a national benchmark in steel products, standing out for quality and innovation." },
             values: { title: "VALUES", description: "Quality, innovation, sustainability, partnership and safety." }
         }

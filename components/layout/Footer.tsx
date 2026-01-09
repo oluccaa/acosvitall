@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
@@ -7,14 +8,14 @@ const Footer: React.FC = () => {
     const { t } = useTranslation();
 
     const allLinks = [
-        { key: 'home', label: 'INÍCIO', href: '#/' },
-        { key: 'about', label: 'SOBRE NÓS', href: '#/about' },
-        { key: 'products', label: 'PRODUTOS', href: '#/products' },
-        { key: 'catalog', label: 'CATÁLOGO', href: '#/catalog' },
-        { key: 'calculator', label: 'CALCULADORA', href: '#/calculator' },
-        { key: 'certifications', label: 'CERTIFICAÇÕES', href: '#/certifications' },
-        { key: 'contact', label: 'CONTATO', href: '#/contact' },
-        { key: 'privacy', label: 'POLÍTICA DE PRIVACIDADE', href: '#/privacy' }
+        { key: 'home', label: t('header.navLinks.home'), href: '#/' },
+        { key: 'about', label: t('header.navLinks.about'), href: '#/about' },
+        { key: 'products', label: t('header.navLinks.products'), href: '#/products' },
+        { key: 'catalog', label: t('header.navLinks.catalog'), href: '#/catalog' },
+        { key: 'calculator', label: t('header.navLinks.calculator'), href: '#/calculator' },
+        { key: 'certifications', label: t('header.navLinks.certifications'), href: '#/certifications' },
+        { key: 'contact', label: t('header.navLinks.contact'), href: '#/contact' },
+        { key: 'privacy', label: t('footer.privacyPolicy'), href: '#/privacy' }
     ];
 
     const midPoint = Math.ceil(allLinks.length / 2);
@@ -31,11 +32,13 @@ const Footer: React.FC = () => {
                             <Logo className="h-auto w-full" />
                         </a>
                         <p className="text-sm leading-relaxed text-gray-400">
-                            Aços Vital destaca-se como fabricante de Flanges, Curvas de Gomos, Tubos Calandrados, Chapas Expandidas e Grades de Piso com a mais alta qualidade para atender as demandas do mercado.
+                            {t('footer.description')}
                         </p>
                         
                         <div className="pt-2">
-                            <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-4">SIGA-NOS</h3>
+                            <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-4">
+                                {t('footer.followUsTitle')}
+                            </h3>
                             <div className="flex gap-3">
                                 <a href="#" className="w-10 h-10 rounded-full bg-[#111827] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 group border border-white/5">
                                     <Facebook size={18} className="text-gray-400 group-hover:text-white" />
@@ -54,7 +57,9 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className="lg:col-span-2 lg:pl-12">
-                        <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">PÁGINAS</h3>
+                        <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">
+                            {t('footer.pagesTitle')}
+                        </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                             <ul className="space-y-3">
                                 {leftLinks.map(link => (
@@ -80,7 +85,9 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div>
-                        <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">CONTATO</h3>
+                        <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">
+                            {t('footer.contactTitle')}
+                        </h3>
                         <ul className="space-y-6">
                             <li className="flex items-start gap-4 group">
                                 <div className="mt-1">
@@ -109,8 +116,10 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                    <p>&copy; {new Date().getFullYear() + 1} Aços Vital Indústria e Comércio. Todos os direitos reservados.</p>
-                    <p className="opacity-80 hover:opacity-100 transition-opacity">Desenvolvido com excelência</p>
+                    <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
+                    <p className="opacity-80 hover:opacity-100 transition-opacity">
+                        {t('footer.developedBy')}
+                    </p>
                 </div>
             </div>
         </footer>

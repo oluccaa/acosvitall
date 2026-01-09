@@ -34,7 +34,7 @@ const PIPE_DATA = [
 ];
 
 const UnitConverter: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [category, setCategory] = useState<Category>('length');
     
     // Estados para conversão padrão
@@ -82,6 +82,13 @@ const UnitConverter: React.FC = () => {
     };
 
     const result = calculateResult();
+    
+    // Formatação localizada profissional (ex: 10.000,00 no Brasil)
+    const locale = i18n.language === 'pt' ? 'pt-BR' : i18n.language === 'es' ? 'es-ES' : 'en-US';
+    const formattedResult = result.toLocaleString(locale, { 
+        minimumFractionDigits: 2, 
+        maximumFractionDigits: 4 
+    });
 
     return (
         <div className="max-w-2xl mx-auto bg-[#0f172a] border border-white/10 rounded-xl p-5 shadow-xl">
@@ -201,7 +208,7 @@ const UnitConverter: React.FC = () => {
                             </label>
                             <div className="flex gap-2">
                                 <div className="w-1/2 bg-brand-blue-dark/50 border border-brand-blue-light/20 rounded-lg p-2 text-brand-orange font-mono text-sm font-bold flex items-center h-10 overflow-hidden">
-                                    {result.toLocaleString(undefined, { maximumFractionDigits: 4 })}
+                                    {formattedResult}
                                 </div>
                                 <select 
                                     value={toUnit} 
