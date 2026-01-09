@@ -20,24 +20,19 @@ interface NavLinksProps {
 }
 
 export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLinkClick, isMobile = false, isScrolled = false }) => {
-    const { t } = useTranslation();
-    const currentHash = useRouter();
+    const currentPath = useRouter();
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const timeoutRef = useRef<number | null>(null);
 
     const isActive = (href: string): boolean => {
-        if (href === '#/') return currentHash === '' || currentHash === '#/';
-        return currentHash.startsWith(href);
+        if (href === '/' || href === '/home') return currentPath === '/' || currentPath === '/home';
+        return currentPath.startsWith(href);
     };
 
-    // Fechar o menu automaticamente ao scrollar a página
     useEffect(() => {
         const handleScroll = () => {
-            if (isMegaMenuOpen) {
-                setIsMegaMenuOpen(false);
-            }
+            if (isMegaMenuOpen) setIsMegaMenuOpen(false);
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isMegaMenuOpen]);
@@ -68,7 +63,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                  return (
                     <div 
                         key={link.href} 
-                        className="static" // Permite que o MegaMenu (fixed) se posicione em relação à tela
+                        className="static"
                         onMouseEnter={() => handleMouseEnter(link.key)}
                         onMouseLeave={isProducts ? handleMouseLeave : undefined}
                     >

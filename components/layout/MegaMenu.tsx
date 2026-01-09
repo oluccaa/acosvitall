@@ -55,10 +55,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
         >
             <div className="w-full max-w-7xl bg-[#081437] border border-white/10 rounded-2xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden ring-1 ring-white/5">
                 <div className="flex flex-col lg:flex-row">
-                    
-                    {/* Área Principal de Produtos */}
                     <div className="flex-1 flex flex-col">
-                        {/* Linha de Cabeçalhos - Alinhamento Perfeito e Linha Contínua */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 px-8 lg:px-10 pt-10 pb-4 border-b border-white/5">
                             {GROUPS.map((group) => (
                                 <div key={group.id} className="flex items-center gap-3">
@@ -72,7 +69,6 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                             ))}
                         </div>
 
-                        {/* Linha de Listas */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 px-8 lg:px-10 py-6 pb-10">
                             {GROUPS.map((group) => (
                                 <ul key={group.id} className="space-y-0.5">
@@ -100,7 +96,6 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                         </div>
                     </div>
 
-                    {/* Sidebar Técnica */}
                     <div className="w-full lg:w-[320px] bg-black/20 border-t lg:border-t-0 lg:border-l border-white/5 p-8 lg:p-10 flex flex-col justify-between">
                         <div>
                             <span className="text-[9px] font-black text-brand-orange uppercase tracking-[0.25em] block mb-4">Engenharia Vital</span>
@@ -111,7 +106,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                                 Workstation de alta precisão para cálculos técnicos e orçamentação industrial.
                             </p>
                             <a 
-                                href="#/calculator"
+                                href="/calculator"
                                 onClick={onClose}
                                 className="inline-flex items-center gap-2 text-[10px] font-black text-white uppercase tracking-widest hover:text-brand-orange transition-colors group"
                             >
@@ -122,7 +117,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
 
                         <div className="mt-8 pt-8 border-t border-white/5">
                             <a 
-                                href="#/catalog"
+                                href="/catalog"
                                 onClick={onClose}
                                 className="flex items-center gap-4 p-5 rounded-2xl bg-brand-orange/10 border border-brand-orange/20 hover:bg-brand-orange transition-all group"
                             >

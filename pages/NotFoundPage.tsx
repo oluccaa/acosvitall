@@ -21,7 +21,7 @@ const NotFoundPage: React.FC = () => {
       </p>
       
       <a
-        href="/"
+        href="/home"
         className="inline-block bg-brand-orange text-white font-bold py-4 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:-translate-y-1 shadow-xl shadow-brand-orange/20 text-sm uppercase tracking-widest active:scale-95"
       >
         {t('notFoundPage.homeButton')}

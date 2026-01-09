@@ -8,10 +8,8 @@ const CookieBanner: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Check if user has already consented
         const consent = localStorage.getItem('acosvital_cookie_consent');
         if (!consent) {
-            // Slight delay for better UX (doesn't pop up instantly)
             const timer = setTimeout(() => setIsVisible(true), 1000);
             return () => clearTimeout(timer);
         }
@@ -23,8 +21,6 @@ const CookieBanner: React.FC = () => {
     };
 
     const handleDecline = () => {
-        // Even if declined, we store the preference to avoid asking again in this session
-        // In a real implementation with analytics, this would disable non-essential scripts
         localStorage.setItem('acosvital_cookie_consent', 'false');
         setIsVisible(false);
     };
@@ -34,8 +30,6 @@ const CookieBanner: React.FC = () => {
     return (
         <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-in slide-in-from-bottom-4 duration-500">
             <div className="max-w-7xl mx-auto bg-brand-blue-dark/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                
-                {/* Icon & Text */}
                 <div className="flex items-start gap-4 flex-1">
                     <div className="p-2 bg-brand-orange/10 rounded-full text-brand-orange hidden sm:block">
                         <Cookie size={24} />
@@ -43,14 +37,13 @@ const CookieBanner: React.FC = () => {
                     <div className="text-sm text-gray-300 leading-relaxed">
                         <p>
                             {t('privacy.cookieBanner.text')}{' '}
-                            <a href="#/privacy" className="text-white font-bold underline hover:text-brand-orange transition-colors">
+                            <a href="/privacy" className="text-white font-bold underline hover:text-brand-orange transition-colors">
                                 {t('privacy.cookieBanner.link')}
                             </a>.
                         </p>
                     </div>
                 </div>
 
-                {/* Actions */}
                 <div className="flex items-center gap-3 w-full md:w-auto">
                     <button 
                         onClick={handleDecline}
@@ -66,7 +59,6 @@ const CookieBanner: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Close X (Optional, acts as decline/dismiss) */}
                 <button 
                     onClick={() => setIsVisible(false)}
                     className="absolute top-2 right-2 p-1 text-gray-500 hover:text-white transition-colors md:hidden"

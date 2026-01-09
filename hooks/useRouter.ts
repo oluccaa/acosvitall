@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
  * Intercepta navegações para manter o comportamento de SPA.
  */
 export const useRouter = () => {
-  // Inicialização robusta: trata caminhos vazios ou index.html como raiz
   const getInitialPath = () => {
     const p = window.location.pathname;
     if (!p || p === '/' || p === '/index.html') return '/';
@@ -18,14 +17,13 @@ export const useRouter = () => {
   useEffect(() => {
     const handleLocationChange = () => {
       const currentPath = window.location.pathname || '/';
-      setPath(currentPath === '/index.html' ? '/' : currentPath);
+      const cleanPath = currentPath === '/index.html' ? '/' : currentPath;
+      setPath(cleanPath);
       window.scrollTo(0, 0);
     };
 
-    // Escuta eventos de voltar/avançar do navegador
     window.addEventListener('popstate', handleLocationChange);
     
-    // Interceptador global de cliques para links internos
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
@@ -36,23 +34,27 @@ export const useRouter = () => {
           anchor.target !== '_blank') {
         
         const url = new URL(anchor.href);
-        
-        // Se for um link interno mas com hash (âncora na mesma página), deixa o navegador tratar
-        if (url.pathname === window.location.pathname && url.hash) {
+        let targetPath = url.pathname;
+
+        // Suporte a links legados com hash: se o link for #/about, converte para /about
+        if (url.hash && url.hash.startsWith('#/')) {
+          targetPath = url.hash.substring(1); 
+        }
+
+        // Se for apenas um hash interno (âncora na mesma página), deixa o navegador tratar
+        if (targetPath === window.location.pathname && url.hash && !url.hash.startsWith('#/')) {
           return;
         }
 
         e.preventDefault();
-        if (window.location.pathname !== url.pathname) {
-          window.history.pushState({}, '', url.pathname);
+        if (window.location.pathname !== targetPath) {
+          window.history.pushState({}, '', targetPath);
           handleLocationChange();
         }
       }
     };
 
     document.addEventListener('click', handleGlobalClick);
-
-    // Executa uma vez no mount para garantir sincronia
     handleLocationChange();
 
     return () => {
