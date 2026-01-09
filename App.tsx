@@ -7,9 +7,8 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 import CookieBanner from './components/common/CookieBanner';
 import FloatingWhatsapp from './components/common/FloatingWhatsapp';
 
-// --- 1. DEFINIÇÃO DAS PÁGINAS (VARIAVEIS) ---
+// --- 1. DEFINIÇÃO DAS PÁGINAS (LAZY LOADING) ---
 
-// Core Pages
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ProductsPage = React.lazy(() => import('./pages/ProductsPage'));
@@ -37,11 +36,10 @@ const EletrodutosProductPage = React.lazy(() => import('./subpages/EletrodutosPr
 const GroovedProductPage = React.lazy(() => import('./subpages/GroovedProductPage'));
 const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueCombustivelProductPage'));
 
-// --- 2. MAPEAMENTO DE ROTAS (BROWSER ROUTER) ---
+// --- 2. MAPEAMENTO DE ROTAS ---
 
-const routes: { [key: string]: React.ComponentType } = {
-    '/': HomePage, 
-    '/index.html': HomePage,
+const routes: Record<string, React.LazyExoticComponent<React.FC>> = {
+    '/': HomePage,
     '/home': HomePage,
     '/about': AboutPage,
     '/products': ProductsPage,
@@ -52,7 +50,7 @@ const routes: { [key: string]: React.ComponentType } = {
     '/contact': ContactPage,
     '/privacy': PrivacyPolicyPage,
     
-    // Rotas de Produtos
+    // Rotas de Produtos (Devem ser caminhos limpos sem barras no final)
     '/products/flanges': FlangeProductPage, 
     '/products/tubos': TubosProductPage,
     '/products/conexoes': ConexoesProductPage, 
@@ -71,8 +69,9 @@ const routes: { [key: string]: React.ComponentType } = {
 
 const App: React.FC = () => {
     const currentPath = useRouter();
-    // Normaliza para garantir que '/' e '/home' carreguem a mesma página
-    const Page = routes[currentPath] || (currentPath === '' ? HomePage : NotFoundPage);
+    
+    // Busca a página no mapa ou cai no NotFound
+    const Page = routes[currentPath] || NotFoundPage;
     
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">

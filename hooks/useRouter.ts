@@ -1,67 +1,75 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
+/**
+ * Normaliza o pathname removendo barras finais e tratando index.html como raiz.
+ */
+const normalizePath = (path: string): string => {
+  if (!path || path === '/' || path === '/index.html') return '/';
+  // Remove barra final para consistência, ex: /about/ vira /about
+  return path.replace(/\/$/, '') || '/';
+};
 
 /**
  * Custom Router Hook para BrowserRouter (Pathname based)
- * Intercepta navegações para manter o comportamento de SPA.
+ * Intercepta navegações para manter o comportamento de SPA e garante a troca de componentes.
  */
 export const useRouter = () => {
-  const getInitialPath = () => {
-    const p = window.location.pathname;
-    if (!p || p === '/' || p === '/index.html') return '/';
-    return p;
-  };
+  const [path, setPath] = useState(normalizePath(window.location.pathname));
 
-  const [path, setPath] = useState(getInitialPath());
+  const handleLocationChange = useCallback(() => {
+    const newPath = normalizePath(window.location.pathname);
+    if (path !== newPath) {
+      setPath(newPath);
+    }
+    window.scrollTo(0, 0);
+  }, [path]);
 
   useEffect(() => {
-    const handleLocationChange = () => {
-      const currentPath = window.location.pathname || '/';
-      const cleanPath = currentPath === '/index.html' ? '/' : currentPath;
-      setPath(cleanPath);
-      window.scrollTo(0, 0);
-    };
-
+    // Escuta eventos de voltar/avançar do navegador
     window.addEventListener('popstate', handleLocationChange);
     
+    // Interceptador global de cliques para links internos <a>
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
       
+      // Verifica se é um link interno e se não é um download ou link externo
       if (anchor && 
           anchor.href.startsWith(window.location.origin) && 
           !anchor.hasAttribute('download') && 
           anchor.target !== '_blank') {
         
         const url = new URL(anchor.href);
-        let targetPath = url.pathname;
+        const targetPath = normalizePath(url.pathname);
 
-        // Suporte a links legados com hash: se o link for #/about, converte para /about
-        if (url.hash && url.hash.startsWith('#/')) {
-          targetPath = url.hash.substring(1); 
-        }
-
-        // Se for apenas um hash interno (âncora na mesma página), deixa o navegador tratar
-        if (targetPath === window.location.pathname && url.hash && !url.hash.startsWith('#/')) {
+        // Se for um link de âncora (#id) na mesma página, deixa o navegador tratar
+        if (targetPath === normalizePath(window.location.pathname) && url.hash && !url.hash.startsWith('#/')) {
           return;
         }
 
+        // Previne navegação real do navegador
         e.preventDefault();
-        if (window.location.pathname !== targetPath) {
+
+        // Se o caminho for diferente, atualiza o histórico e o estado do React
+        if (normalizePath(window.location.pathname) !== targetPath) {
           window.history.pushState({}, '', targetPath);
+          // O popstate não dispara em pushState, então chamamos manualmente
           handleLocationChange();
         }
       }
     };
 
     document.addEventListener('click', handleGlobalClick);
+
+    // Sincronização inicial
     handleLocationChange();
 
     return () => {
       window.removeEventListener('popstate', handleLocationChange);
       document.removeEventListener('click', handleGlobalClick);
     };
-  }, []);
+  }, [handleLocationChange]);
 
   return path;
 };
