@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useI18n } from '../../../context/I18nContext';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { PRODUCT_CATEGORIES } from '../../../lib/constants';
 
 interface ProductCategory {
@@ -21,18 +22,18 @@ const ProductCategoryCard: React.FC<{ category: ProductCategory; buttonText: str
         />
         <div className="flex-grow">
             <h3 className="font-bold text-xl text-brand-blue-dark mb-3 uppercase tracking-wide">{category.name}</h3>
-            <a
-                href={category.href}
+            <Link
+                to={category.href}
                 className="inline-block border-2 border-brand-orange text-brand-orange font-semibold py-2 px-6 rounded-md hover:bg-brand-orange hover:text-white transition-colors duration-300 text-sm"
             >
                 {buttonText}
-            </a>
+            </Link>
         </div>
     </div>
 );
 
 const ProductCatalog: React.FC = () => {
-    const { t } = useI18n();
+    const { t } = useTranslation();
     const title = t('productsPage.title');
     const description = t('productsPage.description');
     const buttonText = t('productsPage.buttonText');

@@ -116,7 +116,8 @@ const FeaturedProducts: React.FC = () => {
             pos.current.velocity = (deltaX / deltaTime) * 16; 
         }
 
-        if (Math.abs(walk) > 5) pos.current.moved = true;
+        // Aumentado threshold para 10px para evitar falsos positivos de "moved" em cliques
+        if (Math.abs(walk) > 10) pos.current.moved = true;
         sliderRef.current.scrollLeft = pos.current.scrollLeft - walk;
         
         pos.current.lastX = e.pageX;
@@ -129,6 +130,7 @@ const FeaturedProducts: React.FC = () => {
         startInertia();
     };
 
+    // Previne a navegação apenas se o mouse tiver se movido significativamente (arrastado o carrossel)
     const handleLinkClick = (e: React.MouseEvent) => {
         if (pos.current.moved) {
             e.preventDefault();
