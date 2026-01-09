@@ -8,14 +8,14 @@ const Footer: React.FC = () => {
     const { t } = useTranslation();
 
     const allLinks = [
-        { key: 'home', label: t('header.navLinks.home'), href: '#/' },
-        { key: 'about', label: t('header.navLinks.about'), href: '#/about' },
-        { key: 'products', label: t('header.navLinks.products'), href: '#/products' },
-        { key: 'catalog', label: t('header.navLinks.catalog'), href: '#/catalog' },
-        { key: 'calculator', label: t('header.navLinks.calculator'), href: '#/calculator' },
-        { key: 'certifications', label: t('header.navLinks.certifications'), href: '#/certifications' },
-        { key: 'contact', label: t('header.navLinks.contact'), href: '#/contact' },
-        { key: 'privacy', label: t('footer.privacyPolicy'), href: '#/privacy' }
+        { key: 'home', label: t('header.navLinks.home'), href: '/' },
+        { key: 'about', label: t('header.navLinks.about'), href: '/about' },
+        { key: 'products', label: t('header.navLinks.products'), href: '/products' },
+        { key: 'catalog', label: t('header.navLinks.catalog'), href: '/catalog' },
+        { key: 'calculator', label: t('header.navLinks.calculator'), href: '/calculator' },
+        { key: 'certifications', label: t('header.navLinks.certifications'), href: '/certifications' },
+        { key: 'contact', label: t('header.navLinks.contact'), href: '/contact' },
+        { key: 'privacy', label: t('footer.privacyPolicy'), href: '/privacy' }
     ];
 
     const midPoint = Math.ceil(allLinks.length / 2);
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     
                     <div className="space-y-6">
-                        <a href="#/" aria-label="Aços Vital" className="block w-48">
+                        <a href="/" aria-label="Aços Vital" className="block w-48">
                             <Logo className="h-auto w-full" />
                         </a>
                         <p className="text-sm leading-relaxed text-gray-400">

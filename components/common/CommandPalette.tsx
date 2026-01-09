@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, X, ChevronRight, Package, Calculator, FileText, ArrowRight } from 'lucide-react';
 import { PRODUCT_CATEGORIES } from '../../lib/constants';
@@ -31,7 +32,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  // Mock Search Data Structure
+  // Search Data Structure
   const searchData = [
     // Products
     ...PRODUCT_CATEGORIES.map(cat => ({
@@ -41,11 +42,11 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
       icon: <Package size={18} />
     })),
     // Tools
-    { type: 'tool', title: t('calculatorPage.tabs.calculator'), href: '#/calculator', icon: <Calculator size={18} /> },
-    { type: 'tool', title: t('calculatorPage.tabs.nesting'), href: '#/calculator', icon: <Calculator size={18} /> },
-    { type: 'tool', title: t('calculatorPage.tabs.welding'), href: '#/calculator', icon: <Calculator size={18} /> },
-    // Tables (Generic link for now)
-    { type: 'table', title: t('header.navLinks.tables'), href: '#/tables', icon: <FileText size={18} /> },
+    { type: 'tool', title: t('calculatorPage.tabs.calculator'), href: '/calculator', icon: <Calculator size={18} /> },
+    { type: 'tool', title: t('calculatorPage.tabs.nesting'), href: '/calculator', icon: <Calculator size={18} /> },
+    { type: 'tool', title: t('calculatorPage.tabs.welding'), href: '/calculator', icon: <Calculator size={18} /> },
+    // Tables
+    { type: 'table', title: t('header.navLinks.tables'), href: '/tables', icon: <FileText size={18} /> },
   ];
 
   const filteredResults = searchData.filter(item => 

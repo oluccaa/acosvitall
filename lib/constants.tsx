@@ -11,7 +11,7 @@ export const SOCIAL_LINKS = [
 ];
 
 export const NAV_LINKS = [
-  { key: 'home', href: '/home' },
+  { key: 'home', href: '/' },
   { key: 'about', href: '/about' },
   { key: 'products', href: '/products' },
   { key: 'catalog', href: '/catalog' },

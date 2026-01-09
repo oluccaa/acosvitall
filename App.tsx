@@ -71,7 +71,8 @@ const routes: { [key: string]: React.ComponentType } = {
 
 const App: React.FC = () => {
     const currentPath = useRouter();
-    const Page = routes[currentPath] || NotFoundPage;
+    // Normaliza para garantir que '/' e '/home' carreguem a mesma página
+    const Page = routes[currentPath] || (currentPath === '' ? HomePage : NotFoundPage);
     
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">

@@ -105,13 +105,13 @@ const Header: React.FC = () => {
         href: link.href
     }));
 
-    const isLinkActive = (href: string) => currentRoute === href || (currentRoute.startsWith(href) && href !== '#/');
+    const isLinkActive = (href: string) => currentRoute === href || (currentRoute.startsWith(href) && href !== '/');
 
     return (
         <>
             {/* Header Sticky Container */}
             <header className={`sticky top-0 z-[100] w-full transition-all duration-300 ${isScrolled ? 'bg-brand-blue-dark/95 backdrop-blur-md shadow-lg' : 'bg-brand-blue-dark'}`}>
-                {/* Top Bar - Corrigido clipping removendo overflow-hidden quando aberto */}
+                {/* Top Bar */}
                 <div className={`w-full bg-brand-blue-dark border-b border-white/5 transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'py-2.5 h-auto opacity-100'}`}>
                      <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl flex justify-between items-center text-[11px] font-medium tracking-wide text-gray-400">
                          <div className="flex items-center gap-4">
@@ -158,7 +158,7 @@ const Header: React.FC = () => {
                         <div className="flex justify-between items-center gap-6">
                             
                             {/* Logo */}
-                            <a href="#/" aria-label="Aços Vital Home" className="flex-shrink-0 z-50 transition-transform duration-300 hover:scale-105 origin-left">
+                            <a href="/" aria-label="Aços Vital Home" className="flex-shrink-0 z-50 transition-transform duration-300 hover:scale-105 origin-left">
                                 <Logo className={`transition-all duration-300 ${isScrolled ? 'h-[35px] md:h-[40px]' : 'h-[45px] md:h-[55px]'}`} />
                             </a>
                             
@@ -233,20 +233,20 @@ const Header: React.FC = () => {
 
                     <nav className="flex flex-col gap-1">
                         <a 
-                            href="#/" 
+                            href="/" 
                             onClick={closeMobileMenu}
-                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('#/') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
+                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
-                            <Home size={20} className={isLinkActive('#/') ? 'text-brand-orange' : 'text-gray-400'} />
+                            <Home size={20} className={isLinkActive('/') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.navLinks.home')}</span>
                         </a>
 
                         <a 
-                            href="#/about" 
+                            href="/about" 
                             onClick={closeMobileMenu}
-                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('#/about') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
+                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/about') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
-                            <Award size={20} className={isLinkActive('#/about') ? 'text-brand-orange' : 'text-gray-400'} />
+                            <Award size={20} className={isLinkActive('/about') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.navLinks.about')}</span>
                         </a>
 
@@ -308,7 +308,7 @@ const Header: React.FC = () => {
                                     })}
                                     
                                     <a 
-                                        href="#/catalog" 
+                                        href="/catalog" 
                                         onClick={closeMobileMenu}
                                         className="flex items-center justify-center gap-2 w-full p-4 mt-2 rounded-xl bg-brand-orange/10 border border-brand-orange/30 text-brand-orange font-bold text-xs uppercase tracking-wide hover:bg-brand-orange hover:text-white transition-all"
                                     >
@@ -319,11 +319,11 @@ const Header: React.FC = () => {
                         </div>
 
                         <a 
-                            href="#/calculator" 
+                            href="/calculator" 
                             onClick={closeMobileMenu}
-                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('#/calculator') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
+                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/calculator') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
-                            <Calculator size={20} className={isLinkActive('#/calculator') ? 'text-brand-orange' : 'text-gray-400'} />
+                            <Calculator size={20} className={isLinkActive('/calculator') ? 'text-brand-orange' : 'text-gray-400'} />
                             <div className="flex flex-col">
                                 <span className="font-bold text-lg">{t('header.mobileLinks.calculatorTitle')}</span>
                                 <span className="text-[10px] text-gray-500 uppercase font-bold">{t('header.mobileLinks.calculatorDesc')}</span>
@@ -331,11 +331,11 @@ const Header: React.FC = () => {
                         </a>
 
                         <a 
-                            href="#/tables" 
+                            href="/tables" 
                             onClick={closeMobileMenu}
-                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('#/tables') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
+                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/tables') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
-                            <FileText size={20} className={isLinkActive('#/tables') ? 'text-brand-orange' : 'text-gray-400'} />
+                            <FileText size={20} className={isLinkActive('/tables') ? 'text-brand-orange' : 'text-gray-400'} />
                             <div className="flex flex-col">
                                 <span className="font-bold text-lg">{t('header.mobileLinks.tablesTitle')}</span>
                                 <span className="text-[10px] text-gray-500 uppercase font-bold">{t('header.mobileLinks.tablesDesc')}</span>
@@ -343,11 +343,11 @@ const Header: React.FC = () => {
                         </a>
                         
                          <a 
-                            href="#/contact" 
+                            href="/contact" 
                             onClick={closeMobileMenu}
-                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('#/contact') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
+                            className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('/contact') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
-                            <Mail size={20} className={isLinkActive('#/contact') ? 'text-brand-orange' : 'text-gray-400'} />
+                            <Mail size={20} className={isLinkActive('/contact') ? 'text-brand-orange' : 'text-gray-400'} />
                             <span className="font-bold text-lg">{t('header.navLinks.contact')}</span>
                         </a>
 
@@ -373,7 +373,9 @@ const Header: React.FC = () => {
 
                 <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-20">
                      <a 
-                        href="#" 
+                        href="https://wa.me/551147972352" 
+                        target="_blank"
+                        rel="noopener noreferrer"
                         onClick={closeMobileMenu} 
                         className="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white py-3.5 rounded-xl font-bold text-base shadow-[0_0_20px_rgba(37,211,102,0.2)] active:scale-95 transition-all mb-6"
                     >
