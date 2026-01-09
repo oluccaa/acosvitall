@@ -25,7 +25,7 @@ const AdSidebar: React.FC<{ side: 'left' | 'right' }> = ({ side }) => {
     ];
 
     return (
-        <div className={`hidden xl:flex flex-col items-center pt-8 w-[200px] h-full bg-[#081437] border-${side === 'left' ? 'r' : 'l'} border-white/5`}>
+        <div className={`hidden xl:flex flex-col items-center pt-8 w-[200px] h-full bg-transparent`}>
             {ads.map((ad, idx) => (
                 <a 
                     key={idx} 
@@ -34,20 +34,13 @@ const AdSidebar: React.FC<{ side: 'left' | 'right' }> = ({ side }) => {
                     rel="noopener noreferrer"
                     className="group relative w-[160px] h-[660px] rounded-lg overflow-hidden border border-white/10 shadow-2xl transition-all hover:border-brand-orange/50 cursor-pointer"
                 >
-                    {/* Dark Gradient Overlay for depth */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-60 group-hover:opacity-40 transition-opacity z-10 duration-500"></div>
-                    
-                    {/* Billboard Image */}
                     <img 
                         src={ad.img} 
                         alt="Anúncio Aços Vital" 
                         className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" 
                     />
-                    
-                    {/* Subtle Shine Effect */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-20 bg-gradient-to-tr from-transparent via-white/5 to-transparent"></div>
-                    
-                    {/* WhatsApp Icon Overlay */}
                     <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="bg-[#25D366] p-2 rounded-full shadow-lg">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +106,7 @@ const CalculatorPageContent: React.FC = () => {
             `}
         >
             
-            {/* Background Grid - High Tech Feel */}
+            {/* Background Grid */}
             <div 
                 className="absolute inset-0 opacity-[0.05] pointer-events-none"
                 style={{ 
@@ -125,43 +118,58 @@ const CalculatorPageContent: React.FC = () => {
             {/* Ambient Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-blue-light/10 rounded-full blur-[120px] pointer-events-none"></div>
             
-            {/* LEFT AD BANNER (Visible on Notebooks and Monitors) */}
+            {/* LEFT AD BANNER */}
             <AdSidebar side="left" />
 
             {/* CENTER CONTENT */}
             <div className="flex-1 flex flex-col h-full overflow-hidden relative z-10">
                 
-                {/* Scrollable Container - Adjusted padding for mobile */}
+                {/* Scrollable Container - Modified: Reduced max-width to 1024px (max-w-5xl) */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-                    <div className="w-full max-w-[1600px] mx-auto flex flex-col min-h-full">
+                    <div className="w-full max-w-5xl mx-auto flex flex-col min-h-full">
                         
-                        {/* Header da Workstation - Boxed Style for Mobile Consistency */}
-                        <header className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 bg-[#0f172a] border border-white/5 rounded-xl shadow-xl p-4 mb-6">
-                            <div className="flex items-center gap-3 sm:gap-4">
-                                <div className="p-2 sm:p-3 bg-brand-blue-dark border border-white/10 rounded-xl shadow-2xl shadow-brand-blue-light/5 hidden sm:block">
-                                    <Box size={28} className="text-brand-orange sm:w-8 sm:h-8" />
-                                </div>
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3">
-                                        <h1 className="text-lg md:text-3xl font-bold text-white tracking-tight uppercase">
-                                            {t('calculatorPage.title')}
-                                        </h1>
-                                        <button 
-                                            onClick={toggleFullScreen}
-                                            className="p-1.5 sm:p-2 bg-white/5 hover:bg-brand-orange hover:text-white rounded-lg transition-colors border border-white/10"
-                                            title={isFullScreen ? "Sair da Tela Cheia" : "Tela Cheia"}
-                                        >
-                                            {isFullScreen ? <Minimize2 size={14} className="sm:w-4 sm:h-4" /> : <Maximize2 size={14} className="sm:w-4 sm:h-4" />}
-                                        </button>
+                        {/* Header da Workstation - New Stacked Design */}
+                        <header className="bg-[#0f172a] border border-white/5 rounded-xl shadow-xl p-5 md:p-6 mb-6 flex flex-col gap-6 transition-all duration-300">
+                            
+                            {/* Line 1: Identity & Controls */}
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-brand-blue-dark border border-white/10 rounded-xl shadow-2xl hidden sm:block">
+                                        <Box size={32} className="text-brand-orange" />
                                     </div>
-                                    <p className="text-slate-400 text-[9px] md:text-sm uppercase tracking-widest font-semibold mt-0.5 sm:mt-1">
-                                        {t('calculatorPage.subtitle')}
-                                    </p>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <h1 className="text-xl md:text-3xl font-extrabold text-white tracking-tight uppercase">
+                                                {t('calculatorPage.title')}
+                                            </h1>
+                                            <button 
+                                                onClick={toggleFullScreen}
+                                                className="p-2 bg-white/5 hover:bg-brand-orange hover:text-white rounded-lg transition-all border border-white/10 active:scale-90"
+                                                title={isFullScreen ? "Sair da Tela Cheia" : "Tela Cheia"}
+                                            >
+                                                {isFullScreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                                            </button>
+                                        </div>
+                                        <p className="text-slate-400 text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold mt-1">
+                                            {t('calculatorPage.subtitle')}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Dynamic Tech Status for Desktop */}
+                                <div className="hidden md:flex items-center gap-4">
+                                    <div className="flex flex-col items-end">
+                                        <span className="text-[9px] font-black text-brand-orange uppercase tracking-widest">System Status</span>
+                                        <span className="text-[10px] text-green-400 flex items-center gap-1.5 font-mono">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                                            Operational v5.0.4
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Barra de Ferramentas (Tabs) - Grid 2 cols on mobile */}
-                            <div className="w-full xl:w-auto grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            {/* Line 2: Navigation Tabs - Grid System */}
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-white/5 pt-6">
                                 {tabs.map(tab => {
                                     const isActive = activeTab === tab.id;
                                     return (
@@ -169,26 +177,26 @@ const CalculatorPageContent: React.FC = () => {
                                             key={tab.id}
                                             onClick={() => setActiveTab(tab.id as TabType)}
                                             className={`
-                                                relative group flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-1 sm:gap-3 px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg border transition-all duration-300 w-full
+                                                relative group flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-1 sm:gap-4 px-3 py-3 sm:py-4 rounded-xl border transition-all duration-300 w-full overflow-hidden
                                                 ${isActive 
-                                                    ? 'bg-brand-blue-light/10 border-brand-orange shadow-[0_0_15px_rgba(234,97,0,0.2)]' 
-                                                    : 'bg-[#1e293b]/50 border-white/5 hover:bg-[#1e293b] hover:border-white/10'
+                                                    ? 'bg-brand-orange text-white border-brand-orange shadow-[0_10px_20px_rgba(234,97,0,0.25)]' 
+                                                    : 'bg-[#1e293b]/50 border-white/5 hover:bg-[#2a364d] hover:border-white/10 text-slate-400'
                                                 }
                                             `}
                                         >
-                                            <div className={`mt-0.5 transition-colors duration-300 ${isActive ? 'text-brand-orange' : 'text-slate-400 group-hover:text-white'}`}>
-                                                {React.cloneElement(tab.icon as React.ReactElement<{ size: number }>, { size: 16 })}
+                                            <div className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-brand-orange'}`}>
+                                                {React.cloneElement(tab.icon as React.ReactElement<{ size: number }>, { size: 20 })}
                                             </div>
                                             <div className="text-center sm:text-left overflow-hidden">
-                                                <span className={`block text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wide truncate ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-white'}`}>
+                                                <span className={`block text-[10px] md:text-xs font-black uppercase tracking-wide truncate ${isActive ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                                                     {tab.label}
                                                 </span>
-                                                <span className="hidden sm:block text-[9px] text-slate-500 font-medium truncate max-w-[100px]">
+                                                <span className={`hidden sm:block text-[9px] font-bold uppercase tracking-tighter truncate max-w-[120px] ${isActive ? 'text-white/70' : 'text-slate-500'}`}>
                                                     {tab.desc}
                                                 </span>
                                             </div>
                                             {isActive && (
-                                                <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-brand-orange rounded-full m-1.5 animate-pulse"></div>
+                                                <div className="absolute top-0 right-0 w-8 h-8 bg-white/10 rounded-bl-full -mr-2 -mt-2"></div>
                                             )}
                                         </button>
                                     );
@@ -201,13 +209,13 @@ const CalculatorPageContent: React.FC = () => {
                             {renderContent()}
                         </main>
 
-                        {/* BOTTOM AD BANNER (LEADERBOARD STYLE 1446x120 - Visible on Notebooks and Monitors) */}
+                        {/* BOTTOM AD BANNER */}
                         <div className="hidden lg:flex w-full mt-auto pt-6 pb-6 justify-center">
                              <a 
                                 href={getWhatsappLink("Entrega Otimizada")} 
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block relative h-[120px] w-full max-w-[1446px] rounded-lg overflow-hidden border border-white/10 shadow-lg group"
+                                className="block relative h-[120px] w-full max-w-5xl rounded-lg overflow-hidden border border-white/10 shadow-lg group"
                              >
                                 <img
                                     src={ASSETS.ADS.CALCULATOR_BOTTOM}
@@ -228,7 +236,7 @@ const CalculatorPageContent: React.FC = () => {
                 </div>
             </div>
 
-            {/* RIGHT AD BANNER (Visible on Notebooks and Monitors) */}
+            {/* RIGHT AD BANNER */}
             <AdSidebar side="right" />
 
         </div>

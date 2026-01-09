@@ -318,8 +318,8 @@ const SteelCalculator: React.FC = () => {
             {/* ROW 1: INPUTS (Selection) & PARAMETERS/RESULT (Merged) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
-                {/* 1. SELECTION (Left) */}
-                <div className="lg:col-span-3 h-full">
+                {/* 1. SELECTION (Left) - Modified: Reduced to col-span-2 for tighter focus */}
+                <div className="lg:col-span-2 h-full">
                     <div className="bg-[#0f172a] border border-white/5 rounded-xl p-3 shadow-xl flex flex-col">
                         <div className="flex justify-between items-center mb-4 px-1 pb-2 border-b border-white/5">
                             <h3 className="text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
@@ -336,20 +336,20 @@ const SteelCalculator: React.FC = () => {
                                     <div className="text-[9px] text-gray-500 font-bold uppercase tracking-wider mb-2 pl-2 border-l-2 border-brand-orange/30">
                                         {cat.label}
                                     </div>
-                                    <div className="grid grid-cols-2 gap-2">
+                                    <div className="grid grid-cols-1 gap-2">
                                         {cat.items.map((prod: any) => (
                                             <button
                                                 key={prod.id}
                                                 onClick={() => setSelectedType(prod.id as ProductType)}
                                                 className={`
-                                                    relative flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg border transition-all duration-200 group min-h-[60px]
+                                                    relative flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg border transition-all duration-200 group min-h-[50px]
                                                     ${selectedType === prod.id 
                                                         ? 'bg-brand-blue-dark border-brand-orange text-white shadow-[0_0_10px_rgba(234,97,0,0.2)]' 
                                                         : 'bg-[#1e293b]/50 border-white/5 text-gray-400 hover:bg-[#1e293b] hover:border-white/20 hover:text-white'
                                                     }
                                                 `}
                                             >
-                                                <div className={`${selectedType === prod.id ? 'text-brand-orange' : 'text-gray-500 group-hover:text-white'} transition-colors transform scale-90`}>
+                                                <div className={`${selectedType === prod.id ? 'text-brand-orange' : 'text-gray-500 group-hover:text-white'} transition-colors transform scale-75`}>
                                                     {React.cloneElement(prod.icon, { size: 18 })}
                                                 </div>
                                                 <span className="text-[8px] font-bold uppercase text-center leading-tight w-full truncate px-0.5">
@@ -364,8 +364,8 @@ const SteelCalculator: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 2. PARAMETERS & RESULT (Right - Merged) */}
-                <div className="lg:col-span-9 h-full">
+                {/* 2. PARAMETERS & RESULT (Right - Merged) - Modified: Increased to col-span-10 */}
+                <div className="lg:col-span-10 h-full">
                     <div className="bg-[#0f172a] border border-white/5 rounded-xl shadow-xl h-full flex flex-col relative overflow-hidden">
                         
                         {/* Header do Card */}
@@ -391,9 +391,9 @@ const SteelCalculator: React.FC = () => {
                         {/* Corpo Dividido: Inputs (Esq) vs Dados Técnicos (Dir) */}
                         <div className="p-5 flex-1 flex flex-col lg:flex-row gap-8 overflow-y-auto custom-scrollbar">
                              
-                             {/* COLUNA ESQUERDA: INPUTS */}
+                             {/* COLUNA ESQUERDA: INPUTS - Modified: Widened by reducing telemetry width */}
                              <div className="flex-1 space-y-4">
-                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                                      {/* Lógica de Renderização de Inputs */}
                                      {(selectedType === 'plate' || selectedType === 'bar_square' || selectedType === 'flange_square') && (
                                         renderInput('width', (selectedType === 'flange_square' || selectedType === 'bar_square') ? t('calculatorPage.inputs.side') : t('calculatorPage.inputs.width'))
@@ -532,8 +532,8 @@ const SteelCalculator: React.FC = () => {
                                  </div>
                              </div>
 
-                             {/* COLUNA DIREITA: DADOS TÉCNICOS ENRIQUECIDOS */}
-                             <div className="w-full lg:w-[280px] xl:w-[320px] flex flex-row lg:flex-col gap-4">
+                             {/* COLUNA DIREITA: TELEMETRIA - Modified: Reduced width from 280/320 to 200/220 */}
+                             <div className="w-full lg:w-[200px] xl:w-[220px] flex flex-row lg:flex-col gap-4">
                                 <h4 className="hidden lg:flex text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-white/10 pb-2 mb-1 items-center justify-between">
                                     <span>{t('calculatorPage.common.telemetry')}</span>
                                     <div className="flex gap-1">
