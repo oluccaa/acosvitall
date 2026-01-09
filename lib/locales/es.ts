@@ -13,7 +13,7 @@ export const es = {
         updated: "Actualizado 2025",
         close: "Cerrar",
         list: "Lista",
-        navigation: "Navegación"
+        navigation: "Navegação"
     },
     header: {
       navLinks: {
@@ -50,7 +50,7 @@ export const es = {
       }
     },
     footer: {
-        description: "Aços Vital se destaca como fabricante de Bridas, Codos de Gajos, Tubos Calandrados, Chapas Expandidas y Rejillas de Piso con la más alta qualidade para atender las demandas del mercado.",
+        description: "Aços Vital se destaca como fabricante de Bridas, Codos de Gajos, Tubos Calandrados, Chapas Expandidas y Rejillas de Piso con la más alta calidad para atender las demandas del mercado.",
         slogan: "¡La confianza es lo que nos conecta!",
         pagesTitle: "PÁGINAS",
         followUsTitle: "SÍGUENOS",
@@ -61,7 +61,7 @@ export const es = {
         developedBy: "Desarrollado con excelencia"
     },
     privacy: {
-        title: "Política de Privacidad",
+        title: "Política de Privacidade",
         lastUpdated: "Última actualización: Marzo de 2025",
         intro: "Aços Vital valora la seguridad y privacidad de sus usuarios. Esta Política de Privacidad describe cómo recolectamos, usamos y protegemos sus datos según la LGPD.",
         sections: {
@@ -122,9 +122,9 @@ export const es = {
             },
             labels: {
                 value: "Valor",
-                from: "Unidad de Origen",
+                from: "Unidad de Origem",
                 result: "Resultado",
-                to: "Unidad de Destino"
+                to: "Unidade de Destino"
             },
             units: {
                 mm: "Milímetros (mm)",
@@ -156,7 +156,7 @@ export const es = {
                 legSize: "Pierna (z) mm",
                 thickness: "Espesor (t) mm",
                 gap: "Raíz / Apertura (g) mm",
-                angle: "Ángulo (α) °",
+                angle: "Ângulo (α) °",
                 weldLength: "Long. de Soldadura (m)",
                 reinforcement: "Refuérzo / Corona (%)",
                 estimatedWeight: "Peso Estimado",
@@ -286,11 +286,11 @@ export const es = {
         },
         trapezoidal: {
             title: "Tejas Trapezoidales",
-            subtitle: "Protección máxima, diseño moderno. La fuerza que su obra necesita.",
+            subtitle: "Protección máxima, design moderno. La fuerza que su obra necesita.",
             buttonText: "Línea Trapezoidal"
         },
         excellence: {
-            title: "Excelencia en Aceros:\n¡La confiança es lo que nos conecta!",
+            title: "Excelência em Aceros:\n¡La confiança es lo que nos conecta!",
             subtitle: "Chapas, Tubos, Bridas, Conexiones y Aceros. ¡Traemos soluciones para desafíos complejos!",
             buttonText: "Explorar Productos"
         },
@@ -308,11 +308,11 @@ export const es = {
       scrollText: "Desplazar abajo"
     },
     about: {
-        title: "Liderazgo Técnico y Compromiso\ncon la Evolución de la Industria",
+        title: "Sobre Nosotros",
         p1: "Aços Vital es referencia en la fabricación de bridas, tubos, curvas y rejillas para los sectores industriales.",
         p2: "La empresa destaca por la alta calidad y precisión de sus productos, con atención personalizada.",
         p3: "Con procesos optimizados y profissionais qualificados, Aços Vital garantiza durabilidad y rendimiento.",
-        p4: "Somos el socio confiable que une un equipo técnico de alto rendimiento con productos de extrema qualidade.",
+        p4: "Somos el socio confiable que une un equipo técnico de alto rendimiento con productos de extrema calidad.",
         callToAction: {
              buttonText: "HABLAR CON UN CONSULTOR"
         }
@@ -341,25 +341,25 @@ export const es = {
             mogi: {
                 city: "Mogi das Cruzes",
                 state: "São Paulo, Brasil",
-                role: "Unidad Industrial, Centro Logístico y Distribución",
+                role: "Unidad Industrial, Centro Logístico e Distribuição",
                 address: "Rod. Pedro Eroles, 1855 - Jd. Aracy, Mogi das Cruzes - SP"
             },
             uberaba: {
                 city: "Uberaba",
                 state: "Minas Gerais, Brasil",
-                role: "Unidad Industrial, Centro Logístico y Distribución",
+                role: "Unidad Industrial, Centro Logístico e Distribuição",
                 address: "Av. Cristo Rei, 1183 - Jd. das Américas, Uberaba - MG"
             },
             bolivia: {
                 city: "Santa Cruz De La Sierra",
                 state: "Andrés Ibáñez, Bolivia",
-                role: "Unidad Industrial, Centro Logístico y Distribución",
+                role: "Unidad Industrial, Centro Logístico e Distribuição",
                 address: "Radial 17 1/2 6to y 7mo Anillo - Santa Cruz De La Sierra, Bolivia"
             },
             chile: {
                 city: "Arica",
                 state: "Región de Arica y Parinacota, Chile",
-                role: "Unidad Industrial, Centro Logístico y Distribución",
+                role: "Unidad Industrial, Centro Logístico e Distribuição",
                 address: "Av. Arturo Prat 391, 5 piso, Of 53, Arica - Chile"
             }
         }
@@ -462,14 +462,14 @@ export const es = {
             sendButton: "Enviar",
             successTitle: "¡Mensaje Enviado!",
             successMsg: "Pronto nos pondremos en contacto.",
-            sendAnother: "Nuevo Mensaje",
+            sendAnother: "Nuevo Message",
             whatsappButton: "Llamar por WhatsApp"
         }
     },
     catalogPage: {
         links: {
             products: { title: "Línea de Productos", buttonText: "Ver Ahora" },
-            tables: { title: "Tablas Técnicas", buttonText: "Ver Ahora" }
+            tables: { title: "Tablas Técnicas", buttonText: "Ver Agora" }
         }
     },
     certificationsPage: {

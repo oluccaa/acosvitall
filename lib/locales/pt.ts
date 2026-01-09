@@ -313,7 +313,7 @@ export const pt = {
       scrollText: "Role para baixo"
     },
     about: {
-        title: "Liderança Técnica e Compromisso\ncom a Evolução da Indústria",
+        title: "Sobre nós",
         p1: "A Aços Vital é referência na fabricação de flanges, tubos, curvas e grades para os setores industrial e da construção civil.",
         p2: "La empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.",
         p3: "Com processos otimizados e profissionais qualificados, a Aços Vital garante durabilidade, performance e prazos de entrega diferenciados.",

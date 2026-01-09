@@ -308,7 +308,7 @@ export const en = {
       scrollText: "Scroll down"
     },
     about: {
-        title: "Technical Leadership and Commitment\nto the Industry Evolution",
+        title: "About Us",
         p1: "Aços Vital is a benchmark in the manufacture of flanges, tubes, curves and gratings for the industrial and construction sectors.",
         p2: "The company stands out for the high quality and precision of its products, offering tailor-made solutions and personalized service.",
         p3: "With optimized processes and qualified professionals, Aços Vital guarantees durability, performance and differentiated delivery times.",
