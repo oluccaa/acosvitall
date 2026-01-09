@@ -136,7 +136,7 @@ export const ASSETS = {
     /** CTA & Globais */
     CTA: {
         BG: optimize(`${SB_BASE}/geral/cta/cta.webp`, IMG_WIDTH.HERO),
-        BG_GIF: optimize(`${SB_BASE}/geral/cta/cta.webp`, IMG_WIDTH.HERO)
+        BG_GIF: `${SB_BASE}/geral/cta/cta.avif`
     },
 
     /** Elementos da Hero */
