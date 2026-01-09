@@ -1,3 +1,4 @@
+
 {
   "name": "v10---aços-vital---soluções-em-aço",
   "private": true,
@@ -11,6 +12,7 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-router-dom": "^6.22.3",
     "lucide-react": "^0.554.0",
     "i18next": "23.10.0",
     "react-i18next": "15.4.1",
