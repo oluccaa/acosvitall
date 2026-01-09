@@ -8,7 +8,8 @@ import './lib/i18n';
 // Registro do Service Worker para Performance e Cache Offline
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(err => {
+    // Utilizando caminho relativo para garantir que o script seja encontrado independentemente da base URL
+    navigator.serviceWorker.register('sw.js').catch(err => {
       console.warn('Service Worker registration failed: ', err);
     });
   });

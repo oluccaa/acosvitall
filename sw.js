@@ -5,8 +5,7 @@ const IMAGE_CACHE_NAME = 'acos-vital-images-v3';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
-  '/index.css',
-  '/index.tsx'
+  '/index.css'
 ];
 
 const IMAGE_DOMAINS = [
@@ -52,7 +51,6 @@ self.addEventListener('fetch', (event) => {
         return cache.match(event.request).then((cachedResponse) => {
           if (cachedResponse) {
             // Se existir no cache, retorna imediatamente.
-            // O PageSpeed reclama de TTLs curtos se houver revalidação constante.
             return cachedResponse;
           }
 
