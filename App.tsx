@@ -1,11 +1,20 @@
 
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import CookieBanner from './components/common/CookieBanner';
 import FloatingWhatsapp from './components/common/FloatingWhatsapp';
+
+// Componente utilitário para resetar o scroll ao topo em cada mudança de rota
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+};
 
 // --- 1. DEFINIÇÃO DAS PÁGINAS (LAZY LOADING) ---
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -38,6 +47,7 @@ const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueC
 const App: React.FC = () => {
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">
+            <ScrollToTop />
             <Header />
             
             <main className="flex-grow w-full flex flex-col">
