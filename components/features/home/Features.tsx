@@ -26,7 +26,7 @@ const Features: React.FC = () => {
     return (
         <section 
             id="features" 
-            className="relative py-6 md:py-10 bg-brand-blue-dark border-b border-white/5"
+            className="relative py-6 md:py-10 border-b border-white/5"
             aria-label="Principais características"
         >
             <div className="container mx-auto px-6 sm:px-12 lg:px-24 relative z-10 max-w-[1920px]">
