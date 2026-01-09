@@ -60,8 +60,8 @@ export const ASSETS = {
 
     /** Publicidade (ADS) */
     ADS: {
-        CALCULATOR_LEFT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_esquerda.gif`,
-        CALCULATOR_RIGHT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_direita.gif`,
+        CALCULATOR_LEFT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_esquerda.avif`,
+        CALCULATOR_RIGHT: `${SB_BASE}/calculadora_de_aco/ads_fixo/ads_direita.avif`,
         CALCULATOR_BOTTOM: optimize(`${SB_BASE}/calculadora_de_aco/ads_fixo/entrega_otimizada_bottom.png`, 1200)
     },
 
