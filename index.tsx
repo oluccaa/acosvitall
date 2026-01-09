@@ -5,15 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './lib/i18n';
 
-// Registro do Service Worker para Performance e Cache Offline
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    // Utilizando caminho relativo para garantir que o script seja encontrado independentemente da base URL
-    navigator.serviceWorker.register('sw.js').catch(err => {
-      console.warn('Service Worker registration failed: ', err);
-    });
-  });
-}
+// O registro do Service Worker foi removido para evitar erros 404 em produção, 
+// uma vez que o arquivo sw.js não está sendo servido corretamente na raiz do domínio.
+// Isso limpa o console e estabiliza a pontuação de performance do site.
 
 const rootElement = document.getElementById('root');
 
