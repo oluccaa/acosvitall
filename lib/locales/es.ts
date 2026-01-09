@@ -50,7 +50,7 @@ export const es = {
       }
     },
     footer: {
-        description: "Aços Vital se destaca como fabricante de Bridas, Codos de Gajos, Tubos Calandrados, Chapas Expandidas y Rejillas de Piso con la más alta calidad para atender las demandas del mercado.",
+        description: "Aços Vital se destaca como fabricante de Bridas, Codos de Gajos, Tubos Calandrados, Chapas Expandidas y Rejillas de Piso con la más alta qualidade para atender las demandas del mercado.",
         slogan: "¡La confianza es lo que nos conecta!",
         pagesTitle: "PÁGINAS",
         followUsTitle: "SÍGUENOS",
@@ -308,18 +308,18 @@ export const es = {
       scrollText: "Desplazar abajo"
     },
     about: {
-        title: "¡La confiança es lo que nos conecta!",
+        title: "Liderazgo Técnico y Compromiso\ncon la Evolución de la Industria",
         p1: "Aços Vital es referencia en la fabricación de bridas, tubos, curvas y rejillas para los sectores industriales.",
         p2: "La empresa destaca por la alta calidad y precisión de sus productos, con atención personalizada.",
         p3: "Con procesos optimizados y profissionais qualificados, Aços Vital garantiza durabilidad y rendimiento.",
-        p4: "Somos el socio confiable que une un equipo técnico de alto rendimiento con productos de extrema calidad.",
+        p4: "Somos el socio confiable que une un equipo técnico de alto rendimiento con productos de extrema qualidade.",
         callToAction: {
              buttonText: "HABLAR CON UN CONSULTOR"
         }
     },
     features: {
         list: {
-            fast_delivery: { title: "Entrega Rápida y Flexible", description: "Producción ágil y logística optimizada para cumplir plazos en todo el país." },
+            fast_delivery: { title: "Entrega Rápida e Flexible", description: "Producción ágil y logística optimizada para cumplir plazos en todo el país." },
             certified_quality: { title: "Qualidad Certificada", description: "Productos bajo altos estándares, con certificaciones ISO 9001 e CRC Petrobras." },
             global_reach: { title: "Alcance Global", description: "Atendemos con excelencia en Brasil y el exterior, llevando soluciones sin fronteras." },
             satisfied_clients: { title: "+2.000 Clientes Satisfechos", description: "La confianza de miles de clientes anualmente comprueba nuestra dedicación." }
@@ -330,8 +330,8 @@ export const es = {
         title: "Nuestros Pilares",
         list: {
             mission: { title: "MISIÓN", description: "Entregar productos de acero de alta qualidade, fortaleciendo alianzas y crecimiento sostenible." },
-            vision: { title: "VISIÓN", description: "Ser referencia nacional en productos de acero, destacando por calidad e innovación." },
-            values: { title: "VALORES", description: "Qualidad, innovación, sostenibilidad, alianza y seguridad." }
+            vision: { title: "VISIÓN", description: "Ser referencia nacional en productos de acero, destacando por qualidade e innovación." },
+            values: { title: "VALORES", description: "Qualidade, innovación, sostenibilidad, alianza y seguridad." }
         }
     },
     units: {
