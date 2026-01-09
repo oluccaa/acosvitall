@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { useI18n } from '../../context/I18nContext';
+import { useTranslation } from 'react-i18next';
 import { SECTORS_LIST } from '../../lib/constants';
 
 const animationStyles = `
@@ -17,14 +18,10 @@ const animationStyles = `
   .animate-scroll-right {
     animation: scroll-right 80s linear infinite;
   }
-  
-  /* Pause animation on hover for better UX */
   .group:hover .animate-scroll-left,
   .group:hover .animate-scroll-right {
     animation-play-state: paused;
   }
-  
-  /* Accessibility: Pause animation for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .animate-scroll-left,
     .animate-scroll-right {
@@ -44,7 +41,7 @@ const SectorPill: React.FC<Sector> = ({ name, imgSrc }) => (
         <div className="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden border-2 border-white ring-1 ring-gray-50 group-hover:ring-brand-orange/30 transition-all">
             <img 
                 src={imgSrc} 
-                alt="" // Decorative image
+                alt="" 
                 className="w-full h-full object-cover"
                 loading="lazy"
                 width="40"
@@ -56,11 +53,8 @@ const SectorPill: React.FC<Sector> = ({ name, imgSrc }) => (
 );
 
 const ScrollerRow: React.FC<{ sectors: Sector[]; direction: 'left' | 'right' }> = ({ sectors, direction }) => {
-    // Duplicate items enough times to ensure smooth infinite scroll without gaps
     const items = [...sectors, ...sectors, ...sectors, ...sectors];
-    
     const animationClass = direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right';
-    
     return (
         <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
             <div className={`flex w-max gap-2.5 py-1 ${animationClass}`}>
@@ -73,15 +67,11 @@ const ScrollerRow: React.FC<{ sectors: Sector[]; direction: 'left' | 'right' }> 
 };
 
 const Sectors: React.FC = () => {
-    const { t } = useI18n();
-    
+    const { t } = useTranslation();
     const allSectors = SECTORS_LIST.map(s => ({
         ...s,
         name: t(`sectors.list.${s.id}`)
     }));
-
-    const row1Sectors = allSectors;
-    const row2Sectors = [...allSectors].reverse();
 
     return (
         <>
@@ -96,10 +86,9 @@ const Sectors: React.FC = () => {
                         {t('sectors.description')}
                     </p>
                 </div>
-                {/* The main container with the `group` class enables the pause-on-hover effect for its children. */}
                 <div className="group flex flex-col gap-1.5" role="marquee">
-                    <ScrollerRow sectors={row1Sectors} direction="left" />
-                    <ScrollerRow sectors={row2Sectors} direction="right" />
+                    <ScrollerRow sectors={allSectors} direction="left" />
+                    <ScrollerRow sectors={[...allSectors].reverse()} direction="right" />
                 </div>
             </section>
         </>

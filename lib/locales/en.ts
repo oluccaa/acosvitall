@@ -1,20 +1,14 @@
 
-// ==========================================================================
-// ARQUIVO DE TRADUÇÃO: INGLÊS (EN)
-// ==========================================================================
-
-import { pt } from './pt';
-
 export const en = {
     layout: {
-        schedule: "Mon - Fri: 08:00 - 18:00",
+        schedule: "Mon - Fri: 07:00 - 17:00",
         menu: "Main Menu",
         searchPlaceholder: "Search products, tables...",
         departments: "Departments",
         viewAll: "View All",
         viewSpecs: "View specifications",
         catalogCall: "Complete Technical Catalog",
-        catalogDesc: "Access all measurement tables, standards, and specifications in a single PDF document.",
+        catalogDesc: "Get access to all dimensions, standards and specifications in a single PDF.",
         downloadNow: "Download Now",
         updated: "Updated 2025",
         close: "Close",
@@ -65,35 +59,35 @@ export const en = {
     privacy: {
         title: "Privacy Policy",
         lastUpdated: "Last updated: March 2025",
-        intro: "Aços Vital values the security and privacy of its users. This Privacy Policy describes how we collect, use, and protect your information, in compliance with the General Data Protection Law (LGPD - Law No. 13,709/2018).",
+        intro: "Aços Vital values the security and privacy of its users. This Privacy Policy describes how we collect, use and protect your data according to GDPR and LGPD standards.",
         sections: {
             collection: {
                 title: "1. Data Collection",
-                text: "We collect personal information that you voluntarily provide to us when using our contact forms, requesting quotes, or using our calculators. This may include name, email, phone number, and company name."
+                text: "We collect personal information that you provide voluntarily when using our forms or calculators. This includes name, email, phone and company."
             },
             usage: {
-                title: "2. Use of Information",
-                text: "We use your data to: respond to your requests, send quotes, improve our products and services, and, if authorized, send relevant marketing communications."
+                title: "2. Information Usage",
+                text: "We use your data to: respond to requests, send quotes, improve services and, if authorized, send marketing communications."
             },
             cookies: {
-                title: "3. Cookies and Technologies",
-                text: "We use cookies to improve browsing experience, analyze site traffic, and personalize content. You can manage your cookie preferences through your browser settings."
+                title: "3. Cookies & Technologies",
+                text: "We use cookies to improve experience and analyze traffic. You can manage preferences in browser settings."
             },
             security: {
                 title: "4. Security",
-                text: "We adopt appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction."
+                text: "We adopt technical measures to protect your data against unauthorized access or disclosure."
             },
             rights: {
-                title: "5. Your Rights (LGPD)",
-                text: "You have the right to confirm the existence of data processing, access your data, correct incomplete or outdated data, and request the deletion of personal data processed with your consent."
+                title: "5. Your Rights",
+                text: "You have the right to access, correct or request deletion of your personal data processed with consent."
             },
             contact: {
                 title: "6. Contact",
-                text: "To exercise your rights or ask questions about this policy, contact us via email: lgpd@acosvital.com.br"
+                text: "For questions about this policy, contact us at: lgpd@acosvital.com.br"
             }
         },
         cookieBanner: {
-            text: "We use cookies to improve your experience and analyze site traffic. By continuing to browse, you agree to our",
+            text: "We use cookies to improve your experience. By continuing to browse, you agree to our",
             link: "Privacy Policy",
             accept: "Accept Cookies",
             decline: "Decline"
@@ -103,19 +97,17 @@ export const en = {
         title: "Vital Steel Suite",
         subtitle: "Engineering Workstation v5.0",
         tabs: {
-            calculator: "Steel Calculator",
-            nesting: "Cutting Optimizer",
-            sheetMetal: "Unfolding",
-            bending: "Bending Calc",
-            welding: "Welding Estimator",
-            converter: "Unit Converter"
+            calculator: "Calculator",
+            nesting: "Nesting",
+            welding: "Estimation",
+            converter: "Converter"
         },
         common: {
             selection: "Selection",
             console: "Engineering Console",
             telemetry: "Telemetry",
-            presets: "Measurement Presets",
-            presetsHelp: "Select a field above and click a preset to apply.",
+            presets: "Presets",
+            presetsHelp: "Select a field and click a preset to apply.",
             surfaceArea: "Surface Area",
             density: "Density",
             totalWeight: "Total Weight",
@@ -130,95 +122,13 @@ export const en = {
             projectTotal: "Project Total",
             requestQuote: "Request Quote",
             waiting: "Waiting for Calculation",
-            selectItem: "Select an item to calculate"
+            selectItem: "Select an item to calculate",
+            densityUnit: "g/cm³"
         },
-        toolDescriptions: {
-            calculator: "Calculate theoretical weight of plates, tubes, bars, and complex profiles. Essential for material planning, budgeting, and logistics.",
-            nesting: "Optimize linear cutting of bars and profiles. Reduce material waste (scrap) by calculating the best usage of stock bars.",
-            sheetMetal: "Calculate the unfolding (blank) of plates for cone manufacturing. Essential tool for boilermaking.",
-            bending: "Calculate the exact cut size (blank) considering bend deduction, K-factor, and tolerances for bent plates.",
-            welding: "Estimate the amount of welding consumable required for different joint types. Ideal for welding cost planning.",
-            converter: "Quickly convert common industrial engineering measurement units (mm, in, kg, lb, psi, bar) to ease your daily work."
-        },
-        sheetMetal: {
-            title: "Cone Unfolding",
-            subtitle: "Development calculation for boilermaking",
-            dimensions: "Cone Dimensions",
-            results: "Unfolding Result",
-            memory: "Memory",
-            theory: "Calculation based on Euclidean geometry for development of solids of revolution (Concentric Cones).",
-            inputs: {
-                D: "Large Ø (D)",
-                d: "Small Ø (d)",
-                H: "Height (H)",
-                T: "Thickness (T)"
-            },
-            outputs: {
-                radiusLarge: "Large Radius (Compass)",
-                radiusSmall: "Small Radius",
-                angle: "Sector Angle",
-                slantHeight: "Slant Height",
-                chordLarge: "Large Chord (Layout)"
-            },
-            formulas: {
-                title: "Unfolding Math",
-                slantHeight: "Slant Height (g)",
-                slantDesc: "Calculated via Pythagoras using height and radius difference.",
-                patternRadius: "Pattern Radius (R_pad)",
-                angle: "Sector Angle (θ)",
-                angleDesc: "The proportion of the base circumference relative to the development circle.",
-                formulaG: "g = √[H² + (R - r)²]",
-                formulaTheta: "θ = 360° × (R / g)"
-            }
-        },
-        bending: {
-            title: "Bending Calculator",
-            subtitle: "Bend deduction and K-factor",
-            params: "Bending Parameters",
-            blankSize: "Blank Size (Cut)",
-            theory: "Theory",
-            inputs: {
-                thickness: "Thickness (T)",
-                radius: "Int. Radius (R)",
-                angle: "Angle (°)",
-                kFactor: "K-Factor",
-                leg1: "Leg 1",
-                leg2: "Leg 2"
-            },
-            outputs: {
-                deduction: "Deduction (BD)",
-                allowance: "Allowance (BA)"
-            }
-        },
-        formulas: {
-            title: "Understand the Calculation",
-            general: "Weight is calculated by multiplying material volume by its specific density.",
-            plate: "Weight = Width × Length × Thickness × Density",
-            barRound: "Weight = π × (Radius)² × Length × Density",
-            barSquare: "Weight = Side² × Length × Density",
-            tube: "Weight = π × (R_out² - R_in²) × Length × Density",
-            grating: "Weight = (Bar Weight + 15% Crossbars) × Area",
-            variables: {
-                density: "Density (ρ)",
-                volume: "Volume (V)",
-                area: "Cross-sectional Area (A)"
-            }
-        },
-        calendering: {
-            title: "Manufacturing (Unfolding)",
-            devLength: "Plate Length (Development)",
-            sheetWidth: "Plate Width",
-            explanation: "Plate development is calculated based on the material's neutral axis (Mean Diameter).",
-            formula: "L = (OD - T) × π",
-            neutralAxis: "Neutral Axis",
-            logistics: "Logistics Data"
-        },
-        selectProduct: "Select Operation",
-        selectMaterial: "Material",
         categories: {
             raw: "Raw Material",
             piping: "Boilermaking & Piping",
-            structural: "Industrial & Structural"
+            structural: "Structural & Industrial"
         },
         inputs: {
             thickness: "Thickness",
@@ -250,7 +160,7 @@ export const en = {
             grating: "Floor Grating",
             tube_calendered: "Calendered Tube",
             expanded_metal: "Expanded Metal",
-            fitting_elbow: "Elbow/Miter",
+            fitting_elbow: "Elbow",
             fitting_reducer: "Reducer",
             fitting_tee: "Tee"
         },
@@ -260,356 +170,165 @@ export const en = {
             inox316: "Stainless 316 (7.98)",
             aluminum: "Aluminum (2.70)"
         },
-        painting: {
-            title: "Painting and Coating",
-            coverage: "Coverage (m²/L)",
-            coats: "Coats",
-            density: "Paint Density (kg/L)",
-            volume: "Paint Vol.",
-            weight: "Paint Weight"
-        },
         result: {
             weightPerPiece: "Unit Weight",
             totalWeight: "Total Weight",
             developedLength: "Development (L)",
             unit: "kg",
-            surfaceArea: "Paint Area",
+            surfaceArea: "Painting Area",
             grossWeight: "Gross Weight (Plate)",
             netWeight: "Net Weight (Ring)",
-            scrap: "Scrap Rate",
-            arcOuter: "Outer Arc",
-            arcCenter: "Center Arc",
-            arcInner: "Inner Arc",
-            projectData: "PROJECT DATA",
-            material: "MATERIAL",
-            density: "DENSITY",
-            date: "DATE"
+            scrap: "Scrap Rate"
         },
-        calculate: "CALCULATE",
-        clear: "CLEAR FIELDS",
         project: {
-            title: "Bill of Materials (BOM)",
-            empty: "No items added to project.",
-            add: "Add to Project",
-            total: "Project Total Weight",
-            export: "Print List",
-            quoteButton: "Quote on WhatsApp",
-            pdfButton: "Generate PDF / Print",
-            clear: "Clear Project",
             item: "Item",
             qty: "Qty",
-            weight: "Weight",
-            actions: "Actions"
-        },
-        nesting: {
-            title: "Linear Cutting Optimizer",
-            barLength: "Standard Bar Length",
-            bladeWidth: "Cutting Width / Kerf",
-            linearWeight: "Linear Weight (kg/m) - Optional",
-            cutList: "Cut List",
-            length: "Piece Length",
-            qty: "Qty",
-            add: "Add",
-            addPieces: "Add Pieces",
-            calculateBtn: "Calculate Optimization",
-            params: "Stock Parameters",
-            waiting: "Waiting for Calculation",
-            waitingDesc: "Add the pieces you want to cut to the list and define your stock bar size.",
-            helpTitle: "How to use the Optimizer",
-            helpText: "This tool uses a 'Best Fit Decreasing' algorithm to organize pieces into available stock bars. Enter the total length of the stock bar you have and the cutting blade thickness (loss). If you wish to calculate total scrap and material weight, fill in the 'Linear Weight' field.",
-            errorLength: "Error: Piece length (+ cut) cannot be greater than stock bar.",
-            results: {
-                totalBars: "Total Bars",
-                totalWaste: "Total Waste",
-                barUsage: "Usage",
-                weightUsed: "Material Weight",
-                weightScrap: "Scrap Weight",
-                scraps: "Scraps",
-                efficiency: "Efficiency",
-                cutPlan: "Cut Plan",
-                hoverDetails: "Hover to see details"
-            },
-            table: {
-                bar: "Bar",
-                cuts: "Cuts in this bar (mm)",
-                waste: "Leftover (Scrap)"
-            },
-            explanation: {
-                title: "Understand Optimization Calculation",
-                concept: "The calculation uses a heuristic algorithm (Best Fit Decreasing) to solve the one-dimensional 'Cutting Stock Problem'. The goal is to minimize the number of bars used and material waste.",
-                glossary: {
-                    stock: { title: "Bar Size", desc: "Total length of virgin bar available in stock (e.g., 6000mm or 12000mm)." },
-                    blade: { title: "Cutting Width", desc: "Material lost at each cut due to blade or saw thickness (kerf). Usually between 3mm and 5mm." },
-                    waste: { title: "Leftover (Scrap)", desc: "Final piece of the bar not sufficient to produce new pieces. Calculated as: Total Bar - (Sum of Pieces + Cutting Losses)." },
-                    weight: { title: "Linear Weight", desc: "Mass of the bar per meter (kg/m). Allows calculating total purchased material weight and wasted scrap weight." }
-                }
-            }
-        },
-        welding: {
-            title: "Welding Calculator",
-            helpTitle: "Estimation Parameters",
-            helpText: "This tool estimates the required consumable amount based on cross-sectional area and selected material density. Deposition efficiency is not considered, providing the net weight of deposited metal.",
-            jointType: "Joint Type",
-            types: {
-                fillet: "Fillet",
-                buttV: "V-Butt (Single V)",
-                buttX: "X-Butt (Double V)"
-            },
-            inputs: {
-                legSize: "Fillet Leg (z)",
-                thickness: "Plate Thickness (t)",
-                length: "Weld Length",
-                gap: "Root Opening (g)",
-                angle: "Bevel Angle (α)",
-                reinforcement: "Reinforcement / Over-metal"
-            },
-            results: {
-                weight: "Estimated Weight",
-                volume: "Weld Volume"
-            },
-            explanation: {
-                title: "Welding Technical Guide",
-                concept: "Weld metal weight is calculated by determining the volume of the bead cross-sectional area multiplied by its length and steel density (approx. 7.85 g/cm³).",
-                glossary: {
-                    z: { title: "Leg (z)", desc: "Length of the triangle side in a fillet weld. Determines joint strength." },
-                    g: { title: "Root Opening (g)", desc: "Minimum distance between pieces to be welded. Allows full weld penetration." },
-                    alpha: { title: "Bevel Angle (α)", desc: "Opening angle between prepared plates. Usually 60° for V-joints." },
-                    r: { title: "Reinforcement", desc: "Over-metal or convexity of the weld bead above the plate surface, expressed as a percentage (usually 10-20%)." }
-                }
-            }
-        },
-        converter: {
-            title: "Universal Converter",
-            categories: {
-                length: "Length",
-                weight: "Mass / Weight",
-                area: "Area",
-                pressure: "Pressure",
-                dn: "Nominal Diameter"
-            },
-            units: {
-                mm: "Millimeters (mm)",
-                cm: "Centimeters (cm)",
-                m: "Meters (m)",
-                in: "Inches (in)",
-                ft: "Feet (ft)",
-                kg: "Kilograms (kg)",
-                lb: "Pounds (lb)",
-                ton: "Tons (t)",
-                m2: "Square Meters (m²)",
-                cm2: "Square Centimeters (cm²)",
-                ft2: "Square Feet (ft²)",
-                in2: "Square Inches (in²)",
-                bar: "Bar",
-                psi: "PSI (lbf/in²)",
-                mpa: "MegaPascal (MPa)",
-                kgfcm2: "kgf/cm²"
-            },
-            labels: {
-                from: "From",
-                to: "To",
-                value: "Value",
-                result: "Result"
-            },
-            footer: "Nominal Conversion (Pipe Table) - Ex: 1/2\" = 15mm | 14\" = 350mm"
+            weight: "Weight"
         }
     },
     hero: {
       slides: {
         entressafra: {
-            title: 'Off-season:\nStop your plant, not your production!',
-            subtitle: 'The off-season is short. Each day stopped costs millions.',
-            buttonText: 'Our Solutions'
+            title: "Off-season:\nStop your plant, not your production!",
+            subtitle: "The off-season is short. Each day stopped costs millions.",
+            buttonText: "Our Solutions"
         },
         trapezoidal: {
-            title: 'Trapezoidal Tiles',
-            subtitle: 'Maximum protection, modern design. The strength your project needs.',
-            buttonText: 'Trapezoidal Line'
+            title: "Trapezoidal Tiles",
+            subtitle: "Maximum protection, modern design. The strength your project needs.",
+            buttonText: "Trapezoidal Line"
         },
         excellence: {
-            title: 'Steel Excellence:\nTrust is what connects\nus!',
-            subtitle: 'Plates, Pipes, Flanges, Fittings, and General Steel. We bring innovative solutions for complex challenges!',
-            buttonText: 'Explore Products'
+            title: "Steel Excellence:\nTrust is what connects\nus!",
+            subtitle: "Plates, Tubes, Flanges, Fittings and general steel. We bring innovative solutions for complex challenges!",
+            buttonText: "Explore Products"
         },
         flanges: {
-            title: 'Steel Excellence:\nTrust is what connects\nus!',
-            subtitle: 'Plates, Pipes, Flanges, Fittings, and General Steel. We bring innovative solutions for complex challenges!',
-            buttonText: 'View Flanges'
+            title: "Steel Excellence:\nTrust is what connects\nus!",
+            subtitle: "Plates, Tubes, Flanges, Fittings and general steel. We bring innovative solutions for complex challenges!",
+            buttonText: "View Flanges"
         },
         flooring: {
-            title: 'Floor Gratings and Plates',
-            subtitle: 'Safety and versatility for your industry. Robust and durable solutions.',
-            buttonText: 'Meet Our Floorings'
+            title: "Floor Gratings and Plates",
+            subtitle: "Safety and versatility for your industry. Robust and durable solutions.",
+            buttonText: "Meet Our Floorings"
         }
       },
-      scrollText: 'Scroll Down'
+      scrollText: "Scroll down"
     },
     about: {
-        title: 'Trust is what connects us!',
-        p1: 'Aços Vital is a reference in the manufacture of flanges, tubes, curves, and gratings for the industrial and construction sectors.',
-        p2: 'The company stands out for the high quality and precision of its products, offering tailor-made solutions and personalized service.',
-        p3: 'With optimized processes and qualified professionals, Aços Vital guarantees durability, performance, and differentiated delivery times.',
-        p4: 'We are the reliable partner that unites a high-performance technical team, extremely high-quality products, and incomparable finishing. Aços Vital is the best decision for your business.',
+        title: "Trust is what connects us!",
+        p1: "Aços Vital is a benchmark in the manufacture of flanges, tubes, curves and gratings for the industrial and construction sectors.",
+        p2: "The company stands out for the high quality and precision of its products, offering tailor-made solutions and personalized service.",
+        p3: "With optimized processes and qualified professionals, Aços Vital guarantees durability, performance and differentiated delivery times.",
+        p4: "We are the reliable partner that unites a high-performance technical team, extremely high-quality products and incomparable finishing.",
         callToAction: {
              buttonText: "TALK TO A CONSULTANT"
         }
     },
     features: {
         list: {
-            fast_delivery: { title: "Fast and Flexible Delivery", description: "Agile production and optimized logistics to meet your deadlines nationwide." },
-            certified_quality: { title: "Certified Quality", description: "Our products follow the highest standards, with ISO 9001, CRC Petrobras, and YPFB." },
+            fast_delivery: { title: "Fast & Flexible Delivery", description: "Agile production and optimized logistics to meet your deadlines nationwide." },
+            certified_quality: { title: "Certified Quality", description: "Our products follow the highest standards, with ISO 9001, CRC Petrobras and YPFB." },
             global_reach: { title: "Global Reach", description: "We serve clients in Brazil and abroad with excellence, taking our solutions across borders." },
-            satisfied_clients: { title: "+2,000 Satisfied Clients", description: "The trust of thousands of clients annually, proving our dedication and quality." }
+            satisfied_clients: { title: "+2,000 Satisfied Clients", description: "The trust of thousands of clients proof our dedication and quality annually." }
         }
     },
     pillars: {
         subtitle: "WHO WE ARE AND WHAT WE SEEK?",
         title: "Our Pillars",
         list: {
-            mission: { title: "MISSION", description: "The company delivers high-quality steel products, strengthening partnerships, promoting sustainable growth." },
-            vision: { title: "VISION", description: "To be a national reference in steel products, standing out for quality, innovation, and sustainability." },
-            values: { title: "VALUES", description: "Quality, innovation, sustainability, partnership, and safety." }
+            mission: { title: "MISSION", description: "Delivering high-quality steel products, strengthening partnerships, promoting sustainable growth." },
+            vision: { title: "VISION", description: "To be a national benchmark in steel products, standing out for quality and innovation." },
+            values: { title: "VALUES", description: "Quality, innovation, sustainability, partnership and safety." }
         }
     },
     units: {
-        subtitle: "ABOUT US",
+        subtitle: "AÇOS VITAL GLOBALLY",
         title: "Where we operate",
-    },
-    history: {
-        title: "A story of overcoming!",
-        youtubeUrl: "https://www.youtube.com/embed/Vt8dUUSsSZA?si=HsCaIShmSAQVrNhS",
-        stats: {
-            clients: { value: "+2K", label: "Clients Annually" },
-            factory_area: { value: "36K m²", label: "Total Factory Area" },
-            employees: { value: "+200", label: "Employees" },
-            factories: { value: "4", label: "Own Factories" }
-        }
-    },
-    aboutPage: {
-        hero: {
-            title: 'About Us',
-        }
-    },
-    featuredProducts: {
-        title: 'Featured Products',
-        items: {
-            flanges: 'Flange',
-            tubes: 'Steel Tubes',
-            boilermaking: 'INDUSTRIAL BOILERMAKING',
-            plates: 'Steel Plates',
-            fittings: 'Steel Fittings',
-            valves: 'VALVES',
-            profiles: 'LAMINATED AND FOLDED PROFILES',
-            gratings: 'FLOOR GRATINGS',
-            tiles: 'TRAPEZOIDAL TILE',
-            civil: 'CIVIL CONSTRUCTION',
-            cutting: 'OXY-CUTTING',
-            conduits: 'CONDUITS',
-            grooved: 'GROOVED LINE',
-            tanks: 'FUEL AND LPG TANK',
-        },
-        viewDetails: 'View Details',
-        onRequest: 'On Request'
-    },
-    productsPage: {
-      title: 'Product Catalog',
-      description: 'Discover our complete product catalog, developed to meet the demands of the industrial and construction segments with excellence and guaranteed quality. Ready to strengthen your projects with safety, resistance, and precision. We follow the strictest manufacturing standards, from raw material acquisition, receiving, storage, cutting, processing, and inspection.',
-      buttonText: 'View Product',
-      categories: {
-        flanges: 'FLANGES',
-        tubes: 'TUBES',
-        fittings: 'FITTINGS',
-        valves: 'VALVES',
-        profiles: 'LAMINATED AND FOLDED PROFILES',
-        plates: 'PLATES',
-        gratings: 'FLOOR GRATINGS',
-        tiles: 'TRAPEZOIDAL TILE',
-        civil: 'CIVIL CONSTRUCTION',
-        boilermaking: 'INDUSTRIAL BOILERMAKING',
-        cutting: 'OXY-CUTTING',
-        conduits: 'CONDUITS',
-        grooved: 'GROOVED LINE',
-        tanks: 'FUEL AND LPG TANK',
-      },
-      catalogPdfUrl: "https://yrhedrhkfgvaeoavcazg.supabase.co/storage/v1/object/sign/public-assets/acosvital/pdf/Catalogo%201%20-%20Flanges,%20Conexoes,%20Valvulas%20e%20Tubos%20-%20Acos%20Vital%20Ed.4.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MWI0YjViZi00ZjI3LTQyZGUtYTQ5OC03MjdlNjMwMjUzYzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwdWJsaWMtYXNzZXRzL2Fjb3N2aXRhbC9wZGYvQ2F0YWxvZ28gMSAtIEZsYW5nZXMsIENvbmV4b2VzLCBWYWx2dWxhcyBlIFR1Ym9zIC0gQWNvcyBWaXRhbCBFZC40LnBkZiIsImlhdCI6MTc2NDg3MTE5OCwiZXhwIjoxNzk2NDA3MTk4fQ.k4RWJgWBKsu5Rq6jP0RJv2wzJ-M8tGCMvmtV2YRU8E0"
-    },
-    catalogPage: {
-      links: {
-        products: {
-            title: "Discover our product line",
-            buttonText: "View Products",
-        },
-        tables: {
-            title: "Access measurement tables",
-            buttonText: "Access Tables",
-        }
-      }
-    },
-    tablesPage: {
-        title: "Technical Tables and Specifications",
-        subtitle: "Consult measurements, weights, and technical standards of our main products.",
-        sidebarFooter: "Aços Vital Digital Catalog",
-        search: {
-            label: "Search Tables",
-            placeholder: "Name, dimension, standard...",
-            results: "results",
-            helper: "Searching in titles and table content...",
-            noResultsTitle: "No tables found",
-            noResultsText: "Try another search term.",
-            clear: "Clear search",
-            filterPlaceholder: "Filter data in this table (e.g. 21.3)",
-            filterActive: "Active Filter",
-            filterNoResultsTitle: "No results found",
-            filterNoResultsText: "We found no data matching \"{{term}}\" in this table.",
-            filterClear: "Clear Filter",
-            showingRecords: "Showing {{count}} of {{total}} records",
-            selectPromptTitle: "Select a Table",
-            selectPromptText: "Navigate through the sidebar menu to find technical specifications, dimensions, and standards."
-        },
-        gallery: {
-            title: "Technical Gallery",
-            subtitle: "Drawings and visual legends",
-            item: "item",
-            items: "items",
-            figure: "Figure",
-            technicalView: "Technical View",
-            zoom: "Zoom",
-            helpText: "Use the alphabetical labels (A, B, C...) presentes in the diagrams above as a reference to identify the corresponding columns in the specification table. Click on the image to view in high resolution.",
-            altDiagram: "Technical diagram {{index}} for {{tableName}}",
-            closeHint: "Press <kbd>ESC</kbd> to close",
-            enlargedView: "Enlarged view"
-        }
-    },
-    tables: pt.tables,
-    infoColumns: {
-        title: "Our Commitment to Excellence",
-        tabs: {
-            sectors: {
-                title: "Diverse Sectors",
-                description: "The commitment and dedication of Aços Vital, innovation, and customer satisfaction place us in the spotlight in the market, as we offer products that combine durability, performance, and reliability across all operating sectors."
+        locations: {
+            mogi: {
+                city: "Mogi das Cruzes",
+                state: "São Paulo, Brazil",
+                role: "Industrial Unit, Logistics & Distribution Center",
+                address: "Rod. Pedro Eroles, 1855 - Jd. Aracy, Mogi das Cruzes - SP"
             },
-            certifications: {
-                title: "Certifications",
-                description: "We meet the strictest national and international standards to ensure maximum quality and safety in every project."
+            uberaba: {
+                city: "Uberaba",
+                state: "Minas Gerais, Brazil",
+                role: "Industrial Unit, Logistics & Distribution Center",
+                address: "Av. Cristo Rei, 1183 - Jd. das Américas, Uberaba - MG"
             },
-            recognition: {
-                title: "Recognition",
-                description: "We have built a solid reputation of trust, working in partnership with the main steel mills in the country: Arcelor Mittal, Gerdau, Usiminas, and CSN."
+            bolivia: {
+                city: "Santa Cruz De La Sierra",
+                state: "Andrés Ibáñez, Bolivia",
+                role: "Industrial Unit, Logistics & Distribution Center",
+                address: "Radial 17 1/2 6to y 7mo Anillo - Santa Cruz De La Sierra, Bolivia"
+            },
+            chile: {
+                city: "Arica",
+                state: "Arica and Parinacota Region, Chile",
+                role: "Industrial Unit, Logistics & Distribution Center",
+                address: "Av. Arturo Prat 391, 5 floor, Of 53, Arica - Chile"
             }
         }
     },
-    callToAction: {
-        title: "What makes us special?",
-        subtitle: "Our reach and superior experience in the market.",
-        description: "We have customer service representatives, internal salespeople, and commercial representatives duly trained and prepared to serve you with efficiency and agility.",
-        buttonText: "TALK TO A CONSULTANT"
+    history: {
+        title: "A story of overcoming!",
+        stats: {
+            clients: { value: "+2K", label: "Annual Clients" },
+            factory_area: { value: "36K m²", label: "Total Factory Area" },
+            employees: { value: "+200", label: "Collaborators" },
+            factories: { value: "4", label: "Own Factories" }
+        }
+    },
+    featuredProducts: {
+        title: "Featured Products",
+        viewDetails: "View details",
+        items: {
+            flanges: "Flanges",
+            tubes: "Tubes",
+            boilermaking: "Boilermaking",
+            plates: "Plates",
+            fittings: "Fittings",
+            valves: "Valves",
+            profiles: "Profiles",
+            gratings: "Floor Gratings",
+            tiles: "Tiles",
+            civil: "Civil",
+            cutting: "Oxy-cutting",
+            conduits: "Conduits",
+            grooved: "Grooved Line",
+            tanks: "Tanks"
+        }
+    },
+    productsPage: {
+        title: "Product Catalog",
+        description: "Discover our complete line of steel solutions for industry and civil construction.",
+        buttonText: "View Product",
+        categories: {
+            flanges: "Flanges",
+            tubes: "Tubes",
+            fittings: "Fittings",
+            valves: "Valves",
+            profiles: "Profiles",
+            plates: "Plates",
+            gratings: "Floor Gratings",
+            tiles: "Tiles",
+            civil: "Civil",
+            boilermaking: "Boilermaking",
+            cutting: "Oxy-cutting",
+            conduits: "Conduits",
+            grooved: "Grooved Line",
+            tanks: "Tanks"
+        }
     },
     sectors: {
         title: "Sectors We Serve",
-        description: "Aços Vital is present in the largest works and industries in Brazil, supplying quality steel for various segments.",
+        description: "Aços Vital supplies high-performance steel to the most demanding economic sectors.",
         list: {
             agriculture: "Agriculture",
-            architecture_and_design: "Architecture and Design",
+            architecture_and_design: "Architecture & Design",
             automotive: "Automotive",
             civil_construction: "Civil Construction",
             energy: "Energy",
@@ -622,101 +341,58 @@ export const en = {
             steel_industry: "Steel Industry"
         }
     },
-    certificationsPage: {
-        hero: {
-            title: "Certified Quality",
-            subtitle: "Commitment to excellence and technical compliance in all processes.",
-            imageUrl: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2F5c1f0aff29d040d5999d668eb4419bfa&methods=resize%2C2000%2C5000"
-        },
-        mainContent: {
-            title: "Certifications and Accreditations of Aços Vital",
-            p1: "Aços Vital stands out for the quality of its products and services, relying on the expertise of its technical team.",
-            p2: "The entire manufacturing process relies on cutting-edge technology, meeting standards and the strictest qualification standards. In addition to <b>ISO 9001</b> and <b>CRC Petrobras</b>, which attest to the excellence of the products manufactured by Aços Vital.",
-            p3: "All our products are produced in the main steel mills in the country: <b>Arcelor Mittal</b>, <b>Gerdau</b>, <b>Usiminas</b>, and <b>CSN</b>.",
-        },
-        grid: {
-            title: "Our Certifications",
-            subtitle: "Certificates of technical capacity and management system.",
-            items: {
-                iso9001: {
-                    name: "ISO 9001:2015",
-                    issuer: "Bureau Veritas",
-                    description: "Quality Management System Certification, ensuring standardization and efficiency in processes.",
-                },
-                crc_petrobras: {
-                    name: "CRC Petrobras",
-                    issuer: "Petrobras",
-                    description: "Certificate of Registration and Classification, enabling supply to the country's largest state-owned company.",
-                },
-                ypfb: {
-                    name: "YPFB",
-                    issuer: "YPFB",
-                    description: "Registration of Suppliers for Yacimientos Petrolíferos Fiscales Bolivianos, allowing operations in the Bolivian market.",
-                },
-                dun_bradstreet: {
-                    name: "Dun & Bradstreet",
-                    issuer: "D&B",
-                    description: "Universal business identifier, attesting to commercial solidity and reliability.",
-                }
-            },
-            linkText: "View"
-        },
-        policy: {
-            title: "Quality Objectives",
-            description: "Our objectives aim at customer satisfaction and sustainable growth.",
-            points: [
-                "Increase customer satisfaction",
-                "Ensure product quality",
-                "Train our employees",
-                "Maintain a safe work environment"
-            ],
-            imageUrl: "https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-hostgator-brasil-v1-0-0%2F850%2F1911850%2FCU3jUjet%2Fafc82e27a4894ee8ba16231adb5e8f09&methods=resize%2C2000%2C5000"
+    callToAction: {
+        title: "What makes us special?",
+        subtitle: "Our technical and logistical excellence.",
+        description: "We have a highly qualified team ready to serve your project with agility.",
+        buttonText: "TALK TO A CONSULTANT"
+    },
+    infoColumns: {
+        title: "Our Commitment",
+        tabs: {
+            sectors: { title: "Multiple Sectors", description: "We serve various industrial niches with the same excellence." },
+            certifications: { title: "Certifications", description: "Quality proven by ISO 9001 and CRC Petrobras standards." },
+            recognition: { title: "Recognition", description: "Leaders in supplying steel solutions in Brazil and Latin America." }
         }
     },
     contactPage: {
-        hero: {
-            title: "Contact Us",
-            subtitle: "We are at your disposal to answer your questions, criticisms, or suggestions.",
-        },
-        options: {
-            title: "Contact Information",
-            cards: {
-                phone: {
-                    title: "Phones",
-                    description: "Commercial and administrative service.",
-                },
-                address: {
-                    title: "Address",
-                    text: "Rod. Pedro Eroles, nº 1855 – KM49\nJardim Aracy, Mogi das Cruzes - SP\nCEP 08770-490",
-                    buttonText: "View on Google Maps"
-                }
-            }
-        },
+        hero: { title: "Contact Us", subtitle: "Our technical team is ready to help you." },
+        options: { title: "Our Units", cards: { address: { title: "Headquarters" }, phone: { title: "Contacts" } } },
         form: {
-            title: "Send a Message",
-            subtitle: "Fill out the form below to request a quote or ask questions.",
+            title: "Send Message",
+            subtitle: "Fill out the form for a quick quote.",
             name: "Full Name",
             company: "Company",
-            email: "Corporate E-mail",
+            email: "Corporate Email",
             phone: "Phone / WhatsApp",
             interest: "Subject",
-            interests: ["Material Quote", "Technical Questions", "Finance", "HR", "Other"],
+            interests: ["Quote", "Technical Doubt", "Finance", "Others"],
             message: "Message",
-            sendButton: "Send Message",
+            sendButton: "Send",
             successTitle: "Message Sent!",
-            successMsg: "Thank you for contacting us. Our technical team has received your request and will return shortly.",
-            sendAnother: "Send another message",
-            errorMsg: "Could not send your message automatically. Please try via WhatsApp or email.",
-            whatsappButton: "Send on WhatsApp",
-            whatsappHint: "* If you prefer, use the WhatsApp button for immediate service."
-        },
-        map: {
-            title: "Our Location"
+            successMsg: "We will contact you shortly.",
+            sendAnother: "New Message",
+            whatsappButton: "Call on WhatsApp"
         }
     },
-    notFoundPage: {
-        title: "Page Not Found",
-        message: "The content you searched for does not exist or has been moved.",
-        homeButton: "Back to Home"
+    catalogPage: {
+        links: {
+            products: { title: "Product Line", buttonText: "View Now" },
+            tables: { title: "Technical Tables", buttonText: "View Now" }
+        }
+    },
+    certificationsPage: {
+        hero: { title: "Certified Quality", subtitle: "Guarantee of compliance in every piece." },
+        grid: {
+            title: "Our Certifications",
+            subtitle: "International standards for management and safety.",
+            items: {
+                iso9001: { name: "ISO 9001:2015", issuer: "Bureau Veritas", description: "Certified Quality Management." },
+                crc_petrobras: { name: "CRC Petrobras", issuer: "Petrobras", description: "Petrobras Supplier Registry." },
+                ypfb: { name: "YPFB", issuer: "Bolivia", description: "International technical qualification." },
+                dun_bradstreet: { name: "Dun & Bradstreet", issuer: "D&B", description: "Proven commercial solidity." }
+            }
+        },
+        policy: { title: "Quality Objectives", description: "Excellence, Sustainability and Customer Focus." }
     }
 };

@@ -1,5 +1,6 @@
+
 import React, { useRef } from 'react';
-import { useI18n } from '../../../context/I18nContext';
+import { useTranslation } from 'react-i18next';
 import { useOnScreen } from '../../../hooks/useOnScreen';
 import { INFO_COLUMNS_TABS } from '../../../lib/constants';
 
@@ -16,7 +17,7 @@ interface ColumnTab {
 }
 
 const InfoColumns: React.FC = () => {
-    const { t } = useI18n();
+    const { t } = useTranslation();
     
     const columns: ColumnTab[] = INFO_COLUMNS_TABS.map(tab => ({
         ...tab,
