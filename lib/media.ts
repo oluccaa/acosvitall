@@ -149,7 +149,7 @@ export const ASSETS = {
     /** Sobre Nós */
     ABOUT: {
         UNITS_MAP: optimize(`${SB_BASE}/sobre_nos/onde_atuamos/mapa_de_atuacao.webp`, IMG_WIDTH.CONTENT),
-        CONTENT_IMAGE: optimize(`${SB_BASE}/home/sobre/vertical-sobre-empresa.gif`, 400),
+        CONTENT_IMAGE: optimize(`${SB_BASE}/home/sobre/vertical-sobre-empresa.avif`, 400),
     },
 
     /** Certificações Page */
