@@ -39,7 +39,7 @@ const ProductDetailLayout: React.FC<ProductDetailLayoutProps> = ({
     techTitle = "ESPECIFICAÇÕES TÉCNICAS",
     techSubtitle = "Padrões rigorosos de qualidade e normas técnicas.",
     techData,
-    tablesLink = "#/tables",
+    tablesLink = "/tables",
     tablesLinkText = "Consultar Tabelas Completas"
 }) => {
     const [currentSlide, setCurrentSlide] = useState(0);

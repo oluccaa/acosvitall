@@ -191,7 +191,7 @@ const CaldeirariaProductPage: React.FC = () => {
                         </div>
                         <div className="mt-20 text-center">
                             <a 
-                                href="#/tables" 
+                                href="/tables" 
                                 className="inline-flex items-center bg-brand-orange text-white font-bold py-4 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 shadow-lg hover:shadow-brand-orange/30 transform hover:-translate-y-1 group"
                             >
                                 <span className="uppercase tracking-wide text-sm">Consultar Tabelas de Materiais</span>

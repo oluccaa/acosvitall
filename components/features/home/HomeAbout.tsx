@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ASSETS } from '../../../lib/media';
@@ -39,7 +40,7 @@ const HomeAbout: React.FC<HomeAboutProps> = ({ showButton = true }) => {
                                 {showButton && (
                                     <div className="mt-8">
                                         <a 
-                                            href="#/about" 
+                                            href="/about" 
                                             className="inline-flex items-center gap-2 bg-brand-orange text-white font-bold py-3 px-8 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-brand-orange/30 text-xs uppercase tracking-wider group"
                                         >
                                             {t('about.callToAction.buttonText')}

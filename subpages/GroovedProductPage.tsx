@@ -63,7 +63,7 @@ const GroovedProductPage: React.FC = () => {
         { 
             name: "Cruzeta Mecânica Roscada", 
             desc: "Permite ramificação perpendicular em tubulação existente, com saída roscada. Ideal para sistemas de sprinkler e instalações que exigem derivações pontuais sem desmontagem da linha principal.",
-            specs: ["Derivação Pontual", "Saída Roscada"],
+            specs: ["Derivation Pontual", "Saída Roscada"],
             image: ASSETS.PRODUCT_PAGES.GROOVED.MODELS.CRUZETA_MEC 
         },
         { 
@@ -332,7 +332,7 @@ const GroovedProductPage: React.FC = () => {
                                 </p>
                             </div>
                             <a 
-                                href="#/tables" 
+                                href="/tables" 
                                 className="whitespace-nowrap inline-flex items-center bg-brand-blue-dark text-white font-bold py-4 px-8 rounded-xl hover:bg-brand-blue-light transition-all duration-300 shadow-lg hover:shadow-brand-blue-dark/30 transform hover:-translate-y-1 group"
                             >
                                 <span className="uppercase tracking-wide text-sm">Ver Tabela Técnica</span>

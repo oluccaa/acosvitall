@@ -191,7 +191,7 @@ const OxicorteProductPage: React.FC = () => {
                             ))}
                         </div>
                         <div className="mt-20 text-center">
-                            <a href="#/tables" className="inline-flex items-center bg-brand-orange text-white font-bold py-4 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 shadow-lg hover:shadow-brand-orange/30 transform hover:-translate-y-1 group">
+                            <a href="/tables" className="inline-flex items-center bg-brand-orange text-white font-bold py-4 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 shadow-lg hover:shadow-brand-orange/30 transform hover:-translate-y-1 group">
                                 <span className="uppercase tracking-wide text-sm">Consultar Tabelas de Chapas</span>
                                 <ChevronRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                             </a>

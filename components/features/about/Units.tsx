@@ -94,7 +94,7 @@ const Units: React.FC = () => {
                             </p>
                             <div className="pt-4">
                                 <a 
-                                    href="#/contact" 
+                                    href="/contact" 
                                     className="inline-flex items-center gap-3 text-brand-orange font-bold uppercase tracking-widest text-xs hover:text-white transition-colors group"
                                 >
                                     Fale com a unidade mais próxima
