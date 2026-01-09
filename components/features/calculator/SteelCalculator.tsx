@@ -5,7 +5,7 @@ import {
     Calculator, Circle, Square, Box, Layers, Disc, Grid, LayoutGrid, 
     Cylinder, CornerDownRight, ShoppingCart, BoxSelect, RefreshCcw, Plus, Trash2, Info, ChevronDown,
     Filter, Split, Package, Printer, Share2, Zap, Ruler, Scale, Paintbrush, ArrowRight, MousePointerClick,
-    Wrench, Settings2
+    Wrench, Settings2, Loader2, Sparkles
 } from 'lucide-react';
 import WhatsappIcon from '../../common/icons/WhatsappIcon';
 import MeasurementInput, { ForcedUnit } from '../../common/MeasurementInput';
@@ -92,6 +92,7 @@ const SteelCalculator: React.FC = () => {
     const [isCustomExpanded, setIsCustomExpanded] = useState<boolean>(false);
     const [editHistory, setEditHistory] = useState<TubeField[]>([]);
     const [copied, setCopied] = useState(false);
+    const [isResetting, setIsResetting] = useState(false);
     
     const [activeField, setActiveField] = useState<keyof CalculatorState>('thickness');
     const [thicknessUnitForce, setThicknessUnitForce] = useState<ForcedUnit | undefined>(undefined);
@@ -233,6 +234,12 @@ const SteelCalculator: React.FC = () => {
         }
     };
 
+    const handleReset = () => {
+        setIsResetting(true);
+        reset();
+        setTimeout(() => setIsResetting(false), 600);
+    };
+
     const generateTechnicalSpec = () => {
         const matKey = values.material === 'carbon' ? "carbon" : 
                    values.material === 'inox304' ? "inox304" : 
@@ -306,10 +313,10 @@ const SteelCalculator: React.FC = () => {
     );
 
     return (
-        <div className="flex flex-col gap-6 font-sans">
+        <div className={`flex flex-col gap-6 font-sans transition-all duration-500 ${isResetting ? 'scale-[0.99] blur-[1px] opacity-70' : ''}`}>
             
             {/* WORKSTATION CONSOLE - UNIFIED VERSION */}
-            <div className="bg-[#0f172a] border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div className={`bg-[#0f172a] border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ${isResetting ? 'ring-4 ring-brand-blue-light/20 shadow-[0_0_40px_rgba(56,127,217,0.2)]' : ''}`}>
                 
                 {/* 1. SELECTION HEADER (Horizontal Integration) */}
                 <div className="p-4 border-b border-white/5 bg-[#131d33] flex flex-col md:flex-row items-center justify-between gap-4">
@@ -325,8 +332,8 @@ const SteelCalculator: React.FC = () => {
 
                     <div className="flex items-center gap-3 bg-black/20 p-1.5 rounded-xl border border-white/5">
                         <span className="text-[10px] text-gray-400 font-bold uppercase px-2">{t('calculatorPage.common.clear')}</span>
-                        <button onClick={reset} className="p-2 bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-lg transition-all active:scale-90" title={t('calculatorPage.common.clear')}>
-                            <RefreshCcw size={16} />
+                        <button onClick={handleReset} className="p-2 bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-lg transition-all active:scale-90 group" title={t('calculatorPage.common.clear')}>
+                            <RefreshCcw size={16} className={`group-active:rotate-180 transition-transform duration-500 ${isResetting ? 'animate-spin' : ''}`} />
                         </button>
                     </div>
                 </div>
@@ -574,17 +581,29 @@ const SteelCalculator: React.FC = () => {
                             <span className="text-[10px] font-black uppercase text-brand-orange tracking-[0.2em] mb-1 flex items-center gap-2">
                                 <Info size={14} /> {t('calculatorPage.common.totalWeight')}
                             </span>
-                            <div 
-                                className="flex items-baseline gap-2 cursor-pointer group/copy" 
-                                onClick={copyResult} 
-                                title="Click to copy"
-                            >
-                                <span className="text-5xl lg:text-7xl font-mono font-black text-white tracking-tighter leading-none group-hover/copy:text-brand-orange transition-all drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
-                                    {totalWeight > 0 ? totalWeight.toFixed(2) : '0.00'}
-                                </span>
-                                <span className="text-xl lg:text-2xl font-bold text-gray-500 mb-1">kg</span>
-                                {copied && <span className="text-[10px] text-green-400 font-black animate-pulse bg-green-900/30 px-2 py-1 rounded border border-green-500/30 ml-2">COPIED!</span>}
-                            </div>
+                            
+                            {totalWeight > 0 ? (
+                                <div 
+                                    className="flex items-baseline gap-2 cursor-pointer group/copy animate-in zoom-in-95 duration-300" 
+                                    onClick={copyResult} 
+                                    title="Click to copy"
+                                >
+                                    <span className="text-5xl lg:text-7xl font-mono font-black text-white tracking-tighter leading-none group-hover/copy:text-brand-orange transition-all drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+                                        {totalWeight.toFixed(2)}
+                                    </span>
+                                    <span className="text-xl lg:text-2xl font-bold text-gray-500 mb-1">kg</span>
+                                    {copied && <span className="text-[10px] text-green-400 font-black animate-pulse bg-green-900/30 px-2 py-1 rounded border border-green-500/30 ml-2">COPIED!</span>}
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-4 py-4 opacity-30 select-none animate-in fade-in duration-700">
+                                    <div className="flex flex-col">
+                                        <div className="flex gap-1 mb-2">
+                                            {[1,2,3,4,5].map(i => <div key={i} className="w-8 h-1.5 bg-white/20 rounded-full"></div>)}
+                                        </div>
+                                        <span className="text-xl font-black uppercase tracking-widest text-white/50">{t('calculatorPage.common.waiting')}</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         <div className="hidden lg:block w-px h-16 bg-white/10 mx-4"></div>
@@ -594,8 +613,8 @@ const SteelCalculator: React.FC = () => {
                             <div className="flex flex-col items-center lg:items-end gap-1">
                                 <span className="text-[9px] text-gray-500 uppercase font-black tracking-widest">{t('calculatorPage.common.unitWeight')}</span>
                                 <div className="flex items-baseline gap-1.5">
-                                    <span className="text-xl md:text-3xl font-mono font-black text-gray-300 tracking-tight">
-                                        {unitWeight > 0 ? unitWeight.toFixed(2) : '0.00'}
+                                    <span className={`text-xl md:text-3xl font-mono font-black tracking-tight transition-all duration-300 ${unitWeight > 0 ? 'text-gray-300' : 'text-white/10'}`}>
+                                        {unitWeight > 0 ? unitWeight.toFixed(2) : '---'}
                                     </span>
                                     <span className="text-[9px] text-gray-600 font-black uppercase">kg</span>
                                 </div>
@@ -604,8 +623,8 @@ const SteelCalculator: React.FC = () => {
                             <div className="flex flex-col items-center lg:items-end gap-1">
                                 <span className="text-[9px] text-gray-500 uppercase font-black tracking-widest">{t('calculatorPage.common.totalArea')}</span>
                                 <div className="flex items-baseline gap-1.5">
-                                    <span className="text-xl md:text-3xl font-mono font-black text-gray-300 tracking-tight">
-                                        {totalArea > 0 ? totalArea.toFixed(2) : '0.00'}
+                                    <span className={`text-xl md:text-3xl font-mono font-black tracking-tight transition-all duration-300 ${totalArea > 0 ? 'text-gray-300' : 'text-white/10'}`}>
+                                        {totalArea > 0 ? totalArea.toFixed(2) : '---'}
                                     </span>
                                     <span className="text-[9px] text-gray-600 font-black uppercase">m²</span>
                                 </div>
@@ -668,12 +687,14 @@ const SteelCalculator: React.FC = () => {
 
                         <div className="flex-1 overflow-auto max-h-[400px] scrollbar-thin scrollbar-thumb-gray-600 p-0">
                             {projectItems.length === 0 ? (
-                                <div className="flex flex-col items-center justify-center h-56 text-gray-600">
-                                    <Package size={48} className="mb-4 opacity-10" />
+                                <div className="flex flex-col items-center justify-center h-56 text-gray-600 animate-in fade-in slide-in-from-top-4 duration-700">
+                                    <div className="p-6 bg-white/5 rounded-full mb-4 border border-white/5">
+                                        <Sparkles size={48} className="text-brand-orange/20" />
+                                    </div>
                                     <p className="text-sm font-black uppercase tracking-widest opacity-30">{t('calculatorPage.common.emptyList')}</p>
                                 </div>
                             ) : (
-                                <table className="w-full text-left border-collapse">
+                                <table className="w-full text-left border-collapse animate-in fade-in duration-500">
                                     <thead className="bg-[#1e293b] text-gray-400 font-black text-[10px] uppercase tracking-widest sticky top-0 z-10 shadow-sm">
                                         <tr>
                                             <th className="px-6 py-4 border-b border-white/5">{t('calculatorPage.project.item')}</th>

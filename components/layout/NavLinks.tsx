@@ -22,13 +22,14 @@ interface NavLinksProps {
 export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLinkClick, isMobile = false, isScrolled = false }) => {
     const currentPath = useRouter();
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-    const timeoutRef = useRef<number | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const isActive = (href: string): boolean => {
         if (href === '/' || href === '/home') return currentPath === '/' || currentPath === '/home';
         return currentPath.startsWith(href);
     };
 
+    // Fecha ao rolar a página
     useEffect(() => {
         const handleScroll = () => {
             if (isMegaMenuOpen) setIsMegaMenuOpen(false);
@@ -37,42 +38,46 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isMegaMenuOpen]);
 
-    const handleMouseEnter = (key?: string) => {
+    // Fecha ao clicar fora
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setIsMegaMenuOpen(false);
+            }
+        };
+
+        if (isMegaMenuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isMegaMenuOpen]);
+
+    const handleToggleProducts = (e: React.MouseEvent, key?: string) => {
         if (key === 'products') {
-            if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
-            setIsMegaMenuOpen(true);
+            e.preventDefault();
+            setIsMegaMenuOpen(!isMegaMenuOpen);
         } else {
             setIsMegaMenuOpen(false);
+            if (onLinkClick) onLinkClick();
         }
-    };
-
-    const handleMouseLeave = () => {
-        timeoutRef.current = window.setTimeout(() => {
-            setIsMegaMenuOpen(false);
-        }, 150);
     };
 
     if (isMobile) return null;
 
     return (
-        <nav className={`flex flex-row items-center space-x-1 ${className}`}>
+        <nav className={`flex flex-row items-center space-x-1 ${className}`} ref={containerRef}>
              {links.map((link) => {
                  const active = isActive(link.href);
                  const isProducts = link.key === 'products';
 
                  return (
-                    <div 
-                        key={link.href} 
-                        className="static"
-                        onMouseEnter={() => handleMouseEnter(link.key)}
-                        onMouseLeave={isProducts ? handleMouseLeave : undefined}
-                    >
+                    <div key={link.href} className="relative">
                         <a 
                             href={link.href} 
-                            onClick={onLinkClick}
+                            onClick={(e) => handleToggleProducts(e, link.key)}
                             className={`
                                 relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
-                                px-4 text-[11px] font-black tracking-widest uppercase
+                                px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
                                 ${isScrolled ? 'py-4' : 'py-7'}
                                 ${active || (isProducts && isMegaMenuOpen) ? 'text-brand-orange' : 'text-gray-300 hover:text-white'}
                             `}

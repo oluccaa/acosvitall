@@ -47,13 +47,11 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
 
     return (
         <div 
-            className={`fixed inset-x-0 z-[200] flex justify-center px-6 sm:px-12 lg:px-24 transition-all duration-300 animate-in fade-in slide-in-from-top-2
+            className={`fixed inset-x-0 z-[200] flex justify-center px-6 sm:px-12 lg:px-24 transition-all duration-500 animate-in fade-in slide-in-from-top-6
                 ${isScrolled ? 'top-[60px]' : 'top-[110px]'}
             `}
-            onMouseEnter={() => {}} 
-            onMouseLeave={onClose}
         >
-            <div className="w-full max-w-7xl bg-[#081437] border border-white/10 rounded-2xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden ring-1 ring-white/5">
+            <div className="w-full max-w-7xl bg-[#081437] border border-white/10 rounded-2xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] overflow-hidden ring-1 ring-white/5">
                 <div className="flex flex-col lg:flex-row">
                     <div className="flex-1 flex flex-col">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 px-8 lg:px-10 pt-10 pb-4 border-b border-white/5">
@@ -110,7 +108,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                                 onClick={onClose}
                                 className="inline-flex items-center gap-2 text-[10px] font-black text-white uppercase tracking-widest hover:text-brand-orange transition-colors group"
                             >
-                                <Calculator size={14} className="text-brand-orange" />
+                                <calculator size={14} className="text-brand-orange" />
                                 Acessar Workstation <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform ml-1" />
                             </a>
                         </div>
