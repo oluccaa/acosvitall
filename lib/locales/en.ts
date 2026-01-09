@@ -29,7 +29,7 @@ export const en = {
       },
       whatsapp: 'WHATSAPP',
       mobileGroups: {
-          tubular: "Piping & Lines",
+          tubular: "Piping & Grooved Line",
           tubularDesc: "Tubes, Conduits and Grooved",
           connections: "Fittings & Valves",
           connectionsDesc: "Flanges, Fittings and Valves",

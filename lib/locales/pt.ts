@@ -29,7 +29,7 @@ export const pt = {
       },
       whatsapp: 'WHATSAPP',
       mobileGroups: {
-          tubular: "Tubulação & Linhas",
+          tubular: "Tubulação & Linha Grooved",
           tubularDesc: "Tubos, Eletrodutos e Grooved",
           connections: "Conexões & Válvulas",
           connectionsDesc: "Flanges, Conexões e Válvulas",
@@ -439,7 +439,7 @@ export const pt = {
         buttonText: "FALAR COM UM CONSULTOR"
     },
     infoColumns: {
-        title: "Nosso Compromisso",
+        title: "Nosso Compromiso",
         tabs: {
             sectors: { title: "Diversos Setores", description: "Atendemos múltiplos nichos industriais com a mesma excelência." },
             certifications: { title: "Certificações", description: "Qualidade comprovada pelas normas ISO 9001 e CRC Petrobras." },

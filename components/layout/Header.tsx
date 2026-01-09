@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Facebook, Instagram, Linkedin, Search, Phone, ChevronRight, Package, Calculator, FileText, Award, Mail, Layers, Settings, Box, Factory, Home, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +21,7 @@ const Header: React.FC = () => {
     const currentRoute = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     
     // Mobile Menu States
     const [activeProductGroup, setActiveProductGroup] = useState<string | null>(null);
@@ -33,7 +35,7 @@ const Header: React.FC = () => {
             label: t('header.mobileGroups.tubular'),
             icon: <Layers size={20} />,
             description: t('header.mobileGroups.tubularDesc'),
-            items: ['tubes', 'conduits', 'grooved']
+            items: ['tubos', 'conduits', 'grooved']
         },
         {
             id: 'conexoes',
@@ -67,6 +69,11 @@ const Header: React.FC = () => {
     const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
 
     useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        
         const handleKeyDown = (e: KeyboardEvent) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -77,7 +84,10 @@ const Header: React.FC = () => {
             }
         };
         window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('keydown', handleKeyDown);
+        };
     }, [isMobileMenuOpen]);
 
     useEffect(() => {
@@ -99,9 +109,10 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 bg-brand-blue-dark border-b border-white/5 w-full">
+            {/* Header Sticky Container */}
+            <header className={`sticky top-0 z-[100] w-full transition-all duration-300 ${isScrolled ? 'bg-brand-blue-dark/95 backdrop-blur-md shadow-lg' : 'bg-brand-blue-dark'}`}>
                 {/* Top Bar */}
-                <div className="w-full bg-brand-blue-dark border-b border-white/5 py-2.5">
+                <div className={`w-full bg-brand-blue-dark border-b border-white/5 transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0 opacity-0' : 'py-2.5 h-auto opacity-100'}`}>
                      <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl flex justify-between items-center text-[11px] font-medium tracking-wide text-gray-400">
                          <div className="flex items-center gap-4">
                             <a href="tel:1147972352" className="hover:text-brand-orange flex items-center gap-1.5 transition-colors">
@@ -111,7 +122,6 @@ const Header: React.FC = () => {
                             <span className="hidden sm:inline">{t('layout.schedule')}</span>
                          </div>
                          <div className="flex items-center gap-4">
-                            {/* Portal da Qualidade Desktop */}
                             <a 
                                 href={QUALITY_PORTAL_URL} 
                                 target="_blank" 
@@ -143,18 +153,18 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Main Header Content */}
-                <div className="w-full py-5">
+                <div className="w-full">
                     <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative">
                         <div className="flex justify-between items-center gap-6">
                             
                             {/* Logo */}
                             <a href="#/" aria-label="Aços Vital Home" className="flex-shrink-0 z-50 transition-transform duration-300 hover:scale-105 origin-left">
-                                <Logo className="h-[45px] md:h-[55px]" />
+                                <Logo className={`transition-all duration-300 ${isScrolled ? 'h-[35px] md:h-[40px]' : 'h-[45px] md:h-[55px]'}`} />
                             </a>
                             
                             {/* Desktop Nav */}
                             <div className="hidden lg:flex flex-1 justify-center">
-                                <NavLinks links={navLinksData} />
+                                <NavLinks links={navLinksData} isScrolled={isScrolled} />
                             </div>
                             
                             {/* Actions */}
@@ -190,7 +200,7 @@ const Header: React.FC = () => {
             {/* --- PREMIUM MOBILE MENU OVERLAY --- */}
             <div 
                 className={`
-                    fixed inset-0 z-50 bg-brand-blue-dark
+                    fixed inset-0 z-[150] bg-brand-blue-dark
                     flex flex-col h-[100dvh] w-full overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
                     ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}
                 `}
@@ -338,7 +348,7 @@ const Header: React.FC = () => {
                             className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isLinkActive('#/contact') ? 'bg-white/10 text-white' : 'text-gray-200 hover:bg-white/5'}`}
                         >
                             <Mail size={20} className={isLinkActive('#/contact') ? 'text-brand-orange' : 'text-gray-400'} />
-                            <span className="font-bold text-lg">{t('header.mobileLinks.contact')}</span>
+                            <span className="font-bold text-lg">{t('header.navLinks.contact')}</span>
                         </a>
 
                         {/* Portal da Qualidade Mobile */}

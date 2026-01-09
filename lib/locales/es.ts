@@ -29,7 +29,7 @@ export const es = {
       },
       whatsapp: 'WHATSAPP',
       mobileGroups: {
-          tubular: "Tuberías & Líneas",
+          tubular: "Tuberías & Línea Grooved",
           tubularDesc: "Tubos, Conductos y Ranurados",
           connections: "Conexiones & Válvulas",
           connectionsDesc: "Bridas, Conexiones y Válvulas",
@@ -112,7 +112,7 @@ export const es = {
             converterDesc: "Unidades"
         },
         converter: {
-            title: "Conversor de Unidades Industriales",
+            title: "Conversor de Unidades Industriais",
             categories: {
                 length: "Longitud",
                 weight: "Peso / Masa",
@@ -164,7 +164,7 @@ export const es = {
             }
         },
         nesting: {
-            params: "Parámetros de Barra",
+            params: "Parâmetros de Barra",
             barLength: "Longitud de la Barra",
             bladeWidth: "Espesor de Corte (Kerf)",
             addPieces: "Añadir Piezas",
@@ -188,7 +188,7 @@ export const es = {
         common: {
             selection: "Configuración de Material",
             selectionDesc: "Seleccione el material para dimensionar",
-            techParams: "Parámetros Técnicos",
+            techParams: "Parâmetros Técnicos",
             autoSystem: "Sistema Automático",
             systemStatus: "Estado del Sistema",
             operational: "Operativo",
@@ -226,7 +226,7 @@ export const es = {
             width: "Ancho",
             length: "Largo",
             outerDiameter: "Diámetro Externo",
-            innerDiameter: "Diámetro Interno",
+            innerDiameter: "Diâmetro Interno",
             wallThickness: "Pared / Cédula",
             height: "Altura",
             diameter: "Diámetro",
@@ -290,7 +290,7 @@ export const es = {
             buttonText: "Línea Trapezoidal"
         },
         excellence: {
-            title: "Excelencia en Aceros:\n¡La confianza es lo que nos conecta!",
+            title: "Excelencia en Aceros:\n¡La confiança es lo que nos conecta!",
             subtitle: "Chapas, Tubos, Bridas, Conexiones y Aceros. ¡Traemos soluciones para desafíos complejos!",
             buttonText: "Explorar Productos"
         },
@@ -308,7 +308,7 @@ export const es = {
       scrollText: "Desplazar abajo"
     },
     about: {
-        title: "¡La confianza es lo que nos conecta!",
+        title: "¡La confiança es lo que nos conecta!",
         p1: "Aços Vital es referencia en la fabricación de bridas, tubos, curvas y rejillas para los sectores industriales.",
         p2: "La empresa se destaca por la alta calidad y precisión de sus productos, con atención personalizada.",
         p3: "Con procesos optimizados y profissionais qualificados, Aços Vital garantiza durabilidad y rendimiento.",

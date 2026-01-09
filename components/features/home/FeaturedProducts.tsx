@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
@@ -11,7 +12,7 @@ interface Product {
 }
 
 const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragging: boolean }> = ({ product, viewDetailsText, isDragging }) => (
-    <li className={`snap-center flex-shrink-0 w-[80%] sm:w-[42%] md:w-[30%] lg:w-[22%] 2xl:w-[18%] pl-4 first:pl-0 select-none ${isDragging ? 'pointer-events-none' : ''}`}>
+    <li className={`snap-center flex-shrink-0 w-[80%] sm:w-[42%] md:w-[30%] lg:w-[22%] 2xl:w-[18%] select-none ${isDragging ? 'pointer-events-none' : ''}`}>
         <a 
             href={product.href} 
             className="block group relative aspect-[3/3.8] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out h-full border border-gray-100 bg-gray-100"
@@ -191,7 +192,7 @@ const FeaturedProducts: React.FC = () => {
                     onMouseMove={handleMouseMove}
                     onClickCapture={handleLinkClick}
                     className={`
-                        flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-10 pt-2 scrollbar-hide select-none
+                        flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-10 pt-2 scrollbar-hide select-none gap-4 md:gap-6
                         will-change-scroll
                         ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
                         ${!isDragging ? 'snap-x snap-mandatory scroll-smooth' : 'snap-none'}
