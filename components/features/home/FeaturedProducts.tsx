@@ -1,5 +1,6 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { FEATURED_PRODUCTS_LIST } from '../../../lib/constants';
@@ -13,8 +14,8 @@ interface Product {
 
 const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragging: boolean }> = ({ product, viewDetailsText, isDragging }) => (
     <li className={`snap-center flex-shrink-0 w-[80%] sm:w-[42%] md:w-[30%] lg:w-[22%] 2xl:w-[18%] select-none ${isDragging ? 'pointer-events-none' : ''}`}>
-        <a 
-            href={product.href} 
+        <Link 
+            to={product.href} 
             className="block group relative aspect-[3/3.8] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out h-full border border-gray-100 bg-gray-100"
             aria-label={`Ver detalhes de ${product.alt}`}
             draggable={false}
@@ -41,7 +42,7 @@ const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragg
                     </div>
                 </div>
             </div>
-        </a>
+        </Link>
     </li>
 );
 

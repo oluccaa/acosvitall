@@ -13,6 +13,7 @@ interface Slide {
   subtitle: string;
   buttonText: string;
   imageUrl: string;
+  href: string;
 }
 
 const animationStyles = `
@@ -133,7 +134,8 @@ const Hero: React.FC = () => {
     ...slide,
     title: t(`hero.slides.${slide.id}.title`),
     subtitle: t(`hero.slides.${slide.id}.subtitle`),
-    buttonText: t(`hero.slides.${slide.id}.buttonText`)
+    buttonText: t(`hero.slides.${slide.id}.buttonText`),
+    href: slide.href
   })), [t]);
 
   const advanceSlide = useCallback(() => {
@@ -221,7 +223,7 @@ const Hero: React.FC = () => {
                     {currentSlide.subtitle}
                 </p>
                 <Link 
-                    to="/contact"
+                    to={currentSlide.href}
                     onClick={(e) => e.stopPropagation()} 
                     className="bg-brand-orange text-white font-bold py-2.5 px-6 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-[10px] sm:text-xs uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20 inline-block" 
                     style={{ animationDelay: '0.6s' }}

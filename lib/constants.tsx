@@ -103,23 +103,28 @@ export const SECTORS_LIST = [
 export const HERO_SLIDES = [
     {
         id: "entressafra",
-        imageUrl: ASSETS.HERO_SLIDES_IMGS.ENTRESSAFRA
+        imageUrl: ASSETS.HERO_SLIDES_IMGS.ENTRESSAFRA,
+        href: "/products"
     },
     {
         id: "trapezoidal",
-        imageUrl: ASSETS.HERO_SLIDES_IMGS.TRAPEZOIDAL
+        imageUrl: ASSETS.HERO_SLIDES_IMGS.TRAPEZOIDAL,
+        href: "/products/telhas"
     },
     {
         id: "excellence",
-        imageUrl: ASSETS.HERO_SLIDES_IMGS.EXCELLENCE
+        imageUrl: ASSETS.HERO_SLIDES_IMGS.EXCELLENCE,
+        href: "/products"
     },
     {
         id: "flanges",
-        imageUrl: ASSETS.HERO_SLIDES_IMGS.FLANGES
+        imageUrl: ASSETS.HERO_SLIDES_IMGS.FLANGES,
+        href: "/products/flanges"
     },
     {
         id: "flooring",
-        imageUrl: ASSETS.HERO_SLIDES_IMGS.FLOORING
+        imageUrl: ASSETS.HERO_SLIDES_IMGS.FLOORING,
+        href: "/products/grades"
     },
 ];
 
