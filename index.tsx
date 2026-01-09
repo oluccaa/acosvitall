@@ -1,13 +1,20 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './lib/i18n';
 
-// O registro do Service Worker foi removido para evitar erros 404 em produção, 
-// uma vez que o arquivo sw.js não está sendo servido corretamente na raiz do domínio.
-// Isso limpa o console e estabiliza a pontuação de performance do site.
+// Registro do Service Worker habilitado para resolver o alerta de ciclo de vida de cache.
+// O SW intercepta requisições de domínios externos (Supabase, Google, RSMS) e armazena
+// os assets no CacheStorage, garantindo carregamento instantâneo em visitas recorrentes.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // Registra o sw.js localizado na raiz do projeto
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Aços Vital SW: Ativo', reg.scope))
+      .catch(err => console.warn('Aços Vital SW: Erro no registro', err));
+  });
+}
 
 const rootElement = document.getElementById('root');
 

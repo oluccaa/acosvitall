@@ -13,7 +13,7 @@ export const es = {
         updated: "Actualizado 2025",
         close: "Cerrar",
         list: "Lista",
-        navigation: "Navegação"
+        navigation: "Navegación"
     },
     header: {
       navLinks: {
@@ -61,7 +61,7 @@ export const es = {
         developedBy: "Desarrollado con excelencia"
     },
     privacy: {
-        title: "Política de Privacidade",
+        title: "Política de Privacidad",
         lastUpdated: "Última actualización: Marzo de 2025",
         intro: "Aços Vital valora la seguridad y privacidad de sus usuarios. Esta Política de Privacidad describe cómo recolectamos, usamos y protegemos sus datos según la LGPD.",
         sections: {
@@ -122,9 +122,9 @@ export const es = {
             },
             labels: {
                 value: "Valor",
-                from: "Unidad de Origem",
+                from: "Unidad de Origen",
                 result: "Resultado",
-                to: "Unidade de Destino"
+                to: "Unidad de Destino"
             },
             units: {
                 mm: "Milímetros (mm)",
@@ -156,7 +156,7 @@ export const es = {
                 legSize: "Pierna (z) mm",
                 thickness: "Espesor (t) mm",
                 gap: "Raíz / Apertura (g) mm",
-                angle: "Ângulo (α) °",
+                angle: "Ángulo (α) °",
                 weldLength: "Long. de Soldadura (m)",
                 reinforcement: "Refuérzo / Corona (%)",
                 estimatedWeight: "Peso Estimado",
@@ -286,11 +286,11 @@ export const es = {
         },
         trapezoidal: {
             title: "Tejas Trapezoidales",
-            subtitle: "Protección máxima, design moderno. La fuerza que su obra necesita.",
+            subtitle: "Protección máxima, diseño moderno. La fuerza que su obra necesita.",
             buttonText: "Línea Trapezoidal"
         },
         excellence: {
-            title: "Excelência em Aceros:\n¡La confiança es lo que nos conecta!",
+            title: "Excelencia en Aceros:\n¡La confiança es lo que nos conecta!",
             subtitle: "Chapas, Tubos, Bridas, Conexiones y Aceros. ¡Traemos soluciones para desafíos complejos!",
             buttonText: "Explorar Productos"
         },
@@ -308,7 +308,7 @@ export const es = {
       scrollText: "Desplazar abajo"
     },
     about: {
-        title: "Sobre Nosotros",
+        title: "¡La confiança es lo que nos conecta!",
         p1: "Aços Vital es referencia en la fabricación de bridas, tubos, curvas y rejillas para los sectores industriales.",
         p2: "La empresa destaca por la alta calidad y precisión de sus productos, con atención personalizada.",
         p3: "Con procesos optimizados y profissionais qualificados, Aços Vital garantiza durabilidad y rendimiento.",
@@ -319,7 +319,7 @@ export const es = {
     },
     features: {
         list: {
-            fast_delivery: { title: "Entrega Rápida e Flexible", description: "Producción ágil y logística optimizada para cumplir plazos en todo el país." },
+            fast_delivery: { title: "Entrega Rápida y Flexible", description: "Producción ágil y logística optimizada para cumplir plazos en todo el país." },
             certified_quality: { title: "Qualidad Certificada", description: "Productos bajo altos estándares, con certificaciones ISO 9001 e CRC Petrobras." },
             global_reach: { title: "Alcance Global", description: "Atendemos con excelencia en Brasil y el exterior, llevando soluciones sin fronteras." },
             satisfied_clients: { title: "+2.000 Clientes Satisfechos", description: "La confianza de miles de clientes anualmente comprueba nuestra dedicación." }
@@ -330,8 +330,8 @@ export const es = {
         title: "Nuestros Pilares",
         list: {
             mission: { title: "MISIÓN", description: "Entregar productos de acero de alta qualidade, fortaleciendo alianzas y crecimiento sostenible." },
-            vision: { title: "VISIÓN", description: "Ser referencia nacional en productos de acero, destacando por qualidade e innovación." },
-            values: { title: "VALORES", description: "Qualidade, innovación, sostenibilidad, alianza y seguridad." }
+            vision: { title: "VISIÓN", description: "Ser referencia nacional en productos de acero, destacando por calidad e innovación." },
+            values: { title: "VALORES", description: "Qualidad, innovación, sostenibilidad, alianza y seguridad." }
         }
     },
     units: {
@@ -341,25 +341,25 @@ export const es = {
             mogi: {
                 city: "Mogi das Cruzes",
                 state: "São Paulo, Brasil",
-                role: "Unidad Industrial, Centro Logístico e Distribuição",
+                role: "Unidad Industrial, Centro Logístico y Distribución",
                 address: "Rod. Pedro Eroles, 1855 - Jd. Aracy, Mogi das Cruzes - SP"
             },
             uberaba: {
                 city: "Uberaba",
                 state: "Minas Gerais, Brasil",
-                role: "Unidad Industrial, Centro Logístico e Distribuição",
+                role: "Unidad Industrial, Centro Logístico y Distribución",
                 address: "Av. Cristo Rei, 1183 - Jd. das Américas, Uberaba - MG"
             },
             bolivia: {
                 city: "Santa Cruz De La Sierra",
                 state: "Andrés Ibáñez, Bolivia",
-                role: "Unidad Industrial, Centro Logístico e Distribuição",
+                role: "Unidad Industrial, Centro Logístico y Distribución",
                 address: "Radial 17 1/2 6to y 7mo Anillo - Santa Cruz De La Sierra, Bolivia"
             },
             chile: {
                 city: "Arica",
                 state: "Región de Arica y Parinacota, Chile",
-                role: "Unidad Industrial, Centro Logístico e Distribuição",
+                role: "Unidad Industrial, Centro Logístico y Distribución",
                 address: "Av. Arturo Prat 391, 5 piso, Of 53, Arica - Chile"
             }
         }
@@ -462,14 +462,14 @@ export const es = {
             sendButton: "Enviar",
             successTitle: "¡Mensaje Enviado!",
             successMsg: "Pronto nos pondremos en contacto.",
-            sendAnother: "Nuevo Message",
+            sendAnother: "Nuevo Mensaje",
             whatsappButton: "Llamar por WhatsApp"
         }
     },
     catalogPage: {
         links: {
             products: { title: "Línea de Productos", buttonText: "Ver Ahora" },
-            tables: { title: "Tablas Técnicas", buttonText: "Ver Agora" }
+            tables: { title: "Tablas Técnicas", buttonText: "Ver Ahora" }
         }
     },
     certificationsPage: {

@@ -313,7 +313,7 @@ export const pt = {
       scrollText: "Role para baixo"
     },
     about: {
-        title: "Sobre nós",
+        title: "A confiança é o que nos conecta!",
         p1: "A Aços Vital é referência na fabricação de flanges, tubos, curvas e grades para os setores industrial e da construção civil.",
         p2: "La empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.",
         p3: "Com processos otimizados e profissionais qualificados, a Aços Vital garante durabilidade, performance e prazos de entrega diferenciados.",
@@ -325,7 +325,7 @@ export const pt = {
     features: {
         list: {
             fast_delivery: { title: "Entrega Rápida e Flexível", description: "Produção ágil e logística otimizada para cumprir seus prazos em todo o território nacional." },
-            certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001 e CRC Petrobras e YPFB." },
+            certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001, CRC Petrobrás e YPFB." },
             global_reach: { title: "Alcance Global", description: "Atendemos com excelência clientes no Brasil e no exterior, levando nossas soluções além das fronteiras." },
             satisfied_clients: { title: "+2.000 Clientes Satisfeitos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
         }

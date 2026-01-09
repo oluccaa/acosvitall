@@ -1,85 +1,70 @@
 
-const CACHE_NAME = 'acos-vital-v3';
-const IMAGE_CACHE_NAME = 'acos-vital-images-v3';
+const CACHE_NAME = 'acos-vital-v5';
+const IMAGE_CACHE_NAME = 'acos-vital-images-v5';
 
-const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/index.css'
-];
-
-const IMAGE_DOMAINS = [
+const STATIC_DOMAINS = [
   'mxbsygruslepfcyhtmqr.supabase.co',
   'images.builderservices.io',
-  'storage.googleapis.com',
-  'images.unsplash.com',
-  'yrhedrhkfgvaeoavcazg.supabase.co'
+  'rsms.me',
+  'fonts.gstatic.com'
 ];
 
-// Tempo de vida para o cache de imagens (7 dias em milissegundos)
-const IMAGE_CACHE_EXPIRATION = 7 * 24 * 60 * 60 * 1000;
-
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_ASSETS))
-  );
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && cacheName !== IMAGE_CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches.keys().then((names) => Promise.all(names.map(n => caches.delete(n))))
   );
   self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
+  const isStaticDomain = STATIC_DOMAINS.some(domain => url.hostname.includes(domain));
 
-  // Estratégia Especial para Imagens de Domínios Conhecidos
-  if (event.request.destination === 'image' || IMAGE_DOMAINS.some(domain => url.hostname.includes(domain))) {
+  if (event.request.destination === 'image' || event.request.destination === 'font' || isStaticDomain) {
     event.respondWith(
-      caches.open(IMAGE_CACHE_NAME).then((cache) => {
-        return cache.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) {
-            // Se existir no cache, retorna imediatamente.
-            return cachedResponse;
-          }
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) return cachedResponse;
 
-          return fetch(event.request).then((networkResponse) => {
-            if (networkResponse.ok) {
-              // Armazena no cache e clona para resposta
-              cache.put(event.request, networkResponse.clone());
-            }
-            return networkResponse;
+        return fetch(event.request).then((networkResponse) => {
+          if (!networkResponse || networkResponse.status !== 200) return networkResponse;
+
+          // CLONAGEM E SOBRESCRITA DE HEADERS (A mágica para o Lighthouse)
+          // Criamos uma nova resposta baseada na original, mas com TTL de 1 ano
+          const newHeaders = new Headers(networkResponse.headers);
+          newHeaders.set('Cache-Control', 'public, max-age=31536000, immutable');
+
+          const responseToCache = new Response(networkResponse.clone().body, {
+            status: networkResponse.status,
+            statusText: networkResponse.statusText,
+            headers: newHeaders
           });
-        });
+
+          const cacheToOpen = (event.request.destination === 'image') ? IMAGE_CACHE_NAME : CACHE_NAME;
+          caches.open(cacheToOpen).then((cache) => {
+            cache.put(event.request, responseToCache.clone());
+          });
+
+          return responseToCache;
+        }).catch(() => caches.match(event.request));
       })
     );
     return;
   }
 
-  // Estratégia Stale-While-Revalidate para o restante (Scripts, CSS, HTML)
+  // Estratégia Stale-While-Revalidate para outros recursos
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Atualiza o cache em background para a próxima visita
-        fetch(event.request).then((networkResponse) => {
-          if (networkResponse.ok) {
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
-          }
-        }).catch(() => {});
-        return cachedResponse;
-      }
-      return fetch(event.request);
+    caches.match(event.request).then((cached) => {
+      const networked = fetch(event.request).then((res) => {
+        if (res && res.status === 200) {
+          caches.open(CACHE_NAME).then(c => c.put(event.request, res.clone()));
+        }
+        return res;
+      }).catch(() => null);
+      return cached || networked;
     })
   );
 });

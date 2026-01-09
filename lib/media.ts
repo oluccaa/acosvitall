@@ -1,4 +1,3 @@
-
 /**
  * ============================================================================
  * BIBLIOTECA DE ASSETS - AÇOS VITAL
@@ -25,11 +24,11 @@ const SB_BASE = "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/publ
 
 export const ASSETS = {
     LOGO: optimize(`${SB_BASE}/geral/logo/logo.png`, IMG_WIDTH.LOGO),
-    FAVICON: "/favicon.svg",
+    FAVICON: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/flaticon/flaticon.png",
 
     GLOBAL: {
         LOGO: optimize(`${SB_BASE}/geral/logo/logo.png`, IMG_WIDTH.LOGO),
-        FAVICON: "/favicon.svg",
+        FAVICON: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/flaticon/flaticon.png",
     },
 
     ADS: {
