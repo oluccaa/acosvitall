@@ -21,7 +21,7 @@ const IMG_WIDTH = {
     ICON: 150,
     THUMB: 400,
     CONTENT: 800,
-    HERO: 1440 // Reduzido de 1920 para economia de banda
+    HERO: 1000 // Ajustado para 1000 para bater exatamente com o preload do index.html
 };
 
 /**

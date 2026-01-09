@@ -193,13 +193,14 @@ const Hero: React.FC = () => {
         {slides.map((slide, index) => (
           <img
             key={index} src={slide.imageUrl} alt="" aria-hidden={index !== currentIndex}
-            fetchPriority={index === 0 ? 'high' : 'auto'} loading={index === 0 ? 'eager' : 'lazy'}
-            decoding="async"
+            fetchPriority={index === 0 ? 'high' : 'auto'} 
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding={index === 0 ? 'sync' : 'async'}
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out
               ${index === currentIndex ? 'opacity-100 animate-kenburns' : 'opacity-0'}
               ${isPaused ? 'animation-paused' : ''}`}
-            width="1920"
-            height="1080"
+            width="1000"
+            height="563"
           />
         ))}
         

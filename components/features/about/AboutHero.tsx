@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown } from 'lucide-react';
@@ -6,7 +7,8 @@ import { ASSETS } from '../../../lib/media';
 const AboutHero: React.FC = () => {
     const { t } = useTranslation();
     
-    const title = t('aboutPage.hero.title');
+    // Fix: using 'about.title' as it is the correct key in the locale files
+    const title = t('about.title');
     
     const videoUrl = ASSETS.HERO.COMMON_VIDEO;
     const posterUrl = ASSETS.HERO.COMMON_BG;
@@ -19,6 +21,7 @@ const AboutHero: React.FC = () => {
                 loop
                 muted
                 playsInline
+                // Fix: Removed fetchPriority as it is not a standard React property for HTMLVideoElement
                 className="absolute z-0 top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover transform -translate-x-1/2 -translate-y-1/2"
                 poster={posterUrl}
             >
