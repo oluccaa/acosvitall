@@ -64,6 +64,7 @@ const CookieBanner: React.FC = () => {
                     className="absolute top-2 right-2 p-1 text-gray-500 hover:text-white transition-colors md:hidden"
                 >
                     <X size={16} />
+                    <span className="sr-only">{t('layout.close')}</span>
                 </button>
             </div>
         </div>
