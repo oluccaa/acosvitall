@@ -5,6 +5,15 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './lib/i18n';
 
+// Registro do Service Worker para Performance e Cache Offline
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => {
+      console.warn('Service Worker registration failed: ', err);
+    });
+  });
+}
+
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {
