@@ -52,11 +52,22 @@
     </script>
 
     <style>
-      :root { font-family: 'Inter', sans-serif; }
+      :root { 
+        font-family: 'Inter', sans-serif; 
+        scrollbar-gutter: stable; /* Evita que a página trema ao sumir/aparecer scroll */
+      }
       @supports (font-variation-settings: normal) {
         :root { font-family: 'Inter var', sans-serif; }
       }
-      html, body { height: 100%; margin: 0; padding: 0; background-color: #081437; scroll-behavior: smooth; }
+      html, body { 
+        height: 100%; 
+        margin: 0; 
+        padding: 0; 
+        background-color: #081437; 
+        scroll-behavior: smooth; 
+      }
+      /* Previne flashes brancos entre carregamentos */
+      #root { background-color: #081437; }
     </style>
     
     <script type="importmap">

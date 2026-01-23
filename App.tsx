@@ -11,7 +11,7 @@ import FloatingWhatsapp from './components/common/FloatingWhatsapp';
 const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, [pathname]);
     return null;
 };
@@ -45,46 +45,49 @@ const GroovedProductPage = React.lazy(() => import('./subpages/GroovedProductPag
 const TanqueCombustivelProductPage = React.lazy(() => import('./subpages/TanqueCombustivelProductPage'));
 
 const App: React.FC = () => {
+    const location = useLocation();
+
     return (
         <div className="bg-brand-blue-dark font-sans text-gray-800 flex flex-col min-h-screen w-full overflow-x-hidden relative">
             <ScrollToTop />
             <Header />
             
-            <main className="flex-grow w-full flex flex-col">
+            <main className="flex-grow w-full flex flex-col min-h-[80vh]">
                 <React.Suspense fallback={<LoadingSpinner />}>
-                    <Routes>
-                        {/* Rotas Principais */}
-                        // <Route path="/" element={<HomePage />} />
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/home" element={<Navigate to="/" replace />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/products" element={<ProductsPage />} />
-                        <Route path="/catalog" element={<CatalogPage />} />
-                        <Route path="/tables" element={<TablesPage />} />
-                        <Route path="/calculator" element={<CalculatorPage />} />
-                        <Route path="/certifications" element={<CertificationsPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                    <div key={location.pathname} className="animate-page-in">
+                        <Routes location={location}>
+                            {/* Rotas Principais */}
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/home" element={<Navigate to="/" replace />} />
+                            <Route path="/about" element={<AboutPage />} />
+                            <Route path="/products" element={<ProductsPage />} />
+                            <Route path="/catalog" element={<CatalogPage />} />
+                            <Route path="/tables" element={<TablesPage />} />
+                            <Route path="/calculator" element={<CalculatorPage />} />
+                            <Route path="/certifications" element={<CertificationsPage />} />
+                            <Route path="/contact" element={<ContactPage />} />
+                            <Route path="/privacy" element={<PrivacyPolicyPage />} />
 
-                        {/* Rotas de Produtos */}
-                        <Route path="/products/flanges" element={<FlangeProductPage />} />
-                        <Route path="/products/tubos" element={<TubosProductPage />} />
-                        <Route path="/products/conexoes" element={<ConexoesProductPage />} />
-                        <Route path="/products/valvulas" element={<ValvulasProductPage />} />
-                        <Route path="/products/perfis" element={<PerfisLaminadosProductPage />} />
-                        <Route path="/products/chapas" element={<ChapasProductPage />} />
-                        <Route path="/products/grades" element={<GradesPisoProductPage />} />
-                        <Route path="/products/telhas" element={<TelhasTrapezoidaisProductPage />} />
-                        <Route path="/products/civil" element={<CivilProductPage />} />
-                        <Route path="/products/caldeiraria" element={<CaldeirariaProductPage />} />
-                        <Route path="/products/oxicorte" element={<OxicorteProductPage />} />
-                        <Route path="/products/eletrodutos" element={<EletrodutosProductPage />} />
-                        <Route path="/products/grooved" element={<GroovedProductPage />} />
-                        <Route path="/products/tanques" element={<TanqueCombustivelProductPage />} />
+                            {/* Rotas de Produtos */}
+                            <Route path="/products/flanges" element={<FlangeProductPage />} />
+                            <Route path="/products/tubos" element={<TubosProductPage />} />
+                            <Route path="/products/conexoes" element={<ConexoesProductPage />} />
+                            <Route path="/products/valvulas" element={<ValvulasProductPage />} />
+                            <Route path="/products/perfis" element={<PerfisLaminadosProductPage />} />
+                            <Route path="/products/chapas" element={<ChapasProductPage />} />
+                            <Route path="/products/grades" element={<GradesPisoProductPage />} />
+                            <Route path="/products/telhas" element={<TelhasTrapezoidaisProductPage />} />
+                            <Route path="/products/civil" element={<CivilProductPage />} />
+                            <Route path="/products/caldeiraria" element={<CaldeirariaProductPage />} />
+                            <Route path="/products/oxicorte" element={<OxicorteProductPage />} />
+                            <Route path="/products/eletrodutos" element={<EletrodutosProductPage />} />
+                            <Route path="/products/grooved" element={<GroovedProductPage />} />
+                            <Route path="/products/tanques" element={<TanqueCombustivelProductPage />} />
 
-                        {/* Rota 404 */}
-                        <Route path="*" element={<NotFoundPage />} />
-                    </Routes>
+                            {/* Rota 404 */}
+                            <Route path="*" element={<NotFoundPage />} />
+                        </Routes>
+                    </div>
                 </React.Suspense>
             </main>
 
