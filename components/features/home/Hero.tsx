@@ -1,173 +1,13 @@
 
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../../context/I18nContext';
-import { ChevronDown } from 'lucide-react';
-import { HERO_SLIDES } from '../../../lib/constants';
+import { ChevronDown, PlayCircle } from 'lucide-react';
 
-const SLIDE_DURATION_MS = 7000; 
-const EFFECT_DURATION_MS = 600;
-
-interface Slide {
-  title: string;
-  subtitle: string;
-  buttonText: string;
-  imageUrl: string;
-  href: string;
-}
-
-const animationStyles = `
-  @keyframes kenburns-effect {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); }
-  }
-  .animate-kenburns {
-    animation: kenburns-effect var(--slide-duration) ease-out forwards;
-  }
-  .animation-paused {
-    animation-play-state: paused !important;
-  }
-
-  @keyframes ripple-effect {
-    to {
-      transform: translate(-50%, -50%) scale(4);
-      opacity: 0;
-    }
-  }
-  .ripple-effect {
-    position: absolute; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.7);
-    width: 60px; height: 60px; transform: translate(-50%, -50%) scale(0);
-    animation: ripple-effect ${EFFECT_DURATION_MS}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    pointer-events: none; z-index: 25;
-  }
-  
-  @keyframes pulse-effect {
-    from { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
-    to { transform: translate(-50%, -50%) scale(3); opacity: 0; }
-  }
-  .pulse-effect {
-    position: absolute; border-radius: 50%; background-color: rgba(255, 255, 255, 0.4);
-    width: 70px; height: 70px; transform: translate(-50%, -50%) scale(0);
-    animation: pulse-effect ${EFFECT_DURATION_MS}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    pointer-events: none; z-index: 25;
-  }
-
-  @keyframes slide-in-up {
-    from { opacity: 0; transform: translateY(2rem); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-slide-in {
-    opacity: 0; transform: translateY(2rem);
-    animation: slide-in-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  }
-  
-  @keyframes bounce-down {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(10px); }
-    60% { transform: translateY(5px); }
-  }
-  .animate-bounce-down {
-    animation: bounce-down 2s infinite;
-  }
-  
-  @keyframes progress-ring {
-    from { stroke-dashoffset: var(--circumference); }
-    to { stroke-dashoffset: 0; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-kenburns, .animate-bounce-down, .ripple-effect, .pulse-effect {
-      animation: none; display: none;
-    }
-    .progress-ring { animation: none !important; }
-  }
-`;
-
-interface ProgressDotProps {
-  isActive: boolean;
-  isPaused: boolean;
-  onClick: (event: React.MouseEvent) => void;
-  slideIndex: number;
-}
-const ProgressDot: React.FC<ProgressDotProps> = ({ isActive, isPaused, onClick, slideIndex }) => {
-  const size = 22;
-  const strokeWidth = 2;
-  const center = size / 2;
-  const radius = center - strokeWidth / 2;
-  const circumference = 2 * Math.PI * radius;
-
-  return (
-    <button
-      onClick={onClick}
-      className="relative w-5.5 h-5.5 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#081437]/50 focus:ring-white transition-transform hover:scale-110"
-      style={{ '--circumference': circumference } as React.CSSProperties}
-      aria-selected={isActive}
-      role="tab"
-      aria-label={`Ir para o slide ${slideIndex + 1}`}
-    >
-      <svg className="w-5.5 h-5.5" width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
-        <circle cx={center} cy={center} r={radius} className="stroke-white/30" strokeWidth={strokeWidth} fill="transparent" />
-        {isActive && (
-          <circle
-            cx={center} cy={center} r={radius} className="stroke-brand-orange"
-            strokeWidth={strokeWidth} fill="transparent" strokeDasharray={circumference}
-            strokeDashoffset={circumference} transform={`rotate(-90 ${center} ${center})`}
-            style={{
-              animation: `progress-ring var(--slide-duration) linear forwards`,
-              animationPlayState: isPaused ? 'paused' : 'running',
-            }}
-          />
-        )}
-      </svg>
-    </button>
-  );
-};
+const VIDEO_URL = "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/home/hero/videosite.avif";
 
 const Hero: React.FC = () => {
   const { t } = useI18n();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [ripple, setRipple] = useState({ x: 0, y: 0, key: 0 });
-  const [pulse, setPulse] = useState({ x: 0, y: 0, key: 0 });
-
-  const slides: Slide[] = useMemo(() => HERO_SLIDES.map(slide => ({
-    ...slide,
-    title: t(`hero.slides.${slide.id}.title`),
-    subtitle: t(`hero.slides.${slide.id}.subtitle`),
-    buttonText: t(`hero.slides.${slide.id}.buttonText`),
-    href: slide.href
-  })), [t]);
-
-  const advanceSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  }, [slides.length]);
-  
-  useEffect(() => {
-    if (isPaused) return;
-    const timerId = setTimeout(advanceSlide, SLIDE_DURATION_MS);
-    return () => clearTimeout(timerId);
-  }, [currentIndex, advanceSlide, isPaused]);
-
-  const handleClickOnSlider = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    if (isPaused) {
-      setPulse({ x, y, key: Date.now() });
-      setTimeout(() => setPulse(p => p.key === 0 ? p : { x: 0, y: 0, key: 0 }), EFFECT_DURATION_MS);
-    } else {
-      setRipple({ x, y, key: Date.now() });
-      setTimeout(() => setRipple(r => r.key === 0 ? r : { x: 0, y: 0, key: 0 }), EFFECT_DURATION_MS);
-    }
-    setIsPaused(prev => !prev);
-  };
-
-  const goToSlide = (slideIndex: number) => {
-    if (currentIndex !== slideIndex) setCurrentIndex(slideIndex);
-  };
-  
-  const currentSlide = slides[currentIndex];
 
   const handleScrollDown = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -181,76 +21,100 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <>
-      <style>{animationStyles}</style>
-      <section 
-        onClick={handleClickOnSlider}
-        className="relative h-[80vh] min-h-[450px] md:h-[75vh] 2xl:max-h-[900px] text-white overflow-hidden cursor-pointer w-full bg-[#081437]"
-        style={{ '--slide-duration': `${SLIDE_DURATION_MS}ms` } as React.CSSProperties}
-        aria-roledescription="carousel"
-        aria-live={isPaused ? "polite" : "off"}
-        aria-label="Hero slider"
-      >
-        <span className="sr-only">{isPaused ? "Slider pausado. Clique para retomar." : "Slider em reprodução. Clique para pausar."}</span>
+    <section 
+      className="relative h-[85vh] min-h-[500px] md:h-[90vh] 2xl:max-h-[1000px] text-white overflow-hidden w-full bg-[#050c21]"
+      aria-label="Apresentação Institucional"
+    >
+      {/* Background Media - Premium Presentation */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={VIDEO_URL}
+          alt="Aços Vital - Excelência Industrial"
+          className="w-full h-full object-cover object-center animate-pulse-slow scale-105"
+          style={{ 
+            animation: 'ken-burns 20s infinite alternate ease-in-out',
+            filter: 'brightness(0.7)'
+          }}
+        />
+        {/* Overlays para profundidade e contraste */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#081437] via-[#081437]/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#081437] via-transparent to-transparent opacity-80"></div>
+      </div>
 
-        {slides.map((slide, index) => (
-          <img
-            key={index} src={slide.imageUrl} alt="" aria-hidden={index !== currentIndex}
-            fetchPriority={index === 0 ? 'high' : 'auto'} 
-            loading={index === 0 ? 'eager' : 'lazy'}
-            decoding={index === 0 ? 'sync' : 'async'}
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out
-              ${index === currentIndex ? 'opacity-100' : 'opacity-0'}
-              ${isPaused ? 'animation-paused' : ''}`}
-            width="1000"
-            height="563"
-          />
-        ))}
-        
-        <div className="absolute inset-0 bg-gradient-to-r from-[#081437] via-[#081437]/80 md:via-[#081437]/50 to-transparent z-0"></div>
-        
-        {ripple.key !== 0 && <span key={ripple.key} className="ripple-effect" style={{ top: ripple.y, left: ripple.x }} aria-hidden="true" />}
-        {pulse.key !== 0 && <span key={pulse.key} className="pulse-effect" style={{ top: pulse.y, left: pulse.x }} aria-hidden="true" />}
+      {/* Linhas decorativas de Engenharia */}
+      <div className="absolute inset-0 z-10 pointer-events-none opacity-20">
+        <div className="container mx-auto h-full px-6 sm:px-12 lg:px-24 max-w-7xl relative">
+          <div className="absolute left-0 top-0 w-px h-full bg-white/20"></div>
+          <div className="absolute right-0 top-0 w-px h-full bg-white/20"></div>
+        </div>
+      </div>
 
-        <div className="relative z-10 flex h-full items-center">
-          <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
-            <div className="max-w-xl md:max-w-xl lg:max-w-2xl text-center md:text-left mx-auto md:mx-0">
-              <div key={currentIndex} role="group" aria-roledescription="slide">
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 animate-slide-in text-shadow-lg drop-shadow-md text-white whitespace-pre-line" style={{ animationDelay: '0.2s' }}>
-                    {currentSlide.title}
-                </h1>
-                <p className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg mb-6 sm:mb-8 text-gray-200 animate-slide-in font-medium max-w-md md:max-w-none mx-auto md:mx-0 leading-relaxed" style={{ animationDelay: '0.4s' }}>
-                    {currentSlide.subtitle}
-                </p>
-                <Link 
-                    to={currentSlide.href}
-                    onClick={(e) => e.stopPropagation()} 
-                    className="bg-brand-orange text-white font-bold py-2.5 px-6 rounded-full hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-[10px] sm:text-xs uppercase tracking-widest animate-slide-in shadow-xl shadow-brand-orange/30 border border-brand-orange-dark/20 inline-block" 
-                    style={{ animationDelay: '0.6s' }}
-                >
-                  {currentSlide.buttonText}
-                </Link>
-              </div>
+      <div className="relative z-20 flex h-full items-center">
+        <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl">
+          <div className="max-w-3xl">
+            {/* Badge Premium */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-slide-in">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
+              Líder em Soluções Industriais
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] mb-6 animate-slide-in" style={{ animationDelay: '0.2s' }}>
+                Excelência em Aços:<br/>
+                <span className="text-brand-orange">A confiança</span> é o que<br/>
+                nos conecta!
+            </h1>
+            
+            <p className="text-base sm:text-lg md:text-xl mb-10 text-gray-300 animate-slide-in font-medium max-w-2xl leading-relaxed" style={{ animationDelay: '0.4s' }}>
+                Chapas, Tubos, Flanges, Conexões e Aços em geral. <br className="hidden md:block"/>
+                Trazemos soluções inovadoras para desafios de alta complexidade.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 animate-slide-in" style={{ animationDelay: '0.6s' }}>
+              <Link 
+                  to="/products"
+                  className="w-full sm:w-auto bg-brand-orange text-white font-black py-4 px-10 rounded-xl hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 text-xs uppercase tracking-[0.2em] shadow-[0_15px_35px_rgba(194,65,12,0.3)] border border-brand-orange-dark/20 text-center"
+              >
+                Nossas Soluções
+              </Link>
+              
+              <Link 
+                  to="/contact"
+                  className="w-full sm:w-auto bg-white/5 backdrop-blur-md text-white font-bold py-4 px-10 rounded-xl hover:bg-white/10 transition-all duration-300 text-xs uppercase tracking-[0.2em] border border-white/10 text-center flex items-center justify-center gap-2 group"
+              >
+                <PlayCircle size={18} className="text-brand-orange group-hover:scale-110 transition-transform" />
+                Fale Conosco
+              </Link>
             </div>
           </div>
         </div>
-        
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 flex space-x-3" role="tablist" aria-label="Slides">
-            {slides.map((_, slideIndex) => (
-                <ProgressDot key={slideIndex} slideIndex={slideIndex} isActive={currentIndex === slideIndex} isPaused={isPaused}
-                    onClick={(e) => { e.stopPropagation(); goToSlide(slideIndex); }}
-                />
-            ))}
+      </div>
+      
+      {/* Scroll Down Indicator */}
+      <a href="#features" onClick={handleScrollDown}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
+        aria-label="Rolar para baixo">
+        <span className="text-[9px] uppercase tracking-[0.3em] mb-3 text-white/50 group-hover:text-brand-orange transition-colors font-black">Explorar</span>
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1 group-hover:border-brand-orange/50 transition-colors">
+          <div className="w-1 h-2 bg-brand-orange rounded-full animate-bounce"></div>
         </div>
+      </a>
 
-        <a href="#features" onClick={(e) => { e.stopPropagation(); handleScrollDown(e); }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer group"
-          aria-label="Scroll to next section">
-          <span className="text-[9px] uppercase tracking-wider mb-0.5 text-white/80 group-hover:text-white transition-colors font-bold">{t('hero.scrollText')}</span>
-          <ChevronDown size={20} className="animate-bounce-down text-white/80 group-hover:text-brand-orange transition-colors" />
-        </a>
-      </section>
-    </>
+      {/* Ken Burns Animation Definition */}
+      <style>{`
+        @keyframes ken-burns {
+          from { transform: scale(1); }
+          to { transform: scale(1.15); }
+        }
+        @keyframes slide-in-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+          animation: slide-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          opacity: 0;
+        }
+      `}</style>
+    </section>
   );
 };
 

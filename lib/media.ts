@@ -1,3 +1,4 @@
+
 /**
  * ============================================================================
  * BIBLIOTECA DE ASSETS - AÇOS VITAL
@@ -9,14 +10,17 @@ const IMG_WIDTH = {
     ICON: 150,
     THUMB: 400,
     CONTENT: 800,
-    HERO: 1000 
+    HERO: 1200 
 };
 
-const optimize = (url: string, width: number = IMG_WIDTH.CONTENT): string => {
+/**
+ * Função de otimização de imagens.
+ * Carrega diretamente do Supabase para evitar falhas de proxy/CORS.
+ */
+const optimize = (url: string, _width: number = IMG_WIDTH.CONTENT): string => {
     if (!url) return '';
-    if (url.includes('supabase.co') || url.includes('unsplash.com') || url.includes('storage.googleapis.com')) {
-        return `https://images.builderservices.io/s/cdn/v1.0/i/m?url=${encodeURIComponent(url)}&methods=resize%2C${width}%2C5000&format=webp&quality=70`;
-    }
+    // Retornamos a URL direta do Supabase. 
+    // O Supabase já serve as imagens com cabeçalhos adequados.
     return url;
 };
 
@@ -117,7 +121,7 @@ export const ASSETS = {
     },
 
     CERTIFICATIONS: {
-        HERO_BG: optimize("https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/sobre_nos/certificacoes/hero.webp", IMG_WIDTH.HERO),
+        HERO_BG: optimize(`${SB_BASE}/sobre_nos/certificacoes/hero.webp`, IMG_WIDTH.HERO),
     },
 
     PRODUCT_PAGES: {

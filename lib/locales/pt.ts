@@ -1,4 +1,3 @@
-
 export const pt = {
     layout: {
         schedule: "Seg - Sex: 07:00 - 17:00",
@@ -50,7 +49,7 @@ export const pt = {
       }
     },
     footer: {
-        description: "Aços Vital destaca-se como fabricante de Flanges, Curvas de Gomos, Tubos Calandrados, Chapas Expandidas e Grades de Piso com a mais alta qualidade para atender as demandas do mercado.",
+        description: "A Aços Vital destaca-se como fabricante de Flanges, Curvas de Gomos, Tubos Calandrados, Chapas Expandidas e Grades de Piso com a mais alta qualidade para atender às demandas do mercado.",
         slogan: "A confiança é o que nos conecta!",
         pagesTitle: "PÁGINAS",
         followUsTitle: "SIGA-NOS",
@@ -88,10 +87,10 @@ export const pt = {
             },
             rights: {
                 title: "5. Seus Direitos (LGPD)",
-                text: "Você tem o direito de confirmar a existência de tratamento de dados, acessá seus dados, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
+                text: "Você tem o direito de confirmar a existência de tratamento de dados, acessar seus dados, corrigir dados incompletos ou desatualizados, e solicitar a eliminação de dados pessoais tratados com o seu consentimento."
             },
             contact: {
-                title: "6. Contacto",
+                title: "6. Contato",
                 text: "Para exercer seus direitos ou tirar dúvidas sobre esta política, entre em contato conosco através do e-mail: lgpd@acosvital.com.br"
             }
         },
@@ -163,7 +162,7 @@ export const pt = {
                 gap: "Raiz / Abertura (g) mm",
                 angle: "Ângulo (α) °",
                 weldLength: "Comp. da Solda (m)",
-                reinforcement: "Refuérzo / Coroa (%)",
+                reinforcement: "Reforço / Coroa (%)",
                 estimatedWeight: "Peso Estimado",
                 volume: "Volume Total"
             }
@@ -201,7 +200,7 @@ export const pt = {
             telemetry: "Telemetria",
             presets: "Presets de Medida",
             presetsHelp: "Selecione um campo acima e clique em um preset para aplicar automaticamente.",
-            surfaceArea: "Area Superficial",
+            surfaceArea: "Área Superficial",
             density: "Densidade do Aço",
             totalWeight: "Peso Total do Projeto",
             unitWeight: "Peso Unitário",
@@ -271,7 +270,7 @@ export const pt = {
             totalWeight: "Peso Total",
             developedLength: "Desenvolvimento (L)",
             unit: "kg",
-            surfaceArea: "Area para Pintura",
+            surfaceArea: "Área para Pintura",
             grossWeight: "Peso Bruto (Chapa)",
             netWeight: "Peso Líquido (Peça)",
             scrap: "Taxa de Retalho"
@@ -314,8 +313,9 @@ export const pt = {
     },
     about: {
         title: "A confiança é o que nos conecta!",
+        sectionTitle: "Nossa História e Compromisso",
         p1: "A Aços Vital é referência na fabricação de flanges, tubos, curvas e grades para os setores industrial e da construção civil.",
-        p2: "La empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.",
+        p2: "A empresa destaca-se pela alta qualidade e precisão de seus produtos, oferecendo soluções sob medida e atendimento personalizado.",
         p3: "Com processos otimizados e profissionais qualificados, a Aços Vital garante durabilidade, performance e prazos de entrega diferenciados.",
         p4: "Somos o parceiro confiável que une um time técnico de alta performance, produtos de extrema qualidade e acabamento incomparável. Aços Vital é a melhor decisão para o seu negócio.",
         callToAction: {
@@ -325,7 +325,7 @@ export const pt = {
     features: {
         list: {
             fast_delivery: { title: "Entrega Rápida e Flexível", description: "Produção ágil e logística otimizada para cumprir seus prazos em todo o território nacional." },
-            certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001, CRC Petrobrás e YPFB." },
+            certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001, CRC Petrobras e YPFB." },
             global_reach: { title: "Alcance Global", description: "Atendemos com excelência clientes no Brasil e no exterior, levando nossas soluções além das fronteiras." },
             satisfied_clients: { title: "+2.000 Clientes Satisfeitos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
         }
@@ -334,14 +334,14 @@ export const pt = {
         subtitle: "QUEM SOMOS E O QUE BUSCAMOS?",
         title: "Nossos Pilares",
         list: {
-            mission: { title: "MISSÃO", description: "A empresa entrega produtos de aço de alta qualidade, fortalecendo parcerias, promovendo crescimento sustentável." },
-            vision: { title: "VISÃO", description: "Ser referencia nacional em produtos de aço, destacando-se pela qualidade, inovação e sustentabilidade." },
+            mission: { title: "MISSÃO", description: "A empresa entrega produtos de aço de alta qualidade, fortalecendo parcerias e promovendo crescimento sustentável." },
+            vision: { title: "VISÃO", description: "Ser referência nacional em produtos de aço, destacando-se pela qualidade, inovação e sustentabilidade." },
             values: { title: "VALORES", description: "Qualidade, inovação, sustentabilidade, parceria e segurança." }
         }
     },
     units: {
         subtitle: "AÇOS VITAL PELO MUNDO",
-        title: "Onde atuamos",
+        title: "Onde Atuamos",
         locations: {
             mogi: {
                 city: "Mogi das Cruzes",
@@ -365,7 +365,7 @@ export const pt = {
                 city: "Arica",
                 state: "Região de Arica e Parinacota, Chile",
                 role: "Unidade Industrial, Centro Logístico e Distribuição",
-                address: "Av. Arturo Prat 391, 5 piso, Of 53, Arica - Chile"
+                address: "Av. Arturo Prat 391, 5º piso, Of 53, Arica - Chile"
             }
         }
     },
@@ -384,7 +384,7 @@ export const pt = {
         items: {
             flanges: "Flanges",
             tubes: "Tubos",
-            boilermaking: "Calderaria",
+            boilermaking: "Caldeiraria",
             plates: "Chapas",
             fittings: "Conexões",
             valves: "Válvulas",
@@ -402,6 +402,7 @@ export const pt = {
         title: "Catálogo de Produtos",
         description: "Conheça nossa linha completa de soluções em aço para indústrias e construção civil.",
         buttonText: "Ver Produto",
+        catalogPdfUrl: "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/catalogo/catalogo_ed_1_comp.pdf",
         categories: {
             flanges: "Flanges",
             tubes: "Tubos",
@@ -412,7 +413,7 @@ export const pt = {
             gratings: "Grades de Piso",
             tiles: "Telhas",
             civil: "Civil",
-            boilermaking: "Calderaria",
+            boilermaking: "Caldeiraria",
             cutting: "Oxicorte",
             conduits: "Eletrodutos",
             grooved: "Linha Grooved",
@@ -421,7 +422,7 @@ export const pt = {
     },
     sectors: {
         title: "Setores que Atendemos",
-        description: "Aços Vital fornece aço de alta performance para os setores mais exigentes da economia.",
+        description: "A Aços Vital fornece aço de alta performance para os setores mais exigentes da economia.",
         list: {
             agriculture: "Agricultura",
             architecture_and_design: "Arquitetura e Design",
@@ -444,7 +445,7 @@ export const pt = {
         buttonText: "SOLICITAR ANÁLISE TÉCNICA"
     },
     infoColumns: {
-        title: "Nosso Compromiso",
+        title: "Nosso Compromisso",
         tabs: {
             sectors: { title: "Diversos Setores", description: "Atendemos múltiplos nichos industriais com a mesma excelência." },
             certifications: { title: "Certificações", description: "Qualidade comprovada pelas normas ISO 9001 e CRC Petrobras." },
@@ -493,7 +494,7 @@ export const pt = {
             title: "Sistema de Gestão Vital", 
             description: "Nossa política de qualidade não é apenas um documento, é o DNA de cada peça que sai de nossas fábricas.",
             points: [
-                "Rastreabilidade: Total de Matéria-Prima",
+                "Rastreabilidade: Total da Matéria-Prima",
                 "Inspeções: 100% dos Lotes",
                 "Conformidade: Absoluta com Normas ANSI/ASME",
                 "Treinamento: Contínuo do Time Técnico",

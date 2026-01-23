@@ -54,6 +54,7 @@ const App: React.FC = () => {
                 <React.Suspense fallback={<LoadingSpinner />}>
                     <Routes>
                         {/* Rotas Principais */}
+                        // <Route path="/" element={<HomePage />} />
                         <Route path="/" element={<HomePage />} />
                         <Route path="/home" element={<Navigate to="/" replace />} />
                         <Route path="/about" element={<AboutPage />} />

@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ASSETS } from '../../../lib/media';
 
 const AboutContent: React.FC = () => {
     const { t } = useTranslation();
-    const title = t('about.title');
+    const title = t('about.sectionTitle');
     const youtubeUrl1 = "https://www.youtube.com/embed/zei04S0SohQ?si=XD0KntbR-B9yk-J-";
     const youtubeUrl2 = "https://www.youtube.com/embed/Vt8dUUSsSZA?si=HsCaIShmSAQVrNhS";
 
