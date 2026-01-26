@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
     Layers, Settings, Box, Factory, ArrowRight, 
-    ChevronRight, Download, Calculator
+    ChevronRight, Download, BookOpen
 } from 'lucide-react';
 import { PRODUCT_CATEGORIES } from '../../lib/constants';
 
@@ -95,37 +95,44 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, isScrolled = false
                         </div>
                     </div>
 
-                    <div className="w-full lg:w-[320px] bg-black/20 border-t lg:border-t-0 lg:border-l border-white/5 p-8 lg:p-10 flex flex-col justify-between">
-                        <div>
-                            <span className="text-[9px] font-black text-brand-orange uppercase tracking-[0.25em] block mb-4">Engenharia Vital</span>
-                            <h4 className="text-white font-bold text-base leading-tight mb-4">
-                                Vital Steel Suite v5.0
-                            </h4>
-                            <p className="text-[11px] text-gray-400 leading-relaxed mb-6">
-                                Workstation de alta precisão para cálculos técnicos e orçamentação industrial.
-                            </p>
-                            <Link 
-                                to="/calculator"
-                                onClick={onClose}
-                                className="inline-flex items-center gap-2 text-[10px] font-black text-white uppercase tracking-widest hover:text-brand-orange transition-colors group"
-                            >
-                                <Calculator size={14} className="text-brand-orange" />
-                                Acessar Workstation <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform ml-1" />
-                            </Link>
+                    {/* Barra Lateral do MegaMenu - Conteúdo sobre o Catálogo */}
+                    <div className="w-full lg:w-[340px] bg-black/20 border-t lg:border-t-0 lg:border-l border-white/5 p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden">
+                        {/* Efeito visual de fundo */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none -mr-10 -mt-10"></div>
+
+                        <div className="space-y-6 relative z-10">
+                            <div className="flex items-center gap-3 text-brand-orange">
+                                <BookOpen size={20} />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Apoio à Engenharia</span>
+                            </div>
+                            <div className="space-y-4">
+                                <h4 className="text-white font-black text-lg leading-tight uppercase tracking-tight">Catálogo Digital <br/>Aços Vital 2025</h4>
+                                <p className="text-gray-400 text-xs leading-relaxed font-medium">
+                                    Acesse o catálogo técnico mais completo do setor. Tabelas de medidas ANSI/DIN, especificações de materiais e guias de aplicação prontos para download.
+                                </p>
+                                <ul className="space-y-2">
+                                    {['Medidas nominais', 'Normas ASME/API', 'Pesos teóricos'].map(i => (
+                                        <li key={i} className="flex items-center gap-2 text-[10px] font-bold text-gray-500 uppercase">
+                                            <div className="w-1 h-1 rounded-full bg-brand-orange"></div>
+                                            {i}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
 
-                        <div className="mt-8 pt-8 border-t border-white/5">
+                        <div className="border-t border-white/5 pt-8 relative z-10">
                             <Link 
                                 to="/catalog"
                                 onClick={onClose}
-                                className="flex items-center gap-4 p-5 rounded-2xl bg-brand-orange/10 border border-brand-orange/20 hover:bg-brand-orange transition-all group"
+                                className="flex items-center gap-4 p-5 rounded-2xl bg-brand-orange/10 border border-brand-orange/20 hover:bg-brand-orange transition-all group shadow-xl"
                             >
                                 <div className="p-2.5 bg-brand-orange rounded-xl text-white group-hover:bg-white group-hover:text-brand-orange transition-colors shadow-lg">
                                     <Download size={20} />
                                 </div>
                                 <div className="text-left">
-                                    <span className="block text-[9px] font-black text-brand-orange uppercase group-hover:text-white transition-colors">Download</span>
-                                    <span className="block text-xs font-bold text-white uppercase tracking-tight">Catálogo 2025</span>
+                                    <span className="block text-[9px] font-black text-brand-orange uppercase group-hover:text-white transition-colors">Download PDF</span>
+                                    <span className="block text-xs font-bold text-white uppercase tracking-tight">Guia Completo</span>
                                 </div>
                             </Link>
                         </div>

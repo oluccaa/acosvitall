@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
 import { SOCIAL_LINKS } from '../../lib/constants';
@@ -14,7 +14,6 @@ const Footer: React.FC = () => {
         { key: 'about', label: t('header.navLinks.about'), href: '/about' },
         { key: 'products', label: t('header.navLinks.products'), href: '/products' },
         { key: 'catalog', label: t('header.navLinks.catalog'), href: '/catalog' },
-        { key: 'calculator', label: t('header.navLinks.calculator'), href: '/calculator' },
         { key: 'certifications', label: t('header.navLinks.certifications'), href: '/certifications' },
         { key: 'contact', label: t('header.navLinks.contact'), href: '/contact' },
         { key: 'privacy', label: t('footer.privacyPolicy'), href: '/privacy' }
@@ -128,7 +127,13 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
-                    <p>@ 2026 Aços Vital. Todos os direitos reservados</p>
+                    <div className="flex items-center gap-4">
+                        <p>@ 2026 Aços Vital. Todos os direitos reservados</p>
+                        {/* Link Discreto para Vendedores */}
+                        <Link to="/calculator" className="opacity-20 hover:opacity-100 hover:text-brand-orange transition-all flex items-center gap-1 uppercase tracking-tighter text-[9px] font-bold">
+                            <Settings size={10} /> Engenharia
+                        </Link>
+                    </div>
                 </div>
             </div>
         </footer>

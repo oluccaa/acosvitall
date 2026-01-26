@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, X, ChevronRight, Package, Calculator, FileText, ArrowRight } from 'lucide-react';
+import { Search, X, ChevronRight, Package, FileText, ArrowRight } from 'lucide-react';
 import { PRODUCT_CATEGORIES } from '../../lib/constants';
 import { useTranslation } from 'react-i18next';
 
@@ -41,10 +41,6 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
       href: cat.href,
       icon: <Package size={18} />
     })),
-    // Tools
-    { type: 'tool', title: t('calculatorPage.tabs.calculator'), href: '/calculator', icon: <Calculator size={18} /> },
-    { type: 'tool', title: t('calculatorPage.tabs.nesting'), href: '/calculator', icon: <Calculator size={18} /> },
-    { type: 'tool', title: t('calculatorPage.tabs.welding'), href: '/calculator', icon: <Calculator size={18} /> },
     // Tables
     { type: 'table', title: t('header.navLinks.tables'), href: '/tables', icon: <FileText size={18} /> },
   ];
@@ -71,7 +67,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
             ref={inputRef}
             type="text"
             className="flex-1 bg-transparent border-none outline-none text-lg text-gray-800 placeholder-gray-400"
-            placeholder="O que você procura? (ex: Tubos, Flanges, Calculadora...)"
+            placeholder="O que você procura? (ex: Tubos, Flanges...)"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -94,9 +90,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
                 >
                   <div className="flex items-center gap-3 text-gray-600 group-hover:text-brand-blue-dark">
                     <div className={`p-2 rounded-md ${
-                        result.type === 'product' ? 'bg-orange-100 text-brand-orange' :
-                        result.type === 'tool' ? 'bg-blue-100 text-brand-blue-light' :
-                        'bg-gray-100 text-gray-500'
+                        result.type === 'product' ? 'bg-orange-100 text-brand-orange' : 'bg-gray-100 text-gray-500'
                     }`}>
                       {result.icon}
                     </div>

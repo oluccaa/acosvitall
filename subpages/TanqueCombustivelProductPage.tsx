@@ -65,65 +65,65 @@ const TanqueCombustivelProductPage: React.FC = () => {
         {
             title: "Inspeção de Pintura",
             icon: <Paintbrush size={32} />,
-            description: "A Inspeção de Pintura Industrial assegura a qualidade e durabilidade dos revestimentos aplicados em estruturas e equipamentos. Nossa equipe técnica realiza verificações minuciosas em todas as etapas, desde a preparação da superfície até a aplicação final.",
-            benefits: ["Evita falhas como bolhas/descascamento", "Protege contra corrosão", "Reduz custos de manutenção", "Assegura conformidade técnica"],
-            docs: "Procedimentos, normas e relatórios técnicos."
+            description: "A Inspeção de Pintura Industrial assegura a qualidade e durabilidade dos revestimentos aplicados em estruturas e equipamentos.",
+            benefits: ["Evita falhas como bolhas", "Protege contra corrosão", "Conformidade técnica"],
+            docs: "Procedimentos, normas e relatórios."
         },
         {
             title: "Inspeção de Equipamentos",
             icon: <Settings size={32} />,
-            description: "Garante segurança, eficiência e conformidade das suas máquinas e sistemas. Realizamos análises detalhadas, prevenindo falhas, otimizando o desempenho e assegurando que suas operações estejam de acordo com as normas regulamentadoras.",
-            benefits: ["Aumenta produtividade", "Prolonga vida útil", "Conformidade com normas", "Manutenção preventiva"],
-            docs: "Procedimentos, normas e relatórios técnicos."
+            description: "Garante segurança e eficiência das suas máquinas, prevenindo falhas e otimizando o desempenho conforme normas regulamentadoras.",
+            benefits: ["Aumenta produtividade", "Prolonga vida útil", "Manutenção preventiva"],
+            docs: "Procedimentos, normas e relatórios."
         },
         {
             title: "Inspeção de Fabricação",
             icon: <Factory size={32} />,
-            description: "Voltada para garantir a qualidade, segurança e conformidade dos processos produtivos de caldeiraria e tubulação. Atuamos em todas as etapas, desde a análise de materiais até a inspeção final, utilizando ensaios não destrutivos.",
-            benefits: ["Segurança operacional", "Qualidade assegurada", "Confiabilidade", "Conformidade internacional (ASME/API)"],
-            docs: "Especificações, Desenhos, ITP, Certificados de Material, Relatórios de CQ."
+            description: "Garantia da qualidade e segurança dos processos produtivos de caldeiraria e tubulação desde a análise de materiais.",
+            benefits: ["Segurança operacional", "Qualidade assegurada", "Conformidade ASME/API"],
+            docs: "Especificações, Desenhos, Relatórios."
         },
         {
             title: "Inspeção por Drone",
             icon: <Camera size={32} />,
-            description: "Método que utiliza drones equipados com câmeras de alta resolução, térmicas e sensores para avaliar a integridade de estruturas e instalações de tanques. Coleta e análise de dados com alta precisão e segurança.",
-            benefits: ["Acesso a áreas difíceis", "Redução de riscos (altura/confinado)", "Detecção de falhas invisíveis a olho nu", "Agilidade e economia"],
-            docs: "Relatórios de imagem, análise térmica e estrutural."
+            description: "Drones com câmeras térmicas e de alta resolução para avaliar a integridade de estruturas em áreas de difícil acesso.",
+            benefits: ["Redução de riscos", "Acesso a áreas difíceis", "Agilidade"],
+            docs: "Relatórios de imagem e análise."
         },
         {
             title: "Inspeção de Soldagem",
             icon: <Flame size={32} />,
-            description: "Essencial para garantir a integridade e segurança das estruturas metálicas. Realizamos testes rigorosos em cada etapa do processo de soldagem, identificando defeitos e garantindo conformidade.",
-            benefits: ["Integridade estrutural", "Prevenção de falhas críticas", "Redução de riscos de acidentes", "Prolongamento da vida útil"],
-            docs: "Procedimentos, normas e relatórios técnicos."
+            description: "Testes rigorosos em cada etapa do processo de soldagem para identificar defeitos e garantir a integridade das estruturas.",
+            benefits: ["Integridade estrutural", "Prevenção de falhas", "Redução de riscos"],
+            docs: "Procedimentos, normas e relatórios."
         },
         {
             title: "Auditoria de Soldagem",
             icon: <ClipboardCheck size={32} />,
-            description: "Análise completa dos procedimentos de soldagem, materiais, qualificações de soldadores e desempenho de equipamentos. Identificamos falhas e propomos soluções para otimizar processos.",
-            benefits: ["Melhoria na qualidade", "Redução de retrabalhos", "Conformidade internacional", "Otimização de custos"],
-            docs: "WPS, Qualificações, Registros de Inspeção/END, Certificados."
+            description: "Análise dos procedimentos de soldagem, qualificações e desempenho para otimizar processos e reduzir retrabalhos.",
+            benefits: ["Melhoria na qualidade", "Redução de retrabalho", "Otimização de custos"],
+            docs: "WPS, Qualificações, Registros."
         },
         {
             title: "Controle Dimensional",
             icon: <Ruler size={32} />,
-            description: "Assegura a precisão e a conformidade das peças e estruturas industriais. Utilizamos equipamentos de alta precisão para evitar problemas de montagem e garantir a qualidade final.",
-            benefits: ["Precisão milimétrica", "Redução de falhas de montagem", "Garantia de tolerâncias", "Qualidade do produto final"],
-            docs: "Procedimentos, normas e relatórios técnicos."
+            description: "Equipamentos de alta precisão para evitar problemas de montagem e garantir a conformidade milimétrica das peças.",
+            benefits: ["Precisão milimétrica", "Garantia de tolerâncias", "Qualidade final"],
+            docs: "Procedimentos e relatórios técnicos."
         },
         {
             title: "Manutenção Industrial",
             icon: <Wrench size={32} />,
-            description: "Conjunto especializado de atividades para garantir o funcionamento eficiente de instalações. Inclui desde diagnóstico e reparos até montagens novas de estruturas, vasos de pressão e tubulações.",
-            benefits: ["Segurança operacional", "Otimização de processos", "Redução de custos", "Melhoria da produtividade"],
-            docs: "Procedimentos de fabricação/montagem, certificados."
+            description: "Atividades especializadas para garantir o funcionamento eficiente de instalações, desde diagnósticos até montagens.",
+            benefits: ["Segurança operacional", "Redução de custos", "Alta produtividade"],
+            docs: "Procedimentos e certificados."
         },
         {
             title: "Manutenção Tanques API 650",
             icon: <Scan size={32} />,
-            description: "Serviços especializados para garantir a integridade e eficiência de tanques de armazenamento, seguindo rigorosamente as normas API 650. Equipe qualificada e equipamentos de última geração.",
-            benefits: ["Alta durabilidade", "Conformidade normativa", "Rapidez na execução", "Garantia da qualidade"],
-            docs: "Procedimentos, instruções, EPS, RQPS."
+            description: "Serviços especializados para garantir a integridade e eficiência de tanques de armazenamento conforme normas API 650.",
+            benefits: ["Alta durabilidade", "Conformidade normativa", "Garantia de qualidade"],
+            docs: "Procedimentos, instruções e EPS."
         }
     ];
 
@@ -134,8 +134,7 @@ const TanqueCombustivelProductPage: React.FC = () => {
             items: [
                 "NBR 15461 (Aéreos)",
                 "NBR 16161 (Subterrâneos)",
-                "ASME VIII (Vasos de Pressão)",
-                "Portaria INMETRO"
+                "ASME VIII (Vasos de Pressão)"
             ]
         },
         {
@@ -144,8 +143,7 @@ const TanqueCombustivelProductPage: React.FC = () => {
             items: [
                 "De 5.000 a 60.000 litros",
                 "Dimensões padronizadas",
-                "Projetos especiais sob medida",
-                "Compartimentação opcional"
+                "Projetos sob medida"
             ]
         },
         {
@@ -154,7 +152,6 @@ const TanqueCombustivelProductPage: React.FC = () => {
             items: [
                 "Boca de visita",
                 "Escada e Guarda-corpo",
-                "Conexões flangeadas/roscadas",
                 "Bacia de contenção"
             ]
         },
@@ -164,52 +161,36 @@ const TanqueCombustivelProductPage: React.FC = () => {
             items: [
                 "Parede dupla (Jaquetado)",
                 "Sensor de vazamento",
-                "Teste de estanqueidade",
-                "Pintura anticorrosiva"
+                "Teste de estanqueidade"
             ]
         }
     ];
 
     return (
         <div className="bg-white">
-            {/* HERO */}
-            <section className="relative h-[40vh] min-h-[350px] overflow-hidden bg-gray-900 flex items-center justify-center">
+            <section className="relative h-[220px] md:h-[300px] overflow-hidden bg-brand-blue-dark flex items-center justify-center">
                 {slides.map((img, index) => (
                     <div key={index} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}>
-                        <div className={`absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`} style={{ backgroundImage: `url(${img})` }}></div>
-                        <div className="absolute inset-0 bg-black/50"></div>
+                        <div className={`absolute inset-0 bg-cover bg-center transition-transform duration-[8000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`} style={{ backgroundImage: `url(${img})` }}></div>
+                        <div className="absolute inset-0 bg-black/60"></div>
                     </div>
                 ))}
-                <div className="relative z-20 container mx-auto px-6 sm:px-12 lg:px-24 text-center animate-in fade-in zoom-in duration-700">
-                    <div className="w-20 h-1.5 bg-brand-orange mx-auto mb-6 rounded-full shadow-lg"></div>
-                    <h1 className="text-4xl md:text-6xl font-bold text-white uppercase tracking-widest drop-shadow-2xl">
-                        Tanques e Serviços
-                    </h1>
-                    <p className="text-white/90 text-lg mt-4 font-medium tracking-wide">Fabricação, Manutenção e Reforma</p>
+                <div className="relative z-20 container mx-auto px-6 text-center animate-in fade-in zoom-in duration-1000">
+                    <div className="w-12 h-1 bg-brand-orange mx-auto mb-6 rounded-full shadow-lg"></div>
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tighter drop-shadow-2xl">TANQUES E SERVIÇOS</h1>
                 </div>
             </section>
 
-            {/* INTRODUÇÃO */}
-            <section className="py-24 bg-white">
+            <section className="py-16 md:py-24 bg-white">
                 <div className="container mx-auto px-6 sm:px-12 lg:px-24">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue-dark mb-6">Excelência em Armazenamento e Serviços</h2>
-                            <div className="w-24 h-1 bg-brand-orange mx-auto rounded-full"></div>
-                        </div>
-                        <div className="text-gray-600 text-lg leading-relaxed space-y-6 text-justify">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-gray-600 text-base md:text-xl leading-relaxed space-y-8 text-center md:text-justify font-medium">
                             <p>
-                                A fabricação, manutenção e reforma de <strong>Tanques de Combustível e Tanques GLP</strong> feito pela Aços Vital é fundamental para garantir segurança, durabilidade e eficiência operacional. Com uma restauração completa, interna e externa, seu tanque retorna ao mercado com desempenho equivalente a um novo, mas com um investimento muito mais vantajoso.
+                                A fabricação e reforma de <strong>Tanques de Combustível e Tanques GLP</strong> na Aços Vital é fundamental para garantir segurança e eficiência. Oferecemos restauração completa para que seu tanque retorne ao mercado com desempenho equivalente a um novo.
                             </p>
-                            <p>
-                                Nossa equipe altamente qualificada utiliza técnicas avançadas para recuperar a estrutura e funcionalidade do equipamento, garantindo um acabamento impecável e resistência superior. Além disso, trabalhamos com prazos reduzidos para que você receba seu tanque rapidamente e sem impacto nas operações.
-                            </p>
-                            <p>
-                                Optar pela reforma não apenas reduz custos em comparação à fabricação de um novo tanque, mas também melhora a eficiência no transporte, proporcionando maior segurança e economia no longo prazo. Invista em uma solução confiável, econômica e de alto padrão.
-                            </p>
-                            <div className="bg-brand-blue-light/10 p-6 rounded-xl border border-brand-blue-light/20 mt-8">
-                                <p className="text-brand-blue-dark font-bold text-center text-xl">
-                                    CAPACIDADE DE ATENDIMENTO: Tanques com variação de 10.000 a 200.000 litros.
+                            <div className="bg-brand-blue-light/10 p-6 rounded-xl border border-brand-blue-light/20">
+                                <p className="text-brand-blue-dark font-black text-center text-lg md:text-xl uppercase">
+                                    CAPACIDADE: Tanques de 10.000 a 200.000 litros.
                                 </p>
                             </div>
                         </div>
@@ -217,29 +198,28 @@ const TanqueCombustivelProductPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* PRODUTOS (TANQUES) */}
-            <section className="py-24 bg-brand-off-white relative overflow-hidden">
+            <section className="py-20 md:py-28 bg-brand-off-white relative overflow-hidden">
                 <div className="container mx-auto px-6 sm:px-12 lg:px-24 relative z-10">
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-20">
-                            <span className="text-brand-orange font-bold tracking-widest text-sm uppercase">Linha de Produtos</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-brand-blue-dark mt-3">Modelos de Tanques</h2>
+                        <div className="text-center mb-24">
+                            <span className="text-brand-orange font-black tracking-[0.3em] text-[10px] uppercase bg-white/5 px-4 py-1.5 rounded-full border border-white/10">Linha de Produtos</span>
+                            <h2 className="text-3xl md:text-5xl font-black text-brand-blue-dark mt-6 tracking-tight">Modelos de Tanques</h2>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-28">
                             {productModels.map((model, idx) => (
-                                <div key={idx} className="group flex flex-col bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 relative mt-24 mb-4 border border-gray-100 transform hover:-translate-y-1">
-                                    <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 w-40 h-40 rounded-full border-8 border-white shadow-xl overflow-hidden bg-white z-10 transition-transform duration-500 group-hover:scale-105">
-                                        <img src={model.image} alt={model.name} className="w-full h-full object-cover" loading="lazy" />
+                                <div key={idx} className="group flex flex-col bg-white rounded-3xl shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2">
+                                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-44 h-44 md:w-48 md:h-48 rounded-full border-[6px] border-white shadow-2xl overflow-hidden bg-gray-100 z-10 transition-transform duration-700 group-hover:scale-105">
+                                        <img src={model.image} alt={model.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
                                     </div>
-                                    <div className="p-6 pt-24 flex-grow flex flex-col">
+                                    <div className="p-8 pt-36 md:pt-40 flex-grow flex flex-col">
                                         <div className="text-center mb-4">
-                                            <h3 className="text-lg font-bold text-brand-blue-dark tracking-wide uppercase">{model.name}</h3>
+                                            <h3 className="text-lg font-black text-brand-blue-dark tracking-wide uppercase leading-tight">{model.name}</h3>
                                         </div>
-                                        <p className="text-gray-600 text-xs leading-relaxed mb-6 flex-grow text-center">{model.desc}</p>
-                                        <div className="mt-auto pt-4 border-t border-gray-100 space-y-2">
+                                        <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-center">{model.desc}</p>
+                                        <div className="mt-auto pt-6 border-t border-gray-100 flex flex-wrap gap-2 justify-center">
                                             {model.specs.map((spec, i) => (
-                                                <div key={i} className="flex items-center text-xs text-gray-500 font-medium">
-                                                    <CheckCircle size={14} className="text-brand-orange mr-2 flex-shrink-0" />
+                                                <div key={i} className="flex items-center text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-wider bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
+                                                    <CheckCircle size={12} className="text-brand-orange mr-2 flex-shrink-0" />
                                                     <span>{spec}</span>
                                                 </div>
                                             ))}
@@ -252,51 +232,34 @@ const TanqueCombustivelProductPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* SERVIÇOS ESPECIALIZADOS */}
             <section className="py-24 bg-brand-blue-dark text-white relative">
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
-
+                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
                 <div className="container mx-auto px-6 sm:px-12 lg:px-24 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-20">
-                            <span className="text-brand-orange font-bold tracking-widest text-sm uppercase">Soluções Completas</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mt-3">Nossos Serviços</h2>
-                            <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Inspeção, manutenção e auditoria com tecnologia de ponta e equipe certificada.</p>
+                            <span className="text-brand-orange font-black tracking-[0.3em] text-[10px] uppercase bg-white/5 px-4 py-1.5 rounded-full border border-white/10">Soluções Completas</span>
+                            <h2 className="text-3xl md:text-5xl font-black text-white mt-6 tracking-tight">Nossos Serviços</h2>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {services.map((service, idx) => (
-                                <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 group">
-                                    <div className="flex items-center mb-6">
-                                        <div className="p-3 bg-brand-orange/20 rounded-lg text-brand-orange mr-4 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                                <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 group flex flex-col">
+                                    <div className="flex items-center mb-8">
+                                        <div className="p-3 bg-brand-orange/20 rounded-xl text-brand-orange mr-4 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-500">
                                             {service.icon}
                                         </div>
-                                        <h3 className="text-xl font-bold text-white">{service.title}</h3>
+                                        <h3 className="text-xl font-black uppercase tracking-tight leading-tight">{service.title}</h3>
                                     </div>
-                                    
-                                    <p className="text-gray-300 text-sm leading-relaxed mb-6">
-                                        {service.description}
-                                    </p>
-
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-xs font-bold text-brand-orange uppercase tracking-wider mb-2">Benefícios</h4>
-                                            <ul className="grid grid-cols-1 gap-1">
-                                                {service.benefits.slice(0, 4).map((benefit, i) => (
-                                                    <li key={i} className="flex items-start text-xs text-gray-400">
-                                                        <span className="w-1.5 h-1.5 bg-brand-orange rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                                        {benefit}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                        
-                                        <div className="pt-4 border-t border-white/10">
-                                            <p className="text-xs text-gray-500">
-                                                <span className="font-bold text-gray-400">Doc. Requerida:</span> {service.docs}
-                                            </p>
-                                        </div>
+                                    <p className="text-blue-100/70 text-sm leading-relaxed mb-8 flex-grow">{service.description}</p>
+                                    <div className="pt-6 border-t border-white/10">
+                                        <h4 className="text-[10px] font-black text-brand-orange uppercase tracking-widest mb-4">Principais Benefícios</h4>
+                                        <ul className="space-y-2">
+                                            {service.benefits.map((benefit, i) => (
+                                                <li key={i} className="flex items-start text-[11px] text-gray-400 font-medium">
+                                                    <span className="w-1.5 h-1.5 bg-brand-orange rounded-full mt-1 mr-3 flex-shrink-0"></span>
+                                                    {benefit}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                             ))}
@@ -305,25 +268,24 @@ const TanqueCombustivelProductPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* DADOS TÉCNICOS (PRODUTOS) */}
-            <section className="py-24 bg-white border-t border-gray-100">
+            <section className="py-20 md:py-28 bg-white border-t border-gray-100">
                 <div className="container mx-auto px-6 sm:px-12 lg:px-24">
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-16 text-center">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue-dark mb-4">ESPECIFICAÇÕES DE FABRICAÇÃO</h2>
-                            <p className="text-gray-500 max-w-2xl mx-auto text-lg">Garantia de qualidade e conformidade normativa para novos tanques.</p>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue-dark mb-4 tracking-tighter uppercase">DADOS TÉCNICOS</h2>
+                            <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-lg font-medium">Garantia de qualidade e conformidade normativa.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             {technicalData.map((section, idx) => (
-                                <div key={idx} className="bg-gray-50 rounded-xl p-6 border-l-4 border-brand-orange hover:shadow-lg transition-shadow duration-300 h-full">
-                                    <div className="flex items-center mb-6">
-                                        <div className="p-2 bg-white rounded-lg shadow-sm text-brand-orange mr-3 border border-gray-100">{section.icon}</div>
-                                        <h4 className="text-lg font-bold text-brand-blue-dark leading-tight">{section.title}</h4>
+                                <div key={idx} className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 h-full group">
+                                    <div className="flex items-center mb-8">
+                                        <div className="p-3 bg-brand-orange/10 rounded-xl text-brand-orange mr-4 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-500">{section.icon}</div>
+                                        <h4 className="text-base md:text-lg font-black text-brand-blue-dark leading-tight uppercase tracking-tight">{section.title}</h4>
                                     </div>
-                                    <ul className="space-y-3">
+                                    <ul className="space-y-4">
                                         {section.items.map((item, i) => (
-                                            <li key={i} className="flex items-start text-gray-600 text-sm">
-                                                <span className="w-1.5 h-1.5 bg-brand-blue-dark rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                                            <li key={i} className="flex items-start text-gray-600 text-sm font-medium leading-snug">
+                                                <span className="w-1.5 h-1.5 bg-brand-orange rounded-full mt-1.5 mr-3 flex-shrink-0"></span>
                                                 <span>{item}</span>
                                             </li>
                                         ))}
@@ -332,9 +294,9 @@ const TanqueCombustivelProductPage: React.FC = () => {
                             ))}
                         </div>
                         <div className="mt-20 text-center">
-                            <a href="/tables" className="inline-flex items-center bg-brand-orange text-white font-bold py-4 px-10 rounded-full hover:bg-brand-orange-dark transition-all duration-300 shadow-lg hover:shadow-brand-orange/30 transform hover:-translate-y-1 group">
-                                <span className="uppercase tracking-wide text-sm">Consultar Tabelas Técnicas</span>
-                                <ChevronRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                            <a href="/tables" className="inline-flex items-center bg-brand-blue-dark text-white font-black py-4 px-10 rounded-2xl hover:bg-brand-orange transition-all duration-500 transform hover:-translate-y-1 group">
+                                <span className="uppercase tracking-[0.2em] text-xs">Consultar Tabelas Técnicas</span>
+                                <ChevronRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
                             </a>
                         </div>
                     </div>

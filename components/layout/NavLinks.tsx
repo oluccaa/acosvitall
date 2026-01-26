@@ -30,7 +30,6 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
         return currentPath.startsWith(href);
     };
 
-    // Fecha ao rolar a página
     useEffect(() => {
         const handleScroll = () => {
             if (isMegaMenuOpen) setIsMegaMenuOpen(false);
@@ -39,7 +38,6 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isMegaMenuOpen]);
 
-    // Fecha ao clicar fora
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -78,14 +76,14 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                                 className={`
                                     relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
-                                    px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
-                                    ${isScrolled ? 'py-4' : 'py-7'}
+                                    px-4 text-[10px] xl:text-[11px] font-black tracking-widest uppercase cursor-pointer
+                                    ${isScrolled ? 'py-4' : 'py-5 lg:py-6'}
                                     ${active || (isProducts && isMegaMenuOpen) ? 'text-white' : 'text-gray-300 hover:text-white'}
                                 `}
                             >
                                 {link.text}
                                 <ChevronDown 
-                                    size={14} 
+                                    size={12} 
                                     className={`transition-transform duration-300 ${isMegaMenuOpen ? 'rotate-180 text-brand-orange' : 'text-gray-500'}`} 
                                 />
                                 <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-brand-orange transform origin-left transition-transform duration-300 ease-out ${(active || isMegaMenuOpen) ? 'scale-x-100' : 'scale-x-0'}`}></span>
@@ -99,8 +97,8 @@ export const NavLinks: React.FC<NavLinksProps> = ({ className = '', links, onLin
                                 }}
                                 className={`
                                     relative flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap
-                                    px-4 text-[11px] font-black tracking-widest uppercase cursor-pointer
-                                    ${isScrolled ? 'py-4' : 'py-7'}
+                                    px-4 text-[10px] xl:text-[11px] font-black tracking-widest uppercase cursor-pointer
+                                    ${isScrolled ? 'py-4' : 'py-5 lg:py-6'}
                                     ${active ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}
                                 `}
                             >

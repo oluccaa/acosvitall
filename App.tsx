@@ -52,7 +52,7 @@ const App: React.FC = () => {
             <ScrollToTop />
             <Header />
             
-            <main className="flex-grow w-full flex flex-col min-h-[80vh]">
+            <main className="flex-grow w-full flex flex-col min-h-[80vh] pb-20 lg:pb-0">
                 <React.Suspense fallback={<LoadingSpinner />}>
                     <div key={location.pathname} className="animate-page-in">
                         <Routes location={location}>

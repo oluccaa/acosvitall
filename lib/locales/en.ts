@@ -1,3 +1,4 @@
+
 export const en = {
     layout: {
         schedule: "Mon - Fri: 07:00 - 17:00",
@@ -47,6 +48,14 @@ export const en = {
             whatsappSupport: "WhatsApp Support",
             clientArea: "Client Area"
         }
+    },
+    homeHero: {
+        badge: "Leader in Industrial Solutions",
+        title: "Excellence in Steel:<br/> <orange>Trust</orange> is what connects us!",
+        subtitle: "Plates, Pipes, Flanges, Fittings and General Steel. We bring innovative solutions to high complexity challenges.",
+        ctaMain: "Our Solutions",
+        ctaContact: "Contact Us",
+        scrollText: "Explore"
     },
     footer: {
         description: "Aços Vital stands out as a manufacturer of Flanges, Mitered Elbows, Rolled Pipes, Expanded Metals and Floor Gratings with the highest quality to meet market demands.",

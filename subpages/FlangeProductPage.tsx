@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ProductDetailLayout, { ProductModel, TechnicalSection } from '../components/templates/ProductDetailLayout';
 import { ASSETS } from '../lib/media';
@@ -102,7 +101,7 @@ const FlangeProductPage: React.FC = () => {
         {
             title: "Tipos de Materiais",
             icon: <Layers size={24} />,
-            items: ["Aço Carbono (Forjado e Laminado)", "Aço Inoxidável (Forjado e Laminado)", "Ligas Especiais", "Teflon, Anel RTJ e Papelão"]
+            items: ["Aço Carbono (Forjado e Laminado)", "Aço Inoxidável (Forjado e Laminado)", "Ligas Especiais"]
         },
         {
             title: "Normas de Fabricação",

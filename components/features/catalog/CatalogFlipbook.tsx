@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { useI18n } from '../../../context/I18nContext';
+import { useTranslation } from 'react-i18next';
 import { 
     ChevronLeft, 
     ChevronRight, 
@@ -10,7 +10,8 @@ import {
     ZoomOut, 
     Maximize, 
     Minimize, 
-    RotateCcw
+    RotateCcw,
+    Hash
 } from 'lucide-react';
 
 // Declaração global para a lib PDF.js carregada via CDN
@@ -27,8 +28,8 @@ interface TransformState {
 }
 
 const CatalogFlipbook: React.FC = () => {
-  const { t } = useI18n();
-  const pdfUrl = t('productsPage.catalogPdfUrl');
+  const { t } = useTranslation();
+  const pdfUrl = "https://mxbsygruslepfcyhtmqr.supabase.co/storage/v1/object/public/public_assets/geral/catalogo/catalogo_ed_1_comp.pdf";
 
   // --- Estados do PDF ---
   const [pdfDoc, setPdfDoc] = useState<any>(null);
@@ -36,7 +37,8 @@ const CatalogFlipbook: React.FC = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+  const [pageInput, setPageInput] = useState('1');
+
   const [pageCache, setPageCache] = useState<Record<number, string>>({});
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -154,18 +156,14 @@ const CatalogFlipbook: React.FC = () => {
           if (isMobile) {
               if (canvasSingleRef.current) await renderPageToCanvas(currentPage, canvasSingleRef.current);
           } else {
-              // Lógica de Capa (Página 1 sozinha à direita)
               if (currentPage === 1) {
                   if (canvasRightRef.current) await renderPageToCanvas(1, canvasRightRef.current);
               } else {
-                  // Demais páginas em pares (Par na Esquerda, Ímpar na Direita)
                   if (canvasLeftRef.current) await renderPageToCanvas(currentPage, canvasLeftRef.current);
-                  
                   if (canvasRightRef.current) {
                       if (currentPage + 1 <= totalPages) {
                           await renderPageToCanvas(currentPage + 1, canvasRightRef.current);
                       } else {
-                          // Se não houver próxima página, limpa o canvas da direita
                           const ctx = canvasRightRef.current.getContext('2d');
                           if (ctx) ctx.clearRect(0, 0, canvasRightRef.current.width, canvasRightRef.current.height);
                       }
@@ -175,6 +173,7 @@ const CatalogFlipbook: React.FC = () => {
       };
       render();
       resetView();
+      setPageInput(currentPage.toString());
   }, [pdfDoc, currentPage, isMobile, totalPages]);
 
   const resetView = () => setTransform({ scale: 1, x: 0, y: 0 });
@@ -219,7 +218,6 @@ const CatalogFlipbook: React.FC = () => {
       if (isMobile) {
           setCurrentPage(p => Math.max(1, p - 1));
       } else {
-          // Se estamos na 2, volta para 1 (capa)
           if (currentPage === 2) setCurrentPage(1);
           else setCurrentPage(p => Math.max(1, p - 2));
       }
@@ -229,7 +227,6 @@ const CatalogFlipbook: React.FC = () => {
       if (isMobile) {
           setCurrentPage(p => Math.min(totalPages, p + 1));
       } else {
-          // Se estamos na 1 (capa), pula para 2 (que exibe 2 e 3)
           if (currentPage === 1) {
               if (totalPages > 1) setCurrentPage(2);
           } else {
@@ -238,8 +235,23 @@ const CatalogFlipbook: React.FC = () => {
       }
   };
 
+  const jumpToPage = (e: React.FormEvent) => {
+      e.preventDefault();
+      const val = parseInt(pageInput);
+      if (!isNaN(val) && val >= 1 && val <= totalPages) {
+          if (!isMobile && val > 1 && val % 2 !== 0) {
+              setCurrentPage(val - 1);
+          } else {
+              setCurrentPage(val);
+          }
+      } else {
+          setPageInput(currentPage.toString());
+      }
+  };
+
   useEffect(() => {
       const handleKeys = (e: KeyboardEvent) => {
+          if (e.target instanceof HTMLInputElement) return; 
           if (e.key === "ArrowLeft") prevPage();
           if (e.key === "ArrowRight") nextPage();
       };
@@ -248,10 +260,7 @@ const CatalogFlipbook: React.FC = () => {
   }, [isMobile, totalPages, currentPage]);
 
   const canvasHeightClass = isFullscreen ? 'h-[85vh] w-auto' : 'h-[400px] md:h-[500px] w-auto';
-
-  // Verifica se a página da direita deve ser exibida
   const hasRightPage = !isMobile && (currentPage === 1 ? true : (currentPage + 1 <= totalPages));
-  // Verifica se a página da esquerda deve ser exibida
   const hasLeftPage = !isMobile && currentPage > 1;
 
   return (
@@ -263,6 +272,7 @@ const CatalogFlipbook: React.FC = () => {
             </div>
 
             <div ref={wrapperRef} className={`bg-[#111827] rounded-2xl shadow-2xl border border-gray-700/50 flex flex-col overflow-hidden transition-all duration-300 ${isFullscreen ? 'fixed inset-0 z-50 rounded-none border-0 h-screen w-full' : 'w-full max-w-6xl mx-auto'}`}>
+                
                 <div 
                     ref={viewportRef}
                     className={`relative w-full bg-gray-900/50 overflow-hidden flex items-center justify-center ${isFullscreen ? 'flex-1 h-full' : 'h-[400px] md:h-[500px]'} ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
@@ -279,21 +289,15 @@ const CatalogFlipbook: React.FC = () => {
                     <div className="will-change-transform origin-center transition-transform duration-75 ease-out"
                          style={{ transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})` }}>
                         <div className={`relative flex shadow-2xl ${isMobile ? 'flex-col' : 'flex-row'}`}>
-                            
-                            {/* Página Esquerda - Oculta na Capa (Pág 1) */}
                             {!isMobile && (
                                 <div className={`relative bg-white transition-all duration-500 ease-in-out ${!hasLeftPage ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
                                     <canvas ref={canvasLeftRef} className={`block object-contain ${canvasHeightClass}`} />
-                                    {/* Sombra de dobra central (direita da página esquerda) */}
                                     <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-black/20 to-transparent pointer-events-none mix-blend-multiply"></div>
                                 </div>
                             )}
-
-                            {/* Página Direita - Oculta na Última Página (se for isolada) */}
                             <div className={`relative bg-white transition-all duration-500 ease-in-out ${!hasRightPage && !isMobile ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
                                 <canvas ref={isMobile ? canvasSingleRef : canvasRightRef} className={`block object-contain ${canvasHeightClass}`} />
                                 {!isMobile && hasLeftPage && (
-                                    /* Sombra de dobra central (esquerda da página direita) */
                                     <div className="absolute top-0 left-0 w-8 h-full bg-gradient-to-r from-black/10 to-transparent pointer-events-none mix-blend-multiply"></div>
                                 )}
                             </div>
@@ -301,46 +305,85 @@ const CatalogFlipbook: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="bg-gray-800 border-t border-gray-700 p-4 flex flex-col md:flex-row items-center justify-between gap-4 z-20">
-                    <div className="flex items-center gap-4 w-full md:w-auto justify-center md:justify-start order-2 md:order-1">
-                        <button onClick={prevPage} disabled={currentPage === 1} className="p-2.5 rounded-lg bg-gray-700 text-white hover:bg-brand-blue-dark disabled:opacity-30 transition-all active:scale-95"><ChevronLeft size={20} /></button>
-                        <span className="text-white font-mono text-sm whitespace-nowrap bg-gray-900 px-4 py-2 rounded-lg border border-gray-700 min-w-[140px] text-center">
-                            {isMobile ? (
-                                <>Pág. <span className="text-brand-orange font-bold">{currentPage}</span> de {totalPages}</>
-                            ) : (
-                                <>
-                                    {currentPage === 1 ? (
-                                        <>Capa <span className="text-brand-orange font-bold">(1)</span></>
-                                    ) : (
-                                        <>
-                                            Págs. <span className="text-brand-orange font-bold">{currentPage}</span>
-                                            {currentPage + 1 <= totalPages ? <span> - {currentPage + 1}</span> : ''}
-                                        </>
-                                    )}
-                                    <span className="text-gray-500 ml-1"> / {totalPages}</span>
-                                </>
-                            )}
-                        </span>
+                {/* --- UNIFIED CONTROLS BAR --- */}
+                <div className="bg-[#111827] border-t border-gray-700/50 p-4 lg:px-6 flex flex-col lg:flex-row items-center justify-between gap-6 z-20">
+                    
+                    {/* Unified Pagination and Jump Block - Perfect Alignment at the Bottom */}
+                    <div className="flex flex-wrap items-end justify-center gap-2 sm:gap-4 order-2 lg:order-1">
+                        {/* Prev Button */}
+                        <button 
+                            onClick={prevPage} 
+                            disabled={currentPage === 1} 
+                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gray-800 text-gray-400 hover:bg-brand-orange hover:text-white disabled:opacity-20 transition-all active:scale-90 border border-white/5 shadow-lg flex items-center justify-center mb-[2px]"
+                            title="Anterior"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+
+                        {/* Page Counter Display - Height Matched to Input */}
+                        <div className="h-10 sm:h-11 flex items-center gap-2 px-4 sm:px-5 bg-[#0b1121] rounded-lg border border-white/5 min-w-[120px] justify-center shadow-inner mb-[2px]">
+                            <span className="text-sm sm:text-base font-black text-white whitespace-nowrap">
+                                {currentPage}{!isMobile && hasLeftPage && hasRightPage && totalPages > currentPage + 1 ? `-${currentPage + 1}` : ''}
+                            </span>
+                            <span className="text-gray-600 font-bold text-sm">/</span>
+                            <span className="text-sm sm:text-base font-bold text-gray-500">
+                                {totalPages}
+                            </span>
+                        </div>
+
+                        {/* Jump To Page Form - Exactly Aligned to Counter, shifted down 12px */}
+                        <form onSubmit={jumpToPage} className="flex items-end gap-2 translate-y-[12px]">
+                            <div className="h-10 sm:h-11 relative group flex items-center bg-[#0b1121] rounded-lg border border-white/5 shadow-inner px-3">
+                                <Hash size={14} className="text-gray-500 group-focus-within:text-brand-orange transition-colors mr-1" />
+                                <input 
+                                    type="text"
+                                    value={pageInput}
+                                    onChange={(e) => setPageInput(e.target.value.replace(/\D/g, ''))}
+                                    className="w-10 sm:w-12 bg-transparent border-none outline-none text-sm font-black text-white text-center placeholder-gray-600"
+                                    placeholder="Nº"
+                                />
+                            </div>
+                            <button 
+                                type="submit"
+                                className="h-10 sm:h-11 bg-brand-orange text-white text-[10px] sm:text-xs font-black uppercase px-4 sm:px-5 rounded-lg hover:bg-brand-orange-dark transition-all active:scale-95 shadow-lg shadow-brand-orange/20"
+                            >
+                                Ir
+                            </button>
+                        </form>
+
+                        {/* Next Button */}
                         <button 
                             onClick={nextPage} 
                             disabled={isMobile ? (currentPage >= totalPages) : (currentPage >= totalPages || (currentPage === 1 && totalPages === 1))} 
-                            className="p-2.5 rounded-lg bg-gray-700 text-white hover:bg-brand-blue-dark disabled:opacity-30 transition-all active:scale-95"
+                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gray-800 text-gray-400 hover:bg-brand-orange hover:text-white disabled:opacity-20 transition-all active:scale-90 border border-white/5 shadow-lg flex items-center justify-center mb-[2px]"
+                            title="Próxima"
                         >
                             <ChevronRight size={20} />
                         </button>
                     </div>
 
-                    <div className="flex items-center gap-1 bg-gray-900 p-1 rounded-xl border border-gray-700 order-1 md:order-2">
-                        <button onClick={zoomOut} className="p-2 text-gray-400 hover:text-white rounded-lg transition-colors"><ZoomOut size={18} /></button>
-                        <div className="w-16 text-center text-xs font-bold text-brand-orange border-l border-r border-gray-700 py-1">{Math.round(transform.scale * 100)}%</div>
-                        <button onClick={zoomIn} className="p-2 text-gray-400 hover:text-white rounded-lg transition-colors"><ZoomIn size={18} /></button>
-                        <div className="w-px h-4 bg-gray-700 mx-1"></div>
-                        <button onClick={resetView} className="p-2 text-gray-400 hover:text-white rounded-lg transition-colors"><RotateCcw size={16} /></button>
-                        <button onClick={toggleFullscreen} className="p-2 text-gray-400 hover:text-white rounded-lg transition-colors">{isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}</button>
-                    </div>
+                    {/* Toolbar and Download Group */}
+                    <div className="flex items-center gap-4 w-full lg:w-auto justify-center lg:justify-end order-1 lg:order-2">
+                        {/* Zoom & View Tools */}
+                        <div className="flex items-center gap-1 bg-[#0b1121] p-1 rounded-lg border border-white/5 shadow-inner">
+                            <button onClick={zoomOut} className="p-2 text-gray-500 hover:text-white rounded-md transition-colors" title="Zoom Out"><ZoomOut size={16} /></button>
+                            <div className="w-12 text-center text-[9px] font-black text-brand-orange border-l border-r border-gray-800 py-1">{Math.round(transform.scale * 100)}%</div>
+                            <button onClick={zoomIn} className="p-2 text-gray-500 hover:text-white rounded-md transition-colors" title="Zoom In"><ZoomIn size={16} /></button>
+                            <div className="w-px h-4 bg-gray-800 mx-1"></div>
+                            <button onClick={resetView} className="p-2 text-gray-500 hover:text-white rounded-md transition-colors" title="Resetar Vista"><RotateCcw size={14} /></button>
+                            <button onClick={toggleFullscreen} className="p-2 text-gray-500 hover:text-white rounded-md transition-colors" title="Tela Cheia">{isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}</button>
+                        </div>
 
-                    <div className="w-full md:w-auto flex justify-center md:justify-end order-3">
-                        <a href={pdfUrl} target="_blank" download className="flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg active:scale-95 w-full md:w-auto justify-center"><Download size={18} /><span>Baixar PDF</span></a>
+                        {/* Download PDF Button */}
+                        <a 
+                            href={pdfUrl} 
+                            target="_blank" 
+                            download 
+                            className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white px-5 h-11 rounded-lg font-black text-[10px] transition-all border border-white/10 shadow-lg active:scale-95 group uppercase tracking-widest"
+                        >
+                            <Download size={16} className="text-brand-orange group-hover:scale-110 transition-transform" />
+                            <span className="hidden sm:inline">Baixar PDF</span>
+                        </a>
                     </div>
                 </div>
             </div>

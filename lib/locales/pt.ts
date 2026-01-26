@@ -1,3 +1,4 @@
+
 export const pt = {
     layout: {
         schedule: "Seg - Sex: 07:00 - 17:00",
@@ -48,6 +49,14 @@ export const pt = {
           clientArea: "Área do Cliente"
       }
     },
+    homeHero: {
+        badge: "Líder em Soluções Industriais",
+        title: "Excelência em Aços:<br/> <orange>A confiança</orange> é o que nos conecta!",
+        subtitle: "Chapas, Tubos, Flanges, Conexões e Aços em geral. Trazemos soluções inovadoras para desafios de alta complexidade.",
+        ctaMain: "Nossas Soluções",
+        ctaContact: "Fale Conosco",
+        scrollText: "Explorar"
+    },
     footer: {
         description: "A Aços Vital destaca-se como fabricante de Flanges, Curvas de Gomos, Tubos Calandrados, Chapas Expandidas e Grades de Piso com a mais alta qualidade para atender às demandas do mercado.",
         slogan: "A confiança é o que nos conecta!",
@@ -75,7 +84,7 @@ export const pt = {
             },
             usage: {
                 title: "2. Uso das Informações",
-                text: "Utilizamos seus dados para: responder às suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, se autorizado, enviar comunicações de marketing relevantes."
+                text: "Utilizamos seus dados para: responder à suas solicitações, enviar orçamentos, melhorar nossos produtos e serviços, e, se autorizado, enviar comunicações de marketing relevantes."
             },
             cookies: {
                 title: "3. Cookies e Tecnologias",
@@ -200,7 +209,7 @@ export const pt = {
             telemetry: "Telemetria",
             presets: "Presets de Medida",
             presetsHelp: "Selecione um campo acima e clique em um preset para aplicar automaticamente.",
-            surfaceArea: "Área Superficial",
+            surfaceArea: "Area Superficial",
             density: "Densidade do Aço",
             totalWeight: "Peso Total do Projeto",
             unitWeight: "Peso Unitário",
@@ -294,12 +303,12 @@ export const pt = {
             buttonText: "Linha Trapezoidal"
         },
         excellence: {
-            title: "Excelência em Aços:\nA confiança é o que nos\nconecta!",
+            title: "Excelência em Aços:<br/> <orange>A confiança</orange> é o que nos conecta!",
             subtitle: "Chapas, Tubos, Flanges, Conexões e Aços em geral. Trazemos soluções inovadoras para desafios complexos!",
             buttonText: "Explorar Produtos"
         },
         flanges: {
-            title: "Excelência em Aços:\nA confiança é o que nos\nconecta!",
+            title: "Excelência em Aços:<br/> <orange>A confiança</orange> é o que nos conecta!",
             subtitle: "Chapas, Tubos, Flanges, Conexões e Aços em geral. Trazemos soluções inovadoras para desafios complexos!",
             buttonText: "Ver Flanges"
         },
