@@ -1,5 +1,5 @@
 
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
@@ -13,33 +13,33 @@ interface Product {
 }
 
 const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragging: boolean }> = ({ product, viewDetailsText, isDragging }) => (
-    <li className="snap-center flex-shrink-0 w-[70%] sm:w-[35%] md:w-[28%] lg:w-[20%] 2xl:w-[16%] select-none">
+    <li className={`snap-center flex-shrink-0 w-[80%] sm:w-[42%] md:w-[30%] lg:w-[22%] 2xl:w-[18%] select-none`}>
         <Link 
             to={product.href} 
-            className="block group relative flex flex-col items-center text-center focus:outline-none"
+            className="block group relative aspect-[3/3.8] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out h-full border border-gray-100 bg-gray-100"
             aria-label={`Ver detalhes de ${product.alt}`}
             draggable={false}
-            onClickCapture={(e) => isDragging && e.preventDefault()}
         >
-            {/* Foto Circular Padronizada */}
-            <div className="relative w-full aspect-square rounded-full border-[6px] border-white shadow-xl overflow-hidden bg-gray-100 mb-6 transition-all duration-500 group-hover:scale-105 group-hover:shadow-brand-orange/20 group-hover:border-brand-orange/20">
-                <div
-                    style={{ backgroundImage: `url(${product.imageUrl})` }}
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-110"
-                    role="img"
-                    aria-label={product.alt}
-                />
-                <div className="absolute inset-0 bg-brand-blue-dark/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
+            <div
+                style={{ backgroundImage: `url(${product.imageUrl})` }}
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-110"
+                role="img"
+                aria-label={product.alt}
+            />
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-[#081437] via-[#081437]/30 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            {/* Texto do Produto */}
-            <div className="space-y-2">
-                <h3 className="font-black text-brand-blue-dark text-sm md:text-base uppercase tracking-tight leading-tight group-hover:text-brand-orange transition-colors">
-                    {product.alt}
-                </h3>
-                <div className="flex items-center justify-center gap-1.5 text-brand-orange opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="text-[10px] font-black uppercase tracking-widest">{viewDetailsText}</span>
-                    <ArrowRight size={12} strokeWidth={3} />
+            <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 text-white">
+                <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <span className="inline-block px-2 py-0.5 mb-2 text-[9px] font-bold uppercase tracking-widest bg-brand-orange text-white rounded shadow-sm">
+                        Destaque
+                    </span>
+                    <h3 className="font-bold text-lg md:text-xl mb-2 leading-tight drop-shadow-md">{product.alt}</h3>
+                    <div className="h-0.5 w-10 bg-white/30 mb-3 group-hover:w-full group-hover:bg-brand-orange transition-all duration-500"></div>
+                    
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-brand-orange">
+                        {viewDetailsText} <ArrowRight size={14} />
+                    </div>
                 </div>
             </div>
         </Link>
@@ -49,58 +49,142 @@ const ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragg
 const FeaturedProducts: React.FC = () => {
     const { t } = useTranslation();
     const sliderRef = useRef<HTMLUListElement>(null);
+    const animationRef = useRef<number | null>(null);
+    
+    // Physics & State
     const [isDragging, setIsDragging] = useState(false);
-    const pos = useRef({ startX: 0, scrollLeft: 0, moved: false });
+    const pos = useRef({ 
+        startX: 0, 
+        scrollLeft: 0, 
+        x: 0, 
+        velocity: 0, 
+        lastX: 0, 
+        lastTime: 0,
+        moved: false 
+    });
 
     const viewDetailsText = t('featuredProducts.viewDetails');
 
+    const startInertia = useCallback(() => {
+        if (!sliderRef.current) return;
+        
+        const slider = sliderRef.current;
+        const friction = 0.95; 
+        
+        const step = () => {
+            if (Math.abs(pos.current.velocity) < 0.2) {
+                slider.style.scrollSnapType = 'x mandatory';
+                slider.style.scrollBehavior = 'smooth';
+                return;
+            }
+            
+            slider.scrollLeft -= pos.current.velocity;
+            pos.current.velocity *= friction;
+            animationRef.current = requestAnimationFrame(step);
+        };
+        
+        animationRef.current = requestAnimationFrame(step);
+    }, []);
+
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!sliderRef.current) return;
+        if (animationRef.current) cancelAnimationFrame(animationRef.current);
+        
         setIsDragging(true);
         pos.current.moved = false;
         pos.current.startX = e.pageX - sliderRef.current.offsetLeft;
         pos.current.scrollLeft = sliderRef.current.scrollLeft;
+        pos.current.lastX = e.pageX;
+        pos.current.lastTime = performance.now();
+        pos.current.velocity = 0;
+
         sliderRef.current.style.scrollSnapType = 'none';
         sliderRef.current.style.scrollBehavior = 'auto';
     };
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!isDragging || !sliderRef.current) return;
+        
         e.preventDefault();
+        const now = performance.now();
         const x = e.pageX - sliderRef.current.offsetLeft;
         const walk = (x - pos.current.startX);
-        if (Math.abs(walk) > 5) pos.current.moved = true;
+        
+        const deltaTime = now - pos.current.lastTime;
+        if (deltaTime > 0) {
+            const deltaX = e.pageX - pos.current.lastX;
+            pos.current.velocity = (deltaX / deltaTime) * 16; 
+        }
+
+        // Aumentado threshold para 10px para evitar falsos positivos de "moved" em cliques
+        if (Math.abs(walk) > 10) pos.current.moved = true;
         sliderRef.current.scrollLeft = pos.current.scrollLeft - walk;
+        
+        pos.current.lastX = e.pageX;
+        pos.current.lastTime = now;
     };
 
     const handleMouseUpOrLeave = () => {
-        if (!isDragging || !sliderRef.current) return;
+        if (!isDragging) return;
         setIsDragging(false);
-        sliderRef.current.style.scrollSnapType = 'x mandatory';
-        sliderRef.current.style.scrollBehavior = 'smooth';
+        startInertia();
+    };
+
+    // Previne a navegação apenas se o mouse tiver se movido significativamente (arrastado o carrossel)
+    const handleLinkClick = (e: React.MouseEvent) => {
+        if (pos.current.moved) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
     };
 
     const scroll = (direction: 'left' | 'right') => {
         if (!sliderRef.current) return;
-        const scrollAmount = sliderRef.current.clientWidth * 0.8;
-        sliderRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+        if (animationRef.current) cancelAnimationFrame(animationRef.current);
+        
+        const slider = sliderRef.current;
+        const scrollAmount = slider.clientWidth * 0.80; 
+        
+        slider.style.scrollSnapType = 'x mandatory';
+        slider.style.scrollBehavior = 'smooth';
+        
+        slider.scrollBy({
+            left: direction === 'left' ? -scrollAmount : scrollAmount,
+            behavior: 'smooth'
+        });
     };
 
     return (
-        <section className="py-16 md:py-24 bg-white overflow-hidden relative" aria-labelledby="featured-products-title">
-            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
-                    <div className="text-center md:text-left">
-                        <span className="text-brand-orange font-black tracking-[0.3em] text-[10px] uppercase bg-brand-orange/5 px-4 py-1.5 rounded-full border border-brand-orange/10">Excelência em Aço</span>
-                        <h2 id="featured-products-title" className="text-3xl md:text-5xl font-black text-brand-blue-dark mt-4 tracking-tighter">
-                            {t('featuredProducts.title')}
-                        </h2>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                        <button onClick={() => scroll('left')} className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-brand-blue-dark hover:text-white transition-all active:scale-90 shadow-sm"><ChevronLeft size={24} /></button>
-                        <button onClick={() => scroll('right')} className="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark transition-all active:scale-90"><ChevronRight size={24} /></button>
-                    </div>
+        <section className="py-12 md:py-20 bg-white overflow-hidden relative" aria-labelledby="featured-products-title">
+             <div className="absolute top-10 left-0 w-full text-center pointer-events-none overflow-hidden opacity-[0.02] select-none">
+                <span className="text-[12vw] font-black uppercase text-brand-blue-dark leading-none whitespace-nowrap">
+                    Catálogo
+                </span>
+            </div>
+
+            <div className="container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative z-10 mb-10 flex flex-col md:flex-row justify-between items-end gap-6">
+                <div className="select-none">
+                     <span className="text-brand-orange font-bold tracking-widest text-xs uppercase">Nossos Produtos</span>
+                     <h2 id="featured-products-title" className="text-2xl md:text-4xl font-bold text-brand-blue-dark mt-1">
+                        {t('featuredProducts.title')}
+                    </h2>
+                </div>
+                
+                <div className="flex gap-3">
+                    <button
+                        onClick={() => scroll('left')}
+                        className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-blue-dark hover:border-brand-blue-dark hover:text-white transition-all duration-300 shadow-sm active:scale-90"
+                        aria-label="Ver produtos anteriores"
+                    >
+                        <ChevronLeft size={20} />
+                    </button>
+                    <button
+                        onClick={() => scroll('right')}
+                        className="w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/30 hover:bg-brand-orange-dark transition-all duration-300 hover:scale-110 active:scale-90"
+                        aria-label="Ver próximos produtos"
+                    >
+                        <ChevronRight size={20} />
+                    </button>
                 </div>
             </div>
             
@@ -111,17 +195,33 @@ const FeaturedProducts: React.FC = () => {
                     onMouseLeave={handleMouseUpOrLeave}
                     onMouseUp={handleMouseUpOrLeave}
                     onMouseMove={handleMouseMove}
-                    className={`flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-12 scrollbar-hide gap-8 md:gap-12 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                    onClickCapture={handleLinkClick}
+                    className={`
+                        flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-10 pt-2 scrollbar-hide select-none gap-4 md:gap-6
+                        will-change-scroll
+                        ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
+                        ${!isDragging ? 'snap-x snap-mandatory scroll-smooth' : 'snap-none'}
+                    `}
+                    style={{ 
+                        WebkitOverflowScrolling: 'touch',
+                        touchAction: 'pan-y'
+                    }}
                 >
                     {FEATURED_PRODUCTS_LIST.map((product, index) => (
                         <ProductCard 
                             key={`${product.id}-${index}`} 
-                            product={{ ...product, alt: t(`featuredProducts.items.${product.id}`) }} 
+                            product={{
+                                ...product,
+                                alt: t(`featuredProducts.items.${product.id}`)
+                            }} 
                             viewDetailsText={viewDetailsText}
                             isDragging={isDragging}
                         />
                     ))}
                 </ul>
+
+                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none z-10 opacity-60"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none z-10 opacity-60"></div>
             </div>
         </section>
     );
