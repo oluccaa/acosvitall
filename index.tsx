@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './lib/i18n';
 
@@ -12,8 +12,8 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     // Registra o sw.js localizado na raiz do projeto
     navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Aços Vital SW: Ativo', reg.scope))
-      .catch(err => console.warn('Aços Vital SW: Erro no registro', err));
+      .then(reg => console.log('Aços Vital: Service Worker Ativo', reg.scope))
+      .catch(err => console.warn('Aços Vital: Erro no registro do Service Worker', err));
   });
 }
 
@@ -28,8 +28,8 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 );
