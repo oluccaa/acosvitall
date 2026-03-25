@@ -334,7 +334,7 @@ export const en = {
     features: {
         list: {
             fast_delivery: { title: "Fast and Flexible Delivery", description: "Agile production and optimized logistics to meet your deadlines nationwide." },
-            certified_quality: { title: "Certified Quality", description: "Our products follow the highest standards, with ISO 9001, CRC Petrobras and YPFB certifications." },
+            certified_quality: { title: "Certified Quality", description: "Our products follow the highest standards, with ISO 9001 and CRC Petrobras certifications." },
             global_reach: { title: "Global Reach", description: "We serve clients with excellence in Brazil and abroad, taking our solutions beyond borders." },
             satisfied_clients: { title: "+2,000 Satisfied Clients", description: "The trust of thousands of clients annually, proving our dedication and quality." }
         }
@@ -495,7 +495,6 @@ export const en = {
             items: {
                 iso9001: { name: "ISO 9001:2015", issuer: "Bureau Veritas", description: "Gold standard in quality management and industrial process optimization." },
                 crc_petrobras: { name: "Petrobras CRC", issuer: "Petrobras", description: "Registration certificate approved for the Oil & Gas sector." },
-                ypfb: { name: "YPFB", issuer: "Bolivia", description: "International homologation for supply in high-criticality projects." },
                 dun_bradstreet: { name: "Commercial Solidity", issuer: "D&B", description: "High-solidity commercial rating and corporate transparency." }
             }
         },

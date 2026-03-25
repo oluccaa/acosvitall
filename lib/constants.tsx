@@ -47,7 +47,7 @@ export const INFO_COLUMNS_TABS = [
     {
         id: "certifications",
         icon: <ShieldCheck size={24} className="text-white" />,
-        items: ["ISO 9001:2015", "CRC Petrobrás", "YPFB", "AWS", "ASME"]
+        items: ["ISO 9001:2015", "CRC Petrobrás", "AWS", "ASME"]
     },
     {
         id: "recognition",
@@ -63,10 +63,6 @@ export const CERTIFICATIONS_LIST = [
     {
         id: "crc_petrobras",
         logoUrl: ASSETS.CERTIFICATIONS_LOGOS.CRC,
-    },
-    {
-        id: "ypfb",
-        logoUrl: ASSETS.CERTIFICATIONS_LOGOS.YPFB
     }
 ];
 

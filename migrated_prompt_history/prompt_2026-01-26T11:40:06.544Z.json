@@ -1,0 +1,236 @@
+[
+  {
+    "id": 18,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "Bom dia, pode mudar as rotas do site para BrowserRouter\n",
+      "files": [],
+      "fileUploads": [],
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769425875,
+      "nanos": 736000000
+    }
+  },
+  {
+    "id": 19,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Considering Router Changes**\n\nI'm currently focused on transitioning the React application's routing. My initial investigation points to `index.tsx` as the key area, which currently utilizes `HashRouter`. I'm now contemplating migrating to `BrowserRouter` for potentially cleaner URLs.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769425875,
+      "nanos": 736000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769425881,
+      "nanos": 835000000
+    }
+  },
+  {
+    "id": 20,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "Para satisfazer o seu pedido, farei a alteração do roteador do React de `HashRouter` para `BrowserRouter` no arquivo principal da aplicação.\n\n**Especificações da alteração:**\n1.  **Arquivo:** `index.tsx`\n2.  **Ação:** Substituir a importação e o componente `HashRouter` por `BrowserRouter` da biblioteca `react-router-dom`.\n3.  **Impacto:** As URLs do site não utilizarão mais o caractere `#` (ex: `site.com/#/about` passará a ser `site.com/about`), proporcionando URLs mais limpas e amigáveis para SEO.\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769425881,
+      "nanos": 835000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769425882,
+      "nanos": 66000000
+    }
+  },
+  {
+    "id": 21,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "index.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Altera o roteador de HashRouter para BrowserRouter para URLs mais limpas.",
+          "diffs": [
+            {
+              "target": "",
+              "replacement": "\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { BrowserRouter } from 'react-router-dom';\nimport App from './App';\nimport './lib/i18n';\n\n// Registro do Service Worker habilitado para resolver o alerta de ciclo de vida de cache.\n// O SW intercepta requisições de domínios externos (Supabase, Google, RSMS) e armazena\n// os assets no CacheStorage, garantindo carregamento instantâneo em visitas recorrentes.\nif ('serviceWorker' in navigator) {\n  window.addEventListener('load', () => {\n    // Registra o sw.js localizado na raiz do projeto\n    navigator.serviceWorker.register('./sw.js')\n      .then(reg => console.log('Aços Vital: Service Worker Ativo', reg.scope))\n      .catch(err => console.warn('Aços Vital: Erro no registro do Service Worker', err));\n  });\n}\n\nconst rootElement = document.getElementById('root');\n\nif (!rootElement) {\n  console.error(\"Critical Error: Root element 'root' not found in the document.\");\n  throw new Error(\"Could not find root element to mount to\");\n}\n\nconst root = ReactDOM.createRoot(rootElement);\n\nroot.render(\n  <React.StrictMode>\n    <BrowserRouter>\n      <App />\n    </BrowserRouter>\n  </React.StrictMode>\n);\n"
+            }
+          ]
+        }
+      ]
+    },
+    "createdTimestamp": {
+      "seconds": 1769425882,
+      "nanos": 963000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769425886,
+      "nanos": 716000000
+    }
+  },
+  {
+    "id": 24,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "A seção 'Produtos em Destaque' as imagens estão com um circulo... Elas devem ser como eram antes, escrito 'CATÁLOGO' no fundo, o os cards devem ser retangulos, e ao passar o mouse por cima, aparece o nome e detalhes",
+      "files": [],
+      "fileUploads": [],
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769427468,
+      "nanos": 472000000
+    }
+  },
+  {
+    "id": 25,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Analyzing Visuals for Aços Vital**\n\nI've been examining the Aços Vital website's \"Featured Products\" section on the homepage. Initially, the product images are circular, which I've pinpointed to the `ProductCard` component in `FeaturedProducts.tsx`. There are two changes requested: firstly, the images should be rectangular, and secondly, a change for the background to be made. I'm focusing on the component file.\n\n\n**Refining UI Component Design**\n\nI'm now diving deeper into refining the `ProductCard` component within `FeaturedProducts.tsx`. I've outlined the UI structure: a rectangular card with `relative overflow-hidden` and a large, faint \"CATÁLOGO\" background text, either behind the image or within the overlay. The product image will fully cover the rectangle. The challenge is the overlay; it needs to be hidden initially but appear on hover with product details. I'm focusing on the implementation with Tailwind classes. I'm focusing now on overlay implementation.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769427468,
+      "nanos": 472000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769427476,
+      "nanos": 639000000
+    }
+  },
+  {
+    "id": 26,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "Para atender ao seu pedido e resgatar a estética clássica de \"Catálogo\" com cards retangulares e informações reveladas no hover, farei as seguintes atualizações:\n\n**Especificações da alteração:**\n\n1.  **Componente:** `FeaturedProducts.tsx`\n2.  **Mudança Visual (ProductCard):**\n    *   Substituição do formato circular por um **contêiner retangular** (`aspect-[4/5]`).\n    *   Adição da palavra **\"CATÁLOGO\"** estilizada em marca d'água no fundo do card, utilizando uma fonte extrabold e cor suave.\n    *   **Efeito Hover:** O nome do produto e o botão \"Ver Detalhes\" agora ficam ocultos em um overlay escuro que desliza ou surge (`opacity-0 group-hover:opacity-100`) apenas quando o usuário passa o mouse.\n    *   A imagem do produto ocupará todo o espaço do card com um leve zoom no hover.\n3.  **Comportamento:** O slider continua funcional via arraste e botões laterais, mas a experiência visual foca na descoberta via interação.\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769427476,
+      "nanos": 639000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769427476,
+      "nanos": 968000000
+    }
+  },
+  {
+    "id": 27,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "components/features/home/FeaturedProducts.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Atualiza o design dos cards de produtos para formato retangular com texto 'CATÁLOGO' ao fundo e informações reveladas no hover.",
+          "diffs": [
+            {
+              "target": "",
+              "replacement": "\nimport React, { useRef, useState } from 'react';\nimport { Link } from 'react-router-dom';\nimport { useTranslation } from 'react-i18next';\nimport { ChevronLeft, ChevronRight, Plus } from 'lucide-react';\nimport { FEATURED_PRODUCTS_LIST } from '../../../lib/constants';\n\ninterface Product {\n    id: string;\n    alt: string;\n    imageUrl: string;\n    href: string;\n}\n\nconst ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragging: boolean }> = ({ product, viewDetailsText, isDragging }) => (\n    <li className=\"snap-center flex-shrink-0 w-[280px] md:w-[320px] select-none\">\n        <Link \n            to={product.href} \n            className=\"block group relative aspect-[4/5] rounded-2xl overflow-hidden bg-brand-midnight shadow-2xl border border-white/5 focus:outline-none\"\n            aria-label={`Ver detalhes de ${product.alt}`}\n            draggable={false}\n            onClickCapture={(e) => isDragging && e.preventDefault()}\n        >\n            {/* Texto \"CATÁLOGO\" ao Fundo */}\n            <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden\">\n                <span className=\"text-[80px] font-black text-white/5 uppercase tracking-tighter leading-none transform -rotate-90 md:rotate-0\">\n                    CATÁLOGO\n                </span>\n            </div>\n\n            {/* Imagem do Produto */}\n            <div\n                style={{ backgroundImage: `url(${product.imageUrl})` }}\n                className=\"absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0\"\n                role=\"img\"\n                aria-label={product.alt}\n            />\n\n            {/* Overlay Gradiente Base */}\n            <div className=\"absolute inset-0 bg-gradient-to-t from-brand-blue-dark/90 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500\"></div>\n\n            {/* Conteúdo Revelado no Hover */}\n            <div className=\"absolute inset-0 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500\">\n                <div className=\"space-y-4\">\n                    <div className=\"flex items-center gap-3\">\n                        <div className=\"w-8 h-[2px] bg-brand-orange\"></div>\n                        <span className=\"text-[10px] font-black text-brand-orange uppercase tracking-[0.3em]\">\n                            Linha Vital\n                        </span>\n                    </div>\n                    \n                    <h3 className=\"font-black text-white text-2xl md:text-3xl uppercase tracking-tighter leading-none\">\n                        {product.alt}\n                    </h3>\n                    \n                    <div className=\"flex items-center gap-2 pt-4\">\n                        <div className=\"w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/40 group-hover:scale-110 transition-transform\">\n                            <Plus size={20} strokeWidth={3} />\n                        </div>\n                        <span className=\"text-xs font-black text-white uppercase tracking-widest\">\n                            {viewDetailsText}\n                        </span>\n                    </div>\n                </div>\n            </div>\n\n            {/* Bordas Decorativas Hover */}\n            <div className=\"absolute inset-0 border-2 border-brand-orange/0 group-hover:border-brand-orange/20 rounded-2xl transition-colors duration-500 pointer-events-none\"></div>\n        </Link>\n    </li>\n);\n\nconst FeaturedProducts: React.FC = () => {\n    const { t } = useTranslation();\n    const sliderRef = useRef<HTMLUListElement>(null);\n    const [isDragging, setIsDragging] = useState(false);\n    const pos = useRef({ startX: 0, scrollLeft: 0, moved: false });\n\n    const viewDetailsText = t('featuredProducts.viewDetails');\n\n    const handleMouseDown = (e: React.MouseEvent) => {\n        if (!sliderRef.current) return;\n        setIsDragging(true);\n        pos.current.moved = false;\n        pos.current.startX = e.pageX - sliderRef.current.offsetLeft;\n        pos.current.scrollLeft = sliderRef.current.scrollLeft;\n        sliderRef.current.style.scrollSnapType = 'none';\n        sliderRef.current.style.scrollBehavior = 'auto';\n    };\n\n    const handleMouseMove = (e: React.MouseEvent) => {\n        if (!isDragging || !sliderRef.current) return;\n        e.preventDefault();\n        const x = e.pageX - sliderRef.current.offsetLeft;\n        const walk = (x - pos.current.startX);\n        if (Math.abs(walk) > 5) pos.current.moved = true;\n        sliderRef.current.scrollLeft = pos.current.scrollLeft - walk;\n    };\n\n    const handleMouseUpOrLeave = () => {\n        if (!isDragging || !sliderRef.current) return;\n        setIsDragging(false);\n        sliderRef.current.style.scrollSnapType = 'x mandatory';\n        sliderRef.current.style.scrollBehavior = 'smooth';\n    };\n\n    const scroll = (direction: 'left' | 'right') => {\n        if (!sliderRef.current) return;\n        const scrollAmount = sliderRef.current.clientWidth * 0.8;\n        sliderRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });\n    };\n\n    return (\n        <section className=\"py-16 md:py-24 bg-brand-midnight overflow-hidden relative\" aria-labelledby=\"featured-products-title\">\n            {/* Elemento Decorativo de Fundo */}\n            <div className=\"absolute top-1/2 left-0 w-full h-px bg-white/5 pointer-events-none\"></div>\n\n            <div className=\"container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative z-10\">\n                <div className=\"flex flex-col md:flex-row justify-between items-end gap-6 mb-16\">\n                    <div className=\"text-center md:text-left\">\n                        <span className=\"text-brand-orange font-black tracking-[0.4em] text-[10px] uppercase block mb-3\">Qualidade e Precisão</span>\n                        <h2 id=\"featured-products-title\" className=\"text-3xl md:text-5xl font-black text-white tracking-tighter uppercase\">\n                            {t('featuredProducts.title')}\n                        </h2>\n                    </div>\n                    \n                    <div className=\"flex gap-3\">\n                        <button onClick={() => scroll('left')} className=\"w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center text-gray-400 hover:bg-white/5 hover:text-white transition-all active:scale-90 shadow-sm\"><ChevronLeft size={24} /></button>\n                        <button onClick={() => scroll('right')} className=\"w-12 h-12 rounded-xl bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark transition-all active:scale-90\"><ChevronRight size={24} /></button>\n                    </div>\n                </div>\n            </div>\n            \n            <div className=\"relative\">\n                <ul\n                    ref={sliderRef}\n                    onMouseDown={handleMouseDown}\n                    onMouseLeave={handleMouseUpOrLeave}\n                    onMouseUp={handleMouseUpOrLeave}\n                    onMouseMove={handleMouseMove}\n                    className={`flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-12 scrollbar-hide gap-6 md:gap-8 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}\n                >\n                    {FEATURED_PRODUCTS_LIST.map((product, index) => (\n                        <ProductCard \n                            key={`${product.id}-${index}`} \n                            product={{ ...product, alt: t(`featuredProducts.items.${product.id}`) }} \n                            viewDetailsText={viewDetailsText}\n                            isDragging={isDragging}\n                        />\n                    ))}\n                </ul>\n            </div>\n        </section>\n    );\n};\n\nexport default FeaturedProducts;\n"
+            }
+          ]
+        }
+      ]
+    },
+    "createdTimestamp": {
+      "seconds": 1769427478,
+      "nanos": 919000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769427489,
+      "nanos": 483000000
+    }
+  },
+  {
+    "id": 29,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "O retangulo deve ser menor e o fundo deve ser claro como toda a página. Deve ter escrito 'CATÁLOGO' no fundo",
+      "files": [],
+      "fileUploads": [],
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769427582,
+      "nanos": 482000000
+    }
+  },
+  {
+    "id": 30,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Refining Visual Elements**\n\nI'm currently focused on the `FeaturedProducts.tsx` component. The key task is to adjust the visual presentation of the product cards. I'm aiming to make them smaller and introduce a lighter background to enhance the visual appeal. I believe these modifications will contribute to a cleaner and more user-friendly interface.\n\n\n**Adjusting Product Display**\n\nI'm now revising the product cards within `FeaturedProducts.tsx`, focusing on visual harmony with the rest of the page. My plan involves reducing the card width and introducing a lighter background, possibly white or off-white. I'll need to adjust the \"CATÁLOGO\" text color to maintain visibility and ensure the hover effect with product name and details remains clear, potentially keeping a dark hover overlay to ensure contrast on lighter backgrounds. The goal is a cleaner aesthetic.\n\n\n**Revising Backgrounds & Colors**\n\nI've shifted focus to adjusting both the section and product card backgrounds. The section background in `FeaturedProducts.tsx`, currently `bg-brand-midnight`, will become `bg-brand-off-white` to align with the user's preference for a lighter, more consistent visual style across the page. Subsequently, I'm changing the product card color from `bg-brand-midnight` to `bg-white`. I also plan to modify the title color from `text-white` to `text-brand-blue-dark`. My goal is to achieve a cleaner, more readable design.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769427582,
+      "nanos": 482000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769427593,
+      "nanos": 657000000
+    }
+  },
+  {
+    "id": 31,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "Para atender à sua solicitação, farei ajustes no design da seção \"Produtos em Destaque\" para que ela tenha um fundo claro, cards menores e a marca d'água \"CATÁLOGO\" perfeitamente visível sobre o fundo branco.\n\n**Especificações da alteração:**\n\n1.  **Cores da Seção:** Alteração do fundo de `brand-midnight` (escuro) para `brand-off-white` (claro), alinhando com a estética das outras seções da página.\n2.  **Dimensões dos Cards:** Redução da largura de `280px/320px` para `220px` no mobile e `260px` no desktop, criando um visual mais compacto e elegante.\n3.  **Estética do Card:**\n    *   Fundo branco puro (`bg-white`) com bordas suaves.\n    *   Texto **\"CATÁLOGO\"** em marca d'água no fundo usando um cinza muito claro (`text-gray-100`), garantindo que seja visível mas discreto.\n    *   **Overlay:** A imagem do produto fica visível e o overlay escuro só aparece no **hover**, destacando o nome do produto e os detalhes em branco.\n4.  **Tipografia:** Ajuste das cores dos títulos e botões de navegação para garantir contraste sobre o novo fundo claro.\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": {
+      "seconds": 1769427593,
+      "nanos": 657000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769427593,
+      "nanos": 806000000
+    }
+  },
+  {
+    "id": 32,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "components/features/home/FeaturedProducts.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Reduz o tamanho dos cards de produtos, altera o fundo da seção para claro e ajusta a marca d'água 'CATÁLOGO' para o novo tema.",
+          "diffs": [
+            {
+              "target": "",
+              "replacement": "\nimport React, { useRef, useState } from 'react';\nimport { Link } from 'react-router-dom';\nimport { useTranslation } from 'react-i18next';\nimport { ChevronLeft, ChevronRight, Plus } from 'lucide-react';\nimport { FEATURED_PRODUCTS_LIST } from '../../../lib/constants';\n\ninterface Product {\n    id: string;\n    alt: string;\n    imageUrl: string;\n    href: string;\n}\n\nconst ProductCard: React.FC<{ product: Product, viewDetailsText: string, isDragging: boolean }> = ({ product, viewDetailsText, isDragging }) => (\n    <li className=\"snap-center flex-shrink-0 w-[220px] md:w-[260px] select-none\">\n        <Link \n            to={product.href} \n            className=\"block group relative aspect-[4/5] rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-100 focus:outline-none transition-all duration-500 hover:shadow-2xl hover:shadow-brand-orange/10\"\n            aria-label={`Ver detalhes de ${product.alt}`}\n            draggable={false}\n            onClickCapture={(e) => isDragging && e.preventDefault()}\n        >\n            {/* Texto \"CATÁLOGO\" ao Fundo - Estilo Marca d'água para fundo claro */}\n            <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden\">\n                <span className=\"text-[60px] md:text-[70px] font-black text-gray-100 uppercase tracking-tighter leading-none transform -rotate-45 scale-150\">\n                    CATÁLOGO\n                </span>\n            </div>\n\n            {/* Imagem do Produto */}\n            <div\n                style={{ backgroundImage: `url(${product.imageUrl})` }}\n                className=\"absolute inset-0 bg-contain bg-no-repeat bg-center m-4 transition-transform duration-1000 ease-in-out group-hover:scale-110\"\n                role=\"img\"\n                aria-label={product.alt}\n            />\n\n            {/* Overlay Escuro Revelado no Hover */}\n            <div className=\"absolute inset-0 bg-brand-blue-dark/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6\">\n                <div className=\"space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500\">\n                    <div className=\"flex items-center gap-2\">\n                        <div className=\"w-6 h-[1.5px] bg-brand-orange\"></div>\n                        <span className=\"text-[8px] font-black text-brand-orange uppercase tracking-[0.2em]\">\n                            Linha Vital\n                        </span>\n                    </div>\n                    \n                    <h3 className=\"font-black text-white text-lg md:text-xl uppercase tracking-tight leading-tight\">\n                        {product.alt}\n                    </h3>\n                    \n                    <div className=\"flex items-center gap-2 pt-2\">\n                        <div className=\"w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/40 group-hover:rotate-90 transition-transform\">\n                            <Plus size={16} strokeWidth={3} />\n                        </div>\n                        <span className=\"text-[9px] font-black text-white uppercase tracking-widest\">\n                            {viewDetailsText}\n                        </span>\n                    </div>\n                </div>\n            </div>\n\n            {/* Bordas Decorativas Hover */}\n            <div className=\"absolute inset-0 border-2 border-brand-orange/0 group-hover:border-brand-orange/40 rounded-2xl transition-colors duration-500 pointer-events-none\"></div>\n        </Link>\n    </li>\n);\n\nconst FeaturedProducts: React.FC = () => {\n    const { t } = useTranslation();\n    const sliderRef = useRef<HTMLUListElement>(null);\n    const [isDragging, setIsDragging] = useState(false);\n    const pos = useRef({ startX: 0, scrollLeft: 0, moved: false });\n\n    const viewDetailsText = t('featuredProducts.viewDetails');\n\n    const handleMouseDown = (e: React.MouseEvent) => {\n        if (!sliderRef.current) return;\n        setIsDragging(true);\n        pos.current.moved = false;\n        pos.current.startX = e.pageX - sliderRef.current.offsetLeft;\n        pos.current.scrollLeft = sliderRef.current.scrollLeft;\n        sliderRef.current.style.scrollSnapType = 'none';\n        sliderRef.current.style.scrollBehavior = 'auto';\n    };\n\n    const handleMouseMove = (e: React.MouseEvent) => {\n        if (!isDragging || !sliderRef.current) return;\n        e.preventDefault();\n        const x = e.pageX - sliderRef.current.offsetLeft;\n        const walk = (x - pos.current.startX);\n        if (Math.abs(walk) > 5) pos.current.moved = true;\n        sliderRef.current.scrollLeft = pos.current.scrollLeft - walk;\n    };\n\n    const handleMouseUpOrLeave = () => {\n        if (!isDragging || !sliderRef.current) return;\n        setIsDragging(false);\n        sliderRef.current.style.scrollSnapType = 'x mandatory';\n        sliderRef.current.style.scrollBehavior = 'smooth';\n    };\n\n    const scroll = (direction: 'left' | 'right') => {\n        if (!sliderRef.current) return;\n        const scrollAmount = sliderRef.current.clientWidth * 0.8;\n        sliderRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });\n    };\n\n    return (\n        <section className=\"py-16 md:py-24 bg-brand-off-white overflow-hidden relative border-t border-gray-100\" aria-labelledby=\"featured-products-title\">\n            <div className=\"container mx-auto px-6 sm:px-12 lg:px-24 max-w-7xl relative z-10\">\n                <div className=\"flex flex-col md:flex-row justify-between items-end gap-6 mb-12\">\n                    <div className=\"text-center md:text-left\">\n                        <span className=\"text-brand-orange font-black tracking-[0.4em] text-[10px] uppercase block mb-3\">Qualidade e Precisão</span>\n                        <h2 id=\"featured-products-title\" className=\"text-3xl md:text-4xl font-black text-brand-blue-dark tracking-tighter uppercase\">\n                            {t('featuredProducts.title')}\n                        </h2>\n                    </div>\n                    \n                    <div className=\"flex gap-3\">\n                        <button onClick={() => scroll('left')} className=\"w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-white hover:text-brand-orange hover:border-brand-orange transition-all active:scale-90 shadow-sm\"><ChevronLeft size={20} /></button>\n                        <button onClick={() => scroll('right')} className=\"w-10 h-10 rounded-xl bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark transition-all active:scale-90\"><ChevronRight size={20} /></button>\n                    </div>\n                </div>\n            </div>\n            \n            <div className=\"relative\">\n                <ul\n                    ref={sliderRef}\n                    onMouseDown={handleMouseDown}\n                    onMouseLeave={handleMouseUpOrLeave}\n                    onMouseUp={handleMouseUpOrLeave}\n                    onMouseMove={handleMouseMove}\n                    className={`flex overflow-x-auto px-6 sm:px-12 lg:px-[calc((100vw-1280px)/2+24px)] pb-12 scrollbar-hide gap-6 md:gap-8 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}\n                >\n                    {FEATURED_PRODUCTS_LIST.map((product, index) => (\n                        <ProductCard \n                            key={`${product.id}-${index}`} \n                            product={{ ...product, alt: t(`featuredProducts.items.${product.id}`) }} \n                            viewDetailsText={viewDetailsText}\n                            isDragging={isDragging}\n                        />\n                    ))}\n                </ul>\n            </div>\n        </section>\n    );\n};\n\nexport default FeaturedProducts;\n"
+            }
+          ]
+        }
+      ]
+    },
+    "createdTimestamp": {
+      "seconds": 1769427596,
+      "nanos": 17000000
+    },
+    "doneTimestamp": {
+      "seconds": 1769427605,
+      "nanos": 930000000
+    }
+  }
+]

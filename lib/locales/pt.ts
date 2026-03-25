@@ -334,7 +334,7 @@ export const pt = {
     features: {
         list: {
             fast_delivery: { title: "Entrega Rápida e Flexível", description: "Produção ágil e logística otimizada para cumprir seus prazos em todo o território nacional." },
-            certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001, CRC Petrobras e YPFB." },
+            certified_quality: { title: "Qualidade Certificada", description: "Nossos produtos seguem os mais altos padrões, com certificações ISO 9001 e CRC Petrobras." },
             global_reach: { title: "Alcance Global", description: "Atendemos com excelência clientes no Brasil e no exterior, levando nossas soluções além das fronteiras." },
             satisfied_clients: { title: "+2.000 Clientes Satisfeitos", description: "A confiança de milhares de clientes anualmente, comprovando nossa dedicação e qualidade." }
         }
@@ -495,7 +495,6 @@ export const pt = {
             items: {
                 iso9001: { name: "ISO 9001:2015", issuer: "Bureau Veritas", description: "Padrão ouro em gestão de qualidade e otimização de processos industriais." },
                 crc_petrobras: { name: "CRC Petrobras", issuer: "Petrobras", description: "Certificado de Registro Cadastral aprovado para o setor de Óleo & Gás." },
-                ypfb: { name: "YPFB", issuer: "Bolívia", description: "Homologação internacional para fornecimento em projetos de alta criticidade." },
                 dun_bradstreet: { name: "Solidez Comercial", issuer: "D&B", description: "Classificação comercial de alta solidez e transparência corporativa." }
             }
         },
